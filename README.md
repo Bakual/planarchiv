@@ -1,2 +1,2 @@
 # Plan Archiv
-Plan Acrhiv Komponente für ELA
+Plan Archiv Komponente für ELA
