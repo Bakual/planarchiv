@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<extension type="component" version="3.7.0" method="upgrade">
+	<name>com_planarchiv</name>
+	<author>Thomas Hunziker</author>
+	<creationDate>2017-08-07</creationDate>
+	<copyright>© 2017</copyright>
+	<authorEmail>thomi.hunziker@sbb.ch</authorEmail>
+	<authorUrl>http://www.bakual.ch</authorUrl>
+	<version>1.0.0</version>
+	<license>http://www.gnu.org/licenses/gpl.html</license>
+	<description>COM_PLANARCHIV_DESCRIPTION</description>
+	<scriptfile>script.php</scriptfile>
+	<install>
+		<sql>
+			<file driver="mysql" charset="utf8">sql/install.mysql.utf8.sql</file>
+		</sql>
+	</install>
+	<uninstall>
+		<sql>
+			<file driver="mysql" charset="utf8">sql/uninstall.mysql.utf8.sql</file>
+		</sql>
+	</uninstall>
+	<update>
+		<schemas>
+			<schemapath type="mysql">sql/updates/mysql</schemapath>
+		</schemas>
+	</update>
+
+	<files folder="site">
+		<filename>planarchiv.php</filename>
+		<filename>controller.php</filename>
+		<folder>controllers</folder>
+		<folder>helpers</folder>
+		<folder>views</folder>
+		<folder>models</folder>
+		<folder>language</folder>
+	</files>
+	<media destination="com_planarchiv" folder="media">
+		<folder>css</folder>
+	</media>
+	<administration>
+		<menu>COM_PLANARCHIV</menu>
+		<submenu>
+			<menu view="gebaeudes">COM_PLANARCHIV_MENU_GEBAEUDES</menu>
+			<menu view="stockwers">COM_PLANARCHIV_MENU_STOCKWERKS</menu>
+			<menu view="anlages">COM_PLANARCHIV_MENU_ANLAGES</menu>
+			<menu view="anlagetyps">COM_PLANARCHIV_MENU_ANLAGETYPS</menu>
+			<menu view="planarts">COM_PLANARCHIV_MENU_PLANARTS</menu>
+			<menu link="option=com_categories&amp;extension=com_planarchiv">COM_PLANARCHIV_MENU_CATEGORY</menu>
+		</submenu>
+		<files folder="admin">
+			<filename>config.xml</filename>
+			<filename>access.xml</filename>
+			<filename>planarchiv.php</filename>
+			<filename>controller.php</filename>
+			<folder>controllers</folder>
+			<folder>models</folder>
+			<folder>sql</folder>
+			<folder>tables</folder>
+			<folder>helpers</folder>
+			<folder>language</folder>
+			<folder>views</folder>
+		</files>
+	</administration>
+</extension>

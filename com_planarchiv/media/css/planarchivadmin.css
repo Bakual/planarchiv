@@ -1,0 +1,6 @@
+.planarchiv  .thumbnails span[class^="icon-"] {
+	width: 100%;
+	line-height: 70px;
+	font-size: 50px;
+	text-align: center;
+}

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<extension type="package" version="3.7.0" method="upgrade">
+	<name>PlanArchiv Package</name>
+	<author>Thomas Hunziker</author>
+	<creationDate>2017-08-07</creationDate>
+	<copyright>© 2017</copyright>
+	<authorEmail>thomi.hunziker@sbb.ch</authorEmail>
+	<authorUrl>http://www.bakual.ch</authorUrl>
+	<version>1.0.0</version>
+	<license>http://www.gnu.org/licenses/gpl.html</license>
+	<packagename>planarchiv</packagename>
+	<url>http://www.bakual.ch</url>
+	<packager>Thomas Hunziker</packager>
+	<packagerurl>http://www.bakual.ch</packagerurl>
+	<description>PlanArchiv Packages</description>
+	<files>
+		<file type="component" id="com_planarchiv">com_planarchiv.zip</file>
+	</files>
+</extension>
