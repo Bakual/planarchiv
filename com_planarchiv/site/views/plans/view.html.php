@@ -29,15 +29,17 @@ class PlanarchivViewPlans extends JViewLegacy
 	public function display($tpl = null)
 	{
 		// Get some data from the models
-		$this->state      = $this->get('State');
-		$this->items      = $this->get('Items');
-		$this->pagination = $this->get('Pagination');
+		$this->state         = $this->get('State');
+		$this->items         = $this->get('Items');
+		$this->pagination    = $this->get('Pagination');
+		$this->filterForm    = $this->get('FilterForm');
+		$this->activeFilters = $this->get('ActiveFilters');
 
 		// Get Category stuff from models
 		$this->category = $this->get('Category');
 		$children       = $this->get('Children');
 		$this->parent   = $this->get('Parent');
-		$this->children = array($this->category->id => $children);
+//		$this->children = array($this->category->id => $children);
 		$this->params   = $this->state->get('params');
 
 		// Check for errors.
@@ -46,17 +48,17 @@ class PlanarchivViewPlans extends JViewLegacy
 			throw new Exception(implode("\n", $errors), 500);
 		}
 
-		if ($this->category == false)
+/*		if ($this->category == false)
 		{
 			throw new Exception(JText::_('JGLOBAL_CATEGORY_NOT_FOUND'), 404);
-		}
+		} */
 
-		if ($this->parent == false && $this->category->id != 'root')
+/*		if ($this->parent == false && $this->category->id != 'root')
 		{
 			throw new Exception(JText::_('JGLOBAL_CATEGORY_NOT_FOUND'), 404);
-		}
+		} */
 
-		if ($this->category->id == 'root')
+/*		if ($this->category->id == 'root')
 		{
 			$this->params->set('show_category_title', 0);
 			$this->cat = '';
@@ -65,16 +67,16 @@ class PlanarchivViewPlans extends JViewLegacy
 		{
 			// Get the category title for backward compatibility
 			$this->cat = $this->category->title;
-		}
+		} */
 
 		// Check whether category access level allows access.
 		$user   = JFactory::getUser();
 		$groups = $user->getAuthorisedViewLevels();
 
-		if (!in_array($this->category->access, $groups))
+/*		if (!in_array($this->category->access, $groups))
 		{
 			throw new Exception(JText::_('JERROR_ALERTNOAUTHOR'), 403);
-		}
+		} */
 
 		$app = JFactory::getApplication();
 

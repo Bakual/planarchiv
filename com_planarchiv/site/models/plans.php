@@ -35,10 +35,11 @@ class PlanarchivModelPlans extends JModelList
 		if (empty($config['filter_fields']))
 		{
 			$config['filter_fields'] = array(
-				'ordering', 'plans.ordering',
 				'title', 'plans.title',
-				'intro', 'plans.intro',
-				'bio', 'plans.bio',
+				'ErstellDatum', 'plans.ErstellDatum',
+				'AnlageTyp', 'plans.AnlageTyp',
+				'AnlageTypTxt', 'plans.AnlageTypTxt',
+				'created', 'plans.created',
 				'checked_out', 'plans.checked_out',
 				'checked_out_time', 'plans.checked_out_time',
 				'language', 'plans.language',
@@ -46,6 +47,7 @@ class PlanarchivModelPlans extends JModelList
 				'category_title', 'c_plans.category_title',
 				'publish_up', 'plans.publish_up',
 				'publish_down', 'plans.publish_down',
+				'didok_title', 'didok.title',
 			);
 		}
 
@@ -69,14 +71,14 @@ class PlanarchivModelPlans extends JModelList
 		$query = $db->getQuery(true);
 
 		// Select required fields from the table.
-		$query->select();
-		$query->from();
+		$query->select('`plans`.*');
+		$query->from('#__planarchiv_plan AS plans');
 
 		// Join over Plans Category.
-		$query->select('c_plan.title AS category_title');
+		$query->select('`c_plan`.title AS category_title');
 		$query->select('CASE WHEN CHAR_LENGTH(c_plan.alias) THEN CONCAT_WS(\':\', c_plan.id, c_plan.alias) ELSE c_plan.id END AS catslug');
 		$query->join('LEFT', '#__categories AS c_plan ON c_plan.id = plans.catid');
-		$query->where('(plans.catid = 0 OR (c_plan.access IN (' . $groups . ') AND c_plan.published = 1))');
+		$query->where('(c_plan.access IN (' . $groups . ') AND c_plan.published = 1)');
 
 		// Filter by category
 		if ($categoryId = $this->getState('category.id'))
@@ -110,6 +112,17 @@ class PlanarchivModelPlans extends JModelList
 		$query->select("user.name AS author");
 		$query->join('LEFT', '#__users AS user ON user.id = plans.created_by');
 
+		// Join over DiDok for the Ort.
+		// TODO: Change from DiDok to ID
+		$query->select("didok.title AS didok_title");
+		$query->join('LEFT', '#__planarchiv_didok AS didok ON didok.didok = plans.Ort');
+
+		// Filter by DiDok
+		if ($didok = $this->getState('filter.didok'))
+		{
+			$query->where('didok.didok = ' . $db->quote($didok));
+		}
+
 		// Filter by search in title
 		$search = $this->getState('filter.search');
 
@@ -126,6 +139,21 @@ class PlanarchivModelPlans extends JModelList
 		{
 			$query->where('plans.state = ' . (int) $state);
 		}
+
+		// Filter by AnlageTyp
+		if ($anlageTyp = $this->getState('filter.anlage'))
+		{
+			$query->where('plans.AnlageTypTxt = ' . $db->quote($anlageTyp));
+		}
+
+		// Filter by Mängelliste
+		$mangel = $this->getState('filter.mangelliste');
+
+		if (is_numeric($mangel))
+		{
+			$query->where('plans.Maengelliste = ' . (int) $mangel);
+		}
+
 		// Do not show trashed links on the front-end
 		$query->where('plans.state != -2');
 
@@ -136,7 +164,7 @@ class PlanarchivModelPlans extends JModelList
 		}
 
 		// Add the list ordering clause.
-		$query->order($db->escape($this->getState('list.ordering', 'ordering')) . ' ' . $db->escape($this->getState('list.direction', 'ASC')));
+		$query->order($db->escape($this->getState('list.ordering', 'ErstellDatum')) . ' ' . $db->escape($this->getState('list.direction', 'DESC')));
 
 		return $query;
 	}
@@ -180,6 +208,6 @@ class PlanarchivModelPlans extends JModelList
 		$search = $app->getUserStateFromRequest($this->context . '.filter.search', 'filter-search', '', 'STRING');
 		$this->setState('filter.search', $search);
 
-		parent::populateState('ordering', 'ASC');
+		parent::populateState('ErstellDatum', 'DESC');
 	}
 }
