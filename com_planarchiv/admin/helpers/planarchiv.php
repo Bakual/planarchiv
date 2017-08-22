@@ -38,11 +38,6 @@ class PlanarchivHelper
 			$vName == 'didoks'
 		);
 		JHtmlSidebar::addEntry(
-			JText::_('COM_PLANARCHIV_MENU_ORTS'),
-			'index.php?option=com_planarchiv&view=orts',
-			$vName == 'orts'
-		);
-		JHtmlSidebar::addEntry(
 			JText::_('COM_PLANARCHIV_MENU_STOCKWERKS'),
 			'index.php?option=com_planarchiv&view=stockwerks',
 			$vName == 'stockwerks'

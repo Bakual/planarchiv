@@ -26,12 +26,6 @@ JHtml::_('stylesheet', 'com_planarchiv/planarchivadmin.css', array('version' => 
 			</a>
 		</li>
 		<li class="span2">
-			<a class="thumbnail" href="index.php?option=com_planarchiv&view=orts">
-				<span class="icon-home-2"> </span>
-				<h3 class="center"><?php echo JText::_('COM_PLANARCHIV_ORTS_TITLE'); ?></h3>
-			</a>
-		</li>
-		<li class="span2">
 			<a class="thumbnail" href="index.php?option=com_planarchiv&view=stockwerks">
 				<span class="icon-menu-3"> </span>
 				<h3 class="center"><?php echo JText::_('COM_PLANARCHIV_STOCKWERKS_TITLE'); ?></h3>

@@ -64,10 +64,10 @@ $trashed   = $this->state->get('filter.state') == -2 ? true : false;
 							<?php echo JHtml::_('searchtools.sort', 'JGLOBAL_TITLE', 'didoks.title', $listDirn, $listOrder); ?>
 						</th>
 						<th width="7%" class="nowrap">
-							<?php echo JHtml::_('searchtools.sort',  'COM_PLANARCHIV_DIDOK', 'didoks.didok', $listDirn, $listOrder); ?>
+							<?php echo JHtml::_('searchtools.sort',  'COM_PLANARCHIV_FIELD_DIDOK_LABEL', 'didoks.didok', $listDirn, $listOrder); ?>
 						</th>
-						<th width="7%" class="nowrap hidden-phone">
-							<?php echo JHtml::_('searchtools.sort',  'JGRID_HEADING_LANGUAGE', 'language', $listDirn, $listOrder); ?>
+						<th width="7%" class="nowrap">
+							<?php echo JHtml::_('searchtools.sort',  'COM_PLANARCHIV_FIELD_KTU_TITLE', 'didoks.ktu', $listDirn, $listOrder); ?>
 						</th>
 						<th width="1%" class="nowrap hidden-phone">
 							<?php echo JHtml::_('searchtools.sort',  'JGRID_HEADING_ID', 'didoks.id', $listDirn, $listOrder); ?>
@@ -113,9 +113,6 @@ $trashed   = $this->state->get('filter.state') == -2 ? true : false;
 								<?php else : ?>
 									<?php echo $this->escape($item->title); ?>
 								<?php endif; ?>
-								<span class="small">
-									<?php echo JText::sprintf('COM_PLANARCHIV_LIST_CODE', $this->escape($item->code));?>
-								</span>
 								<div class="small">
 									<?php echo JText::_('JCATEGORY') . ": " . $this->escape($item->category_title); ?>
 								</div>
@@ -125,8 +122,8 @@ $trashed   = $this->state->get('filter.state') == -2 ? true : false;
 						<td>
 							<?php echo $item->didok; ?>
 						</td>
-						<td class="small hidden-phone">
-							<?php echo JLayoutHelper::render('joomla.content.language', $item); ?>
+						<td>
+							<?php echo $item->ktu; ?>
 						</td>
 						<td class="center hidden-phone">
 							<?php echo (int) $item->id; ?>

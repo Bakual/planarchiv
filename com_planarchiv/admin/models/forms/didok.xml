@@ -45,27 +45,18 @@
 			<option value="2">JARCHIVED</option>
 			<option value="-2">JTRASH</option>
 		</field>
-
-		<field
-			name="language"
-			type="contentlanguage"
-			label="JFIELD_LANGUAGE_LABEL"
-			description="COM_PLANARCHIV_FIELD_LANGUAGE_DESC"
-		>
-			<option value="*">JALL</option>
-		</field>
 	</fieldset>
 
 	<fieldset name="basic">
 		<field
-			name="code"
-			type="text"
-			label="COM_PLANARCHIV_CODE_TITLE"
-		/>
-		<field
 			name="didok"
 			type="text"
-			label="COM_PLANARCHIV_CODE_TITLE"
+			label="COM_PLANARCHIV_FIELD_DIDOK_LABEL"
+		/>
+		<field
+			name="ktu"
+			type="text"
+			label="COM_PLANARCHIV_FIELD_KTU_TITLE"
 		/>
 	</fieldset>
 

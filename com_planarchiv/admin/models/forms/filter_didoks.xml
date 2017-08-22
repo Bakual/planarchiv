@@ -14,6 +14,16 @@
 			<option value="">JOPTION_SELECT_PUBLISHED</option>
 		</field>
 		<field
+			name="ktu"
+			type="sql"
+			query="SELECT DISTINCT ktu FROM #__planarchiv_didok ORDER BY ktu ASC"
+			value_field="ktu"
+			key_field="ktu"
+			onchange="this.form.submit();"
+		>
+			<option value="">COM_PLANARCHIV_FIELD_KTU_SELECT_OPTION</option>
+		</field>
+		<field
 			name="category_id"
 			type="category"
 			extension="com_planarchiv"
@@ -32,14 +42,6 @@
 		>
 			<option value="">JOPTION_SELECT_MAX_LEVELS</option>
 		</field>
-		<field
-			name="language"
-			type="contentlanguage"
-			onchange="this.form.submit();"
-		>
-			<option value="">JOPTION_SELECT_LANGUAGE</option>
-			<option value="*">JALL</option>
-		</field>
 	</fields>
 	<fields name="list">
 		<field
@@ -56,8 +58,6 @@
 			<option value="gebaeudes.title DESC">JGLOBAL_TITLE_DESC</option>
 			<option value="category_title ASC">JCATEGORY_ASC</option>
 			<option value="category_title DESC">JCATEGORY_DESC</option>
-			<option value="language ASC">JGRID_HEADING_LANGUAGE_ASC</option>
-			<option value="language DESC">JGRID_HEADING_LANGUAGE_DESC</option>
 			<option value="gebaeudes.created ASC">JDATE_ASC</option>
 			<option value="gebaeudes.created DESC">JDATE_DESC</option>
 			<option value="gebaeudes.id ASC">JGRID_HEADING_ID_ASC</option>

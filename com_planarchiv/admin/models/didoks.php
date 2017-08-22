@@ -19,26 +19,19 @@ class PlanarchivModelDidoks extends JModelList
 				'id', 'didoks.id',
 				'title', 'didoks.title',
 				'didok', 'didoks.didok',
-				'code', 'didoks.code',
-				'OrtName', 'didoks.OrtName',
+				'ktu', 'didoks.ktu',
 				'checked_out', 'didoks.checked_out',
 				'checked_out_time', 'didoks.checked_out_time',
 				'catid', 'didoks.catid', 'category_title',
 				'state', 'didoks.state',
 				'created', 'didoks.created',
 				'created_by', 'didoks.created_by',
-				'language', 'didoks.language',
 			);
 
 			// Searchtools
 			$config['filter_fields'][] = 'category_id';
 			$config['filter_fields'][] = 'level';
 			$config['filter_fields'][] = 'tag';
-
-			if (JLanguageAssociations::isEnabled())
-			{
-				$config['filter_fields'][] = 'association';
-			}
 		}
 
 		parent::__construct($config);
@@ -59,19 +52,10 @@ class PlanarchivModelDidoks extends JModelList
 		// Initialise variables.
 		$app = JFactory::getApplication();
 
-		// Force a language
-		$forcedLanguage = $app->input->get('forcedLanguage', '' , 'cmd');
-
 		// Adjust the context to support modal layouts.
 		if ($layout = $app->input->get('layout'))
 		{
 			$this->context .= '.' . $layout;
-		}
-
-		// Adjust the context to support forced languages.
-		if ($forcedLanguage)
-		{
-			$this->context .= '.' . $forcedLanguage;
 		}
 
 		// Load the parameters.
@@ -80,12 +64,6 @@ class PlanarchivModelDidoks extends JModelList
 
 		// List state information.
 		parent::populateState('didoks.title', 'asc');
-
-		if ($forcedLanguage)
-		{
-			$this->setState('filter.language', $forcedLanguage);
-			$this->setState('filter.forcedLanguage', $forcedLanguage);
-		}
 	}
 
 	/**
@@ -106,7 +84,6 @@ class PlanarchivModelDidoks extends JModelList
 		$id .= ':' . $this->getState('filter.search');
 		$id .= ':' . $this->getState('filter.state');
 		$id .= ':' . $this->getState('filter.category_id');
-		$id .= ':' . $this->getState('filter.language');
 
 		return parent::getStoreId($id);
 	}
@@ -126,10 +103,6 @@ class PlanarchivModelDidoks extends JModelList
 		// Select the required fields from the table.
 		$query->select('didoks.*');
 		$query->from('#__planarchiv_didok AS didoks');
-
-		// Join over the language
-		$query->select('l.title AS language_title, l.image AS language_image');
-		$query->join('LEFT', $db->quoteName('#__languages') . ' AS l ON l.lang_code = didoks.language');
 
 		// Join over the users for the checked out user.
 		$query->select('uc.name AS editor');
@@ -192,10 +165,10 @@ class PlanarchivModelDidoks extends JModelList
 			}
 		}
 
-		// Filter on the language.
-		if ($language = $this->getState('filter.language'))
+		// Filter on the ktu.
+		if ($ktu = $this->getState('filter.ktu'))
 		{
-			$query->where('didoks.language = ' . $db->quote($language));
+			$query->where('didoks.ktu = ' . $db->quote($ktu));
 		}
 
 		// Add the list ordering clause.
