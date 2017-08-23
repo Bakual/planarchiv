@@ -20,7 +20,7 @@ $canEditOwn = ($user->authorise('core.edit.own', 'com_planarchiv'));
 $listOrder  = $this->state->get('list.ordering');
 $listDirn   = $this->state->get('list.direction');
 ?>
-<div class="category-list<?php echo $this->pageclass_sfx; ?> ss-plans-container<?php echo $this->pageclass_sfx; ?>">
+<div class="category-list<?php echo $this->pageclass_sfx; ?> planarchiv-plans-container<?php echo $this->pageclass_sfx; ?>">
 	<?php
 	if ($this->params->get('show_page_heading', 1)) : ?>
 		<h1><?php echo $this->escape($this->params->get('page_heading')); ?></h1>
@@ -75,18 +75,18 @@ $listDirn   = $this->state->get('list.direction');
 									<?php if ($item->checked_out) : ?>
 										<?php echo JHtml::_('jgrid.checkedout', $i, $item->editor, $item->checked_out_time, 'plans.', $canCheckin); ?>
 									<?php endif; ?>
-									<?php if ($canEdit || $canEditOwn) : ?>
-										<a href="<?php echo JRoute::_('index.php?option=com_planarchiv&task=plan.edit&id=' . $item->id);?>">
-											<?php echo $this->escape($item->title); ?>
-										</a>
-									<?php else : ?>
+									<a href="<?php echo JRoute::_('index.php?option=com_planarchiv&view=plan&id=' . $item->id);?>">
 										<?php echo $this->escape($item->title); ?>
+									</a>
+									<?php if ($canEdit || $canEditOwn) : ?>
+										<a href="<?php echo JRoute::_('index.php?option=com_planarchiv&task=planform.edit&id=' . $item->id); ?>">
+											<span class="icon-edit"> </span>
+										</a>
 									<?php endif; ?>
 									<div class="small">
 										<?php echo JText::_('JCATEGORY') . ": " . $this->escape($item->category_title); ?>
 									</div>
 								</div>
-								<div class="pull-left">
 							</td>
 							<td>
 								<?php echo $item->AnlageTypTxt . ' <small>(' . $item->AnlageTyp . ')</small>'; ?>

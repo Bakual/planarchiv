@@ -35,18 +35,17 @@ class PlanarchivModelPlans extends JModelList
 		if (empty($config['filter_fields']))
 		{
 			$config['filter_fields'] = array(
+				'id', 'plans.id',
 				'title', 'plans.title',
 				'ErstellDatum', 'plans.ErstellDatum',
 				'AnlageTyp', 'plans.AnlageTyp',
 				'AnlageTypTxt', 'plans.AnlageTypTxt',
+				'Maengelliste', 'plans.Maengelliste',
 				'created', 'plans.created',
 				'checked_out', 'plans.checked_out',
 				'checked_out_time', 'plans.checked_out_time',
-				'language', 'plans.language',
-				'hits', 'plans.hits',
+				'category_id', 'plans.catid', 'level',
 				'category_title', 'c_plans.category_title',
-				'publish_up', 'plans.publish_up',
-				'publish_down', 'plans.publish_down',
 				'didok_title', 'didok.title',
 			);
 		}
@@ -81,7 +80,7 @@ class PlanarchivModelPlans extends JModelList
 		$query->where('(c_plan.access IN (' . $groups . ') AND c_plan.published = 1)');
 
 		// Filter by category
-		if ($categoryId = $this->getState('category.id'))
+		if ($categoryId = $this->getState('filter.category_id'))
 		{
 			if ($levels = (int) $this->getState('filter.subcategories', 0))
 			{
@@ -118,7 +117,7 @@ class PlanarchivModelPlans extends JModelList
 		$query->join('LEFT', '#__planarchiv_didok AS didok ON didok.didok = plans.Ort');
 
 		// Filter by DiDok
-		if ($didok = $this->getState('filter.didok'))
+		if ($didok = $this->getState('filter.didok_title'))
 		{
 			$query->where('didok.didok = ' . $db->quote($didok));
 		}
@@ -141,13 +140,13 @@ class PlanarchivModelPlans extends JModelList
 		}
 
 		// Filter by AnlageTyp
-		if ($anlageTyp = $this->getState('filter.anlage'))
+		if ($anlageTyp = $this->getState('filter.AnlageTypTxt'))
 		{
 			$query->where('plans.AnlageTypTxt = ' . $db->quote($anlageTyp));
 		}
 
 		// Filter by Mängelliste
-		$mangel = $this->getState('filter.mangelliste');
+		$mangel = $this->getState('filter.Maengelliste');
 
 		if (is_numeric($mangel))
 		{
@@ -202,8 +201,6 @@ class PlanarchivModelPlans extends JModelList
 			// Filter on published for those who do not have edit or edit.state rights.
 			$this->setState('filter.state', 1);
 		}
-
-		$this->setState('filter.language', $app->getLanguageFilter());
 
 		$search = $app->getUserStateFromRequest($this->context . '.filter.search', 'filter-search', '', 'STRING');
 		$this->setState('filter.search', $search);
