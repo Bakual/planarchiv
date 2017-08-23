@@ -46,14 +46,14 @@ class PlanarchivModelPlan extends JModelItem
 				$db    = $this->getDbo();
 				$query = $db->getQuery(true);
 
-				$query->select();
-				$query->from();
+				$query->select('plan.*');
+				$query->from('#__planarchiv_plan AS plan');
 
 				// Join on category table.
 				$query->select('c.title AS category_title, c.access AS category_access');
 				$query->select('CASE WHEN CHAR_LENGTH(c.alias) THEN CONCAT_WS(\':\', c.id, c.alias) ELSE c.id END AS catslug');
 				$query->join('LEFT', '#__categories AS c on c.id = plan.catid');
-				$query->where('(plan.catid = 0 OR c.published = 1)');
+				$query->where('c.published = 1');
 
 				$query->where('plan.id = ' . (int) $id);
 				$query->where('plan.state = 1');

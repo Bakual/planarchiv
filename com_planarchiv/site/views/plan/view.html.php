@@ -43,7 +43,7 @@ class PlanarchivViewPlan extends JViewLegacy
 
 		if (!$this->item)
 		{
-			$app->redirect(JRoute::_('index.php?view='), JText::_('JGLOBAL_RESOURCE_NOT_FOUND'), 'error');
+			$app->redirect(JRoute::_('index.php?view=plans'), JText::_('JGLOBAL_RESOURCE_NOT_FOUND'), 'error');
 		}
 
 		// Check if access is not public
@@ -130,29 +130,5 @@ class PlanarchivViewPlan extends JViewLegacy
 		// Add Breadcrumbs
 		$pathway = $app->getPathway();
 		$pathway->addItem($this->item->title);
-
-		// Set MetaData
-		if ($this->item->metadesc)
-		{
-			$this->document->setDescription($this->item->metadesc);
-		}
-		elseif (!$this->item->metadesc && $this->params->get('menu-meta_description'))
-		{
-			$this->document->setDescription($this->params->get('menu-meta_description'));
-		}
-
-		if ($this->item->metakey)
-		{
-			$this->document->setMetaData('keywords', $this->item->metakey);
-		}
-		elseif (!$this->item->metakey && $this->params->get('menu-meta_keywords'))
-		{
-			$this->document->setMetaData('keywords', $this->params->get('menu-meta_keywords'));
-		}
-
-		if ($this->params->get('robots'))
-		{
-			$this->document->setMetaData('robots', $this->params->get('robots'));
-		}
 	}
 }
