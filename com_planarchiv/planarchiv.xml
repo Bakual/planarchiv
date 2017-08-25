@@ -44,9 +44,8 @@
 			<menu view="gebaeudes">COM_PLANARCHIV_MENU_GEBAEUDES</menu>
 			<menu view="didoks">COM_PLANARCHIV_MENU_DIDOKS</menu>
 			<menu view="stockwerks">COM_PLANARCHIV_MENU_STOCKWERKS</menu>
-			<menu view="anlages">COM_PLANARCHIV_MENU_ANLAGES</menu>
 			<menu view="anlagetyps">COM_PLANARCHIV_MENU_ANLAGETYPS</menu>
-			<menu view="planarts">COM_PLANARCHIV_MENU_PLANARTS</menu>
+			<menu view="dokutyps">COM_PLANARCHIV_MENU_DOKUTYPS</menu>
 			<menu link="option=com_categories&amp;extension=com_planarchiv">COM_PLANARCHIV_MENU_CATEGORY</menu>
 		</submenu>
 		<files folder="admin">

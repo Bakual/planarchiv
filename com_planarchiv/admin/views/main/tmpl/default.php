@@ -32,23 +32,19 @@ JHtml::_('stylesheet', 'com_planarchiv/planarchivadmin.css', array('version' => 
 			</a>
 		</li>
 		<li class="span2">
-			<a class="thumbnail" href="index.php?option=com_planarchiv&view=anlages">
-				<span class="icon-flash"> </span>
-				<h3 class="center"><?php echo JText::_('COM_PLANARCHIV_ANLAGES_TITLE'); ?></h3>
-			</a>
-		</li>
-		<li class="span2">
 			<a class="thumbnail" href="index.php?option=com_planarchiv&view=anlagetyps">
 				<span class="icon-flash"> </span>
 				<h3 class="center"><?php echo JText::_('COM_PLANARCHIV_ANLAGETYPS_TITLE'); ?></h3>
 			</a>
 		</li>
 		<li class="span2">
-			<a class="thumbnail" href="index.php?option=com_planarchiv&view=planarts">
+			<a class="thumbnail" href="index.php?option=com_planarchiv&view=dokutyps">
 				<span class="icon-stack"> </span>
-				<h3 class="center"><?php echo JText::_('COM_PLANARCHIV_PLANARTS_TITLE'); ?></h3>
+				<h3 class="center"><?php echo JText::_('COM_PLANARCHIV_DOKUTYPS_TITLE'); ?></h3>
 			</a>
 		</li>
+	</ul>
+	<ul class="thumbnails">
 		<li class="span2">
 			<a class="thumbnail" href="index.php?option=com_categories&extension=com_planarchiv">
 				<span class="icon-folder"> </span>
