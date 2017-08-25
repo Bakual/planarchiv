@@ -41,6 +41,7 @@ class PlanarchivModelPlans extends JModelList
 				'AnlageTyp', 'plans.AnlageTyp',
 				'AnlageTypTxt', 'plans.AnlageTypTxt',
 				'Maengelliste', 'plans.Maengelliste',
+				'original', 'plans.original',
 				'created', 'plans.created',
 				'checked_out', 'plans.checked_out',
 				'checked_out_time', 'plans.checked_out_time',
@@ -112,9 +113,8 @@ class PlanarchivModelPlans extends JModelList
 		$query->join('LEFT', '#__users AS user ON user.id = plans.created_by');
 
 		// Join over DiDok for the Ort.
-		// TODO: Change from DiDok to ID
-		$query->select("didok.title AS didok_title");
-		$query->join('LEFT', '#__planarchiv_didok AS didok ON didok.didok = plans.Ort');
+		$query->select("didok.title AS didok_title, didok");
+		$query->join('LEFT', '#__planarchiv_didok AS didok ON didok.id = plans.didok_id');
 
 		// Filter by DiDok
 		if ($didok = $this->getState('filter.didok_title'))
@@ -151,6 +151,14 @@ class PlanarchivModelPlans extends JModelList
 		if (is_numeric($mangel))
 		{
 			$query->where('plans.Maengelliste = ' . (int) $mangel);
+		}
+
+		// Filter by Original
+		$original = $this->getState('filter.original');
+
+		if (is_numeric($original))
+		{
+			$query->where('plans.original = ' . (int) $original);
 		}
 
 		// Do not show trashed links on the front-end

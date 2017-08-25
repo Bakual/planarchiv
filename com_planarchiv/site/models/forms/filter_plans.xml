@@ -19,7 +19,7 @@
 		<field
 			name="didok_title"
 			type="sql"
-			query="SELECT DISTINCT didok.title, didok.didok FROM #__planarchiv_plan AS plan INNER JOIN #__planarchiv_didok AS didok ON didok.didok = plan.Ort ORDER BY didok.title ASC"
+			query="SELECT DISTINCT didok.title, didok.didok FROM #__planarchiv_plan AS plan INNER JOIN #__planarchiv_didok AS didok ON didok.id = plan.didok_id ORDER BY didok.title ASC"
 			value_field="title"
 			key_field="didok"
 			onchange="this.form.submit();"
@@ -32,6 +32,15 @@
 			onchange="this.form.submit();"
 		>
 			<option value="">COM_PLANARCHIV_SELECT_MANGELLISTE</option>
+			<option value="1">JYES</option>
+			<option value="0">JNO</option>
+		</field>
+		<field
+			name="original"
+			type="list"
+			onchange="this.form.submit();"
+		>
+			<option value="">COM_PLANARCHIV_SELECT_ORIGINAL</option>
 			<option value="1">JYES</option>
 			<option value="0">JNO</option>
 		</field>

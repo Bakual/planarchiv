@@ -29,7 +29,7 @@ class PlanarchivModelPlan extends JModelItem
 	 */
 	public function &getItem($id = null)
 	{
-		$user = JFactory::getUser();
+		$langCode = substr(JFactory::getLanguage()->getTag(), 0, 2);
 
 		// Initialise variables.
 		$id = ($id) ? $id : (int) $this->getState('plan.id');
@@ -57,6 +57,15 @@ class PlanarchivModelPlan extends JModelItem
 
 				$query->where('plan.id = ' . (int) $id);
 				$query->where('plan.state = 1');
+
+				// Join over DiDok.
+				$query->select('didok.title AS didok_title, didok.didok');
+				$query->join('LEFT', '#__planarchiv_didok AS didok ON didok.id = plan.didok_id');
+
+				// Join over DokuTyp.
+				$query->select('dokutyp.title_' . $langCode . ' AS dokutyp_title');
+				$query->select('dokutyp.code_' . $langCode . ' AS dokutyp_code');
+				$query->join('LEFT', '#__planarchiv_dokutyp AS dokutyp ON dokutyp.id = plan.dokutyp_id');
 
 				// Join over users for the author names.
 				$query->select("user.name AS author");

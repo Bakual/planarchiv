@@ -76,7 +76,7 @@ $listDirn   = $this->state->get('list.direction');
 										<?php echo JHtml::_('jgrid.checkedout', $i, $item->editor, $item->checked_out_time, 'plans.', $canCheckin); ?>
 									<?php endif; ?>
 									<a href="<?php echo JRoute::_('index.php?option=com_planarchiv&view=plan&id=' . $item->id);?>">
-										<?php echo $this->escape($item->title); ?>
+										<?php echo $this->escape($item->title) ?: '<span class="label label-info">' . JText::_('COM_PLANARCHIV_NONAME') . '</span>'; ?>
 									</a>
 									<?php if ($canEdit || $canEditOwn) : ?>
 										<a href="<?php echo JRoute::_('index.php?option=com_planarchiv&task=planform.edit&id=' . $item->id); ?>">
@@ -92,7 +92,7 @@ $listDirn   = $this->state->get('list.direction');
 								<?php echo $item->AnlageTypTxt . ' <small>(' . $item->AnlageTyp . ')</small>'; ?>
 							</td>
 							<td>
-								<?php echo $item->didok_title . ' <small>(' . $item->Ort . ')</small>'; ?>
+								<?php echo $item->didok_title . ' <small>(' . $item->didok . ')</small>'; ?>
 							</td>
 							<td>
 								<?php echo JHtml::_('date', $item->ErstellDatum); ?>
