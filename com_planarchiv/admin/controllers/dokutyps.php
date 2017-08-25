@@ -10,13 +10,13 @@
 defined('_JEXEC') or die;
 
 /**
- * Planarts list controller class.
+ * Dokutyps list controller class.
  *
  * @package        PlanArchiv.Administrator
  *
  * @since          1.0.0
  */
-class PlanarchivControllerPlanarts extends JControllerAdmin
+class PlanarchivControllerDokutyps extends JControllerAdmin
 {
 	/**
 	 * Proxy for getModel.
@@ -25,11 +25,11 @@ class PlanarchivControllerPlanarts extends JControllerAdmin
 	 * @param   string $prefix The class prefix. Optional.
 	 * @param   array  $config Configuration array for model. Optional.
 	 *
-	 * @return  PlanarchivModelPlanart|boolean  Model object on success; otherwise false on failure.
+	 * @return  PlanarchivModelDokutyp|boolean  Model object on success; otherwise false on failure.
 	 *
 	 * @since 1.0.0
 	 */
-	public function &getModel($name = 'Planart', $prefix = 'PlanarchivModel', $config = array('ignore_request' => true))
+	public function &getModel($name = 'Dokutyp', $prefix = 'PlanarchivModel', $config = array('ignore_request' => true))
 	{
 		return parent::getModel($name, $prefix, $config);
 	}

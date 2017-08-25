@@ -10,13 +10,13 @@
 defined('_JEXEC') or die;
 
 /**
- * Planart controller class.
+ * Dokutyp controller class.
  *
  * @package        PlanArchiv.Administrator
  *
  * @since          1.0.0
  */
-class PlanarchivControllerPlanart extends JControllerForm
+class PlanarchivControllerDokutyp extends JControllerForm
 {
 	/**
 	 * Method to save a record.
@@ -93,7 +93,7 @@ class PlanarchivControllerPlanart extends JControllerForm
 		}
 
 		// Need to do a lookup from the model.
-		/** @var PlanarchivModelPlanart $model */
+		/** @var PlanarchivModelDokutyp $model */
 		$model      = $this->getModel();
 		$record     = $model->getItem($recordId);
 		$categoryId = (int) $record->catid;

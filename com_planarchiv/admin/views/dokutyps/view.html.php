@@ -14,7 +14,7 @@ defined('_JEXEC') or die;
  *
  * @since  1.0.0
  */
-class PlanarchivViewPlanarts extends JViewLegacy
+class PlanarchivViewDokutyps extends JViewLegacy
 {
 	/**
 	 * @var
@@ -75,7 +75,7 @@ class PlanarchivViewPlanarts extends JViewLegacy
 			throw new Exception(implode("\n", $errors), 500);
 		}
 
-		PlanarchivHelper::addSubmenu('planarts');
+		PlanarchivHelper::addSubmenu('dokutyps');
 		$this->addToolbar();
 		$this->sidebar = JHtmlSidebar::render();
 
@@ -93,42 +93,42 @@ class PlanarchivViewPlanarts extends JViewLegacy
 	{
 		$canDo = PlanarchivHelper::getActions();
 
-		JToolbarHelper::title(JText::_('COM_PLANARCHIV_PLANARTS_TITLE'));
+		JToolbarHelper::title(JText::_('COM_PLANARCHIV_DOKUTYPS_TITLE'));
 
 		if ($canDo->get('core.create'))
 		{
-			JToolbarHelper::addNew('planart.add', 'JTOOLBAR_NEW');
+			JToolbarHelper::addNew('dokutyp.add', 'JTOOLBAR_NEW');
 		}
 
 		if (($canDo->get('core.edit')) || ($canDo->get('core.edit.own')))
 		{
-			JToolbarHelper::editList('planart.edit', 'JTOOLBAR_EDIT');
+			JToolbarHelper::editList('dokutyp.edit', 'JTOOLBAR_EDIT');
 		}
 
 		if ($canDo->get('core.edit.state'))
 		{
-			JToolbarHelper::custom('planarts.publish', 'publish.png', 'publish_f2.png', 'JTOOLBAR_PUBLISH', true);
-			JToolbarHelper::custom('planarts.unpublish', 'unpublish.png', 'unpublish_f2.png', 'JTOOLBAR_UNPUBLISH', true);
+			JToolbarHelper::custom('dokutyps.publish', 'publish.png', 'publish_f2.png', 'JTOOLBAR_PUBLISH', true);
+			JToolbarHelper::custom('dokutyps.unpublish', 'unpublish.png', 'unpublish_f2.png', 'JTOOLBAR_UNPUBLISH', true);
 
 			if ($this->state->get('filter.state') != 2)
 			{
-				JToolbarHelper::archiveList('planarts.archive', 'JTOOLBAR_ARCHIVE');
+				JToolbarHelper::archiveList('dokutyps.archive', 'JTOOLBAR_ARCHIVE');
 			}
 			else
 			{
-				JToolbarHelper::unarchiveList('planarts.publish', 'JTOOLBAR_UNARCHIVE');
+				JToolbarHelper::unarchiveList('dokutyps.publish', 'JTOOLBAR_UNARCHIVE');
 			}
 
-			JToolbarHelper::checkin('planarts.checkin');
+			JToolbarHelper::checkin('dokutyps.checkin');
 		}
 
 		if ($this->state->get('filter.state') == -2 && $canDo->get('core.delete'))
 		{
-			JToolbarHelper::deleteList('', 'planarts.delete', 'JTOOLBAR_EMPTY_TRASH');
+			JToolbarHelper::deleteList('', 'dokutyps.delete', 'JTOOLBAR_EMPTY_TRASH');
 		}
 		elseif ($canDo->get('core.edit.state'))
 		{
-			JToolbarHelper::trash('planarts.trash', 'JTOOLBAR_TRASH');
+			JToolbarHelper::trash('dokutyps.trash', 'JTOOLBAR_TRASH');
 		}
 
 		if ($canDo->get('core.admin') || $canDo->get('core.options'))
@@ -147,13 +147,13 @@ class PlanarchivViewPlanarts extends JViewLegacy
 	protected function getSortFields()
 	{
 		return array(
-			'planarts.ordering' => JText::_('JGRID_HEADING_ORDERING'),
-			'planarts.state'    => JText::_('JSTATUS'),
-			'planarts.title'    => JText::_('COM_PLANARCHIV_FIELD_NAME_LABEL'),
+			'dokutyps.ordering' => JText::_('JGRID_HEADING_ORDERING'),
+			'dokutyps.state'    => JText::_('JSTATUS'),
+			'dokutyps.title'    => JText::_('COM_PLANARCHIV_FIELD_NAME_LABEL'),
 			'category_title'     => JText::_('JCATEGORY'),
-			'planarts.hits'     => JText::_('JGLOBAL_HITS'),
+			'dokutyps.hits'     => JText::_('JGLOBAL_HITS'),
 			'language'           => JText::_('JGRID_HEADING_LANGUAGE'),
-			'planarts.id'       => JText::_('JGRID_HEADING_ID'),
+			'dokutyps.id'       => JText::_('JGRID_HEADING_ID'),
 		);
 	}
 }

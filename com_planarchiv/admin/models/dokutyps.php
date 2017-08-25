@@ -1,7 +1,7 @@
 <?php
 defined('_JEXEC') or die;
 
-class PlanarchivModelPlanarts extends JModelList
+class PlanarchivModelDokutyps extends JModelList
 {
 	/**
 	 * Constructor.
@@ -16,17 +16,17 @@ class PlanarchivModelPlanarts extends JModelList
 		if (empty($config['filter_fields']))
 		{
 			$config['filter_fields'] = array(
-				'id', 'planarts.id',
-				'title', 'planarts.title',
-				'code', 'planarts.code',
-				'OrtName', 'planarts.OrtName',
-				'checked_out', 'planarts.checked_out',
-				'checked_out_time', 'planarts.checked_out_time',
-				'catid', 'planarts.catid', 'category_title',
-				'state', 'planarts.state',
-				'created', 'planarts.created',
-				'created_by', 'planarts.created_by',
-				'language', 'planarts.language',
+				'id', 'dokutyps.id',
+				'title', 'dokutyps.title',
+				'code', 'dokutyps.code',
+				'OrtName', 'dokutyps.OrtName',
+				'checked_out', 'dokutyps.checked_out',
+				'checked_out_time', 'dokutyps.checked_out_time',
+				'catid', 'dokutyps.catid', 'category_title',
+				'state', 'dokutyps.state',
+				'created', 'dokutyps.created',
+				'created_by', 'dokutyps.created_by',
+				'language', 'dokutyps.language',
 			);
 
 			// Searchtools
@@ -58,19 +58,10 @@ class PlanarchivModelPlanarts extends JModelList
 		// Initialise variables.
 		$app = JFactory::getApplication();
 
-		// Force a language
-		$forcedLanguage = $app->input->get('forcedLanguage', '' , 'cmd');
-
 		// Adjust the context to support modal layouts.
 		if ($layout = $app->input->get('layout'))
 		{
 			$this->context .= '.' . $layout;
-		}
-
-		// Adjust the context to support forced languages.
-		if ($forcedLanguage)
-		{
-			$this->context .= '.' . $forcedLanguage;
 		}
 
 		// Load the parameters.
@@ -78,13 +69,8 @@ class PlanarchivModelPlanarts extends JModelList
 		$this->setState('params', $params);
 
 		// List state information.
-		parent::populateState('planarts.title', 'asc');
-
-		if ($forcedLanguage)
-		{
-			$this->setState('filter.language', $forcedLanguage);
-			$this->setState('filter.forcedLanguage', $forcedLanguage);
-		}
+		$langCode = substr(JFactory::getLanguage()->getTag(), 0, 2);
+		parent::populateState('title', 'asc');
 	}
 
 	/**
@@ -105,7 +91,6 @@ class PlanarchivModelPlanarts extends JModelList
 		$id .= ':' . $this->getState('filter.search');
 		$id .= ':' . $this->getState('filter.state');
 		$id .= ':' . $this->getState('filter.category_id');
-		$id .= ':' . $this->getState('filter.language');
 
 		return parent::getStoreId($id);
 	}
@@ -118,40 +103,38 @@ class PlanarchivModelPlanarts extends JModelList
 	 */
 	protected function getListQuery()
 	{
+		$langCode = substr(JFactory::getLanguage()->getTag(), 0, 2);
+
 		// Create a new query object.
 		$db    = $this->getDbo();
 		$query = $db->getQuery(true);
 
 		// Select the required fields from the table.
-		$query->select('planarts.*');
-		$query->from('#__planarchiv_planart AS planarts');
-
-		// Join over the language
-		$query->select('l.title AS language_title, l.image AS language_image');
-		$query->join('LEFT', $db->quoteName('#__languages') . ' AS l ON l.lang_code = planarts.language');
+		$query->select('dokutyps.*, dokutyps.title_' . $langCode . ' AS title, dokutyps.code_' . $langCode . ' AS code');
+		$query->from('#__planarchiv_dokutyp AS dokutyps');
 
 		// Join over the users for the checked out user.
 		$query->select('uc.name AS editor');
-		$query->join('LEFT', '#__users AS uc ON uc.id = planarts.checked_out');
+		$query->join('LEFT', '#__users AS uc ON uc.id = dokutyps.checked_out');
 
 		// Join over the users for the author.
 		$query->select('ua.name AS author_name')
-			->join('LEFT', '#__users AS ua ON ua.id = planarts.created_by');
+			->join('LEFT', '#__users AS ua ON ua.id = dokutyps.created_by');
 
 		// Join over the categories.
 		$query->select('c.title AS category_title');
-		$query->join('LEFT', '#__categories AS c ON c.id = planarts.catid');
+		$query->join('LEFT', '#__categories AS c ON c.id = dokutyps.catid');
 
 		// Filter by published state
 		$published = $this->getState('filter.state');
 
 		if (is_numeric($published))
 		{
-			$query->where('planarts.state = ' . (int) $published);
+			$query->where('dokutyps.state = ' . (int) $published);
 		}
 		elseif ($published === '' || $published === null)
 		{
-			$query->where('(planarts.state IN (0, 1))');
+			$query->where('(dokutyps.state IN (0, 1))');
 		}
 
 		// Filter by category.
@@ -182,19 +165,13 @@ class PlanarchivModelPlanarts extends JModelList
 		{
 			if (stripos($search, 'id:') === 0)
 			{
-				$query->where('planarts.id = ' . (int) substr($search, 3));
+				$query->where('dokutyps.id = ' . (int) substr($search, 3));
 			}
 			else
 			{
 				$search = $db->quote('%' . $db->escape($search, true) . '%');
-				$query->where('(planarts.title LIKE ' . $search . ')');
+				$query->where('(dokutyps.title_' . $langCode . ' LIKE ' . $search . ')');
 			}
-		}
-
-		// Filter on the language.
-		if ($language = $this->getState('filter.language'))
-		{
-			$query->where('planarts.language = ' . $db->quote($language));
 		}
 
 		// Add the list ordering clause.

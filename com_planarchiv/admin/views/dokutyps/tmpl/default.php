@@ -21,22 +21,7 @@ $listDirn  = $this->escape($this->state->get('list.direction'));
 $archived  = $this->state->get('filter.state') == 2 ? true : false;
 $trashed   = $this->state->get('filter.state') == -2 ? true : false;
 ?>
-<script type="text/javascript">
-	Joomla.orderTable = function() {
-		var table = document.getElementById("sortTable");
-		var direction = document.getElementById("directionTable");
-		var order = table.options[table.selectedIndex].value;
-		var dirn;
-		if (order != '<?php echo $listOrder; ?>') {
-			dirn = 'asc';
-		} else {
-			dirn = direction.options[direction.selectedIndex].value;
-		}
-		Joomla.tableOrdering(order, dirn, '');
-	}
-</script>
-
-<form action="<?php echo JRoute::_('index.php?option=com_planarchiv&view=anlages'); ?>" method="post" name="adminForm" id="adminForm">
+<form action="<?php echo JRoute::_('index.php?option=com_planarchiv&view=dokutyps'); ?>" method="post" name="adminForm" id="adminForm">
 <?php if(!empty($this->sidebar)): ?>
 	<div id="j-sidebar-container" class="span2">
 		<?php echo $this->sidebar; ?>
@@ -51,23 +36,26 @@ $trashed   = $this->state->get('filter.state') == -2 ? true : false;
 				<?php echo JText::_('JGLOBAL_NO_MATCHING_RESULTS'); ?>
 			</div>
 		<?php else : ?>
-			<table class="table table-striped" id="anlageList">
+			<table class="table table-striped" id="dokutypList">
 				<thead>
 					<tr>
 						<th width="1%" class="hidden-phone">
 							<input type="checkbox" name="checkall-toggle" value="" title="<?php echo JText::_('JGLOBAL_CHECK_ALL'); ?>" onclick="Joomla.checkAll(this)" />
 						</th>
 						<th width="1%" style="min-width:40px" class="nowrap center">
-							<?php echo JHtml::_('searchtools.sort', 'JSTATUS', 'anlages.state', $listDirn, $listOrder); ?>
+							<?php echo JHtml::_('searchtools.sort', 'JSTATUS', 'dokutyps.state', $listDirn, $listOrder); ?>
 						</th>
 						<th>
-							<?php echo JHtml::_('searchtools.sort', 'JGLOBAL_TITLE', 'anlages.title', $listDirn, $listOrder); ?>
+							<?php echo JHtml::_('searchtools.sort', 'JGLOBAL_TITLE', 'title', $listDirn, $listOrder); ?>
+						</th>
+						<th>
+							<?php echo JHtml::_('searchtools.sort', 'COM_PLANARCHIV_CODE_TITLE', 'code', $listDirn, $listOrder); ?>
 						</th>
 						<th width="7%" class="nowrap hidden-phone">
 							<?php echo JHtml::_('searchtools.sort',  'JGRID_HEADING_LANGUAGE', 'language', $listDirn, $listOrder); ?>
 						</th>
 						<th width="1%" class="nowrap hidden-phone">
-							<?php echo JHtml::_('searchtools.sort',  'JGRID_HEADING_ID', 'anlages.id', $listDirn, $listOrder); ?>
+							<?php echo JHtml::_('searchtools.sort',  'JGRID_HEADING_ID', 'dokutyps.id', $listDirn, $listOrder); ?>
 						</th>
 					</tr>
 				</thead>
@@ -84,14 +72,14 @@ $trashed   = $this->state->get('filter.state') == -2 ? true : false;
 						</td>
 						<td class="center">
 							<div class="btn-group">
-								<?php echo JHtml::_('jgrid.published', $item->state, $i, 'anlages.', $canChange, 'cb'); ?>
+								<?php echo JHtml::_('jgrid.published', $item->state, $i, 'dokutyps.', $canChange, 'cb'); ?>
 								<?php
 								// Create dropdown items
 								$action = $archived ? 'unarchive' : 'archive';
-								JHtml::_('actionsdropdown.' . $action, 'cb' . $i, 'anlages');
+								JHtml::_('actionsdropdown.' . $action, 'cb' . $i, 'dokutyps');
 
 								$action = $trashed ? 'untrash' : 'trash';
-								JHtml::_('actionsdropdown.' . $action, 'cb' . $i, 'anlages');
+								JHtml::_('actionsdropdown.' . $action, 'cb' . $i, 'dokutyps');
 
 								// Render dropdown list
 								echo JHtml::_('actionsdropdown.render', $this->escape($item->title));
@@ -101,18 +89,15 @@ $trashed   = $this->state->get('filter.state') == -2 ? true : false;
 						<td class="nowrap has-context">
 							<div class="pull-left">
 								<?php if ($item->checked_out) : ?>
-									<?php echo JHtml::_('jgrid.checkedout', $i, $item->editor, $item->checked_out_time, 'anlages.', $canCheckin); ?>
+									<?php echo JHtml::_('jgrid.checkedout', $i, $item->editor, $item->checked_out_time, 'dokutyps.', $canCheckin); ?>
 								<?php endif; ?>
 								<?php if ($canEdit || $canEditOwn) : ?>
-									<a href="<?php echo JRoute::_('index.php?option=com_planarchiv&task=anlage.edit&id=' . $item->id);?>">
+									<a href="<?php echo JRoute::_('index.php?option=com_planarchiv&task=dokutyp.edit&id=' . $item->id);?>">
 										<?php echo $this->escape($item->title); ?>
 									</a>
 								<?php else : ?>
 									<?php echo $this->escape($item->title); ?>
 								<?php endif; ?>
-								<span class="small">
-									<?php echo JText::sprintf('COM_PLANARCHIV_LIST_CODE', $this->escape($item->code));?>
-								</span>
 								<div class="small">
 									<?php echo JText::_('JCATEGORY') . ": " . $this->escape($item->category_title); ?>
 								</div>
@@ -120,7 +105,7 @@ $trashed   = $this->state->get('filter.state') == -2 ? true : false;
 							<div class="pull-left">
 						</td>
 						<td class="small hidden-phone">
-							<?php echo JLayoutHelper::render('joomla.content.language', $item); ?>
+							<?php echo $this->escape($item->code); ?>
 						</td>
 						<td class="center hidden-phone">
 							<?php echo (int) $item->id; ?>

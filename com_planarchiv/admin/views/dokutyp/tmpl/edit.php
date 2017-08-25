@@ -20,7 +20,7 @@ $tmpl   = $jinput->getCmd('tmpl') === 'component' ? '&tmpl=component' : '';
 
 <script type="text/javascript">
 	Joomla.submitbutton = function(task) {
-		if (task == 'planart.cancel' || document.formvalidator.isValid(document.id('adminForm'))) {
+		if (task == 'dokutyp.cancel' || document.formvalidator.isValid(document.id('adminForm'))) {
 			Joomla.submitform(task, document.getElementById('adminForm'));
 		} else {
 			alert('<?php echo $this->escape(JText::_('JGLOBAL_VALIDATION_FORM_FAILED'));?>');

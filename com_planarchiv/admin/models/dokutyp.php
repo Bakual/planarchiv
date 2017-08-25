@@ -10,13 +10,13 @@
 defined('_JEXEC') or die();
 
 /**
- * Planart model.
+ * Dokutyp model.
  *
  * @package   Planarchiv.Administrator
  *
  * @since     1.0.0
  */
-class PlanarchivModelPlanart extends JModelAdmin
+class PlanarchivModelDokutyp extends JModelAdmin
 {
 	/**
 	 * @var   string  The prefix to use with controller messages.
@@ -31,7 +31,7 @@ class PlanarchivModelPlanart extends JModelAdmin
 	 * @var     string
 	 * @since   1.0.0
 	 */
-	protected $associationsContext = 'com_planarchiv.planart';
+	protected $associationsContext = 'com_planarchiv.dokutyp';
 
 	/**
 	 * Method to get the record form.
@@ -45,7 +45,7 @@ class PlanarchivModelPlanart extends JModelAdmin
 	public function getForm($data = array(), $loadData = true)
 	{
 		// Get the form.
-		$form = $this->loadForm('com_planarchiv.planart', 'planart', array('control' => 'jform', 'load_data' => $loadData));
+		$form = $this->loadForm('com_planarchiv.dokutyp', 'dokutyp', array('control' => 'jform', 'load_data' => $loadData));
 
 		if (empty($form))
 		{
@@ -53,7 +53,7 @@ class PlanarchivModelPlanart extends JModelAdmin
 		}
 
 		// Determine correct permissions to check.
-		if ($this->getState('planart.id'))
+		if ($this->getState('dokutyp.id'))
 		{
 			// Existing record. Can only edit in selected categories.
 			$form->setFieldAttribute('catid', 'action', 'core.edit');
@@ -115,7 +115,7 @@ class PlanarchivModelPlanart extends JModelAdmin
 	 * @return    JTable    A database object
 	 * @since    1.0.0
 	 */
-	public function getTable($type = 'Planart', $prefix = 'PlanarchivTable', $config = array())
+	public function getTable($type = 'Dokutyp', $prefix = 'PlanarchivTable', $config = array())
 	{
 		return JTable::getInstance($type, $prefix, $config);
 	}
@@ -130,23 +130,23 @@ class PlanarchivModelPlanart extends JModelAdmin
 	{
 		// Check the session for previously entered form data.
 		$app  = JFactory::getApplication();
-		$data = $app->getUserState('com_planarchiv.edit.planart.data', array());
+		$data = $app->getUserState('com_planarchiv.edit.dokutyp.data', array());
 
 		if (empty($data))
 		{
 			$data = $this->getItem();
 
-			// Pre-select some filters (Status, Category, Language) in edit form if those have been selected in Planart Manager: Planarts
-			if ($this->getState('planart.id') == 0)
+			// Pre-select some filters (Status, Category, Language) in edit form if those have been selected in Dokutyp Manager: Dokutyps
+			if ($this->getState('dokutyp.id') == 0)
 			{
-				$filters = (array) $app->getUserState('com_planarchiv.planarts.filter');
+				$filters = (array) $app->getUserState('com_planarchiv.dokutyps.filter');
 				$data->set('state', $app->input->getInt('state', ((isset($filters['state']) && $filters['state'] !== '') ? $filters['state'] : null)));
 				$data->set('catid', $app->input->getInt('catid', (!empty($filters['category_id']) ? $filters['category_id'] : null)));
 				$data->set('language', $app->input->getString('language', (!empty($filters['language']) ? $filters['language'] : null)));
 			}
 		}
 
-		$this->preprocessData('com_planarchiv.planart', $data);
+		$this->preprocessData('com_planarchiv.dokutyp', $data);
 
 		return $data;
 	}
@@ -160,7 +160,9 @@ class PlanarchivModelPlanart extends JModelAdmin
 	 */
 	protected function prepareTable($table)
 	{
-		$table->title = htmlspecialchars_decode($table->title, ENT_QUOTES);
+		$table->title_de = htmlspecialchars_decode($table->title_de, ENT_QUOTES);
+		$table->title_fr = htmlspecialchars_decode($table->title_fr, ENT_QUOTES);
+		$table->title_it = htmlspecialchars_decode($table->title_it, ENT_QUOTES);
 
 		// Increment the content version number.
 		$table->version++;

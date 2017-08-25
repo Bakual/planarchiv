@@ -10,13 +10,13 @@
 defined('_JEXEC') or die;
 
 /**
- * View to edit a planart.
+ * View to edit a dokutyp.
  *
  * @package        Planarchiv.Administrator
  *
  * @since          1.0.0
  */
-class PlanarchivViewPlanart extends JViewLegacy
+class PlanarchivViewDokutyp extends JViewLegacy
 {
 	/**
 	 * @var
@@ -90,7 +90,7 @@ class PlanarchivViewPlanart extends JViewLegacy
 		$isNew      = ($this->item->id == 0);
 		$checkedOut = !($this->item->checked_out == 0 || $this->item->checked_out == $user->id);
 		$canDo      = PlanarchivHelper::getActions();
-		JToolbarHelper::title(JText::sprintf('COM_PLANARCHIV_PAGE_' . ($checkedOut ? 'VIEW' : ($isNew ? 'ADD' : 'EDIT')), JText::_('COM_PLANARCHIV_SPEAKERS_TITLE'), JText::_('COM_PLANARCHIV_SPEAKER')), 'pencil-2 planarts');
+		JToolbarHelper::title(JText::sprintf('COM_PLANARCHIV_PAGE_' . ($checkedOut ? 'VIEW' : ($isNew ? 'ADD' : 'EDIT')), JText::_('COM_PLANARCHIV_SPEAKERS_TITLE'), JText::_('COM_PLANARCHIV_SPEAKER')), 'pencil-2 dokutyps');
 
 		// Build the actions for new and existing records.
 		if ($isNew)
@@ -98,11 +98,11 @@ class PlanarchivViewPlanart extends JViewLegacy
 			// For new records, check the create permission.
 			if ($canDo->get('core.create'))
 			{
-				JToolbarHelper::apply('planart.apply');
-				JToolbarHelper::save('planart.save');
-				JToolbarHelper::save2new('planart.save2new');
+				JToolbarHelper::apply('dokutyp.apply');
+				JToolbarHelper::save('dokutyp.save');
+				JToolbarHelper::save2new('dokutyp.save2new');
 			}
-			JToolbarHelper::cancel('planart.cancel');
+			JToolbarHelper::cancel('dokutyp.cancel');
 		}
 		else
 		{
@@ -112,23 +112,23 @@ class PlanarchivViewPlanart extends JViewLegacy
 				// Since it's an existing record, check the edit permission, or fall back to edit own if the owner.
 				if ($canDo->get('core.edit') || ($canDo->get('core.edit.own') && $this->item->created_by == $user->id))
 				{
-					JToolbarHelper::apply('planart.apply');
-					JToolbarHelper::save('planart.save');
+					JToolbarHelper::apply('dokutyp.apply');
+					JToolbarHelper::save('dokutyp.save');
 
 					// We can save this record, but check the create permission to see if we can return to make a new one.
 					if ($canDo->get('core.create'))
 					{
-						JToolbarHelper::save2new('planart.save2new');
+						JToolbarHelper::save2new('dokutyp.save2new');
 					}
 				}
 			}
 
-			JToolbarHelper::cancel('planart.cancel', 'JTOOLBAR_CLOSE');
+			JToolbarHelper::cancel('dokutyp.cancel', 'JTOOLBAR_CLOSE');
 		}
 
 		if ($this->state->params->get('save_history') && $user->authorise('core.edit'))
 		{
-			JToolbarHelper::versions('com_planarchiv.planart', $this->item->id);
+			JToolbarHelper::versions('com_planarchiv.dokutyp', $this->item->id);
 		}
 	}
 }
