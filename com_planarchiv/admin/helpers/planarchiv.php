@@ -43,19 +43,14 @@ class PlanarchivHelper
 			$vName == 'stockwerks'
 		);
 		JHtmlSidebar::addEntry(
-			JText::_('COM_PLANARCHIV_MENU_ANLAGES'),
-			'index.php?option=com_planarchiv&view=anlages',
-			$vName == 'anlages'
-		);
-		JHtmlSidebar::addEntry(
 			JText::_('COM_PLANARCHIV_MENU_ANLAGETYPS'),
 			'index.php?option=com_planarchiv&view=anlagetyps',
 			$vName == 'anlagetyps'
 		);
 		JHtmlSidebar::addEntry(
-			JText::_('COM_PLANARCHIV_MENU_PLANARTS'),
-			'index.php?option=com_planarchiv&view=planarts',
-			$vName == 'planarts'
+			JText::_('COM_PLANARCHIV_MENU_DOKUTYPS'),
+			'index.php?option=com_planarchiv&view=dokutyps',
+			$vName == 'dokutyps'
 		);
 		JHtmlSidebar::addEntry(
 			JText::_('COM_PLANARCHIV_MENU_CATEGORY'),
