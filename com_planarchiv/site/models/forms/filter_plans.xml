@@ -27,6 +27,15 @@
 			<option value="">COM_PLANARCHIV_SELECT_ORT</option>
 		</field>
 		<field
+			name="Strecke"
+			type="list"
+			onchange="this.form.submit();"
+		>
+			<option value="">COM_PLANARCHIV_SELECT_STRECKE_ORT</option>
+			<option value="S">COM_PLANARCHIV_STRECKE_LABEL</option>
+			<option value="O">COM_PLANARCHIV_ORT_LABEL</option>
+		</field>
+		<field
 			name="Maengelliste"
 			type="list"
 			onchange="this.form.submit();"

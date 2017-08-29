@@ -62,6 +62,10 @@ class PlanarchivModelPlan extends JModelItem
 				$query->select('didok.title AS didok_title, didok.didok');
 				$query->join('LEFT', '#__planarchiv_didok AS didok ON didok.id = plan.didok_id');
 
+				// Join over DiDok.
+				$query->select('richtung.title AS richtung_title, richtung.didok AS richtung_didok');
+				$query->join('LEFT', '#__planarchiv_didok AS richtung ON richtung.id = plan.richtung_didok_id');
+
 				// Join over DokuTyp.
 				$query->select('dokutyp.title_' . $langCode . ' AS dokutyp_title');
 				$query->select('dokutyp.code_' . $langCode . ' AS dokutyp_code');

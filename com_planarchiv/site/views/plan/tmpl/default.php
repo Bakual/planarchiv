@@ -71,23 +71,47 @@ JHtml::_('bootstrap.tooltip');
 			<?php echo JText::_('COM_PLANARCHIV_CAD_LABEL') . ': ' . $this->escape($this->item->CAD_Auftrag); ?>
 		</dd>
 	</dl>
-	<h3><?php echo JText::_('COM_PLANARCHIV_ORT_LABEL'); ?></h3>
-	<div class="well well-small">
-		<div class="row-fluid">
-			<div class="span4">
-				<h4><?php echo JText::_('COM_PLANARCHIV_ORTSCHAFT_DIDOK_LABEL'); ?></h4>
-				<?php echo $this->escape($this->item->didok_title) . ' (' . $this->item->didok . ')'; ?>
-			</div>
-			<div class="span4">
-				<h4><?php echo JText::_('COM_PLANARCHIV_GEBAEUDE_LABEL'); ?></h4>
-				<?php echo $this->escape($this->item->GebDfaTxt) . ' (' . $this->escape($this->item->GebDfaCode) . $this->item->GebDfaLfnr . ')'; ?>
-			</div>
-			<div class="span4">
-				<h4><?php echo JText::_('COM_PLANARCHIV_STOCKWERK_LABEL'); ?></h4>
-				<?php echo $this->escape($this->item->Stockwerk); ?>
+	<?php if ($this->item->Strecke) : ?>
+		<h3><?php echo JText::_('COM_PLANARCHIV_STRECKE_LABEL'); ?></h3>
+		<div class="well well-small">
+			<div class="row-fluid">
+				<div class="span3">
+					<h4><?php echo JText::_('COM_PLANARCHIV_ORTSCHAFT_DIDOK_LABEL'); ?></h4>
+					<?php echo $this->escape($this->item->didok_title) . ' (' . $this->item->didok . ')'; ?>
+				</div>
+				<div class="span3">
+					<h4><?php echo JText::_('COM_PLANARCHIV_STRECKE_LABEL'); ?></h4>
+					<?php echo $this->escape($this->item->Strecke); ?>
+				</div>
+				<div class="span3">
+					<h4><?php echo JText::_('COM_PLANARCHIV_KM_LABEL'); ?></h4>
+					<?php echo $this->escape($this->item->km); ?>
+				</div>
+				<div class="span3">
+					<h4><?php echo JText::_('COM_PLANARCHIV_DIRECTION_LABEL'); ?></h4>
+					<?php echo $this->escape($this->item->richtung_title) . ' (' . strtoupper($this->item->richtung_didok) . ')'; ?>
+				</div>
 			</div>
 		</div>
-	</div>
+	<?php else : ?>
+		<h3><?php echo JText::_('COM_PLANARCHIV_ORT_LABEL'); ?></h3>
+		<div class="well well-small">
+			<div class="row-fluid">
+				<div class="span4">
+					<h4><?php echo JText::_('COM_PLANARCHIV_ORTSCHAFT_DIDOK_LABEL'); ?></h4>
+					<?php echo $this->escape($this->item->didok_title) . ' (' . $this->item->didok . ')'; ?>
+				</div>
+				<div class="span4">
+					<h4><?php echo JText::_('COM_PLANARCHIV_GEBAEUDE_LABEL'); ?></h4>
+					<?php echo $this->escape($this->item->GebDfaTxt) . ' (' . $this->escape($this->item->GebDfaCode) . $this->item->GebDfaLfnr . ')'; ?>
+				</div>
+				<div class="span4">
+					<h4><?php echo JText::_('COM_PLANARCHIV_STOCKWERK_LABEL'); ?></h4>
+					<?php echo $this->escape($this->item->Stockwerk); ?>
+				</div>
+			</div>
+		</div>
+	<?php endif; ?>
 
 	<h3><?php echo JText::_('COM_PLANARCHIV_ANLAGETYP_LABEL'); ?></h3>
 	<?php echo $this->escape($this->item->AnlageTypTxt) . ' (' . $this->escape($this->item->AnlageTyp) . '-' . $this->item->AnlageLfnr . ')'; ?>
@@ -112,20 +136,35 @@ JHtml::_('bootstrap.tooltip');
 			<div class="span4">
 				<h4><?php echo JText::_('COM_PLANARCHIV_DIRECTORY_LABEL'); ?></h4>
 				<?php $path = $this->params->get('filepath') . '\\' . $this->item->didok[0] . '\\' . $this->item->didok; ?>
-				<?php $path .= '\\' . $this->item->GebDfaCode . $this->item->GebDfaLfnr . '\\'; ?>
+				<?php if ($this->item->Strecke) : ?>
+					<?php $path .= '\\' . $this->item->didok . '-(' . $this->item->richtung_didok . ')_km' . $this->item->km . '\\'; ?>
+				<?php else : ?>
+					<?php $path .= '\\' . $this->item->GebDfaCode . $this->item->GebDfaLfnr . '\\'; ?>
+				<?php endif; ?>
 				<?php $path = strtolower($path); ?>
-				<a href="file:<?php echo str_replace('\\', '/', $path); ?>"><?php echo $path; ?></a>
+				<a href="file:<?php echo str_replace('\\', '/', $path); ?>">
+					<?php echo $path; ?>
+				</a>
 			</div>
 			<div class="span8">
 				<h4><?php echo JText::_('COM_PLANARCHIV_FILES_LABEL'); ?></h4>
-				<?php $filename = $this->item->didok . '-' . $this->item->GebDfaCode . $this->item->GebDfaLfnr; ?>
+				<?php if ($this->item->Strecke) : ?>
+					<?php $filename = $this->item->didok . '-' . $this->item->richtung_didok; ?>
+				<?php else : ?>
+					<?php $filename = $this->item->didok . '-' . $this->item->GebDfaCode . $this->item->GebDfaLfnr; ?>
+				<?php endif; ?>
 				<?php $filename .= '-' . $this->item->AnlageTyp . '-' . $this->item->AnlageLfnr . '--' . $this->item->dokutyp_code . $this->item->DokuTypNr; ?>
 				<?php $filename = strtolower($filename); ?>
+				<?php $linkedFile = $this->item->title ?: $filename; ?>
 				<?php $files = explode(',', $this->item->files); ?>
 				<dl class="dl-horizontal">
 					<?php foreach ($files AS $ext) : ?>
 						<dt><?php echo $ext; ?></dt>
-						<dd><a href="file:<?php echo $path . $this->item->title . '.' . $ext; ?>"><?php echo $this->escape($filename . '.' . $ext); ?></a></dd>
+						<dd>
+							<a href="file:<?php echo str_replace('\\', '/', $path . $linkedFile . '.' . $ext); ?>">
+								<?php echo $this->escape($filename . '.' . $ext); ?>
+							</a>
+						</dd>
 					<?php endforeach; ?>
 				</dl>
 			</div>

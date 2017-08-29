@@ -145,6 +145,18 @@ class PlanarchivModelPlans extends JModelList
 			$query->where('plans.AnlageTypTxt = ' . $db->quote($anlageTyp));
 		}
 
+		// Filter by Strecke/Ort
+		$strecke = $this->getState('filter.Strecke');
+
+		if ($strecke == 'S')
+		{
+			$query->where('plans.Strecke != ""');
+		}
+		elseif ($strecke == 'O')
+		{
+			$query->where('plans.Strecke IS NULL');
+		}
+
 		// Filter by Mängelliste
 		$mangel = $this->getState('filter.Maengelliste');
 
