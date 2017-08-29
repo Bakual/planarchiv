@@ -137,7 +137,7 @@ JHtml::_('bootstrap.tooltip');
 				<h4><?php echo JText::_('COM_PLANARCHIV_DIRECTORY_LABEL'); ?></h4>
 				<?php $path = $this->params->get('filepath') . '\\' . $this->item->didok[0] . '\\' . $this->item->didok; ?>
 				<?php if ($this->item->Strecke) : ?>
-					<?php $path .= '\\' . $this->item->didok . '-(' . $this->item->richtung_didok . ')_km' . $this->item->km . '\\'; ?>
+					<?php $path .= '\\' . $this->item->didok . '-(' . $this->item->richtung_didok . ')_km' . number_format($this->item->km, 3, '.', '') . '\\'; ?>
 				<?php else : ?>
 					<?php $path .= '\\' . $this->item->GebDfaCode . $this->item->GebDfaLfnr . '\\'; ?>
 				<?php endif; ?>
