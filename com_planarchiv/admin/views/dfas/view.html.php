@@ -14,7 +14,7 @@ defined('_JEXEC') or die;
  *
  * @since  1.0.0
  */
-class PlanarchivViewGebaeudes extends JViewLegacy
+class PlanarchivViewDfas extends JViewLegacy
 {
 	/**
 	 * @var
@@ -75,7 +75,7 @@ class PlanarchivViewGebaeudes extends JViewLegacy
 			throw new Exception(implode("\n", $errors), 500);
 		}
 
-		PlanarchivHelper::addSubmenu('gebaeudes');
+		PlanarchivHelper::addSubmenu('dfas');
 		$this->addToolbar();
 		$this->sidebar = JHtmlSidebar::render();
 
@@ -93,42 +93,42 @@ class PlanarchivViewGebaeudes extends JViewLegacy
 	{
 		$canDo = PlanarchivHelper::getActions();
 
-		JToolbarHelper::title(JText::_('COM_PLANARCHIV_GEBAEUDES_TITLE'));
+		JToolbarHelper::title(JText::_('COM_PLANARCHIV_DFAS_TITLE'));
 
 		if ($canDo->get('core.create'))
 		{
-			JToolbarHelper::addNew('gebaeude.add', 'JTOOLBAR_NEW');
+			JToolbarHelper::addNew('dfa.add', 'JTOOLBAR_NEW');
 		}
 
 		if (($canDo->get('core.edit')) || ($canDo->get('core.edit.own')))
 		{
-			JToolbarHelper::editList('gebaeude.edit', 'JTOOLBAR_EDIT');
+			JToolbarHelper::editList('dfa.edit', 'JTOOLBAR_EDIT');
 		}
 
 		if ($canDo->get('core.edit.state'))
 		{
-			JToolbarHelper::custom('gebaeudes.publish', 'publish.png', 'publish_f2.png', 'JTOOLBAR_PUBLISH', true);
-			JToolbarHelper::custom('gebaeudes.unpublish', 'unpublish.png', 'unpublish_f2.png', 'JTOOLBAR_UNPUBLISH', true);
+			JToolbarHelper::custom('dfas.publish', 'publish.png', 'publish_f2.png', 'JTOOLBAR_PUBLISH', true);
+			JToolbarHelper::custom('dfas.unpublish', 'unpublish.png', 'unpublish_f2.png', 'JTOOLBAR_UNPUBLISH', true);
 
 			if ($this->state->get('filter.state') != 2)
 			{
-				JToolbarHelper::archiveList('gebaeudes.archive', 'JTOOLBAR_ARCHIVE');
+				JToolbarHelper::archiveList('dfas.archive', 'JTOOLBAR_ARCHIVE');
 			}
 			else
 			{
-				JToolbarHelper::unarchiveList('gebaeudes.publish', 'JTOOLBAR_UNARCHIVE');
+				JToolbarHelper::unarchiveList('dfas.publish', 'JTOOLBAR_UNARCHIVE');
 			}
 
-			JToolbarHelper::checkin('gebaeudes.checkin');
+			JToolbarHelper::checkin('dfas.checkin');
 		}
 
 		if ($this->state->get('filter.state') == -2 && $canDo->get('core.delete'))
 		{
-			JToolbarHelper::deleteList('', 'gebaeudes.delete', 'JTOOLBAR_EMPTY_TRASH');
+			JToolbarHelper::deleteList('', 'dfas.delete', 'JTOOLBAR_EMPTY_TRASH');
 		}
 		elseif ($canDo->get('core.edit.state'))
 		{
-			JToolbarHelper::trash('gebaeudes.trash', 'JTOOLBAR_TRASH');
+			JToolbarHelper::trash('dfas.trash', 'JTOOLBAR_TRASH');
 		}
 
 		if ($canDo->get('core.admin') || $canDo->get('core.options'))
@@ -147,13 +147,13 @@ class PlanarchivViewGebaeudes extends JViewLegacy
 	protected function getSortFields()
 	{
 		return array(
-			'gebaeudes.ordering' => JText::_('JGRID_HEADING_ORDERING'),
-			'gebaeudes.state'    => JText::_('JSTATUS'),
-			'gebaeudes.title'    => JText::_('COM_PLANARCHIV_FIELD_NAME_LABEL'),
+			'dfas.ordering' => JText::_('JGRID_HEADING_ORDERING'),
+			'dfas.state'    => JText::_('JSTATUS'),
+			'dfas.title'    => JText::_('COM_PLANARCHIV_FIELD_NAME_LABEL'),
 			'category_title'     => JText::_('JCATEGORY'),
-			'gebaeudes.hits'     => JText::_('JGLOBAL_HITS'),
+			'dfas.hits'     => JText::_('JGLOBAL_HITS'),
 			'language'           => JText::_('JGRID_HEADING_LANGUAGE'),
-			'gebaeudes.id'       => JText::_('JGRID_HEADING_ID'),
+			'dfas.id'       => JText::_('JGRID_HEADING_ID'),
 		);
 	}
 }

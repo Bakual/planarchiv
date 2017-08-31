@@ -14,9 +14,9 @@ JHtml::_('stylesheet', 'com_planarchiv/planarchivadmin.css', array('version' => 
 <div id="j-main-container" class="planarchiv">
 	<ul class="thumbnails">
 		<li class="span2">
-			<a class="thumbnail" href="index.php?option=com_planarchiv&view=gebaeudes">
+			<a class="thumbnail" href="index.php?option=com_planarchiv&view=dfas">
 				<span class="icon-home"> </span>
-				<h3 class="center"><?php echo JText::_('COM_PLANARCHIV_GEBAEUDES_TITLE'); ?></h3>
+				<h3 class="center"><?php echo JText::_('COM_PLANARCHIV_DFAS_TITLE'); ?></h3>
 			</a>
 		</li>
 		<li class="span2">

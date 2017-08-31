@@ -10,13 +10,13 @@
 defined('_JEXEC') or die;
 
 /**
- * View to edit a gebaeude.
+ * View to edit a dfa.
  *
  * @package        Planarchiv.Administrator
  *
  * @since          1.0.0
  */
-class PlanarchivViewGebaeude extends JViewLegacy
+class PlanarchivViewDfa extends JViewLegacy
 {
 	/**
 	 * @var
@@ -90,7 +90,7 @@ class PlanarchivViewGebaeude extends JViewLegacy
 		$isNew      = ($this->item->id == 0);
 		$checkedOut = !($this->item->checked_out == 0 || $this->item->checked_out == $user->id);
 		$canDo      = PlanarchivHelper::getActions();
-		JToolbarHelper::title(JText::sprintf('COM_PLANARCHIV_PAGE_' . ($checkedOut ? 'VIEW' : ($isNew ? 'ADD' : 'EDIT')), JText::_('COM_PLANARCHIV_SPEAKERS_TITLE'), JText::_('COM_PLANARCHIV_SPEAKER')), 'pencil-2 gebaeudes');
+		JToolbarHelper::title(JText::sprintf('COM_PLANARCHIV_PAGE_' . ($checkedOut ? 'VIEW' : ($isNew ? 'ADD' : 'EDIT')), JText::_('COM_PLANARCHIV_SPEAKERS_TITLE'), JText::_('COM_PLANARCHIV_SPEAKER')), 'pencil-2 dfas');
 
 		// Build the actions for new and existing records.
 		if ($isNew)
@@ -98,11 +98,11 @@ class PlanarchivViewGebaeude extends JViewLegacy
 			// For new records, check the create permission.
 			if ($canDo->get('core.create'))
 			{
-				JToolbarHelper::apply('gebaeude.apply');
-				JToolbarHelper::save('gebaeude.save');
-				JToolbarHelper::save2new('gebaeude.save2new');
+				JToolbarHelper::apply('dfa.apply');
+				JToolbarHelper::save('dfa.save');
+				JToolbarHelper::save2new('dfa.save2new');
 			}
-			JToolbarHelper::cancel('gebaeude.cancel');
+			JToolbarHelper::cancel('dfa.cancel');
 		}
 		else
 		{
@@ -112,23 +112,23 @@ class PlanarchivViewGebaeude extends JViewLegacy
 				// Since it's an existing record, check the edit permission, or fall back to edit own if the owner.
 				if ($canDo->get('core.edit') || ($canDo->get('core.edit.own') && $this->item->created_by == $user->id))
 				{
-					JToolbarHelper::apply('gebaeude.apply');
-					JToolbarHelper::save('gebaeude.save');
+					JToolbarHelper::apply('dfa.apply');
+					JToolbarHelper::save('dfa.save');
 
 					// We can save this record, but check the create permission to see if we can return to make a new one.
 					if ($canDo->get('core.create'))
 					{
-						JToolbarHelper::save2new('gebaeude.save2new');
+						JToolbarHelper::save2new('dfa.save2new');
 					}
 				}
 			}
 
-			JToolbarHelper::cancel('gebaeude.cancel', 'JTOOLBAR_CLOSE');
+			JToolbarHelper::cancel('dfa.cancel', 'JTOOLBAR_CLOSE');
 		}
 
 		if ($this->state->params->get('save_history') && $user->authorise('core.edit'))
 		{
-			JToolbarHelper::versions('com_planarchiv.gebaeude', $this->item->id);
+			JToolbarHelper::versions('com_planarchiv.dfa', $this->item->id);
 		}
 	}
 }

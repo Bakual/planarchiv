@@ -111,7 +111,7 @@ $trashed   = $this->state->get('filter.state') == -2 ? true : false;
 									<?php echo $this->escape($item->title); ?>
 								<?php endif; ?>
 								<span class="small">
-									<?php echo JText::sprintf('COM_PLANARCHIV_LIST_CODE', $this->escape($item->code));?>
+									(<?php echo $this->escape($item->code);?>)
 								</span>
 								<div class="small">
 									<?php echo JText::_('JCATEGORY') . ": " . $this->escape($item->category_title); ?>

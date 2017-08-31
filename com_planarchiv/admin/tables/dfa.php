@@ -16,7 +16,7 @@ defined('_JEXEC') or die;
  *
  * @since          1.0.0
  */
-class PlanarchivTableGebaeude extends JTable
+class PlanarchivTableDfa extends JTable
 {
 	/**
 	 * Constructor
@@ -27,11 +27,11 @@ class PlanarchivTableGebaeude extends JTable
 	 */
 	public function __construct(&$db)
 	{
-		parent::__construct('#__planarchiv_gebaeude', 'id', $db);
+		parent::__construct('#__planarchiv_dfa', 'id', $db);
 
 		$this->setColumnAlias('published', 'state');
 
-		JTableObserverContenthistory::createObserver($this, array('typeAlias' => 'com_planarchiv.gebaeude'));
+		JTableObserverContenthistory::createObserver($this, array('typeAlias' => 'com_planarchiv.dfa'));
 	}
 
 	/**

@@ -28,9 +28,9 @@ class PlanarchivHelper
 	public static function addSubmenu($vName = 'main')
 	{
 		JHtmlSidebar::addEntry(
-			JText::_('COM_PLANARCHIV_MENU_GEBAEUDES'),
-			'index.php?option=com_planarchiv&view=gebaeudes',
-			$vName == 'gebaeudes'
+			JText::_('COM_PLANARCHIV_MENU_DFAS'),
+			'index.php?option=com_planarchiv&view=dfas',
+			$vName == 'dfas'
 		);
 		JHtmlSidebar::addEntry(
 			JText::_('COM_PLANARCHIV_MENU_DIDOKS'),

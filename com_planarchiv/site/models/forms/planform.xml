@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+	<fieldset name="basic"
+		addfieldpath="administrator/components/com_planarchiv/models/fields">
+		<field
+			name="ErstellDatum"
+			type="calendar"
+			label="COM_PLANARCHIV_FIELD_ERSTELLDATUM_LABEL"
+			filter="USER_UTC"
+			translateformat="true"
+			showtime="false"
+		/>
+
+		<field
+			name="ersteller_id"
+			type="modal_contact"
+			label="COM_PLANARCHIV_FIELD_PLANERSTELLER_LABEL"
+			addfieldpath="administrator/components/com_contact/models/fields"
+			select="true"
+			clear="true"
+		/>
+
+		<field
+			name="Index1"
+			type="text"
+			label="COM_PLANARCHIV_INDEX_LABEL"
+			class="input-mini"
+		/>
+
+		<field
+			name="AenderungsDatum"
+			type="calendar"
+			label="COM_PLANARCHIV_FIELD_AENDERUNGSDATUM_LABEL"
+			filter="USER_UTC"
+			translateformat="true"
+			showtime="false"
+		/>
+
+		<field
+			name="CAD_Auftrag"
+			type="text"
+			label="COM_PLANARCHIV_CAD_LABEL"
+		/>
+
+		<field
+			name="didok_id"
+			type="didoklist"
+			label="COM_PLANARCHIV_DIDOK_LABEL"
+			class="input-xlarge"
+		/>
+
+		<field
+			name="dfa_id"
+			type="dfalist"
+			label="COM_PLANARCHIV_DFA_LABEL"
+			class="input-xxlarge"
+		/>
+
+		<field
+			name="GebDfaLfnr "
+			type="text"
+			label="COM_PLANARCHIV_FIELD_LFNR"
+			class="input-mini"
+		/>
+
+		<field
+			name="Strecke"
+			type="text"
+			label="COM_PLANARCHIV_STRECKE_LABEL"
+		/>
+
+		<field
+			name="km"
+			type="text"
+			label="COM_PLANARCHIV_KM_LABEL"
+			class="input-mini"
+		/>
+
+		<field
+			name="richtung_didok_id"
+			type="didoklist"
+			label="COM_PLANARCHIV_DIRECTION_LABEL"
+			class="input-xlarge"
+		/>
+
+		<field
+			name="dokutyp_id"
+			type="dokutyplist"
+			label="COM_PLANARCHIV_DOKUTYP_LABEL"
+			class="input-xxlarge"
+		/>
+
+		<field
+			name="DokuTypNr"
+			type="text"
+			label="COM_PLANARCHIV_FIELD_LFNR"
+			class="input-mini"
+		/>
+
+		<field
+			name="anlagetyp_id"
+			type="anlagetyplist"
+			label="COM_PLANARCHIV_ANLAGETYP_LABEL"
+			class="input-xxlarge"
+		/>
+
+		<field
+			name="AnlageLfnr"
+			type="text"
+			label="COM_PLANARCHIV_FIELD_LFNR"
+			class="input-mini"
+		/>
+
+		<field
+			name="Stockwerk"
+			type="sql"
+			label="COM_PLANARCHIV_STOCKWERK_LABEL"
+			query="SELECT id, title FROM #__planarchiv_stockwerk ORDER BY title ASC"
+			value_field="title"
+			key_field="id"
+		/>
+
+		<field
+			name="Bemerkung"
+			type="textarea"
+			label="COM_PLANARCHIV_BEMERKUNG_LABEL"
+			rows="3"
+		/>
+
+		<field
+			name="Maengelliste"
+			type="radio"
+			label="COM_PLANARCHIV_MANGELLISTE_LABEL"
+			class="btn-group btn-group-yesno"
+		>
+			<option value="1">JYES</option>
+			<option value="0">JNO</option>
+		</field>
+
+		<field
+			name="original"
+			type="radio"
+			label="COM_PLANARCHIV_ORIGINAL_LABEL"
+			class="btn-group btn-group-yesno"
+		>
+			<option value="1">JYES</option>
+			<option value="0">JNO</option>
+		</field>
+
+		<field
+			name="alignment"
+			type="radio"
+			label="COM_PLANARCHIV_ALIGNMENT_LABEL"
+			class="btn-group"
+		>
+			<option value="">COM_PLANARCHIV_ALIGNMENT__LABEL</option>
+			<option value="V">COM_PLANARCHIV_ALIGNMENT_V_LABEL</option>
+			<option value="H">COM_PLANARCHIV_ALIGNMENT_H_LABEL</option>
+		</field>
+
+		<field
+			name="size"
+			type="docuformatlist"
+			label="COM_PLANARCHIV_SIZE_LABEL"
+		/>
+
+		<field
+			name="files"
+			type="fileformatlist"
+			label="COM_PLANARCHIV_FILES_LABEL"
+			multiple="true"
+		/>
+
+	</fieldset>
+
+	<fieldset name="general">
+		<field
+			name="title"
+			type="text"
+			label="JGLOBAL_TITLE"
+		/>
+
+		<field
+			name="catid"
+			type="categoryedit"
+			label="JCATEGORY"
+			description="JFIELD_CATEGORY_DESC"
+			extension="com_planarchiv"
+			addfieldpath="administrator/components/com_categories/models/fields"
+			required="true"
+		/>
+
+		<field
+			name="state"
+			type="list"
+			label="JSTATUS"
+			description="JFIELD_PUBLISHED_DESC"
+			class="inputbox"
+			size="1"
+			default="1">
+			<option
+				value="1">JPUBLISHED
+			</option>
+			<option
+				value="0">JUNPUBLISHED
+			</option>
+			<option
+				value="2">JARCHIVED
+			</option>
+			<option
+				value="-2">JTRASH
+			</option>
+		</field>
+	</fieldset>
+
+	<fieldset name="info">
+		<field
+			name="id"
+			type="text"
+			label="JGLOBAL_FIELD_ID_LABEL"
+			description="JGLOBAL_FIELD_ID_DESC"
+			class="readonly"
+			default="0"
+			required="true"
+			readonly="true"
+		/>
+
+		<field
+			name="created_by"
+			type="user"
+			label="JGLOBAL_FIELD_CREATED_BY_LABEL"
+			description="JGLOBAL_FIELD_CREATED_BY_DESC" />
+
+		<field
+			name="created"
+			type="calendar"
+			label="JGLOBAL_FIELD_CREATED_LABEL"
+			description="JGLOBAL_FIELD_CREATED_DESC"
+			translateformat="true"
+			class="readonly"
+			filter="user_utc"
+			readonly="true"
+		/>
+	</fieldset>
+</form>

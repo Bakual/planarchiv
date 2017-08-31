@@ -1,7 +1,7 @@
 <?php
 defined('_JEXEC') or die;
 
-class PlanarchivModelGebaeudes extends JModelList
+class PlanarchivModelDfas extends JModelList
 {
 	/**
 	 * Constructor.
@@ -16,17 +16,17 @@ class PlanarchivModelGebaeudes extends JModelList
 		if (empty($config['filter_fields']))
 		{
 			$config['filter_fields'] = array(
-				'id', 'gebaeudes.id',
-				'title', 'gebaeudes.title',
-				'code', 'gebaeudes.code',
-				'OrtName', 'gebaeudes.OrtName',
-				'checked_out', 'gebaeudes.checked_out',
-				'checked_out_time', 'gebaeudes.checked_out_time',
-				'catid', 'gebaeudes.catid', 'category_title',
-				'state', 'gebaeudes.state',
-				'created', 'gebaeudes.created',
-				'created_by', 'gebaeudes.created_by',
-				'language', 'gebaeudes.language',
+				'id', 'dfas.id',
+				'title', 'dfas.title',
+				'code', 'dfas.code',
+				'OrtName', 'dfas.OrtName',
+				'checked_out', 'dfas.checked_out',
+				'checked_out_time', 'dfas.checked_out_time',
+				'catid', 'dfas.catid', 'category_title',
+				'state', 'dfas.state',
+				'created', 'dfas.created',
+				'created_by', 'dfas.created_by',
+				'language', 'dfas.language',
 			);
 
 			// Searchtools
@@ -58,19 +58,10 @@ class PlanarchivModelGebaeudes extends JModelList
 		// Initialise variables.
 		$app = JFactory::getApplication();
 
-		// Force a language
-		$forcedLanguage = $app->input->get('forcedLanguage', '' , 'cmd');
-
 		// Adjust the context to support modal layouts.
 		if ($layout = $app->input->get('layout'))
 		{
 			$this->context .= '.' . $layout;
-		}
-
-		// Adjust the context to support forced languages.
-		if ($forcedLanguage)
-		{
-			$this->context .= '.' . $forcedLanguage;
 		}
 
 		// Load the parameters.
@@ -78,13 +69,8 @@ class PlanarchivModelGebaeudes extends JModelList
 		$this->setState('params', $params);
 
 		// List state information.
-		parent::populateState('gebaeudes.title', 'asc');
-
-		if ($forcedLanguage)
-		{
-			$this->setState('filter.language', $forcedLanguage);
-			$this->setState('filter.forcedLanguage', $forcedLanguage);
-		}
+		$langCode = substr(JFactory::getLanguage()->getTag(), 0, 2);
+		parent::populateState('title', 'asc');
 	}
 
 	/**
@@ -105,7 +91,6 @@ class PlanarchivModelGebaeudes extends JModelList
 		$id .= ':' . $this->getState('filter.search');
 		$id .= ':' . $this->getState('filter.state');
 		$id .= ':' . $this->getState('filter.category_id');
-		$id .= ':' . $this->getState('filter.language');
 
 		return parent::getStoreId($id);
 	}
@@ -118,48 +103,38 @@ class PlanarchivModelGebaeudes extends JModelList
 	 */
 	protected function getListQuery()
 	{
+		$langCode = substr(JFactory::getLanguage()->getTag(), 0, 2);
+
 		// Create a new query object.
 		$db    = $this->getDbo();
 		$query = $db->getQuery(true);
 
 		// Select the required fields from the table.
-		$query->select('gebaeudes.*');
-		$query->from('#__planarchiv_gebaeude AS gebaeudes');
-
-		// Join over the language
-		$query->select('l.title AS language_title, l.image AS language_image');
-		$query->join('LEFT', $db->quoteName('#__languages') . ' AS l ON l.lang_code = gebaeudes.language');
+		$query->select('dfas.*, dfas.title_' . $langCode . ' AS title, dfas.code_' . $langCode . ' AS code');
+		$query->from('#__planarchiv_dfa AS dfas');
 
 		// Join over the users for the checked out user.
 		$query->select('uc.name AS editor');
-		$query->join('LEFT', '#__users AS uc ON uc.id = gebaeudes.checked_out');
+		$query->join('LEFT', '#__users AS uc ON uc.id = dfas.checked_out');
 
 		// Join over the users for the author.
 		$query->select('ua.name AS author_name')
-			->join('LEFT', '#__users AS ua ON ua.id = gebaeudes.created_by');
+			->join('LEFT', '#__users AS ua ON ua.id = dfas.created_by');
 
 		// Join over the categories.
 		$query->select('c.title AS category_title');
-		$query->join('LEFT', '#__categories AS c ON c.id = gebaeudes.catid');
+		$query->join('LEFT', '#__categories AS c ON c.id = dfas.catid');
 
 		// Filter by published state
 		$published = $this->getState('filter.state');
 
 		if (is_numeric($published))
 		{
-			$query->where('gebaeudes.state = ' . (int) $published);
+			$query->where('dfas.state = ' . (int) $published);
 		}
 		elseif ($published === '' || $published === null)
 		{
-			$query->where('(gebaeudes.state IN (0, 1))');
-		}
-
-		// Filter by published state
-		$ort = $this->getState('filter.OrtName');
-
-		if ($ort)
-		{
-			$query->where('gebaeudes.OrtName = ' . $db->quote($ort));
+			$query->where('(dfas.state IN (0, 1))');
 		}
 
 		// Filter by category.
@@ -190,19 +165,13 @@ class PlanarchivModelGebaeudes extends JModelList
 		{
 			if (stripos($search, 'id:') === 0)
 			{
-				$query->where('gebaeudes.id = ' . (int) substr($search, 3));
+				$query->where('dfas.id = ' . (int) substr($search, 3));
 			}
 			else
 			{
 				$search = $db->quote('%' . $db->escape($search, true) . '%');
-				$query->where('(gebaeudes.title LIKE ' . $search . ')');
+				$query->where('(dfas.title_' . $langCode . ' LIKE ' . $search . ')');
 			}
-		}
-
-		// Filter on the language.
-		if ($language = $this->getState('filter.language'))
-		{
-			$query->where('gebaeudes.language = ' . $db->quote($language));
 		}
 
 		// Add the list ordering clause.

@@ -10,13 +10,13 @@
 defined('_JEXEC') or die();
 
 /**
- * Gebaeude model.
+ * Dfa model.
  *
  * @package   Planarchiv.Administrator
  *
  * @since     1.0.0
  */
-class PlanarchivModelGebaeude extends JModelAdmin
+class PlanarchivModelDfa extends JModelAdmin
 {
 	/**
 	 * @var   string  The prefix to use with controller messages.
@@ -31,7 +31,7 @@ class PlanarchivModelGebaeude extends JModelAdmin
 	 * @var     string
 	 * @since   1.0.0
 	 */
-	protected $associationsContext = 'com_planarchiv.gebaeude';
+	protected $associationsContext = 'com_planarchiv.dfa';
 
 	/**
 	 * Method to get the record form.
@@ -45,7 +45,7 @@ class PlanarchivModelGebaeude extends JModelAdmin
 	public function getForm($data = array(), $loadData = true)
 	{
 		// Get the form.
-		$form = $this->loadForm('com_planarchiv.gebaeude', 'gebaeude', array('control' => 'jform', 'load_data' => $loadData));
+		$form = $this->loadForm('com_planarchiv.dfa', 'dfa', array('control' => 'jform', 'load_data' => $loadData));
 
 		if (empty($form))
 		{
@@ -53,7 +53,7 @@ class PlanarchivModelGebaeude extends JModelAdmin
 		}
 
 		// Determine correct permissions to check.
-		if ($this->getState('gebaeude.id'))
+		if ($this->getState('dfa.id'))
 		{
 			// Existing record. Can only edit in selected categories.
 			$form->setFieldAttribute('catid', 'action', 'core.edit');
@@ -115,7 +115,7 @@ class PlanarchivModelGebaeude extends JModelAdmin
 	 * @return    JTable    A database object
 	 * @since    1.0.0
 	 */
-	public function getTable($type = 'Gebaeude', $prefix = 'PlanarchivTable', $config = array())
+	public function getTable($type = 'Dfa', $prefix = 'PlanarchivTable', $config = array())
 	{
 		return JTable::getInstance($type, $prefix, $config);
 	}
@@ -130,23 +130,23 @@ class PlanarchivModelGebaeude extends JModelAdmin
 	{
 		// Check the session for previously entered form data.
 		$app  = JFactory::getApplication();
-		$data = $app->getUserState('com_planarchiv.edit.gebaeude.data', array());
+		$data = $app->getUserState('com_planarchiv.edit.dfa.data', array());
 
 		if (empty($data))
 		{
 			$data = $this->getItem();
 
-			// Pre-select some filters (Status, Category, Language) in edit form if those have been selected in Gebaeude Manager: Gebaeudes
-			if ($this->getState('gebaeude.id') == 0)
+			// Pre-select some filters (Status, Category, Language) in edit form if those have been selected in Dfa Manager: Dfas
+			if ($this->getState('dfa.id') == 0)
 			{
-				$filters = (array) $app->getUserState('com_planarchiv.gebaeudes.filter');
+				$filters = (array) $app->getUserState('com_planarchiv.dfas.filter');
 				$data->set('state', $app->input->getInt('state', ((isset($filters['state']) && $filters['state'] !== '') ? $filters['state'] : null)));
 				$data->set('catid', $app->input->getInt('catid', (!empty($filters['category_id']) ? $filters['category_id'] : null)));
 				$data->set('language', $app->input->getString('language', (!empty($filters['language']) ? $filters['language'] : null)));
 			}
 		}
 
-		$this->preprocessData('com_planarchiv.gebaeude', $data);
+		$this->preprocessData('com_planarchiv.dfa', $data);
 
 		return $data;
 	}
@@ -160,7 +160,9 @@ class PlanarchivModelGebaeude extends JModelAdmin
 	 */
 	protected function prepareTable($table)
 	{
-		$table->title = htmlspecialchars_decode($table->title, ENT_QUOTES);
+		$table->title_de = htmlspecialchars_decode($table->title_de, ENT_QUOTES);
+		$table->title_fr = htmlspecialchars_decode($table->title_fr, ENT_QUOTES);
+		$table->title_it = htmlspecialchars_decode($table->title_it, ENT_QUOTES);
 
 		// Increment the content version number.
 		$table->version++;
