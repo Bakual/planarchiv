@@ -66,6 +66,15 @@ class PlanarchivModelPlan extends JModelItem
 				$query->select('richtung.title AS richtung_title, richtung.didok AS richtung_didok');
 				$query->join('LEFT', '#__planarchiv_didok AS richtung ON richtung.id = plan.richtung_didok_id');
 
+				// Join over Stockwerk.
+				$query->select('stockwerk.title AS stockwerk_title');
+				$query->join('LEFT', '#__planarchiv_stockwerk AS stockwerk ON stockwerk.id = plan.Stockwerk');
+
+				// Join over Dfa.
+				$query->select('dfa.title_' . $langCode . ' AS dfa_title');
+				$query->select('dfa.code_' . $langCode . ' AS dfa_code');
+				$query->join('LEFT', '#__planarchiv_dfa AS dfa ON dfa.id = plan.dfa_id');
+
 				// Join over DokuTyp.
 				$query->select('dokutyp.title_' . $langCode . ' AS dokutyp_title');
 				$query->select('dokutyp.code_' . $langCode . ' AS dokutyp_code');

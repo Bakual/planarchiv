@@ -37,8 +37,37 @@ JHtml::_('behavior.tabstate');
 	<?php endif; ?>
 
 	<form
-		action="<?php echo JRoute::_('index.php?option=com_planarchiv&view=planform&s_id=' . (int) $this->item->id); ?>"
-		method="post" name="adminForm" id="adminForm" class="form-validate form form-vertical">
+		action="<?php echo JRoute::_('index.php?option=com_planarchiv&view=planform&id=' . (int) $this->item->id); ?>"
+		method="post" name="adminForm" id="adminForm" class="form-validate form form-horizontal">
+		<fieldset>
+			<?php echo JHtml::_('bootstrap.startTabSet', 'planform', array('active' => 'editor')); ?>
+
+			<?php echo JHtml::_('bootstrap.addTab', 'planform', 'basic', JText::_('COM_PLANARCHIV_TAB_BASIC')); ?>
+			<?php echo $this->form->renderField('title'); ?>
+
+			<?php foreach($this->form->getFieldset('basic') as $field): ?>
+				<?php echo $field->getControlGroup(); ?>
+			<?php endforeach; ?>
+			<?php echo JHtml::_('bootstrap.endTab'); ?>
+
+			<?php echo JHtml::_('bootstrap.addTab', 'planform', 'details', JText::_('COM_PLANARCHIV_TAB_DETAILS')); ?>
+
+			<div class="row-fluid">
+				<div class="span6">
+					<?php echo JLayoutHelper::render('joomla.edit.publishingdata', $this); ?>
+				</div>
+				<div class="span6">
+					<?php echo JLayoutHelper::render('joomla.edit.global', $this); ?>
+				</div>
+			</div>
+
+			<?php echo JHtml::_('bootstrap.endTab'); ?>
+			<?php echo JHtml::_('bootstrap.endTabSet'); ?>
+
+			<input type="hidden" name="task" value="" />
+			<input type="hidden" name="return" value="<?php echo $this->return_page; ?>" />
+			<?php echo JHtml::_('form.token'); ?>
+		</fieldset>
 		<div class="btn-toolbar">
 			<div class="btn-group">
 				<button type="button" class="btn btn-primary" onclick="Joomla.submitbutton('planform.save')">

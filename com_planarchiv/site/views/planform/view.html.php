@@ -59,7 +59,7 @@ class PlanarchivViewPlanform extends JViewLegacy
 		$this->state       = $this->get('State');
 		$this->item        = $this->get('Item');
 		$this->form        = $this->get('Form');
-		$this->return_page = $this->get('ReturnPage');
+		$this->return_page = base64_encode($this->state->get('return_page'));
 
 		// Create a shortcut to the parameters.
 		$params = &$this->state->params;

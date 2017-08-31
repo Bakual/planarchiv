@@ -12,14 +12,29 @@ defined('_JEXEC') or die();
 /**
  * Controller class for the PlanArchiv Component
  *
- * @since  3.4
+ * @since  1.0.0
  */
 class PlanarchivControllerPlanform extends JControllerForm
 {
+	/**
+	 * @var string
+	 *
+	 * @since 1.0.0
+	 */
 	protected $view_item = 'planform';
 
+	/**
+	 * @var string
+	 *
+	 * @since 1.0.0
+	 */
 	protected $view_list = 'plans';
 
+	/**
+	 * @var string
+	 *
+	 * @since 1.0.0
+	 */
 	protected $context = 'plan';
 
 	/**
@@ -27,7 +42,7 @@ class PlanarchivControllerPlanform extends JControllerForm
 	 *
 	 * @return  boolean  True if the article can be added, false if not
 	 *
-	 * @since ?
+	 * @since 1.0.0
 	 */
 	public function add()
 	{
@@ -49,7 +64,7 @@ class PlanarchivControllerPlanform extends JControllerForm
 	 *
 	 * @return  boolean
 	 *
-	 * @since ?
+	 * @since 1.0.0
 	 */
 	protected function allowAdd($data = array())
 	{
@@ -82,7 +97,7 @@ class PlanarchivControllerPlanform extends JControllerForm
 	 *
 	 * @return  boolean
 	 *
-	 * @since ?
+	 * @since 1.0.0
 	 */
 	protected function allowEdit($data = array(), $key = 'id')
 	{
@@ -129,9 +144,9 @@ class PlanarchivControllerPlanform extends JControllerForm
 	 *
 	 * @return  Boolean  True if access level checks pass, false otherwise
 	 *
-	 * @since ?
+	 * @since 1.0.0
 	 */
-	public function cancel($key = 's_id')
+	public function cancel($key = 'id')
 	{
 		$return = parent::cancel($key);
 
@@ -150,13 +165,11 @@ class PlanarchivControllerPlanform extends JControllerForm
 	 *
 	 * @return  Boolean  True if access level check and checkout passes, false otherwise
 	 *
-	 * @since ?
+	 * @since 1.0.0
 	 */
-	public function edit($key = null, $urlVar = 's_id')
+	public function edit($key = null, $urlVar = 'id')
 	{
-		$result = parent::edit($key, $urlVar);
-
-		return $result;
+		return parent::edit($key, $urlVar);
 	}
 
 	/**
@@ -168,7 +181,7 @@ class PlanarchivControllerPlanform extends JControllerForm
 	 *
 	 * @return  object  The model
 	 *
-	 * @since ?
+	 * @since 1.0.0
 	 */
 	public function getModel($name = 'planform', $prefix = '', $config = array('ignore_request' => true))
 	{
@@ -185,7 +198,7 @@ class PlanarchivControllerPlanform extends JControllerForm
 	 *
 	 * @return  string  The arguments to append to the redirect URL
 	 *
-	 * @since ?
+	 * @since 1.0.0
 	 */
 	protected function getRedirectToItemAppend($recordId = null, $urlVar = null)
 	{
@@ -220,7 +233,7 @@ class PlanarchivControllerPlanform extends JControllerForm
 	 *
 	 * @return  string  The return URL
 	 *
-	 * @since ?
+	 * @since 1.0.0
 	 */
 	protected function getReturnPage()
 	{
@@ -242,7 +255,7 @@ class PlanarchivControllerPlanform extends JControllerForm
 	 * @param \JModel|\JModelLegacy $model     The data model object
 	 * @param   array               $validData The validated data
 	 *
-	 * @since ?
+	 * @since 1.0.0
 	 */
 	protected function postSaveHook(JModelLegacy $model, $validData = array())
 	{
@@ -263,9 +276,9 @@ class PlanarchivControllerPlanform extends JControllerForm
 	 *
 	 * @return  Boolean  True if successful, false otherwise
 	 *
-	 * @since ?
+	 * @since 1.0.0
 	 */
-	public function save($key = null, $urlVar = 's_id')
+	public function save($key = null, $urlVar = 'id')
 	{
 		$result = parent::save($key, $urlVar);
 

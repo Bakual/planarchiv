@@ -68,6 +68,7 @@ $listDirn   = $this->state->get('list.direction');
 						$canCheckin = $user->authorise('core.manage', 'com_checkin') || $item->checked_out == $user->id || $item->checked_out == 0;
 						$canEditOwn = $user->authorise('core.edit.own', 'com_planarchiv.category.'.$item->catid) && $item->created_by == $user->id;
 						$canChange  = $user->authorise('core.edit.state', 'com_planarchiv.category.'.$item->catid) && $canCheckin;
+						$returnPage = base64_encode(JUri::getInstance());
 						?>
 						<tr class="row<?php echo $i % 2; ?>" sortable-group-id="<?php echo $item->catid; ?>">
 							<td class="nowrap has-context">
@@ -79,7 +80,7 @@ $listDirn   = $this->state->get('list.direction');
 										<?php echo $this->escape($item->title) ?: '<span class="label label-info">' . JText::_('COM_PLANARCHIV_NONAME') . '</span>'; ?>
 									</a>
 									<?php if ($canEdit || $canEditOwn) : ?>
-										<a href="<?php echo JRoute::_('index.php?option=com_planarchiv&task=planform.edit&id=' . $item->id); ?>">
+										<a href="<?php echo JRoute::_('index.php?option=com_planarchiv&task=planform.edit&id=' . $item->id . '&return=' . $returnPage); ?>">
 											<span class="icon-edit"> </span>
 										</a>
 									<?php endif; ?>

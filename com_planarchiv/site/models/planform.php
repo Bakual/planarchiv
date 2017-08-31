@@ -106,6 +106,31 @@ class PlanarchivModelplanform extends JModelAdmin
 	}
 
 	/**
+	 * Method to auto-populate the model state.
+	 *
+	 * Note. Calling getState in this method will result in recursion.
+	 *
+	 * @return  void
+	 *
+	 * @since   1.0.0
+	 */
+	protected function populateState()
+	{
+		parent::populateState();
+
+		$app = JFactory::getApplication();
+
+		$return = $app->input->get('return', null, 'base64');
+		$this->setState('return_page', base64_decode($return));
+
+		// Load the parameters.
+		$params = $app->getParams();
+		$this->setState('params', $params);
+
+		$this->setState('layout', $app->input->getString('layout'));
+	}
+
+	/**
 	 * Returns a reference to the a Table object, always creating it.
 	 *
 	 * @param    string $type   The table type to instantiate
@@ -115,7 +140,7 @@ class PlanarchivModelplanform extends JModelAdmin
 	 * @return    JTable    A database object
 	 * @since    1.0.0
 	 */
-	public function getTable($type = 'planform', $prefix = 'PlanarchivTable', $config = array())
+	public function getTable($type = 'plan', $prefix = 'PlanarchivTable', $config = array())
 	{
 		return JTable::getInstance($type, $prefix, $config);
 	}
@@ -130,7 +155,7 @@ class PlanarchivModelplanform extends JModelAdmin
 	{
 		// Check the session for previously entered form data.
 		$app  = JFactory::getApplication();
-		$data = $app->getUserState('com_planarchiv.edit.planform.data', array());
+		$data = $app->getUserState('com_planarchiv.edit.plan.data', array());
 
 		if (empty($data))
 		{

@@ -17,11 +17,11 @@
 			<option value="">COM_PLANARCHIV_SELECT_ANLAGETYP</option>
 		</field>
 		<field
-			name="didok_title"
+			name="didok_id"
 			type="sql"
-			query="SELECT DISTINCT didok.title, didok.didok FROM #__planarchiv_plan AS plan INNER JOIN #__planarchiv_didok AS didok ON didok.id = plan.didok_id ORDER BY didok.title ASC"
+			query="SELECT DISTINCT didok.title, didok.id FROM #__planarchiv_plan AS plan INNER JOIN #__planarchiv_didok AS didok ON didok.id = plan.didok_id ORDER BY didok.title ASC"
 			value_field="title"
-			key_field="didok"
+			key_field="id"
 			onchange="this.form.submit();"
 		>
 			<option value="">COM_PLANARCHIV_SELECT_ORT</option>

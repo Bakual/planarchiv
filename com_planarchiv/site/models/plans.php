@@ -109,17 +109,21 @@ class PlanarchivModelPlans extends JModelList
 		}
 
 		// Join over users for the author names.
-		$query->select("user.name AS author");
+		$query->select('user.name AS author');
 		$query->join('LEFT', '#__users AS user ON user.id = plans.created_by');
 
+		// Join over the users for the checked out user.
+		$query->select('uc.name AS editor');
+		$query->join('LEFT', '#__users AS uc ON uc.id = plans.checked_out');
+
 		// Join over DiDok for the Ort.
-		$query->select("didok.title AS didok_title, didok");
+		$query->select('didok.title AS didok_title, didok');
 		$query->join('LEFT', '#__planarchiv_didok AS didok ON didok.id = plans.didok_id');
 
 		// Filter by DiDok
-		if ($didok = $this->getState('filter.didok_title'))
+		if ($didok = (int) $this->getState('filter.didok_id'))
 		{
-			$query->where('didok.didok = ' . $db->quote($didok));
+			$query->where('didok.id = ' . $didok);
 		}
 
 		// Filter by search in title

@@ -10,6 +10,10 @@
 defined('_JEXEC') or die();
 
 JHtml::_('bootstrap.tooltip');
+
+$user       = JFactory::getUser();
+$canEdit    = $user->authorise('core.edit', 'com_planarchiv.category.' . $this->item->catid);
+$canEditOwn = $user->authorise('core.edit.own', 'com_planarchiv.category.' . $this->item->catid) && $this->item->created_by == $user->id;
 ?>
 <div class="item-page<?php echo $this->pageclass_sfx; ?> planarchiv-plan-container<?php echo $this->pageclass_sfx; ?>">
 	<?php if ($this->params->get('show_page_heading')) : ?>
@@ -20,6 +24,15 @@ JHtml::_('bootstrap.tooltip');
 	<div class="page-header">
 		<h2><?php echo $this->escape($this->item->title) ?: '<span class="text-warning">' . JText::_('COM_PLANARCHIV_NONAME') . '</span>'; ?></h2>
 	</div>
+	<?php if ($canEdit || $canEditOwn) : ?>
+		<div class="pull-right">
+			<a href="<?php echo JRoute::_('index.php?option=com_planarchiv&task=planform.edit&id=' . $this->item->id . '&return=' . base64_encode(JUri::getInstance())); ?>">
+				<?php $icon = $this->item->state ? 'edit' : 'eye-close'; ?>
+				<span class="icon-<?php echo $icon; ?>"></span>
+				<?php echo JText::_('JGLOBAL_EDIT'); ?>
+			</a>
+		</div>
+	<?php endif; ?>
 	<dl class="plan-info muted">
 		<dt class="plan-info-term">
 			<?php echo JText::_('COM_PLANARCHIV_PLAN_INFO'); ?>
@@ -102,12 +115,12 @@ JHtml::_('bootstrap.tooltip');
 					<?php echo $this->escape($this->item->didok_title) . ' (' . $this->item->didok . ')'; ?>
 				</div>
 				<div class="span4">
-					<h4><?php echo JText::_('COM_PLANARCHIV_GEBAEUDE_LABEL'); ?></h4>
-					<?php echo $this->escape($this->item->GebDfaTxt) . ' (' . $this->escape($this->item->GebDfaCode) . $this->item->GebDfaLfnr . ')'; ?>
+					<h4><?php echo JText::_('COM_PLANARCHIV_DFA_LABEL'); ?></h4>
+					<?php echo $this->escape($this->item->dfa_title) . ' (' . $this->escape($this->item->dfa_code) . $this->item->GebDfaLfnr . ')'; ?>
 				</div>
 				<div class="span4">
 					<h4><?php echo JText::_('COM_PLANARCHIV_STOCKWERK_LABEL'); ?></h4>
-					<?php echo $this->escape($this->item->Stockwerk); ?>
+					<?php echo $this->escape($this->item->stockwerk_title); ?>
 				</div>
 			</div>
 		</div>
