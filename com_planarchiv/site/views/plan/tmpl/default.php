@@ -41,8 +41,8 @@ $canEditOwn = $user->authorise('core.edit.own', 'com_planarchiv.category.' . $th
 
 		<?php if ($this->item->ersteller_id) : ?>
 			<dd class="createdby">
-				<?php $contactLink = JRoute::_(ContactHelperRoute::getContactRoute($this->item->ersteller_id . ':' . $this->item->ersteller_alias, $this->item->ersteller_catid)); ?>
-				<?php echo JText::sprintf('COM_PLANARCHIV_CREATED_BY', $this->item->ersteller_name); ?>
+				<?php $erstellerLink = JRoute::_(ContactHelperRoute::getContactRoute($this->item->ersteller_id . ':' . $this->item->ersteller_alias, $this->item->ersteller_catid)); ?>
+				<?php echo JText::sprintf('COM_PLANARCHIV_CREATED_BY', '<a href="' . $erstellerLink . '">' . $this->item->ersteller_name) . '</a>'; ?>
 			</dd>
 		<?php endif; ?>
 
