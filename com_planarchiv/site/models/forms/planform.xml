@@ -43,25 +43,89 @@
 		/>
 
 		<field
+			name="dokutyp_id"
+			type="dokutyplist"
+			label="COM_PLANARCHIV_DOKUTYP_LABEL"
+			class="input-xlarge"
+		/>
+
+		<field
+			name="DokuTypNr"
+			type="text"
+			label="COM_PLANARCHIV_FIELD_LFNR"
+			class="input-mini"
+		/>
+
+		<field
+			name="anlagetyp_id"
+			type="anlagetyplist"
+			label="COM_PLANARCHIV_ANLAGETYP_LABEL"
+			class="input-xlarge"
+		/>
+
+		<field
+			name="AnlageLfnr"
+			type="text"
+			label="COM_PLANARCHIV_FIELD_LFNR"
+			class="input-mini"
+		/>
+
+		<field
+			name="Bemerkung"
+			type="textarea"
+			label="COM_PLANARCHIV_BEMERKUNG_LABEL"
+			class="input-xxlarge"
+			rows="3"
+		/>
+
+		<field
+			name="Maengelliste"
+			type="radio"
+			label="COM_PLANARCHIV_MANGELLISTE_LABEL"
+			class="btn-group btn-group-yesno"
+		>
+			<option value="1">JYES</option>
+			<option value="0">JNO</option>
+		</field>
+
+	</fieldset>
+
+	<fieldset name="location"
+		addfieldpath="administrator/components/com_planarchiv/models/fields">
+		<field
 			name="didok_id"
 			type="didoklist"
 			label="COM_PLANARCHIV_DIDOK_LABEL"
 			class="input-xlarge"
+			required="true"
 		/>
 
 		<field
 			name="dfa_id"
 			type="dfalist"
 			label="COM_PLANARCHIV_DFA_LABEL"
-			class="input-xxlarge"
-		/>
+			class="input-xlarge"
+		>
+			<option value="" />
+		</field>
 
 		<field
-			name="GebDfaLfnr "
+			name="GebDfaLfnr"
 			type="text"
 			label="COM_PLANARCHIV_FIELD_LFNR"
 			class="input-mini"
 		/>
+
+		<field
+			name="Stockwerk"
+			type="sql"
+			label="COM_PLANARCHIV_STOCKWERK_LABEL"
+			query="SELECT id, title FROM #__planarchiv_stockwerk ORDER BY title ASC"
+			value_field="title"
+			key_field="id"
+		>
+			<option value="" />
+		</field>
 
 		<field
 			name="Strecke"
@@ -81,62 +145,13 @@
 			type="didoklist"
 			label="COM_PLANARCHIV_DIRECTION_LABEL"
 			class="input-xlarge"
-		/>
-
-		<field
-			name="dokutyp_id"
-			type="dokutyplist"
-			label="COM_PLANARCHIV_DOKUTYP_LABEL"
-			class="input-xxlarge"
-		/>
-
-		<field
-			name="DokuTypNr"
-			type="text"
-			label="COM_PLANARCHIV_FIELD_LFNR"
-			class="input-mini"
-		/>
-
-		<field
-			name="anlagetyp_id"
-			type="anlagetyplist"
-			label="COM_PLANARCHIV_ANLAGETYP_LABEL"
-			class="input-xxlarge"
-		/>
-
-		<field
-			name="AnlageLfnr"
-			type="text"
-			label="COM_PLANARCHIV_FIELD_LFNR"
-			class="input-mini"
-		/>
-
-		<field
-			name="Stockwerk"
-			type="sql"
-			label="COM_PLANARCHIV_STOCKWERK_LABEL"
-			query="SELECT id, title FROM #__planarchiv_stockwerk ORDER BY title ASC"
-			value_field="title"
-			key_field="id"
-		/>
-
-		<field
-			name="Bemerkung"
-			type="textarea"
-			label="COM_PLANARCHIV_BEMERKUNG_LABEL"
-			rows="3"
-		/>
-
-		<field
-			name="Maengelliste"
-			type="radio"
-			label="COM_PLANARCHIV_MANGELLISTE_LABEL"
-			class="btn-group btn-group-yesno"
 		>
-			<option value="1">JYES</option>
-			<option value="0">JNO</option>
+			<option value="" />
 		</field>
+	</fieldset>
 
+	<fieldset name="files"
+		addfieldpath="administrator/components/com_planarchiv/models/fields">
 		<field
 			name="original"
 			type="radio"

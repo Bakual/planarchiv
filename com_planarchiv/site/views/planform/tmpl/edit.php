@@ -38,30 +38,98 @@ JHtml::_('behavior.tabstate');
 
 	<form
 		action="<?php echo JRoute::_('index.php?option=com_planarchiv&view=planform&id=' . (int) $this->item->id); ?>"
-		method="post" name="adminForm" id="adminForm" class="form-validate form form-horizontal">
+		method="post" name="adminForm" id="adminForm" class="form-validate form form-vertical">
 		<fieldset>
+			<?php echo $this->form->renderField('title'); ?>
+
 			<?php echo JHtml::_('bootstrap.startTabSet', 'planform', array('active' => 'editor')); ?>
 
 			<?php echo JHtml::_('bootstrap.addTab', 'planform', 'basic', JText::_('COM_PLANARCHIV_TAB_BASIC')); ?>
-			<?php echo $this->form->renderField('title'); ?>
+				<div class="row-fluid">
+					<div class="span6">
+						<?php echo $this->form->renderField('ErstellDatum'); ?>
+					</div>
+					<div class="span6">
+						<?php echo $this->form->renderField('ersteller_id'); ?>
+					</div>
+				</div>
+				<div class="row-fluid">
+					<div class="span6">
+						<?php echo $this->form->renderField('AenderungsDatum'); ?>
+					</div>
+					<div class="span6">
+						<?php echo $this->form->renderField('Index1'); ?>
+					</div>
+				</div>
+				<?php echo $this->form->renderField('CAD_Auftrag'); ?>
+				<div class="row-fluid">
+					<div class="span6">
+						<?php echo $this->form->renderField('dokutyp_id'); ?>
+					</div>
+					<div class="span6">
+						<?php echo $this->form->renderField('DokuTypNr'); ?>
+					</div>
+				</div>
+				<div class="row-fluid">
+					<div class="span6">
+						<?php echo $this->form->renderField('anlagetyp_id'); ?>
+					</div>
+					<div class="span6">
+						<?php echo $this->form->renderField('AnlageLfnr'); ?>
+					</div>
+				</div>
+				<?php echo $this->form->renderField('Maengelliste'); ?>
+				<?php echo $this->form->renderField('Bemerkung'); ?>
+			<?php echo JHtml::_('bootstrap.endTab'); ?>
 
-			<?php foreach($this->form->getFieldset('basic') as $field): ?>
-				<?php echo $field->getControlGroup(); ?>
-			<?php endforeach; ?>
+			<?php echo JHtml::_('bootstrap.addTab', 'planform', 'location', JText::_('COM_PLANARCHIV_TAB_LOCATION')); ?>
+				<?php echo $this->form->renderField('didok_id'); ?>
+				<fieldset>
+					<legend><?php echo JText::_('COM_PLANARCHIV_ORT_LABEL'); ?></legend>
+					<div class="row-fluid">
+						<div class="span6">
+							<?php echo $this->form->renderField('dfa_id'); ?>
+						</div>
+						<div class="span6">
+							<?php echo $this->form->renderField('GebDfaLfnr'); ?>
+						</div>
+					</div>
+					<?php echo $this->form->renderField('Stockwerk'); ?>
+				</fieldset>
+
+				<fieldset>
+					<legend><?php echo JText::_('COM_PLANARCHIV_STRECKE_LABEL'); ?></legend>
+					<div class="row-fluid">
+						<div class="span6">
+							<?php echo $this->form->renderField('Strecke'); ?>
+						</div>
+						<div class="span2">
+							<?php echo $this->form->renderField('km'); ?>
+						</div>
+						<div class="span4">
+							<?php echo $this->form->renderField('richtung_didok_id'); ?>
+						</div>
+					</div>
+				</fieldset>
+			<?php echo JHtml::_('bootstrap.endTab'); ?>
+
+			<?php echo JHtml::_('bootstrap.addTab', 'planform', 'files', JText::_('COM_PLANARCHIV_TAB_FILES')); ?>
+				<?php foreach($this->form->getFieldset('files') as $field): ?>
+					<?php echo $field->getControlGroup(); ?>
+				<?php endforeach; ?>
 			<?php echo JHtml::_('bootstrap.endTab'); ?>
 
 			<?php echo JHtml::_('bootstrap.addTab', 'planform', 'details', JText::_('COM_PLANARCHIV_TAB_DETAILS')); ?>
-
-			<div class="row-fluid">
-				<div class="span6">
-					<?php echo JLayoutHelper::render('joomla.edit.publishingdata', $this); ?>
+				<div class="row-fluid">
+					<div class="span6">
+						<?php echo JLayoutHelper::render('joomla.edit.publishingdata', $this); ?>
+					</div>
+					<div class="span6">
+						<?php echo JLayoutHelper::render('joomla.edit.global', $this); ?>
+					</div>
 				</div>
-				<div class="span6">
-					<?php echo JLayoutHelper::render('joomla.edit.global', $this); ?>
-				</div>
-			</div>
-
 			<?php echo JHtml::_('bootstrap.endTab'); ?>
+
 			<?php echo JHtml::_('bootstrap.endTabSet'); ?>
 
 			<input type="hidden" name="task" value="" />

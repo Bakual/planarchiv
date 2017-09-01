@@ -49,6 +49,8 @@ class JFormFieldDidoklist extends JFormFieldList
 
 		$db->setQuery($query);
 
-		return $db->loadObjectList();
+		$options = $db->loadObjectList();
+
+		return array_merge(parent::getOptions(), $options);
 	}
 }

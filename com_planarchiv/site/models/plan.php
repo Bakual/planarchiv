@@ -80,8 +80,12 @@ class PlanarchivModelPlan extends JModelItem
 				$query->select('dokutyp.code_' . $langCode . ' AS dokutyp_code');
 				$query->join('LEFT', '#__planarchiv_dokutyp AS dokutyp ON dokutyp.id = plan.dokutyp_id');
 
+				// Join over DokuTyp.
+				$query->select('contact.name AS ersteller_name, contact.alias AS ersteller_alias, contact.catid AS ersteller_catid');
+				$query->join('LEFT', '#__contact_details AS contact ON contact.id = plan.ersteller_id');
+
 				// Join over users for the author names.
-				$query->select("user.name AS author");
+				$query->select('user.name AS author');
 				$query->join('LEFT', '#__users AS user ON user.id = plan.created_by');
 
 				$db->setQuery($query);

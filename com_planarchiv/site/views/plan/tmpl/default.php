@@ -10,6 +10,7 @@
 defined('_JEXEC') or die();
 
 JHtml::_('bootstrap.tooltip');
+JLoader::register('ContactHelperRoute', JPATH_SITE . '/components/com_contact/helpers/route.php');
 
 $user       = JFactory::getUser();
 $canEdit    = $user->authorise('core.edit', 'com_planarchiv.category.' . $this->item->catid);
@@ -38,9 +39,10 @@ $canEditOwn = $user->authorise('core.edit.own', 'com_planarchiv.category.' . $th
 			<?php echo JText::_('COM_PLANARCHIV_PLAN_INFO'); ?>
 		</dt>
 
-		<?php if ($this->item->PlanErsteller) : ?>
+		<?php if ($this->item->ersteller_id) : ?>
 			<dd class="createdby">
-				<?php echo JText::sprintf('COM_PLANARCHIV_CREATED_BY', $this->item->PlanErsteller); ?>
+				<?php $contactLink = JRoute::_(ContactHelperRoute::getContactRoute($this->item->ersteller_id . ':' . $this->item->ersteller_alias, $this->item->ersteller_catid)); ?>
+				<?php echo JText::sprintf('COM_PLANARCHIV_CREATED_BY', $this->item->ersteller_name); ?>
 			</dd>
 		<?php endif; ?>
 

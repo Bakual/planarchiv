@@ -45,6 +45,7 @@ $listDirn   = $this->state->get('list.direction');
 				<table class="table table-striped" id="planList">
 					<thead>
 					<tr>
+						<th class="hidden"></th>
 						<th>
 							<?php echo JHtml::_('searchtools.sort', 'JGLOBAL_TITLE', 'plans.title', $listDirn, $listOrder); ?>
 						</th>
@@ -70,7 +71,10 @@ $listDirn   = $this->state->get('list.direction');
 						$canChange  = $user->authorise('core.edit.state', 'com_planarchiv.category.'.$item->catid) && $canCheckin;
 						$returnPage = base64_encode(JUri::getInstance());
 						?>
-						<tr class="row<?php echo $i % 2; ?>" sortable-group-id="<?php echo $item->catid; ?>">
+						<tr class="row<?php echo $i % 2; ?>">
+							<td class="hidden">
+								<?php echo JHtml::_('grid.id', $i, $item->id); ?>
+							</td>
 							<td class="nowrap has-context">
 								<div class="pull-left">
 									<?php if ($item->checked_out) : ?>
