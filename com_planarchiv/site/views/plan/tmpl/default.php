@@ -27,7 +27,7 @@ $canEditOwn = $user->authorise('core.edit.own', 'com_planarchiv.category.' . $th
 	</div>
 	<?php if ($canEdit || $canEditOwn) : ?>
 		<div class="pull-right">
-			<a href="<?php echo JRoute::_('index.php?option=com_planarchiv&task=planform.edit&id=' . $this->item->id . '&return=' . base64_encode(JUri::getInstance())); ?>">
+			<a href="<?php echo JRoute::_('index.php?option=com_planarchiv&task=plan.edit&id=' . $this->item->id . '&return=' . base64_encode(JUri::getInstance())); ?>">
 				<?php $icon = $this->item->state ? 'edit' : 'eye-close'; ?>
 				<span class="icon-<?php echo $icon; ?>"></span>
 				<?php echo JText::_('JGLOBAL_EDIT'); ?>

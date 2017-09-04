@@ -206,6 +206,21 @@
 		/>
 
 		<field
+			name="contenthistory"
+			type="contenthistory"
+			label="JTOOLBAR_VERSIONS"
+			id="contenthistory"
+			data-typeAlias="com_planarchiv.plan"
+		/>
+
+		<field
+			name="version_note"
+			type="text"
+			label="JGLOBAL_FIELD_VERSION_NOTE_LABEL"
+			description="JGLOBAL_FIELD_VERSION_NOTE_DESC"
+		/>
+
+		<field
 			name="state"
 			type="list"
 			label="JSTATUS"

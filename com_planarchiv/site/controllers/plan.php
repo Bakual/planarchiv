@@ -14,7 +14,7 @@ defined('_JEXEC') or die();
  *
  * @since  1.0.0
  */
-class PlanarchivControllerPlanform extends JControllerForm
+class PlanarchivControllerPlan extends JControllerForm
 {
 	/**
 	 * @var string

@@ -26,12 +26,11 @@ class PlanarchivModelplanform extends JModelAdmin
 	protected $text_prefix = 'COM_PLANARCHIV';
 
 	/**
-	 * The context used for the associations table
+	 * @var string  Type Alias for Content History
 	 *
-	 * @var     string
-	 * @since   1.0.0
+	 * @since 1.0.0
 	 */
-	protected $associationsContext = 'com_planarchiv.planform';
+	public $typeAlias = 'com_planarchiv.plan';
 
 	/**
 	 * Method to get the record form.

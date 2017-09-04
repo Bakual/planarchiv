@@ -18,7 +18,7 @@ JHtml::_('behavior.tabstate');
 ?>
 <script type="text/javascript">
     Joomla.submitbutton = function (task) {
-        if (task == 'planform.cancel' || document.formvalidator.isValid(document.id('adminForm'))) {
+        if (task == 'plan.cancel' || document.formvalidator.isValid(document.id('adminForm'))) {
             Joomla.submitform(task, document.getElementById('adminForm'));
         } else {
             alert('<?php echo $this->escape(JText::_('JGLOBAL_VALIDATION_FORM_FAILED'));?>');
@@ -138,15 +138,20 @@ JHtml::_('behavior.tabstate');
 		</fieldset>
 		<div class="btn-toolbar">
 			<div class="btn-group">
-				<button type="button" class="btn btn-primary" onclick="Joomla.submitbutton('planform.save')">
+				<button type="button" class="btn btn-primary" onclick="Joomla.submitbutton('plan.save')">
 					<i class="icon-ok"></i> <?php echo JText::_('JSAVE') ?>
 				</button>
 			</div>
 			<div class="btn-group">
-				<button type="button" class="btn" onclick="Joomla.submitbutton('planform.cancel')">
+				<button type="button" class="btn" onclick="Joomla.submitbutton('plan.cancel')">
 					<i class="icon-cancel"></i> <?php echo JText::_('JCANCEL') ?>
 				</button>
 			</div>
+			<?php if ($this->item->id) : ?>
+				<div class="btn-group">
+					<?php echo $this->form->getInput('contenthistory'); ?>
+				</div>
+			<?php endif; ?>
 		</div>
 	</form>
 </div>

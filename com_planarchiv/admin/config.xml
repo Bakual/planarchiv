@@ -24,6 +24,16 @@
 			description="COM_PLANARCHIV_FIELD_DOCUFORMATS_DESC"
 			class="input-xxlarge"
 		/>
+		<field
+			name="save_history"
+			type="hidden"
+			default="1"
+		/>
+		<field
+			name="history_limit"
+			type="hidden"
+			default="10"
+		/>
 	</fieldset>
 
 	<fieldset
