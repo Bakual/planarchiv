@@ -136,13 +136,12 @@ class PlanarchivModelDokutyp extends JModelAdmin
 		{
 			$data = $this->getItem();
 
-			// Pre-select some filters (Status, Category, Language) in edit form if those have been selected in Dokutyp Manager: Dokutyps
+			// Pre-select some filters (Status, Category) in edit form if those have been selected in Dokutyp Manager: Dokutyps
 			if ($this->getState('dokutyp.id') == 0)
 			{
 				$filters = (array) $app->getUserState('com_planarchiv.dokutyps.filter');
 				$data->set('state', $app->input->getInt('state', ((isset($filters['state']) && $filters['state'] !== '') ? $filters['state'] : null)));
 				$data->set('catid', $app->input->getInt('catid', (!empty($filters['category_id']) ? $filters['category_id'] : null)));
-				$data->set('language', $app->input->getString('language', (!empty($filters['language']) ? $filters['language'] : null)));
 			}
 		}
 

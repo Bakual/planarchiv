@@ -30,8 +30,6 @@ class PlanarchivTableDidok extends JTable
 		parent::__construct('#__planarchiv_didok', 'id', $db);
 
 		$this->setColumnAlias('published', 'state');
-
-		JTableObserverContenthistory::createObserver($this, array('typeAlias' => 'com_planarchiv.didok'));
 	}
 
 	/**

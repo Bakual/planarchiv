@@ -51,9 +51,6 @@ $trashed   = $this->state->get('filter.state') == -2 ? true : false;
 						<th>
 							<?php echo JHtml::_('searchtools.sort', 'COM_PLANARCHIV_CODE_TITLE', 'code', $listDirn, $listOrder); ?>
 						</th>
-						<th width="7%" class="nowrap hidden-phone">
-							<?php echo JHtml::_('searchtools.sort',  'JGRID_HEADING_LANGUAGE', 'language', $listDirn, $listOrder); ?>
-						</th>
 						<th width="1%" class="nowrap hidden-phone">
 							<?php echo JHtml::_('searchtools.sort',  'JGRID_HEADING_ID', 'dfas.id', $listDirn, $listOrder); ?>
 						</th>

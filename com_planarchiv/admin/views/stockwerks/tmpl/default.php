@@ -63,8 +63,8 @@ $trashed   = $this->state->get('filter.state') == -2 ? true : false;
 						<th>
 							<?php echo JHtml::_('searchtools.sort', 'JGLOBAL_TITLE', 'stockwerks.title', $listDirn, $listOrder); ?>
 						</th>
-						<th width="7%" class="nowrap hidden-phone">
-							<?php echo JHtml::_('searchtools.sort',  'JGRID_HEADING_LANGUAGE', 'language', $listDirn, $listOrder); ?>
+						<th>
+							<?php echo JHtml::_('searchtools.sort', 'COM_PLANARCHIV_CODE_TITLE', 'code', $listDirn, $listOrder); ?>
 						</th>
 						<th width="1%" class="nowrap hidden-phone">
 							<?php echo JHtml::_('searchtools.sort',  'JGRID_HEADING_ID', 'stockwerks.id', $listDirn, $listOrder); ?>
@@ -110,9 +110,6 @@ $trashed   = $this->state->get('filter.state') == -2 ? true : false;
 								<?php else : ?>
 									<?php echo $this->escape($item->title); ?>
 								<?php endif; ?>
-								<span class="small">
-									<?php echo JText::sprintf('COM_PLANARCHIV_LIST_CODE', $this->escape($item->code));?>
-								</span>
 								<div class="small">
 									<?php echo JText::_('JCATEGORY') . ": " . $this->escape($item->category_title); ?>
 								</div>
@@ -120,7 +117,7 @@ $trashed   = $this->state->get('filter.state') == -2 ? true : false;
 							<div class="pull-left">
 						</td>
 						<td class="small hidden-phone">
-							<?php echo JLayoutHelper::render('joomla.content.language', $item); ?>
+							<?php echo $this->escape($item->code); ?>
 						</td>
 						<td class="center hidden-phone">
 							<?php echo (int) $item->id; ?>

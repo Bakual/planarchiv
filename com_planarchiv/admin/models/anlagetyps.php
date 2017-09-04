@@ -29,18 +29,12 @@ class PlanarchivModelAnlagetyps extends JModelList
 				'state', 'anlagetyps.state',
 				'created', 'anlagetyps.created',
 				'created_by', 'anlagetyps.created_by',
-				'language', 'anlagetyps.language',
 			);
 
 			// Searchtools
 			$config['filter_fields'][] = 'category_id';
 			$config['filter_fields'][] = 'level';
 			$config['filter_fields'][] = 'tag';
-
-			if (JLanguageAssociations::isEnabled())
-			{
-				$config['filter_fields'][] = 'association';
-			}
 		}
 
 		parent::__construct($config);
@@ -61,19 +55,10 @@ class PlanarchivModelAnlagetyps extends JModelList
 		// Initialise variables.
 		$app = JFactory::getApplication();
 
-		// Force a language
-		$forcedLanguage = $app->input->get('forcedLanguage', '' , 'cmd');
-
 		// Adjust the context to support modal layouts.
 		if ($layout = $app->input->get('layout'))
 		{
 			$this->context .= '.' . $layout;
-		}
-
-		// Adjust the context to support forced languages.
-		if ($forcedLanguage)
-		{
-			$this->context .= '.' . $forcedLanguage;
 		}
 
 		// Load the parameters.
@@ -82,12 +67,6 @@ class PlanarchivModelAnlagetyps extends JModelList
 
 		// List state information.
 		parent::populateState('title', 'asc');
-
-		if ($forcedLanguage)
-		{
-			$this->setState('filter.language', $forcedLanguage);
-			$this->setState('filter.forcedLanguage', $forcedLanguage);
-		}
 	}
 
 	/**
@@ -108,7 +87,6 @@ class PlanarchivModelAnlagetyps extends JModelList
 		$id .= ':' . $this->getState('filter.search');
 		$id .= ':' . $this->getState('filter.state');
 		$id .= ':' . $this->getState('filter.category_id');
-		$id .= ':' . $this->getState('filter.language');
 
 		return parent::getStoreId($id);
 	}
@@ -131,10 +109,6 @@ class PlanarchivModelAnlagetyps extends JModelList
 		$langCode = substr(JFactory::getLanguage()->getTag(), 0, 2);
 		$query->select('anlagetyps.title_' . $langCode . ' AS title');
 		$query->from('#__planarchiv_anlagetyp AS anlagetyps');
-
-		// Join over the language
-		$query->select('l.title AS language_title, l.image AS language_image');
-		$query->join('LEFT', $db->quoteName('#__languages') . ' AS l ON l.lang_code = anlagetyps.language');
 
 		// Join over the users for the checked out user.
 		$query->select('uc.name AS editor');
@@ -195,12 +169,6 @@ class PlanarchivModelAnlagetyps extends JModelList
 				$search = $db->quote('%' . $db->escape($search, true) . '%');
 				$query->where('(anlagetyps.title_' . $langCode . ' LIKE ' . $search . ')');
 			}
-		}
-
-		// Filter on the language.
-		if ($language = $this->getState('filter.language'))
-		{
-			$query->where('anlagetyps.language = ' . $db->quote($language));
 		}
 
 		// Add the list ordering clause.

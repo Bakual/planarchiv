@@ -152,7 +152,6 @@ class PlanarchivViewDokutyps extends JViewLegacy
 			'dokutyps.title'    => JText::_('COM_PLANARCHIV_FIELD_NAME_LABEL'),
 			'category_title'     => JText::_('JCATEGORY'),
 			'dokutyps.hits'     => JText::_('JGLOBAL_HITS'),
-			'language'           => JText::_('JGRID_HEADING_LANGUAGE'),
 			'dokutyps.id'       => JText::_('JGRID_HEADING_ID'),
 		);
 	}

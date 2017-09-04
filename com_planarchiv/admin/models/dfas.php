@@ -26,18 +26,12 @@ class PlanarchivModelDfas extends JModelList
 				'state', 'dfas.state',
 				'created', 'dfas.created',
 				'created_by', 'dfas.created_by',
-				'language', 'dfas.language',
 			);
 
 			// Searchtools
 			$config['filter_fields'][] = 'category_id';
 			$config['filter_fields'][] = 'level';
 			$config['filter_fields'][] = 'tag';
-
-			if (JLanguageAssociations::isEnabled())
-			{
-				$config['filter_fields'][] = 'association';
-			}
 		}
 
 		parent::__construct($config);

@@ -35,15 +35,6 @@
 				value="-2">JTRASH
 			</option>
 		</field>
-
-		<field
-			name="language"
-			type="contentlanguage"
-			label="JFIELD_LANGUAGE_LABEL"
-			description="JFIELD_LANGUAGE_DESC"
-			class="inputbox">
-			<option value="*">JALL</option>
-		</field>
 	</fieldset>
 
 	<fieldset name="info"

@@ -152,7 +152,6 @@ class PlanarchivViewDidoks extends JViewLegacy
 			'didoks.title'    => JText::_('COM_PLANARCHIV_FIELD_NAME_LABEL'),
 			'category_title'     => JText::_('JCATEGORY'),
 			'didoks.hits'     => JText::_('JGLOBAL_HITS'),
-			'language'           => JText::_('JGRID_HEADING_LANGUAGE'),
 			'didoks.id'       => JText::_('JGRID_HEADING_ID'),
 		);
 	}

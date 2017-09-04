@@ -180,12 +180,6 @@ class PlanarchivModelPlans extends JModelList
 		// Do not show trashed links on the front-end
 		$query->where('plans.state != -2');
 
-		// Filter by language
-		if ($this->getState('filter.language'))
-		{
-			$query->where('plans.language in (' . $db->quote(JFactory::getLanguage()->getTag()) . ',' . $db->quote('*') . ')');
-		}
-
 		// Add the list ordering clause.
 		$query->order($db->escape($this->getState('list.ordering', 'ErstellDatum')) . ' ' . $db->escape($this->getState('list.direction', 'DESC')));
 

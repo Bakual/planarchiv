@@ -26,18 +26,12 @@ class PlanarchivModelDokutyps extends JModelList
 				'state', 'dokutyps.state',
 				'created', 'dokutyps.created',
 				'created_by', 'dokutyps.created_by',
-				'language', 'dokutyps.language',
 			);
 
 			// Searchtools
 			$config['filter_fields'][] = 'category_id';
 			$config['filter_fields'][] = 'level';
 			$config['filter_fields'][] = 'tag';
-
-			if (JLanguageAssociations::isEnabled())
-			{
-				$config['filter_fields'][] = 'association';
-			}
 		}
 
 		parent::__construct($config);

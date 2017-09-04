@@ -152,7 +152,6 @@ class PlanarchivViewAnlagetyps extends JViewLegacy
 			'anlagetyps.title'    => JText::_('COM_PLANARCHIV_FIELD_NAME_LABEL'),
 			'category_title'     => JText::_('JCATEGORY'),
 			'anlagetyps.hits'     => JText::_('JGLOBAL_HITS'),
-			'language'           => JText::_('JGRID_HEADING_LANGUAGE'),
 			'anlagetyps.id'       => JText::_('JGRID_HEADING_ID'),
 		);
 	}

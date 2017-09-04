@@ -152,7 +152,6 @@ class PlanarchivViewDfas extends JViewLegacy
 			'dfas.title'    => JText::_('COM_PLANARCHIV_FIELD_NAME_LABEL'),
 			'category_title'     => JText::_('JCATEGORY'),
 			'dfas.hits'     => JText::_('JGLOBAL_HITS'),
-			'language'           => JText::_('JGRID_HEADING_LANGUAGE'),
 			'dfas.id'       => JText::_('JGRID_HEADING_ID'),
 		);
 	}

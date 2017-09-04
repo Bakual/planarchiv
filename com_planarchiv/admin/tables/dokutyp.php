@@ -30,8 +30,6 @@ class PlanarchivTableDokutyp extends JTable
 		parent::__construct('#__planarchiv_dokutyp', 'id', $db);
 
 		$this->setColumnAlias('published', 'state');
-
-		JTableObserverContenthistory::createObserver($this, array('typeAlias' => 'com_planarchiv.dokutyp'));
 	}
 
 	/**

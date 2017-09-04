@@ -30,8 +30,6 @@ class PlanarchivTableStockwerk extends JTable
 		parent::__construct('#__planarchiv_stockwerk', 'id', $db);
 
 		$this->setColumnAlias('published', 'state');
-
-		JTableObserverContenthistory::createObserver($this, array('typeAlias' => 'com_planarchiv.stockwerk'));
 	}
 
 	/**

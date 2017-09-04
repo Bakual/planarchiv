@@ -26,18 +26,12 @@ class PlanarchivModelStockwerks extends JModelList
 				'state', 'stockwerks.state',
 				'created', 'stockwerks.created',
 				'created_by', 'stockwerks.created_by',
-				'language', 'stockwerks.language',
 			);
 
 			// Searchtools
 			$config['filter_fields'][] = 'category_id';
 			$config['filter_fields'][] = 'level';
 			$config['filter_fields'][] = 'tag';
-
-			if (JLanguageAssociations::isEnabled())
-			{
-				$config['filter_fields'][] = 'association';
-			}
 		}
 
 		parent::__construct($config);
@@ -58,19 +52,10 @@ class PlanarchivModelStockwerks extends JModelList
 		// Initialise variables.
 		$app = JFactory::getApplication();
 
-		// Force a language
-		$forcedLanguage = $app->input->get('forcedLanguage', '' , 'cmd');
-
 		// Adjust the context to support modal layouts.
 		if ($layout = $app->input->get('layout'))
 		{
 			$this->context .= '.' . $layout;
-		}
-
-		// Adjust the context to support forced languages.
-		if ($forcedLanguage)
-		{
-			$this->context .= '.' . $forcedLanguage;
 		}
 
 		// Load the parameters.
@@ -79,12 +64,6 @@ class PlanarchivModelStockwerks extends JModelList
 
 		// List state information.
 		parent::populateState('stockwerks.title', 'asc');
-
-		if ($forcedLanguage)
-		{
-			$this->setState('filter.language', $forcedLanguage);
-			$this->setState('filter.forcedLanguage', $forcedLanguage);
-		}
 	}
 
 	/**
@@ -105,7 +84,6 @@ class PlanarchivModelStockwerks extends JModelList
 		$id .= ':' . $this->getState('filter.search');
 		$id .= ':' . $this->getState('filter.state');
 		$id .= ':' . $this->getState('filter.category_id');
-		$id .= ':' . $this->getState('filter.language');
 
 		return parent::getStoreId($id);
 	}
@@ -125,10 +103,6 @@ class PlanarchivModelStockwerks extends JModelList
 		// Select the required fields from the table.
 		$query->select('stockwerks.*');
 		$query->from('#__planarchiv_stockwerk AS stockwerks');
-
-		// Join over the language
-		$query->select('l.title AS language_title, l.image AS language_image');
-		$query->join('LEFT', $db->quoteName('#__languages') . ' AS l ON l.lang_code = stockwerks.language');
 
 		// Join over the users for the checked out user.
 		$query->select('uc.name AS editor');
@@ -189,12 +163,6 @@ class PlanarchivModelStockwerks extends JModelList
 				$search = $db->quote('%' . $db->escape($search, true) . '%');
 				$query->where('(stockwerks.title LIKE ' . $search . ')');
 			}
-		}
-
-		// Filter on the language.
-		if ($language = $this->getState('filter.language'))
-		{
-			$query->where('stockwerks.language = ' . $db->quote($language));
 		}
 
 		// Add the list ordering clause.

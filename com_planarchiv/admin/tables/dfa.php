@@ -30,8 +30,6 @@ class PlanarchivTableDfa extends JTable
 		parent::__construct('#__planarchiv_dfa', 'id', $db);
 
 		$this->setColumnAlias('published', 'state');
-
-		JTableObserverContenthistory::createObserver($this, array('typeAlias' => 'com_planarchiv.dfa'));
 	}
 
 	/**

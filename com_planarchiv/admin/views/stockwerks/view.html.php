@@ -152,7 +152,6 @@ class PlanarchivViewStockwerks extends JViewLegacy
 			'stockwerks.title'    => JText::_('COM_PLANARCHIV_FIELD_NAME_LABEL'),
 			'category_title'     => JText::_('JCATEGORY'),
 			'stockwerks.hits'     => JText::_('JGLOBAL_HITS'),
-			'language'           => JText::_('JGRID_HEADING_LANGUAGE'),
 			'stockwerks.id'       => JText::_('JGRID_HEADING_ID'),
 		);
 	}
