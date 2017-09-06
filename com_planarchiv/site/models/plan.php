@@ -75,6 +75,11 @@ class PlanarchivModelPlan extends JModelItem
 				$query->select('dfa.code_' . $langCode . ' AS dfa_code');
 				$query->join('LEFT', '#__planarchiv_dfa AS dfa ON dfa.id = plan.dfa_id');
 
+				// Join over Dfa.
+				$query->select('anlagetyp.title_' . $langCode . ' AS anlagetyp_title');
+				$query->select('anlagetyp.code AS anlagetyp_code');
+				$query->join('LEFT', '#__planarchiv_anlagetyp AS anlagetyp ON anlagetyp.id = plan.anlagetyp_id');
+
 				// Join over DokuTyp.
 				$query->select('dokutyp.title_' . $langCode . ' AS dokutyp_title');
 				$query->select('dokutyp.code_' . $langCode . ' AS dokutyp_code');

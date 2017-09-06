@@ -129,7 +129,7 @@ $canEditOwn = $user->authorise('core.edit.own', 'com_planarchiv.category.' . $th
 	<?php endif; ?>
 
 	<h3><?php echo JText::_('COM_PLANARCHIV_ANLAGETYP_LABEL'); ?></h3>
-	<?php echo $this->escape($this->item->AnlageTypTxt) . ' (' . $this->escape($this->item->AnlageTyp) . '-' . $this->item->AnlageLfnr . ')'; ?>
+	<?php echo $this->escape($this->item->anlagetyp_title) . ' (' . $this->escape($this->item->anlagetyp_code) . '-' . $this->item->AnlageLfnr . ')'; ?>
 
 	<h3><?php echo JText::_('COM_PLANARCHIV_DOCUMENT_LABEL'); ?></h3>
 	<div class="well well-small">
@@ -154,7 +154,7 @@ $canEditOwn = $user->authorise('core.edit.own', 'com_planarchiv.category.' . $th
 				<?php if ($this->item->Strecke) : ?>
 					<?php $path .= '\\' . $this->item->didok . '-(' . $this->item->richtung_didok . ')_km' . number_format($this->item->km, 3, '.', '') . '\\'; ?>
 				<?php else : ?>
-					<?php $path .= '\\' . $this->item->GebDfaCode . $this->item->GebDfaLfnr . '\\'; ?>
+					<?php $path .= '\\' . $this->item->dfa_code . $this->item->GebDfaLfnr . '\\'; ?>
 				<?php endif; ?>
 				<?php $path = strtolower($path); ?>
 				<a href="file:<?php echo str_replace('\\', '/', $path); ?>">
@@ -166,9 +166,9 @@ $canEditOwn = $user->authorise('core.edit.own', 'com_planarchiv.category.' . $th
 				<?php if ($this->item->Strecke) : ?>
 					<?php $filename = $this->item->didok . '-' . $this->item->richtung_didok; ?>
 				<?php else : ?>
-					<?php $filename = $this->item->didok . '-' . $this->item->GebDfaCode . $this->item->GebDfaLfnr; ?>
+					<?php $filename = $this->item->didok . '-' . $this->item->dfa_code . $this->item->GebDfaLfnr; ?>
 				<?php endif; ?>
-				<?php $filename .= '-' . $this->item->AnlageTyp . '-' . $this->item->AnlageLfnr . '--' . $this->item->dokutyp_code . $this->item->DokuTypNr; ?>
+				<?php $filename .= '-' . $this->item->anlagetyp_code . '-' . $this->item->AnlageLfnr . '--' . $this->item->dokutyp_code . $this->item->DokuTypNr; ?>
 				<?php $filename = strtolower($filename); ?>
 				<?php $linkedFile = $this->item->title ?: $filename; ?>
 				<?php $files = explode(',', $this->item->files); ?>

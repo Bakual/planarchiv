@@ -39,7 +39,8 @@ class PlanarchivModelPlans extends JModelList
 				'title', 'plans.title',
 				'ErstellDatum', 'plans.ErstellDatum',
 				'AnlageTyp', 'plans.AnlageTyp',
-				'AnlageTypTxt', 'plans.AnlageTypTxt',
+				'anlagetyp_id', 'plans.anlagetyp_id',
+				'anlagetyp_title',
 				'Maengelliste', 'plans.Maengelliste',
 				'original', 'plans.original',
 				'created', 'plans.created',
@@ -63,8 +64,9 @@ class PlanarchivModelPlans extends JModelList
 	 */
 	protected function getListQuery()
 	{
-		$user   = JFactory::getUser();
-		$groups = implode(',', $user->getAuthorisedViewLevels());
+		$user     = JFactory::getUser();
+		$groups   = implode(',', $user->getAuthorisedViewLevels());
+		$langCode = substr(JFactory::getLanguage()->getTag(), 0, 2);
 
 		// Create a new query object.
 		$db    = $this->getDbo();
@@ -143,10 +145,15 @@ class PlanarchivModelPlans extends JModelList
 			$query->where('plans.state = ' . (int) $state);
 		}
 
+		// Join over AnlageTyp.
+		$query->select('anlagetyp.title_' . $langCode . ' AS anlagetyp_title');
+		$query->select('anlagetyp.code AS anlagetyp_code');
+		$query->join('LEFT', '#__planarchiv_anlagetyp AS anlagetyp ON anlagetyp.id = plans.anlagetyp_id');
+
 		// Filter by AnlageTyp
-		if ($anlageTyp = $this->getState('filter.AnlageTypTxt'))
+		if ($anlagetyp = (int) $this->getState('filter.anlagetyp_id'))
 		{
-			$query->where('plans.AnlageTypTxt = ' . $db->quote($anlageTyp));
+			$query->where('plans.anlagetyp_id = ' . $anlagetyp);
 		}
 
 		// Filter by Strecke/Ort

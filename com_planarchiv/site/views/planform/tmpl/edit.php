@@ -122,10 +122,14 @@ JHtml::_('behavior.tabstate');
 			<?php echo JHtml::_('bootstrap.addTab', 'planform', 'details', JText::_('COM_PLANARCHIV_TAB_DETAILS')); ?>
 				<div class="row-fluid">
 					<div class="span6">
-						<?php echo JLayoutHelper::render('joomla.edit.publishingdata', $this); ?>
+						<?php foreach($this->form->getFieldset('info') as $field): ?>
+							<?php echo $field->getControlGroup(); ?>
+						<?php endforeach; ?>
 					</div>
 					<div class="span6">
-						<?php echo JLayoutHelper::render('joomla.edit.global', $this); ?>
+						<?php foreach($this->form->getFieldset('global') as $field): ?>
+							<?php echo $field->getControlGroup(); ?>
+						<?php endforeach; ?>
 					</div>
 				</div>
 			<?php echo JHtml::_('bootstrap.endTab'); ?>

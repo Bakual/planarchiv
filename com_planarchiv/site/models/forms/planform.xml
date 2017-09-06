@@ -1,5 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <form>
+	<fieldset name="general"
+		addfieldpath="administrator/components/com_planarchiv/models/fields">
+		<field
+			name="title"
+			type="titlegenerator"
+			label="JGLOBAL_TITLE"
+			required="true"
+		/>
+
+		<field
+			name="contenthistory"
+			type="contenthistory"
+			label="JTOOLBAR_VERSIONS"
+			id="contenthistory"
+			data-typeAlias="com_planarchiv.plan"
+		/>
+	</fieldset>
+
 	<fieldset name="basic"
 		addfieldpath="administrator/components/com_planarchiv/models/fields">
 		<field
@@ -47,6 +65,7 @@
 			type="dokutyplist"
 			label="COM_PLANARCHIV_DOKUTYP_LABEL"
 			class="input-xlarge"
+			required="true"
 		/>
 
 		<field
@@ -61,6 +80,7 @@
 			type="anlagetyplist"
 			label="COM_PLANARCHIV_ANLAGETYP_LABEL"
 			class="input-xlarge"
+			required="true"
 		/>
 
 		<field
@@ -83,6 +103,7 @@
 			type="radio"
 			label="COM_PLANARCHIV_MANGELLISTE_LABEL"
 			class="btn-group btn-group-yesno"
+			default="0"
 		>
 			<option value="1">JYES</option>
 			<option value="0">JNO</option>
@@ -157,6 +178,7 @@
 			type="radio"
 			label="COM_PLANARCHIV_ORIGINAL_LABEL"
 			class="btn-group btn-group-yesno"
+			default="1"
 		>
 			<option value="1">JYES</option>
 			<option value="0">JNO</option>
@@ -180,6 +202,12 @@
 		/>
 
 		<field
+			name="language"
+			type="contentlanguage"
+			label="JFIELD_LANGUAGE_LABEL"
+		/>
+
+		<field
 			name="files"
 			type="fileformatlist"
 			label="COM_PLANARCHIV_FILES_LABEL"
@@ -188,38 +216,7 @@
 
 	</fieldset>
 
-	<fieldset name="general">
-		<field
-			name="title"
-			type="text"
-			label="JGLOBAL_TITLE"
-		/>
-
-		<field
-			name="catid"
-			type="categoryedit"
-			label="JCATEGORY"
-			description="JFIELD_CATEGORY_DESC"
-			extension="com_planarchiv"
-			addfieldpath="administrator/components/com_categories/models/fields"
-			required="true"
-		/>
-
-		<field
-			name="contenthistory"
-			type="contenthistory"
-			label="JTOOLBAR_VERSIONS"
-			id="contenthistory"
-			data-typeAlias="com_planarchiv.plan"
-		/>
-
-		<field
-			name="version_note"
-			type="text"
-			label="JGLOBAL_FIELD_VERSION_NOTE_LABEL"
-			description="JGLOBAL_FIELD_VERSION_NOTE_DESC"
-		/>
-
+	<fieldset name="global">
 		<field
 			name="state"
 			type="list"
@@ -241,17 +238,34 @@
 				value="-2">JTRASH
 			</option>
 		</field>
+
+		<field
+			name="catid"
+			type="categoryedit"
+			label="JCATEGORY"
+			description="JFIELD_CATEGORY_DESC"
+			extension="com_planarchiv"
+			addfieldpath="administrator/components/com_categories/models/fields"
+			required="true"
+		/>
+
+		<field
+			name="version_note"
+			type="text"
+			label="JGLOBAL_FIELD_VERSION_NOTE_LABEL"
+			description="JGLOBAL_FIELD_VERSION_NOTE_DESC"
+		/>
 	</fieldset>
 
 	<fieldset name="info">
 		<field
-			name="id"
-			type="text"
-			label="JGLOBAL_FIELD_ID_LABEL"
-			description="JGLOBAL_FIELD_ID_DESC"
+			name="created"
+			type="calendar"
+			label="JGLOBAL_FIELD_CREATED_LABEL"
+			description="JGLOBAL_FIELD_CREATED_DESC"
+			translateformat="true"
 			class="readonly"
-			default="0"
-			required="true"
+			filter="user_utc"
 			readonly="true"
 		/>
 
@@ -262,13 +276,13 @@
 			description="JGLOBAL_FIELD_CREATED_BY_DESC" />
 
 		<field
-			name="created"
-			type="calendar"
-			label="JGLOBAL_FIELD_CREATED_LABEL"
-			description="JGLOBAL_FIELD_CREATED_DESC"
-			translateformat="true"
+			name="id"
+			type="text"
+			label="JGLOBAL_FIELD_ID_LABEL"
+			description="JGLOBAL_FIELD_ID_DESC"
 			class="readonly"
-			filter="user_utc"
+			default="0"
+			required="true"
 			readonly="true"
 		/>
 	</fieldset>

@@ -30,21 +30,6 @@ class JFormFieldDocuformatlist extends JFormFieldList
 	protected $type = 'Docuformatlist';
 
 	/**
-	 * Method to get the field input markup for a generic list.
-	 * Use the multiple attribute to enable multiselect.
-	 *
-	 * @return  string  The field input markup.
-	 *
-	 * @since   1.0.0
-	 */
-	protected function getInput()
-	{
-		$this->value = explode(',', $this->value);
-
-		return parent::getInput();
-	}
-
-	/**
 	 * Method to get the field options.
 	 *
 	 * @return array The field option objects.
@@ -57,13 +42,29 @@ class JFormFieldDocuformatlist extends JFormFieldList
 		$params      = JComponentHelper::getParams('com_planarchiv');
 		$fileformats = explode(',', $params->get('docuformats'));
 		$options     = array();
+		$options[]   = '';
 
 		foreach ($fileformats as $format)
 		{
-			$format = trim($format);
+			$format           = trim($format);
 			$options[$format] = $format;
 		}
 
 		return $options;
+	}
+
+	/**
+	 * Method to get the field input markup for a generic list.
+	 * Use the multiple attribute to enable multiselect.
+	 *
+	 * @return  string  The field input markup.
+	 *
+	 * @since   1.0.0
+	 */
+	protected function getInput()
+	{
+		$this->value = explode(',', $this->value);
+
+		return parent::getInput();
 	}
 }

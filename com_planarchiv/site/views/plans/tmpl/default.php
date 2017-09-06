@@ -50,7 +50,7 @@ $listDirn   = $this->state->get('list.direction');
 							<?php echo JHtml::_('searchtools.sort', 'JGLOBAL_TITLE', 'plans.title', $listDirn, $listOrder); ?>
 						</th>
 						<th>
-							<?php echo JHtml::_('searchtools.sort', 'COM_PLANARCHIV_ANLAGETYP_LABEL', 'plans.AnlageTypTxt', $listDirn, $listOrder); ?>
+							<?php echo JHtml::_('searchtools.sort', 'COM_PLANARCHIV_ANLAGETYP_LABEL', 'anlagetyp_title', $listDirn, $listOrder); ?>
 						</th>
 						<th>
 							<?php echo JHtml::_('searchtools.sort', 'COM_PLANARCHIV_ORT_LABEL', 'didok_title', $listDirn, $listOrder); ?>
@@ -94,7 +94,7 @@ $listDirn   = $this->state->get('list.direction');
 								</div>
 							</td>
 							<td>
-								<?php echo $item->AnlageTypTxt . ' <small>(' . $item->AnlageTyp . ')</small>'; ?>
+								<?php echo $item->anlagetyp_title . ' <small>(' . $item->anlagetyp_code . ')</small>'; ?>
 							</td>
 							<td>
 								<?php echo $item->didok_title . ' <small>(' . $item->didok . ')</small>'; ?>

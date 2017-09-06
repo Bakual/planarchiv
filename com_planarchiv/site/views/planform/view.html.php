@@ -77,15 +77,24 @@ class PlanarchivViewPlanform extends JViewLegacy
 		{
 			throw new Exception(JText::_('JERROR_ALERTNOAUTHOR'), 403);
 		}
+
 		// Check for errors.
 		if (count($errors = $this->get('Errors')))
 		{
 			throw new Exception(implode("\n", $errors), 500);
 		}
+
 		// Escape strings for HTML output
 		$this->pageclass_sfx = htmlspecialchars($params->get('pageclass_sfx'));
 		$this->params        = $params;
-		$this->user          = $user;
+
+		// Propose current language as default when creating new article
+		if (empty($this->item->language) && JLanguageMultilang::isEnabled())
+		{
+			$lang = JFactory::getLanguage()->getTag();
+//			$this->form->setFieldAttribute('language', 'default', $lang);
+		}
+
 		$this->_prepareDocument();
 
 		return parent::display($tpl);

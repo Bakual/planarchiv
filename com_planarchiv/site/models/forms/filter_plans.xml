@@ -1,17 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <form>
-	<fields name="filter">
+	<fields name="filter"
+		addfieldpath="administrator/components/com_planarchiv/models/fields">
 		<field
 			name="search"
 			type="text"
 			hint="JSEARCH_FILTER"
 		/>
 		<field
-			name="AnlageTypTxt"
-			type="sql"
-			query="SELECT DISTINCT AnlageTypTxt FROM #__planarchiv_plan WHERE `AnlageTypTxt` != '' ORDER BY AnlageTypTxt ASC"
-			value_field="AnlageTypTxt"
-			key_field="AnlageTypTxt"
+			name="anlagetyp_id"
+			type="anlagetyplist"
 			onchange="this.form.submit();"
 		>
 			<option value="">COM_PLANARCHIV_SELECT_ANLAGETYP</option>

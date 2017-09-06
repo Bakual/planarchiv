@@ -24,10 +24,45 @@ class JFormFieldDidoklist extends JFormFieldList
 	/**
 	 * The form field type.
 	 *
-	 * @var        string
+	 * @var      string
 	 * @since    1.0.0
 	 */
 	protected $type = 'Didoklist';
+
+	/**
+	 * Method to get the field input markup
+	 *
+	 * @return  string  The field input markup.
+	 *
+	 * @since   1.0.0
+	 */
+	protected function getInput()
+	{
+		$attribs                   = array();
+		$attribs['id']             = $this->id;
+		$attribs['option.key']     = 'value';
+		$attribs['option.text']    = 'text';
+		$attribs['option.attr']    = 'attr';
+		$attribs['list.select']    = $this->value;
+		$attribs['list.attr']      = array();
+		$attribs['list.translate'] = false;
+
+		// Initialize some list attributes.
+		if (!empty($this->class))
+		{
+			$attribs['list.attr']['class'] = $this->class;
+		}
+		if ($this->required)
+		{
+			$attribs['list.attr']['required']      = true;
+			$attribs['list.attr']['aria-required'] = true;
+		}
+
+		// Get the field options.
+		$options = (array) $this->getOptions();
+
+		return JHtml::_('select.genericlist', $options, $this->name, $attribs);
+	}
 
 	/**
 	 * Method to get the field options.
@@ -42,7 +77,7 @@ class JFormFieldDidoklist extends JFormFieldList
 		$db = JFactory::getDbo();
 
 		$query = $db->getQuery(true);
-		$query->select('id AS value, CONCAT(title, " (", didok, ")") AS text');
+		$query->select('id AS value, CONCAT(title, " (", didok, ")") AS text, CONCAT("data-didok=\"", didok, "\"") AS attr');
 		$query->from('#__planarchiv_didok');
 		$query->where('state = 1');
 		$query->order('title');
