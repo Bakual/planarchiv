@@ -34,51 +34,13 @@ class PlanarchivViewPlans extends JViewLegacy
 		$this->pagination    = $this->get('Pagination');
 		$this->filterForm    = $this->get('FilterForm');
 		$this->activeFilters = $this->get('ActiveFilters');
-
-		// Get Category stuff from models
-		$this->category = $this->get('Category');
-		$children       = $this->get('Children');
-		$this->parent   = $this->get('Parent');
-//		$this->children = array($this->category->id => $children);
-		$this->params   = $this->state->get('params');
+		$this->params        = $this->state->get('params');
 
 		// Check for errors.
 		if (count($errors = $this->get('Errors')))
 		{
 			throw new Exception(implode("\n", $errors), 500);
 		}
-
-/*		if ($this->category == false)
-		{
-			throw new Exception(JText::_('JGLOBAL_CATEGORY_NOT_FOUND'), 404);
-		} */
-
-/*		if ($this->parent == false && $this->category->id != 'root')
-		{
-			throw new Exception(JText::_('JGLOBAL_CATEGORY_NOT_FOUND'), 404);
-		} */
-
-/*		if ($this->category->id == 'root')
-		{
-			$this->params->set('show_category_title', 0);
-			$this->cat = '';
-		}
-		else
-		{
-			// Get the category title for backward compatibility
-			$this->cat = $this->category->title;
-		} */
-
-		// Check whether category access level allows access.
-		$user   = JFactory::getUser();
-		$groups = $user->getAuthorisedViewLevels();
-
-/*		if (!in_array($this->category->access, $groups))
-		{
-			throw new Exception(JText::_('JERROR_ALERTNOAUTHOR'), 403);
-		} */
-
-		$app = JFactory::getApplication();
 
 		$this->pageclass_sfx = htmlspecialchars($this->params->get('pageclass_sfx'));
 		$this->maxLevel      = $this->params->get('maxLevel', -1);
