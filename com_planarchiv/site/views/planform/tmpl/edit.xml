@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <metadata>
-	<layout title="COM_PLANARCHIF_PLANFORM_VIEW_DEFAULT_TITLE">
+	<layout title="COM_PLANARCHIV_PLANFORM_VIEW_DEFAULT_TITLE">
 		<message><![CDATA[COM_PLANARCHIV_PLANFORM_VIEW_DEFAULT_DESC]]></message>
 	</layout>
 </metadata>
