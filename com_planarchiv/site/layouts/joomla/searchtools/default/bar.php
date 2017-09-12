@@ -59,7 +59,7 @@ $filters = $data['view']->filterForm->getGroup('filter');
 			</button>
 		</div>
 		<div class="btn-wrapper">
-			<a href="<?php echo JRoute::_('index.php?option=com_planarchiv&view=plans&layout=export'); ?>" class="btn">
+			<a href="<?php echo JRoute::_('index.php?option=com_planarchiv&view=plans&format=xls'); ?>" class="btn">
 				<?php echo JText::_('COM_PLANARCHIV_EXPORT');?>
 			</a>
 		</div>
