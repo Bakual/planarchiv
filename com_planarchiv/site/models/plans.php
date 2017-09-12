@@ -212,10 +212,6 @@ class PlanarchivModelPlans extends JModelList
 		$params = $app->getParams();
 		$this->setState('params', $params);
 
-		// Category filter (priority on request so subcategories work)
-		$id = $app->input->get('catid', $params->get('catid', 0), 'int');
-		$this->setState('category.id', $id);
-
 		// Include Subcategories or not
 		$this->setState('filter.subcategories', $params->get('show_subcategory_content', 0));
 
