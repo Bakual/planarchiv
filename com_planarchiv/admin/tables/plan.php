@@ -57,6 +57,8 @@ class PlanarchivTablePlan extends JTable
 			throw new Exception(JText::_('COM_PLANARCHIV_ERROR_ORT_OR_STRECKE_REQUIRED'));
 		}
 
+		$this->Index1 = strtoupper($this->Index1);
+
 		return true;
 	}
 
