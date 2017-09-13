@@ -109,6 +109,23 @@
 			<option value="0">JNO</option>
 		</field>
 
+		<field
+			name="zurzeitbei_id"
+			type="modal_contact"
+			label="COM_PLANARCHIV_FIELD_ZUR_ZEIT_BEI_LABEL"
+			addfieldpath="administrator/components/com_contact/models/fields"
+			select="true"
+			clear="true"
+		/>
+
+		<field
+			name="zurzeitbei_date"
+			type="calendar"
+			label="COM_PLANARCHIV_FIELD_ZUR_ZEIT_BEI_SEIT_LABEL"
+			filter="USER_UTC"
+			translateformat="true"
+			showtime="false"
+		/>
 	</fieldset>
 
 	<fieldset name="location"

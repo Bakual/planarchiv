@@ -78,6 +78,14 @@ JHtml::_('behavior.tabstate');
 						<?php echo $this->form->renderField('AnlageLfnr'); ?>
 					</div>
 				</div>
+				<div class="row-fluid">
+					<div class="span6">
+						<?php echo $this->form->renderField('zurzeitbei_id'); ?>
+					</div>
+					<div class="span6">
+						<?php echo $this->form->renderField('zurzeitbei_date'); ?>
+					</div>
+				</div>
 				<?php echo $this->form->renderField('Maengelliste'); ?>
 				<?php echo $this->form->renderField('Bemerkung'); ?>
 			<?php echo JHtml::_('bootstrap.endTab'); ?>

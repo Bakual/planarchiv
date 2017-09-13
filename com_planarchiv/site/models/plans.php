@@ -123,12 +123,24 @@ class PlanarchivModelPlans extends JModelList
 		$query->select('uc.name AS editor');
 		$query->join('LEFT', '#__users AS uc ON uc.id = plans.checked_out');
 
-		// Join over the users for the checked out user.
+		// Join over the Stockwerk.
 		$query->select('sw.title AS stockwerk_title');
 		$query->join('LEFT', '#__planarchiv_stockwerk AS sw ON sw.id = plans.stockwerk_id');
 
+		// Join over the dfa.
+		$query->select('dfa.title_' . $langCode . ' AS dfa_title, dfa.code_' . $langCode . ' AS dfa_code');
+		$query->join('LEFT', '#__planarchiv_dfa AS dfa ON dfa.id = plans.dfa_id');
+
+		// Join over the dokutyp.
+		$query->select('dokutyp.title_' . $langCode . ' AS dokutyp_title, dokutyp.code_' . $langCode . ' AS dokutyp_code');
+		$query->join('LEFT', '#__planarchiv_dokutyp AS dokutyp ON dokutyp.id = plans.dokutyp_id');
+
+		// Join over DiDok for the Richtung.
+		$query->select('richtung.title AS richtung_title');
+		$query->join('LEFT', '#__planarchiv_didok AS richtung ON richtung.id = plans.richtung_didok_id');
+
 		// Join over DiDok for the Ort.
-		$query->select('didok.title AS didok_title, didok');
+		$query->select('didok.title AS didok_title, didok.didok');
 		$query->join('LEFT', '#__planarchiv_didok AS didok ON didok.id = plans.didok_id');
 
 		// Filter by DiDok

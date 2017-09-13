@@ -43,7 +43,15 @@ $canEditOwn = $user->authorise('core.edit.own', 'com_planarchiv.category.' . $th
 		<?php if ($this->item->ersteller_id) : ?>
 			<dd class="createdby">
 				<?php $erstellerLink = JRoute::_(ContactHelperRoute::getContactRoute($this->item->ersteller_id . ':' . $this->item->ersteller_alias, $this->item->ersteller_catid)); ?>
-				<?php echo JText::sprintf('COM_PLANARCHIV_CREATED_BY', '<a href="' . $erstellerLink . '">' . $this->item->ersteller_name) . '</a>'; ?>
+				<?php echo JText::sprintf('COM_PLANARCHIV_CREATED_BY', '<a href="' . $erstellerLink . '">' . $this->item->ersteller_name . '</a>'); ?>
+			</dd>
+		<?php endif; ?>
+
+		<?php if ($this->item->zurzeitbei_id) : ?>
+			<dd class="zurzeitbei">
+				<?php $zurzeitbeiLink = JRoute::_(ContactHelperRoute::getContactRoute($this->item->zurzeitbei_id . ':' . $this->item->zurzeitbei_alias, $this->item->zurzeitbei_catid)); ?>
+				<?php $zurzeitbeiDate = ($this->item->zurzeitbei_date !== '0000-00-00 00:00:00') ? JHtml::_('date', $this->item->zurzeitbei_date, JText::_('DATE_FORMAT_LC3')) : '?'; ?>
+				<?php echo JText::sprintf('COM_PLANARCHIV_ZUR_ZEIT_BEI', $zurzeitbeiDate, '<a href="' . $zurzeitbeiLink . '">' . $this->item->zurzeitbei_name . '</a>'); ?>
 			</dd>
 		<?php endif; ?>
 
