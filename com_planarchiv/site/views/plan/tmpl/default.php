@@ -10,6 +10,7 @@
 defined('_JEXEC') or die();
 
 JHtml::_('bootstrap.tooltip');
+JHtml::_('stylesheet', 'com_planarchiv/planarchiv.css', array('version' => 'auto', 'relative' => true));
 JLoader::register('ContactHelperRoute', JPATH_SITE . '/components/com_contact/helpers/route.php');
 
 $user       = JFactory::getUser();
@@ -52,15 +53,17 @@ $canEditOwn = $user->authorise('core.edit.own', 'com_planarchiv.category.' . $th
 
 		<dd class="create">
 			<span class="icon-calendar" aria-hidden="true"></span>
-			<time datetime="<?php echo JHtml::_('date', $this->item->created, 'c'); ?>">
-				<?php echo JText::sprintf('COM_PLANARCHIV_CREATED_DATE_ON', JHtml::_('date', $this->item->ErstellDatum, JText::_('DATE_FORMAT_LC3'))); ?>
+			<time datetime="<?php echo JHtml::_('date', $this->item->ErstellDatum, 'c'); ?>">
+				<?php $erstellDatum = ($this->item->ErstellDatum !== '0000-00-00 00:00:00') ? JHtml::_('date', $this->item->ErstellDatum, JText::_('DATE_FORMAT_LC3')) : '?'; ?>
+				<?php echo JText::sprintf('COM_PLANARCHIV_CREATED_DATE_ON', $erstellDatum); ?>
 			</time>
 		</dd>
 
 		<dd class="modified">
 			<span class="icon-calendar" aria-hidden="true"></span>
-			<time datetime="<?php echo JHtml::_('date', $this->item->modified, 'c'); ?>" itemprop="dateModified">
-				<?php echo JText::sprintf('COM_PLANARCHIV_LAST_UPDATED', JHtml::_('date', $this->item->AenderungsDatum, JText::_('DATE_FORMAT_LC3'))); ?>
+			<time datetime="<?php echo JHtml::_('date', $this->item->AenderungsDatum, 'c'); ?>">
+				<?php $aenderungsDatum = ($this->item->AenderungsDatum !== '0000-00-00 00:00:00') ? JHtml::_('date', $this->item->AenderungsDatum, JText::_('DATE_FORMAT_LC3')) : '?'; ?>
+				<?php echo JText::sprintf('COM_PLANARCHIV_LAST_UPDATED', $aenderungsDatum); ?>
 			</time>
 		</dd>
 

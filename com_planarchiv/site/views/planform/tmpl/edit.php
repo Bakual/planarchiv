@@ -95,7 +95,7 @@ JHtml::_('behavior.tabstate');
 								<?php echo $this->form->renderField('GebDfaLfnr'); ?>
 							</div>
 						</div>
-						<?php echo $this->form->renderField('Stockwerk'); ?>
+						<?php echo $this->form->renderField('stockwerk_id'); ?>
 					<?php echo JHtml::_('bootstrap.endTab'); ?>
 					<?php echo JHtml::_('bootstrap.addTab', 'planformlocation', 'strecke', JText::_('COM_PLANARCHIV_STRECKE_LABEL')); ?>
 						<div class="row-fluid">

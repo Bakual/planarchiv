@@ -138,7 +138,7 @@
 		/>
 
 		<field
-			name="Stockwerk"
+			name="stockwerk_id"
 			type="sql"
 			label="COM_PLANARCHIV_STOCKWERK_LABEL"
 			query="SELECT id, title FROM #__planarchiv_stockwerk ORDER BY title ASC"

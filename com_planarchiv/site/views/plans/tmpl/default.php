@@ -92,7 +92,9 @@ $listDirn   = $this->state->get('list.direction');
 							<?php echo $item->didok_title . ' <small>(' . $item->didok . ')</small>'; ?>
 						</td>
 						<td>
-							<?php echo JHtml::_('date', $item->ErstellDatum); ?>
+							<?php if ($item->ErstellDatum !== '0000-00-00 00:00:00') : ?>
+								<?php echo JHtml::_('date', $item->ErstellDatum); ?>
+							<?php endif; ?>
 						</td>
 						<td class="center hidden-phone">
 							<?php echo (int) $item->id; ?>

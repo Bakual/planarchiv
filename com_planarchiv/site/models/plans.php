@@ -49,6 +49,7 @@ class PlanarchivModelPlans extends JModelList
 				'category_id', 'plans.catid', 'level',
 				'category_title', 'c_plans.category_title',
 				'didok_title', 'didok.title',
+				'didok_id', 'richtung_didok_id', 'Strecke',
 			);
 		}
 
@@ -114,9 +115,17 @@ class PlanarchivModelPlans extends JModelList
 		$query->select('user.name AS author');
 		$query->join('LEFT', '#__users AS user ON user.id = plans.created_by');
 
+		// Join over contacts for the Ersteller names.
+		$query->select('contact.name AS ersteller_name');
+		$query->join('LEFT', '#__contact_details AS contact ON contact.id = plans.ersteller_id');
+
 		// Join over the users for the checked out user.
 		$query->select('uc.name AS editor');
 		$query->join('LEFT', '#__users AS uc ON uc.id = plans.checked_out');
+
+		// Join over the users for the checked out user.
+		$query->select('sw.title AS stockwerk_title');
+		$query->join('LEFT', '#__planarchiv_stockwerk AS sw ON sw.id = plans.stockwerk_id');
 
 		// Join over DiDok for the Ort.
 		$query->select('didok.title AS didok_title, didok');
