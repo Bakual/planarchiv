@@ -1,0 +1,5 @@
+@media print {
+	#aside, .breadcrumb, .footer, .navigation, .mod-languages {
+		display: none;
+	}
+}

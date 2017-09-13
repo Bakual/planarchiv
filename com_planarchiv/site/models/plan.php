@@ -68,7 +68,7 @@ class PlanarchivModelPlan extends JModelItem
 
 				// Join over Stockwerk.
 				$query->select('stockwerk.title AS stockwerk_title');
-				$query->join('LEFT', '#__planarchiv_stockwerk AS stockwerk ON stockwerk.id = plan.Stockwerk');
+				$query->join('LEFT', '#__planarchiv_stockwerk AS stockwerk ON stockwerk.id = plan.stockwerk_id');
 
 				// Join over Dfa.
 				$query->select('dfa.title_' . $langCode . ' AS dfa_title');
