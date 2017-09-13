@@ -35,6 +35,32 @@ class PlanarchivTablePlan extends JTable
 	}
 
 	/**
+	 * Method to perform sanity checks on the Table instance properties to ensure they are safe to store in the database.
+	 *
+	 * Child classes should override this method to make sure the data they are storing in the database is safe and as expected before storage.
+	 * @return bool True if the instance is sane and able to be stored in the database.
+	 *
+	 * @throws \Exception
+	 *
+	 * @since   1.0.0
+	 */
+	public function check()
+	{
+		// Check that either "Ort" or "Strecke" is given, but not both.
+		if (($this->dfa_id || $this->GebDfaLfnr || $this->Stockwerk) && ($this->Strecke || $this->km || $this->richtung_didok_id))
+		{
+			throw new Exception(JText::_('COM_PLANARCHIV_ERROR_ORT_OR_STRECKE'));
+		}
+
+		if (!$this->dfa_id && !$this->GebDfaLfnr && !$this->Stockwerk && !$this->Strecke && !$this->km && !$this->richtung_didok_id)
+		{
+			throw new Exception(JText::_('COM_PLANARCHIV_ERROR_ORT_OR_STRECKE_REQUIRED'));
+		}
+
+		return true;
+	}
+
+	/**
 	 * Method to store a row in the database from the Table instance properties.
 	 *
 	 * If a primary key value is set the row with that primary key value will be updated with the instance property
