@@ -88,6 +88,7 @@
 			type="text"
 			label="COM_PLANARCHIV_FIELD_LFNR"
 			class="input-mini"
+			required="true"
 		/>
 
 		<field
