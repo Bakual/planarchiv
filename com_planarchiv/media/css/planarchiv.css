@@ -3,3 +3,6 @@
 		display: none;
 	}
 }
+#planList .icon-warning-2:before {
+	color: #FF0000;
+}

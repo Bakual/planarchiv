@@ -14,6 +14,7 @@ JHtml::addIncludePath(JPATH_COMPONENT . '/helpers');
 JHtml::_('behavior.core');
 JHtml::_('bootstrap.tooltip');
 JHtml::_('formbehavior.chosen', 'select');
+JHtml::_('stylesheet', 'com_planarchiv/planarchiv.css', array('version' => 'auto', 'relative' => true));
 
 $user       = JFactory::getUser();
 $canEdit    = ($user->authorise('core.edit', 'com_planarchiv'));
@@ -70,6 +71,11 @@ $listDirn   = $this->state->get('list.direction');
 						</td>
 						<td class="nowrap has-context">
 							<div class="pull-left">
+								<?php if ($item->zurzeitbei_id) : ?>
+									<?php $date = ($item->zurzeitbei_date != '0000-00-00 00:00:00') ? JHtml::_('date', $item->zurzeitbei_date, JText::_('DATE_FORMAT_LC4')) : '?'; ?>
+									<?php $tooltip = JText::sprintf('COM_PLANARCHIV_ZUR_ZEIT_BEI', $date, $item->zurzeitbei_name); ?>
+									<span class="icon-warning-2 hasTooltip" title="<?php echo $tooltip; ?>"> </span>
+								<?php endif; ?>
 								<?php if ($item->checked_out) : ?>
 									<?php echo JHtml::_('jgrid.checkedout', $i, $item->editor, $item->checked_out_time, 'plans.', $canCheckin); ?>
 								<?php endif; ?>

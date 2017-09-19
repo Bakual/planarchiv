@@ -119,6 +119,10 @@ class PlanarchivModelPlans extends JModelList
 		$query->select('contact.name AS ersteller_name');
 		$query->join('LEFT', '#__contact_details AS contact ON contact.id = plans.ersteller_id');
 
+		// Join over contacts for the ZurZeitBei names.
+		$query->select('zurzeitbei.name AS zurzeitbei_name');
+		$query->join('LEFT', '#__contact_details AS zurzeitbei ON zurzeitbei.id = plans.zurzeitbei_id');
+
 		// Join over the users for the checked out user.
 		$query->select('uc.name AS editor');
 		$query->join('LEFT', '#__users AS uc ON uc.id = plans.checked_out');
