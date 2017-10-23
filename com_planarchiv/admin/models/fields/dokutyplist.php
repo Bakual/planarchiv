@@ -57,6 +57,10 @@ class JFormFieldDokutyplist extends JFormFieldList
 			$attribs['list.attr']['required']      = true;
 			$attribs['list.attr']['aria-required'] = true;
 		}
+        if ($this->onchange)
+        {
+            $attribs['list.attr']['onchange'] = $this->onchange;
+        }
 
 		// Get the field options.
 		$options = (array) $this->getOptions();
@@ -86,6 +90,10 @@ class JFormFieldDokutyplist extends JFormFieldList
 
 		$db->setQuery($query);
 
-		return $db->loadObjectList();
+		$options = $db->loadObjectList();
+
+		$options = array_merge(parent::getOptions(), $options);
+
+		return $options;
 	}
 }

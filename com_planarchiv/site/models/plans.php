@@ -41,6 +41,8 @@ class PlanarchivModelPlans extends JModelList
 				'AnlageTyp', 'plans.AnlageTyp',
 				'anlagetyp_id', 'plans.anlagetyp_id',
 				'anlagetyp_title',
+                'dokutyp_id', 'plans.dokutyp_id',
+                'dfa_id', 'plans.dfa_id',
 				'Maengelliste', 'plans.Maengelliste',
 				'original', 'plans.original',
 				'created', 'plans.created',
@@ -135,11 +137,23 @@ class PlanarchivModelPlans extends JModelList
 		$query->select('dfa.title_' . $langCode . ' AS dfa_title, dfa.code_' . $langCode . ' AS dfa_code');
 		$query->join('LEFT', '#__planarchiv_dfa AS dfa ON dfa.id = plans.dfa_id');
 
-		// Join over the dokutyp.
+        // Filter by Dfa
+        if ($dfa = (int) $this->getState('filter.dfa_id'))
+        {
+            $query->where('plans.dfa_id = ' . $dfa);
+        }
+
+        // Join over the dokutyp.
 		$query->select('dokutyp.title_' . $langCode . ' AS dokutyp_title, dokutyp.code_' . $langCode . ' AS dokutyp_code');
 		$query->join('LEFT', '#__planarchiv_dokutyp AS dokutyp ON dokutyp.id = plans.dokutyp_id');
 
-		// Join over DiDok for the Richtung.
+        // Filter by AnlageTyp
+        if ($dokutyp = (int) $this->getState('filter.dokutyp_id'))
+        {
+            $query->where('plans.dokutyp_id = ' . $dokutyp);
+        }
+
+        // Join over DiDok for the Richtung.
 		$query->select('richtung.title AS richtung_title');
 		$query->join('LEFT', '#__planarchiv_didok AS richtung ON richtung.id = plans.richtung_didok_id');
 
@@ -159,7 +173,7 @@ class PlanarchivModelPlans extends JModelList
 		if ($search)
 		{
 			$search = $db->quote('%' . $db->escape($search, true) . '%');
-			$query->where('(plans.title LIKE ' . $search . ')');
+			$query->where('(plans.title LIKE ' . $search . ') OR (plans.Bemerkung LIKE ' . $search . ') ');
 		}
 
 		// Filter by state

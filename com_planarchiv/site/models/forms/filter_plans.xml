@@ -8,13 +8,6 @@
 			hint="JSEARCH_FILTER"
 		/>
 		<field
-			name="anlagetyp_id"
-			type="anlagetyplist"
-			onchange="this.form.submit();"
-		>
-			<option value="">COM_PLANARCHIV_SELECT_ANLAGETYP</option>
-		</field>
-		<field
 			name="didok_id"
 			type="sql"
 			query="SELECT DISTINCT didok.title, didok.id FROM #__planarchiv_plan AS plan INNER JOIN #__planarchiv_didok AS didok ON didok.id = plan.didok_id ORDER BY didok.title ASC"
@@ -25,13 +18,35 @@
 			<option value="">COM_PLANARCHIV_SELECT_ORT</option>
 		</field>
 		<field
-			name="Strecke"
-			type="list"
-			onchange="this.form.submit();"
+				name="Strecke"
+				type="list"
+				onchange="this.form.submit();"
 		>
 			<option value="">COM_PLANARCHIV_SELECT_STRECKE_ORT</option>
 			<option value="S">COM_PLANARCHIV_STRECKE_LABEL</option>
 			<option value="O">COM_PLANARCHIV_ORT_LABEL</option>
+		</field>
+		<field
+				name="dfa_id"
+				type="dfalist"
+				onchange="this.form.submit();"
+				ort_filter="true"
+		>
+			<option value="">COM_PLANARCHIV_SELECT_DFA</option>
+		</field>
+		<field
+				name="anlagetyp_id"
+				type="anlagetyplist"
+				onchange="this.form.submit();"
+		>
+			<option value="">COM_PLANARCHIV_SELECT_ANLAGETYP</option>
+		</field>
+		<field
+				name="dokutyp_id"
+				type="dokutyplist"
+				onchange="this.form.submit();"
+		>
+			<option value="">COM_PLANARCHIV_SELECT_DOKUTYP</option>
 		</field>
 		<field
 			name="Maengelliste"
@@ -39,8 +54,8 @@
 			onchange="this.form.submit();"
 		>
 			<option value="">COM_PLANARCHIV_SELECT_MANGELLISTE</option>
-			<option value="1">JYES</option>
-			<option value="0">JNO</option>
+			<option value="1">COM_PLANARCHIV_SELECT_MANGELLISTE_YES</option>
+			<option value="0">COM_PLANARCHIV_SELECT_MANGELLISTE_NO</option>
 		</field>
 		<field
 			name="original"
@@ -48,8 +63,8 @@
 			onchange="this.form.submit();"
 		>
 			<option value="">COM_PLANARCHIV_SELECT_ORIGINAL</option>
-			<option value="1">JYES</option>
-			<option value="0">JNO</option>
+			<option value="1">COM_PLANARCHIV_SELECT_ORIGINAL_YES</option>
+			<option value="0">COM_PLANARCHIV_SELECT_ORIGINAL_NO</option>
 		</field>
 		<field
 			name="category_id"
@@ -58,19 +73,6 @@
 			onchange="this.form.submit();"
 		>
 			<option value="">JOPTION_SELECT_CATEGORY</option>
-		</field>
-		<field
-			name="level"
-			type="integer"
-			first="1"
-			last="10"
-			step="1"
-			label="JOPTION_FILTER_LEVEL"
-			languages="*"
-			description="JOPTION_FILTER_LEVEL_DESC"
-			onchange="this.form.submit();"
-		>
-			<option value="">JOPTION_SELECT_MAX_LEVELS</option>
 		</field>
 	</fields>
 	<fields name="list">

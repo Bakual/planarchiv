@@ -57,6 +57,10 @@ class JFormFieldDfalist extends JFormFieldList
 			$attribs['list.attr']['required']      = true;
 			$attribs['list.attr']['aria-required'] = true;
 		}
+        if ($this->onchange)
+        {
+            $attribs['list.attr']['onchange'] = $this->onchange;
+        }
 
 		// Get the field options.
 		$options = (array) $this->getOptions();
@@ -74,17 +78,23 @@ class JFormFieldDfalist extends JFormFieldList
 	 */
 	public function getOptions()
 	{
-		$db = JFactory::getDbo();
+ 		$db = JFactory::getDbo();
 		$langCode = substr(JFactory::getLanguage()->getTag(), 0, 2);
 
 		$query = $db->getQuery(true);
-		$query->select('id AS value, CONCAT(title_' . $langCode . ', " (", code_' . $langCode . ', ")") AS text');
-		$query->select('CONCAT("data-de-de=\"", code_de, "\" ", "data-fr-fr=\"", code_fr, "\" ", "data-it-it=\"", code_it, "\"") AS attr');
-		$query->from('#__planarchiv_dfa');
-		$query->where('state = 1');
-		$query->order('title_' . $langCode);
+		$query->select('DISTINCT dfa.id AS value, CONCAT(dfa.title_' . $langCode . ', " (", dfa.code_' . $langCode . ', ")") AS text');
+		$query->select('CONCAT("dfa.data-de-de=\"", dfa.code_de, "\" ", "dfa.data-fr-fr=\"", dfa.code_fr, "\" ", "dfa.data-it-it=\"", dfa.code_it, "\"") AS attr');
+		$query->from('#__planarchiv_dfa AS dfa');
+		$query->where('dfa.state = 1');
+        $query->order('title_' . $langCode);
 
-		$db->setQuery($query);
+        if ((string) $this->element['ort_filter'] && $didok = $this->form->getData()->get('filter.didok_id'))
+        {
+            $query->join('RIGHT', '#__planarchiv_plan AS plan ON plan.dfa_id = dfa.id');
+            $query->where('plan.didok_id = ' . (int) $didok);
+        }
+
+        $db->setQuery($query);
 
 		$options = $db->loadObjectList();
 

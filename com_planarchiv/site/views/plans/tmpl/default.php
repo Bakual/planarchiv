@@ -44,11 +44,11 @@ $listDirn   = $this->state->get('list.direction');
 						<?php echo JHtml::_('searchtools.sort', 'JGLOBAL_TITLE', 'plans.title', $listDirn, $listOrder); ?>
 					</th>
 					<th>
-						<?php echo JHtml::_('searchtools.sort', 'COM_PLANARCHIV_ANLAGETYP_LABEL', 'anlagetyp_title', $listDirn, $listOrder); ?>
-					</th>
-					<th>
 						<?php echo JHtml::_('searchtools.sort', 'COM_PLANARCHIV_ORT_LABEL', 'didok_title', $listDirn, $listOrder); ?>
 					</th>
+                    <th>
+                        <?php echo JHtml::_('searchtools.sort', 'COM_PLANARCHIV_ANLAGETYP_LABEL', 'anlagetyp_title', $listDirn, $listOrder); ?>
+                    </th>
 					<th>
 						<?php echo JHtml::_('searchtools.sort', 'JGLOBAL_FIELD_CREATED_LABEL', 'plans.ErstellDatum', $listDirn, $listOrder); ?>
 					</th>
@@ -93,11 +93,11 @@ $listDirn   = $this->state->get('list.direction');
 							</div>
 						</td>
 						<td>
-							<?php echo $item->anlagetyp_title . ' <small>(' . $item->anlagetyp_code . ')</small>'; ?>
-						</td>
-						<td>
 							<?php echo $item->didok_title . ' <small>(' . $item->didok . ')</small>'; ?>
 						</td>
+                        <td>
+                            <?php echo $item->anlagetyp_title . ' <small>(' . $item->anlagetyp_code . ')</small>'; ?>
+                        </td>
 						<td>
 							<?php if ($item->ErstellDatum !== '0000-00-00 00:00:00') : ?>
 								<?php echo JHtml::_('date', $item->ErstellDatum); ?>
@@ -111,7 +111,10 @@ $listDirn   = $this->state->get('list.direction');
 				</tbody>
 			</table>
 		<?php endif; ?>
-		<?php echo $this->pagination->getListFooter(); ?>
+        <div class="pull-right">
+            <?php echo $this->pagination->getResultsCounter() ?>
+        </div>
+        <?php echo $this->pagination->getListFooter(); ?>
 		<input type="hidden" name="task" value="" />
 		<input type="hidden" name="boxchecked" value="0" />
 		<?php echo JHtml::_('form.token'); ?>
