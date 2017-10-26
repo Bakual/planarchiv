@@ -95,6 +95,7 @@ class PlanarchivControllerLaufnummer extends JControllerLegacy
         $db->setQuery($query);
         $id = $db->loadResult();
         $id++;
+        $id = str_pad($id, 2, 0, STR_PAD_LEFT);
 
         if ($id) {
             $response['id'] = $id;
