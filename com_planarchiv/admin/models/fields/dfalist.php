@@ -83,7 +83,7 @@ class JFormFieldDfalist extends JFormFieldList
 
 		$query = $db->getQuery(true);
 		$query->select('DISTINCT dfa.id AS value, CONCAT(dfa.title_' . $langCode . ', " (", dfa.code_' . $langCode . ', ")") AS text');
-		$query->select('CONCAT("dfa.data-de-de=\"", dfa.code_de, "\" ", "dfa.data-fr-fr=\"", dfa.code_fr, "\" ", "dfa.data-it-it=\"", dfa.code_it, "\"") AS attr');
+		$query->select('CONCAT("data-de-de=\"", dfa.code_de, "\" ", "data-fr-fr=\"", dfa.code_fr, "\" ", "data-it-it=\"", dfa.code_it, "\"") AS attr');
 		$query->from('#__planarchiv_dfa AS dfa');
 		$query->where('dfa.state = 1');
         $query->order('title_' . $langCode);
