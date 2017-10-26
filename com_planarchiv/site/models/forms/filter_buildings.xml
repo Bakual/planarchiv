@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+	<fields name="filter"
+		addfieldpath="administrator/components/com_planarchiv/models/fields">
+		<field
+			name="didok_id"
+			type="sql"
+			query="SELECT DISTINCT didok.title, didok.id FROM #__planarchiv_plan AS plan INNER JOIN #__planarchiv_didok AS didok ON didok.id = plan.didok_id ORDER BY didok.title ASC"
+			value_field="title"
+			key_field="id"
+			onchange="this.form.submit();"
+		>
+			<option value="">COM_PLANARCHIV_SELECT_ORT</option>
+		</field>
+	</fields>
+</form>
