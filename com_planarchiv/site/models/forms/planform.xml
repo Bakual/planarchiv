@@ -70,7 +70,7 @@
 
 		<field
 			name="DokuTypNr"
-			type="text"
+			type="laufnummer"
 			label="COM_PLANARCHIV_FIELD_LFNR"
 			class="input-mini"
 		/>
@@ -85,7 +85,7 @@
 
 		<field
 			name="AnlageLfnr"
-			type="text"
+			type="laufnummer"
 			label="COM_PLANARCHIV_FIELD_LFNR"
 			class="input-mini"
 			required="true"
@@ -150,9 +150,10 @@
 
 		<field
 			name="GebDfaLfnr"
-			type="text"
+			type="laufnummer"
 			label="COM_PLANARCHIV_FIELD_LFNR"
 			class="input-mini"
+			reference="dfa_id"
 		/>
 
 		<field

@@ -57,7 +57,22 @@ class PlanarchivTablePlan extends JTable
 			throw new Exception(JText::_('COM_PLANARCHIV_ERROR_ORT_OR_STRECKE_REQUIRED'));
 		}
 
-		$this->Index1 = strtoupper($this->Index1);
+		if ($this->GebDfaLfnr)
+        {
+            $this->GebDfaLfnr = str_pad($this->GebDfaLfnr, 2, 0, STR_PAD_LEFT);
+        }
+
+		if ($this->DokuTypNr)
+        {
+            $this->DokuTypNr = str_pad($this->DokuTypNr, 2, 0, STR_PAD_LEFT);
+        }
+
+        if ($this->AnlageLfnr)
+        {
+            $this->AnlageLfnr = str_pad($this->AnlageLfnr, 2, 0, STR_PAD_LEFT);
+        }
+
+        $this->Index1 = strtoupper($this->Index1);
 
 		return true;
 	}
