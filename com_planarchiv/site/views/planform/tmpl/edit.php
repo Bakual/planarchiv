@@ -44,7 +44,38 @@ JHtml::_('behavior.tabstate');
 
 			<?php echo JHtml::_('bootstrap.startTabSet', 'planform', array('active' => 'basic')); ?>
 
-			<?php echo JHtml::_('bootstrap.addTab', 'planform', 'basic', JText::_('COM_PLANARCHIV_TAB_BASIC')); ?>
+            <?php echo JHtml::_('bootstrap.addTab', 'planform', 'location', JText::_('COM_PLANARCHIV_TAB_LOCATION')); ?>
+                <?php echo $this->form->renderField('didok_id'); ?>
+
+                <?php echo JHtml::_('bootstrap.startTabSet', 'planformlocation', array('active' => 'ort')); ?>
+                    <?php echo JHtml::_('bootstrap.addTab', 'planformlocation', 'ort', JText::_('COM_PLANARCHIV_ORT_LABEL')); ?>
+                        <div class="row-fluid">
+                            <div class="span6">
+                                <?php echo $this->form->renderField('dfa_id'); ?>
+                            </div>
+                            <div class="span6">
+                                <?php echo $this->form->renderField('GebDfaLfnr'); ?>
+                            </div>
+                        </div>
+                        <?php echo $this->form->renderField('stockwerk_id'); ?>
+                        <?php echo JHtml::_('bootstrap.endTab'); ?>
+                        <?php echo JHtml::_('bootstrap.addTab', 'planformlocation', 'strecke', JText::_('COM_PLANARCHIV_STRECKE_LABEL')); ?>
+                        <div class="row-fluid">
+                            <div class="span6">
+                                <?php echo $this->form->renderField('Strecke'); ?>
+                            </div>
+                            <div class="span2">
+                                <?php echo $this->form->renderField('km'); ?>
+                            </div>
+                            <div class="span4">
+                                <?php echo $this->form->renderField('richtung_didok_id'); ?>
+                            </div>
+                        </div>
+                    <?php echo JHtml::_('bootstrap.endTab'); ?>
+                <?php echo JHtml::_('bootstrap.endTabSet'); ?>
+            <?php echo JHtml::_('bootstrap.endTab'); ?>
+
+            <?php echo JHtml::_('bootstrap.addTab', 'planform', 'basic', JText::_('COM_PLANARCHIV_TAB_BASIC')); ?>
 				<div class="row-fluid">
 					<div class="span6">
 						<?php echo $this->form->renderField('ErstellDatum'); ?>
@@ -62,20 +93,20 @@ JHtml::_('behavior.tabstate');
 					</div>
 				</div>
 				<?php echo $this->form->renderField('CAD_Auftrag'); ?>
+                <div class="row-fluid">
+                    <div class="span6">
+                        <?php echo $this->form->renderField('anlagetyp_id'); ?>
+                    </div>
+                    <div class="span6">
+                        <?php echo $this->form->renderField('AnlageLfnr'); ?>
+                    </div>
+                </div>
 				<div class="row-fluid">
 					<div class="span6">
 						<?php echo $this->form->renderField('dokutyp_id'); ?>
 					</div>
 					<div class="span6">
 						<?php echo $this->form->renderField('DokuTypNr'); ?>
-					</div>
-				</div>
-				<div class="row-fluid">
-					<div class="span6">
-						<?php echo $this->form->renderField('anlagetyp_id'); ?>
-					</div>
-					<div class="span6">
-						<?php echo $this->form->renderField('AnlageLfnr'); ?>
 					</div>
 				</div>
 				<div class="row-fluid">
@@ -88,37 +119,6 @@ JHtml::_('behavior.tabstate');
 				</div>
 				<?php echo $this->form->renderField('Maengelliste'); ?>
 				<?php echo $this->form->renderField('Bemerkung'); ?>
-			<?php echo JHtml::_('bootstrap.endTab'); ?>
-
-			<?php echo JHtml::_('bootstrap.addTab', 'planform', 'location', JText::_('COM_PLANARCHIV_TAB_LOCATION')); ?>
-				<?php echo $this->form->renderField('didok_id'); ?>
-
-				<?php echo JHtml::_('bootstrap.startTabSet', 'planformlocation', array('active' => 'ort')); ?>
-					<?php echo JHtml::_('bootstrap.addTab', 'planformlocation', 'ort', JText::_('COM_PLANARCHIV_ORT_LABEL')); ?>
-						<div class="row-fluid">
-							<div class="span6">
-								<?php echo $this->form->renderField('dfa_id'); ?>
-							</div>
-							<div class="span6">
-								<?php echo $this->form->renderField('GebDfaLfnr'); ?>
-							</div>
-						</div>
-						<?php echo $this->form->renderField('stockwerk_id'); ?>
-					<?php echo JHtml::_('bootstrap.endTab'); ?>
-					<?php echo JHtml::_('bootstrap.addTab', 'planformlocation', 'strecke', JText::_('COM_PLANARCHIV_STRECKE_LABEL')); ?>
-						<div class="row-fluid">
-							<div class="span6">
-								<?php echo $this->form->renderField('Strecke'); ?>
-							</div>
-							<div class="span2">
-								<?php echo $this->form->renderField('km'); ?>
-							</div>
-							<div class="span4">
-								<?php echo $this->form->renderField('richtung_didok_id'); ?>
-							</div>
-						</div>
-					<?php echo JHtml::_('bootstrap.endTab'); ?>
-				<?php echo JHtml::_('bootstrap.endTabSet'); ?>
 			<?php echo JHtml::_('bootstrap.endTab'); ?>
 
 			<?php echo JHtml::_('bootstrap.addTab', 'planform', 'files', JText::_('COM_PLANARCHIV_TAB_FILES')); ?>
