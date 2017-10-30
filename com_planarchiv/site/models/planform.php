@@ -167,6 +167,11 @@ class PlanarchivModelplanform extends JModelAdmin
 				$data->set('state', $app->input->getInt('state', ((isset($filters['state']) && $filters['state'] !== '') ? $filters['state'] : null)));
 				$data->set('catid', $app->input->getInt('catid', (!empty($filters['category_id']) ? $filters['category_id'] : null)));
 			}
+
+			if (!$data->language)
+            {
+                $data->language = JFactory::getLanguage()->getTag();
+            }
 		}
 
 		$this->preprocessData('com_planarchiv.planform', $data);
