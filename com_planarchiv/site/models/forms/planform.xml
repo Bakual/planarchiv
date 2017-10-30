@@ -292,7 +292,9 @@
 			name="created_by"
 			type="user"
 			label="JGLOBAL_FIELD_CREATED_BY_LABEL"
-			description="JGLOBAL_FIELD_CREATED_BY_DESC" />
+			description="JGLOBAL_FIELD_CREATED_BY_DESC"
+            readonly="true"
+        />
 
 		<field
 			name="id"
