@@ -46,15 +46,12 @@ $listDirn   = $this->state->get('list.direction');
 					<th>
 						<?php echo JHtml::_('searchtools.sort', 'COM_PLANARCHIV_ORT_LABEL', 'didok_title', $listDirn, $listOrder); ?>
 					</th>
+					<th>
+						<?php echo JHtml::_('searchtools.sort', 'COM_PLANARCHIV_DFA_LABEL', 'dfa_title', $listDirn, $listOrder); ?>
+					</th>
                     <th>
                         <?php echo JHtml::_('searchtools.sort', 'COM_PLANARCHIV_ANLAGETYP_LABEL', 'anlagetyp_title', $listDirn, $listOrder); ?>
                     </th>
-					<th>
-						<?php echo JHtml::_('searchtools.sort', 'JGLOBAL_FIELD_CREATED_LABEL', 'plans.ErstellDatum', $listDirn, $listOrder); ?>
-					</th>
-					<th width="1%" class="nowrap hidden-phone">
-						<?php echo JHtml::_('searchtools.sort',  'JGRID_HEADING_ID', 'plans.id', $listDirn, $listOrder); ?>
-					</th>
 				</tr>
 				</thead>
 				<tbody>
@@ -95,17 +92,12 @@ $listDirn   = $this->state->get('list.direction');
 						<td>
 							<?php echo $item->didok_title . ' <small>(' . $item->didok . ')</small>'; ?>
 						</td>
-                        <td>
-                            <?php echo $item->anlagetyp_title . ' <small>(' . $item->anlagetyp_code . ')</small>'; ?>
-                        </td>
 						<td>
-							<?php if ($item->ErstellDatum !== '0000-00-00 00:00:00') : ?>
-								<?php echo JHtml::_('date', $item->ErstellDatum); ?>
-							<?php endif; ?>
+							<?php echo $item->dfa_title . ' <small>(' . $item->dfa_code . $item->GebDfaLfnr . ')</small>'; ?>
 						</td>
-						<td class="center hidden-phone">
-							<?php echo (int) $item->id; ?>
-						</td>
+                        <td>
+                            <?php echo $item->anlagetyp_title . ' <small>(' . $item->anlagetyp_code . '-' . $item->AnlageLfnr  . ')</small>'; ?>
+                        </td>
 					</tr>
 				<?php endforeach; ?>
 				</tbody>
