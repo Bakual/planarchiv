@@ -223,7 +223,7 @@
 		<field
 			name="language"
 			type="contentlanguage"
-			label="JFIELD_LANGUAGE_LABEL"
+			label="COM_PLANARCHIV_LANGUAGE_LABEL"
 		/>
 
 		<field
