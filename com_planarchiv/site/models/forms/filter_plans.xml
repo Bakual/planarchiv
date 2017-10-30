@@ -86,10 +86,12 @@
 			<option value="">COM_PLANARCHIV_SORT_BY</option>
 			<option value="plans.title ASC">COM_PLANARCHIV_TITLE_ASC</option>
 			<option value="plans.title DESC">COM_PLANARCHIV_TITLE_DESC</option>
-			<option value="plans.AnlageTypTxt ASC">COM_PLANARCHIV_ANLAGETYP_ASC</option>
-			<option value="plans.AnlageTypTxt DESC">COM_PLANARCHIV_ANLAGETYP_DESC</option>
 			<option value="didok_title ASC">COM_PLANARCHIV_DIDOK_ASC</option>
 			<option value="didok_title DESC">COM_PLANARCHIV_DIDOK_DESC</option>
+			<option value="dfa_title ASC">COM_PLANARCHIV_DFA_ASC</option>
+			<option value="dfa_title DESC">COM_PLANARCHIV_DFA_DESC</option>
+			<option value="anlagetyp_title ASC">COM_PLANARCHIV_ANLAGETYP_ASC</option>
+			<option value="anlagetyp_title DESC">COM_PLANARCHIV_ANLAGETYP_DESC</option>
 			<option value="category_title ASC">COM_PLANARCHIV_CATEGORY_ASC</option>
 			<option value="category_title DESC">COM_PLANARCHIV_CATEGORY_DESC</option>
 			<option value="plans.ErstellDatum ASC">COM_PLANARCHIV_DATE_ASC</option>
