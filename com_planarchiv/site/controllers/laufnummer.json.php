@@ -30,9 +30,11 @@ class PlanarchivControllerLaufnummer extends JControllerLegacy
         $element = $jinput->getString('element');
         $element = str_replace('jform_', '', $element);
 
-        $dfa = $jinput->getInt('dfa');
         $didok = $jinput->getInt('didok');
+        $dfa = $jinput->getInt('dfa');
+        $dfaLfnr = $jinput->get('dfalfnr');
         $anlage = $jinput->getInt('anlage');
+        $anlageLfnr = $jinput->get('anlagelfnr');
         $dokutyp = $jinput->getInt('dokutyp');
 
         if (!$element) {
@@ -85,11 +87,13 @@ class PlanarchivControllerLaufnummer extends JControllerLegacy
         if ($element == 'AnlageLfnr' || $element == 'DokuTypNr')
         {
             $query->where('`anlagetyp_id` = ' . (int)$anlage);
+            $query->where('`GebDfaLfnr` = ' . $db->quote($dfaLfnr));
         }
 
         if ($element == 'DokuTypNr')
         {
             $query->where('`dokutyp_id` = ' . (int)$dokutyp);
+            $query->where('`AnlageLfnr` = ' . $db->quote($anlageLfnr));
         }
 
         $db->setQuery($query);

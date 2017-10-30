@@ -51,15 +51,17 @@ class JFormFieldLaufnummer extends JFormFieldText
         if (!self::$jsLoaded)
         {
             $js = 'function fetchNextNumber(element) {
-                    var DfaSelect = document.getElementById("jform_dfa_id");
-                    var DfaIndex = DfaSelect.selectedIndex;
-                    var DfaValue = DfaSelect[DfaIndex].value;
                     var DidokSelect = document.getElementById("jform_didok_id");
                     var DidokIndex = DidokSelect.selectedIndex;
                     var DidokValue = DidokSelect[DidokIndex].value;
+                    var DfaSelect = document.getElementById("jform_dfa_id");
+                    var DfaIndex = DfaSelect.selectedIndex;
+                    var DfaValue = DfaSelect[DfaIndex].value;
+                    var DfaLfnr = document.getElementById("jform_GebDfaLfnr").value;
                     var AnlageSelect = document.getElementById("jform_anlagetyp_id");
                     var AnlageIndex = AnlageSelect.selectedIndex;
                     var AnlageValue = AnlageSelect[AnlageIndex].value;
+                    var AnlageLfnr = document.getElementById("jform_AnlageLfnr").value;
                     var DokutypSelect = document.getElementById("jform_dokutyp_id");
                     var DokutypIndex = DokutypSelect.selectedIndex;
                     var DokutypValue = DokutypSelect[DokutypIndex].value;
@@ -74,7 +76,7 @@ class JFormFieldLaufnummer extends JFormFieldText
                             }
 		            	}
                     }
-                    var params = "&element="+element+"&dfa="+DfaValue+"&didok="+DidokValue+"&anlage="+AnlageValue+"&dokutyp="+DokutypValue;
+                    var params = "&element="+element+"&didok="+DidokValue+"&dfa="+DfaValue+"&dfalfnr="+DfaLfnr+"&anlage="+AnlageValue+"&anlagelfnr="+AnlageLfnr+"&dokutyp="+DokutypValue;
 			        xmlhttp.open("GET","index.php?option=com_planarchiv&task=laufnummer.lookup&format=json"+params,true);
 			        xmlhttp.send();
             }';
