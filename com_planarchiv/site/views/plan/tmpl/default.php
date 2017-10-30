@@ -18,6 +18,7 @@ $canEdit    = $user->authorise('core.edit', 'com_planarchiv.category.' . $this->
 $canEditOwn = $user->authorise('core.edit.own', 'com_planarchiv.category.' . $this->item->catid) && $this->item->created_by == $user->id;
 ?>
 <div class="item-page<?php echo $this->pageclass_sfx; ?> planarchiv-plan-container<?php echo $this->pageclass_sfx; ?>">
+    <a href="index.php?option=com_planarchiv&view=plans"><?php echo JText::_('COM_PLANARCHIV_BACK_TO_LIST'); ?></a>
 	<?php if ($this->params->get('show_page_heading')) : ?>
 		<div class="page-header">
 			<h1> <?php echo $this->escape($this->params->get('page_heading')); ?> </h1>
