@@ -46,7 +46,6 @@ class JFormFieldTitlegenerator extends JFormFieldText
 			. 'let languageSelect = document.getElementById(\'jform_language\');'
 			. 'let language = languageSelect.options[languageSelect.selectedIndex].value.toLowerCase();'
 			. 'let strecke = document.getElementById(\'jform_Strecke\').value;'
-			. 'console.log(strecke);'
 			. 'if (strecke) {'
 				. 'let richtungSelect = document.getElementById(\'jform_richtung_didok_id\');'
 				. 'let richtungSelectValue = richtungSelect.options[richtungSelect.selectedIndex].getAttribute(\'data-didok\');'
