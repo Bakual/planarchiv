@@ -30,7 +30,14 @@ class PlanarchivViewBuildings extends JViewLegacy
 	{
 		// Get some data from the models
 		$this->state         = $this->get('State');
-		$this->items         = $this->get('Items');
+
+		// Set an impossible didok number to get an empty result
+		if (!$this->state->get('filter.didok_id'))
+        {
+            $this->state->set('filter.didok_id', 99999999);
+        }
+
+        $this->items         = $this->get('Items');
 		$this->pagination    = $this->get('Pagination');
 		$this->filterForm    = $this->get('FilterForm');
 		$this->activeFilters = $this->get('ActiveFilters');
