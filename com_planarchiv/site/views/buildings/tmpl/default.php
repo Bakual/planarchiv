@@ -42,7 +42,7 @@ $filters = $this->filterForm->getGroup('filter');
             <ul class="unstyled">
                 <?php foreach ($this->items as $item) : ?>
                     <li>
-                        <?php $params = '&filter[didok_id]=' . $item->didok_id; ?>
+                        <?php $params = '&filter[didok_id]=' . $item->didok_id . '&filter[dfa_id]=' . $item->dfa_id . '&filter[GebDfaLfnr]=' . $item->GebDfaLfnr; ?>
                         <a href="index.php?option=com_planarchiv&view=plans<?php echo $params; ?>">
                             <?php echo $item->dfa_title . ' (' . $item->dfa_code . '-' . $item->GebDfaLfnr . ')'; ?>
                         </a>

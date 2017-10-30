@@ -43,6 +43,7 @@ class PlanarchivModelPlans extends JModelList
 				'anlagetyp_title',
                 'dokutyp_id', 'plans.dokutyp_id',
                 'dfa_id', 'plans.dfa_id',
+                'dfa_title', 'plans.dfa_title',
 				'Maengelliste', 'plans.Maengelliste',
 				'original', 'plans.original',
 				'created', 'plans.created',
@@ -141,6 +142,12 @@ class PlanarchivModelPlans extends JModelList
         if ($dfa = (int) $this->getState('filter.dfa_id'))
         {
             $query->where('plans.dfa_id = ' . $dfa);
+        }
+
+        // Filter by Dfa Lfnr
+        if ($dfaLfnr = $this->getState('filter.GebDfaLfnr'))
+        {
+            $query->where('plans.GebDfaLfnr = ' . $db->quote($dfaLfnr));
         }
 
         // Join over the dokutyp.
