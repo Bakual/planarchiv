@@ -12,14 +12,14 @@ defined('_JEXEC') or die();
 jimport('joomla.html.html');
 jimport('joomla.form.formfield');
 jimport('joomla.form.helper');
-JFormHelper::loadFieldClass('list');
+JFormHelper::loadFieldClass('text');
 
 /**
  * Docuformatlist Field class for com_planarchiv
  *
  * @since    1.0.0
  */
-class JFormFieldDocuformatlist extends JFormFieldList
+class JFormFieldDocuformatlist extends JFormFieldText
 {
 	/**
 	 * The form field type.
@@ -46,25 +46,13 @@ class JFormFieldDocuformatlist extends JFormFieldList
 
 		foreach ($fileformats as $format)
 		{
-			$format           = trim($format);
-			$options[$format] = $format;
+			$format        = trim($format);
+			$option        = new stdClass();
+			$option->value = $format;
+			$option->text  = $format;
+			$options[]     = $option;
 		}
 
 		return $options;
-	}
-
-	/**
-	 * Method to get the field input markup for a generic list.
-	 * Use the multiple attribute to enable multiselect.
-	 *
-	 * @return  string  The field input markup.
-	 *
-	 * @since   1.0.0
-	 */
-	protected function getInput()
-	{
-		$this->value = explode(',', $this->value);
-
-		return parent::getInput();
 	}
 }
