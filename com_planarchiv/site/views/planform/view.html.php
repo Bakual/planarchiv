@@ -64,13 +64,13 @@ class PlanarchivViewPlanform extends JViewLegacy
 		// Create a shortcut to the parameters.
 		$params = &$this->state->params;
 
-		if (empty($this->item->id))
+ 		if (empty($this->item->id))
 		{
-			$authorised = ($user->authorise('core.create', 'com_planarchiv'));
+			$authorised = ($user->authorise('core.create', 'com_planarchiv') || count($user->getAuthorisedCategories('com_planarchiv', 'core.create')));
 		}
 		else
 		{
-			$authorised = ($user->authorise('core.edit', 'com_planarchiv'));
+			$authorised = ($user->authorise('core.edit', 'com_planarchiv.category.' . $this->item->catid));
 		}
 
 		if ($authorised !== true)
