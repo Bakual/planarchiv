@@ -14,6 +14,7 @@ JHtml::_('behavior.formvalidation');
 JHtml::_('behavior.keepalive');
 JHtml::_('formbehavior.chosen', 'select');
 JHtml::_('behavior.tabstate');
+JHtml::_('stylesheet', 'com_planarchiv/planarchiv.css', array('version' => 'auto', 'relative' => true));
 
 ?>
 <script type="text/javascript">
@@ -50,10 +51,10 @@ JHtml::_('behavior.tabstate');
                 <?php echo JHtml::_('bootstrap.startTabSet', 'planformlocation', array('active' => 'ort')); ?>
                     <?php echo JHtml::_('bootstrap.addTab', 'planformlocation', 'ort', JText::_('COM_PLANARCHIV_ORT_LABEL')); ?>
                         <div class="row-fluid">
-                            <div class="span6">
+                            <div class="pull-left rightMargin">
                                 <?php echo $this->form->renderField('dfa_id'); ?>
                             </div>
-                            <div class="span6">
+                            <div class="pull-left">
                                 <?php echo $this->form->renderField('GebDfaLfnr'); ?>
                             </div>
                         </div>
@@ -61,13 +62,13 @@ JHtml::_('behavior.tabstate');
                         <?php echo JHtml::_('bootstrap.endTab'); ?>
                         <?php echo JHtml::_('bootstrap.addTab', 'planformlocation', 'strecke', JText::_('COM_PLANARCHIV_STRECKE_LABEL')); ?>
                         <div class="row-fluid">
-                            <div class="span6">
+                            <div class="pull-left rightMargin">
                                 <?php echo $this->form->renderField('Strecke'); ?>
                             </div>
-                            <div class="span2">
+                            <div class="pull-left rightMargin">
                                 <?php echo $this->form->renderField('km'); ?>
                             </div>
-                            <div class="span4">
+                            <div class="pull-left">
                                 <?php echo $this->form->renderField('richtung_didok_id'); ?>
                             </div>
                         </div>
@@ -77,43 +78,43 @@ JHtml::_('behavior.tabstate');
 
             <?php echo JHtml::_('bootstrap.addTab', 'planform', 'basic', JText::_('COM_PLANARCHIV_TAB_BASIC')); ?>
 				<div class="row-fluid">
-					<div class="span6">
+					<div class="pull-left rightMargin">
 						<?php echo $this->form->renderField('ErstellDatum'); ?>
 					</div>
-					<div class="span6">
+					<div class="pull-left">
 						<?php echo $this->form->renderField('ersteller_id'); ?>
 					</div>
 				</div>
 				<div class="row-fluid">
-					<div class="span6">
+					<div class="pull-left rightMargin">
 						<?php echo $this->form->renderField('AenderungsDatum'); ?>
 					</div>
-					<div class="span6">
+					<div class="pull-left">
 						<?php echo $this->form->renderField('Index1'); ?>
 					</div>
 				</div>
 				<?php echo $this->form->renderField('CAD_Auftrag'); ?>
                 <div class="row-fluid">
-                    <div class="span6">
+                    <div class="pull-left rightMargin">
                         <?php echo $this->form->renderField('anlagetyp_id'); ?>
                     </div>
-                    <div class="span6">
+                    <div class="pull-left">
                         <?php echo $this->form->renderField('AnlageLfnr'); ?>
                     </div>
                 </div>
 				<div class="row-fluid">
-					<div class="span6">
+					<div class="pull-left rightMargin">
 						<?php echo $this->form->renderField('dokutyp_id'); ?>
 					</div>
-					<div class="span6">
+					<div class="pull-left">
 						<?php echo $this->form->renderField('DokuTypNr'); ?>
 					</div>
 				</div>
 				<div class="row-fluid">
-					<div class="span6">
+					<div class="pull-left rightMargin">
 						<?php echo $this->form->renderField('zurzeitbei_id'); ?>
 					</div>
-					<div class="span6">
+					<div class="pull-left">
 						<?php echo $this->form->renderField('zurzeitbei_date'); ?>
 					</div>
 				</div>

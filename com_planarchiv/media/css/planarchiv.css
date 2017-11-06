@@ -6,3 +6,6 @@
 #planList .icon-warning-2:before {
 	color: #FF0000;
 }
+#adminForm .rightMargin {
+	margin-right: 25px;
+}
