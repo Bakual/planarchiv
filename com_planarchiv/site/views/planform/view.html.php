@@ -88,13 +88,6 @@ class PlanarchivViewPlanform extends JViewLegacy
 		$this->pageclass_sfx = htmlspecialchars($params->get('pageclass_sfx'));
 		$this->params        = $params;
 
-		// Propose current language as default when creating new article
-		if (empty($this->item->language) && JLanguageMultilang::isEnabled())
-		{
-			$lang = JFactory::getLanguage()->getTag();
-//			$this->form->setFieldAttribute('language', 'default', $lang);
-		}
-
 		$this->_prepareDocument();
 
 		return parent::display($tpl);
