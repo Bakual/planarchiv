@@ -180,7 +180,7 @@ class PlanarchivModelPlans extends JModelList
 		if ($search)
 		{
 			$search = $db->quote('%' . $db->escape($search, true) . '%');
-			$query->where('(plans.title LIKE ' . $search . ') OR (plans.Bemerkung LIKE ' . $search . ') ');
+			$query->where('(plans.title LIKE ' . $search . ' OR plans.Bemerkung LIKE ' . $search . ') ');
 		}
 
 		// Filter by state
@@ -190,6 +190,9 @@ class PlanarchivModelPlans extends JModelList
 		{
 			$query->where('plans.state = ' . (int) $state);
 		}
+
+		// Do not show trashed links on the front-end
+		$query->where('plans.state != -2');
 
 		// Join over AnlageTyp.
 		$query->select('anlagetyp.title_' . $langCode . ' AS anlagetyp_title');
@@ -229,9 +232,6 @@ class PlanarchivModelPlans extends JModelList
 		{
 			$query->where('plans.original = ' . (int) $original);
 		}
-
-		// Do not show trashed links on the front-end
-		$query->where('plans.state != -2');
 
 		// Add the list ordering clause.
 		$query->order($db->escape($this->getState('list.ordering', 'ErstellDatum')) . ' ' . $db->escape($this->getState('list.direction', 'DESC')));
