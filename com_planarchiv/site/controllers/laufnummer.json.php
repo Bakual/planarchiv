@@ -83,6 +83,7 @@ class PlanarchivControllerLaufnummer extends JControllerLegacy
         $query->from('#__planarchiv_plan');
         $query->where('`didok_id` = ' . (int)$didok);
         $query->where('`dfa_id` = ' . (int)$dfa);
+        $query->where('`state` != -2');
 
         if ($element == 'AnlageLfnr' || $element == 'DokuTypNr')
         {
