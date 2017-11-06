@@ -80,7 +80,8 @@ $listDirn   = $this->state->get('list.direction');
 									<?php echo $this->escape($item->title) ?: '<span class="label label-info">' . JText::_('COM_PLANARCHIV_NONAME') . '</span>'; ?>
 								</a>
 								<?php if ($canEdit || $canEditOwn) : ?>
-									<a href="<?php echo JRoute::_('index.php?option=com_planarchiv&task=plan.edit&id=' . $item->id . '&return=' . $returnPage); ?>">
+									<a href="<?php echo JRoute::_('index.php?option=com_planarchiv&task=plan.edit&id=' . $item->id . '&return=' . $returnPage); ?>"
+                                       title="<?php echo JText::_('JGLOBAL_EDIT_TITLE'); ?>" class="hasTooltip">
 										<span class="icon-edit"> </span>
 									</a>
 								<?php endif; ?>

@@ -88,7 +88,7 @@ class JFormFieldLaufnummer extends JFormFieldText
 
 	    $html = '<div class="input-append">';
 	    $html .= $textField;
-	    $html .= '<button class="btn hasTooltip" type="button" onclick="fetchNextNumber(\'' . $this->id . '\')" title="Fetch Next Free Number"><span class="icon-flash"></span></button>';
+	    $html .= '<button class="btn hasTooltip" type="button" onclick="fetchNextNumber(\'' . $this->id . '\')" title="' .  JText::_('COM_PLANARCHIV_FETCH_LFNR') . '"><span class="icon-flash"></span></button>';
 	    $html .= '</div>';
 
 	    return $html;
