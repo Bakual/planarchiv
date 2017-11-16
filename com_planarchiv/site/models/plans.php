@@ -272,6 +272,6 @@ class PlanarchivModelPlans extends JModelList
 		$search = $app->getUserStateFromRequest($this->context . '.filter.search', 'filter-search', '', 'STRING');
 		$this->setState('filter.search', $search);
 
-		parent::populateState('ErstellDatum', 'DESC');
+		parent::populateState('id', 'DESC');
 	}
 }
