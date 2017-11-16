@@ -56,24 +56,25 @@ class PlanarchivModelplanform extends JModelAdmin
 		{
 			// Existing record. Can only edit in selected categories.
 			$form->setFieldAttribute('catid', 'action', 'core.edit');
+
+			// Disable state field if not authorised.
+			if (!$this->canEditState((object) $data))
+			{
+				$form->setFieldAttribute('state', 'disabled', 'true');
+				$form->setFieldAttribute('state', 'filter', 'unset');
+			}
 		}
 		else
 		{
 			// New record. Can only create in selected categories.
 			$form->setFieldAttribute('catid', 'action', 'core.create');
-		}
 
-		// Modify the form based on Edit State access controls.
-		if (!$this->canEditState((object) $data))
-		{
-			// Disable fields for display.
-			$form->setFieldAttribute('ordering', 'disabled', 'true');
-			$form->setFieldAttribute('state', 'disabled', 'true');
-
-			// Disable fields while saving.
-			// The controller has already verified this is an article you can edit.
-			$form->setFieldAttribute('ordering', 'filter', 'unset');
-			$form->setFieldAttribute('state', 'filter', 'unset');
+			// Disable state field if not authorised in at least one category.
+			if (!JFactory::getUser()->getAuthorisedCategories('com_planarchiv', 'core.edit.state'))
+			{
+				$form->setFieldAttribute('state', 'disabled', 'true');
+				$form->setFieldAttribute('state', 'filter', 'unset');
+			}
 		}
 
 		return $form;
@@ -160,18 +161,20 @@ class PlanarchivModelplanform extends JModelAdmin
 		{
 			$data = $this->getItem();
 
-			// Pre-select some filters (Status, Category) in edit form if those have been selected in planform Manager: planforms
+			// Pre-select some filters in edit form if those have been selected in plans list
 			if ($this->getState('planform.id') == 0)
 			{
-				$filters = (array) $app->getUserState('com_planarchiv.planforms.filter');
-				$data->set('state', $app->input->getInt('state', ((isset($filters['state']) && $filters['state'] !== '') ? $filters['state'] : null)));
-				$data->set('catid', $app->input->getInt('catid', (!empty($filters['category_id']) ? $filters['category_id'] : null)));
+				$filters = (array) $app->getUserState('com_planarchiv.plans.filter');
+				$data->set('didok_id', (!empty($filters['didok_id']) ? $filters['didok_id'] : null));
+				$data->set('dfa_id', (!empty($filters['dfa_id']) ? $filters['dfa_id'] : null));
+				$data->set('anlagetyp_id', (!empty($filters['anlagetyp_id']) ? $filters['anlagetyp_id'] : null));
+				$data->set('dokutyp_id', (!empty($filters['dokutyp_id']) ? $filters['dokutyp_id'] : null));
 			}
 
 			if (!$data->language)
-            {
-                $data->language = JFactory::getLanguage()->getTag();
-            }
+			{
+				$data->language = JFactory::getLanguage()->getTag();
+			}
 		}
 
 		$this->preprocessData('com_planarchiv.planform', $data);
