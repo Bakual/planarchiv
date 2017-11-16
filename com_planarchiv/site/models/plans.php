@@ -45,6 +45,7 @@ class PlanarchivModelPlans extends JModelList
                 'dfa_id', 'plans.dfa_id',
                 'dfa_title', 'plans.dfa_title',
 				'Maengelliste', 'plans.Maengelliste',
+				'Bemerkung', 'plans.Bemerkung',
 				'original', 'plans.original',
 				'created', 'plans.created',
 				'checked_out', 'plans.checked_out',

@@ -52,6 +52,9 @@ $listDirn   = $this->state->get('list.direction');
                     <th>
                         <?php echo JHtml::_('searchtools.sort', 'COM_PLANARCHIV_ANLAGETYP_LABEL', 'anlagetyp_title', $listDirn, $listOrder); ?>
                     </th>
+                    <th class="hidden-phone hidden-tablet">
+                        <?php echo JHtml::_('searchtools.sort', 'COM_PLANARCHIV_BEMERKUNG_LABEL', 'Bemerkung', $listDirn, $listOrder); ?>
+                    </th>
 				</tr>
 				</thead>
 				<tbody>
@@ -98,6 +101,9 @@ $listDirn   = $this->state->get('list.direction');
 						</td>
                         <td>
                             <?php echo $item->anlagetyp_title . ' <small>(' . $item->anlagetyp_code . '-' . $item->AnlageLfnr  . ')</small>'; ?>
+                        </td>
+                       <td class="hidden-phone hidden-tablet">
+                           <div class="truncate hasTooltip" title="<?php echo $item->Bemerkung; ?>"><?php echo $item->Bemerkung; ?></div>
                         </td>
 					</tr>
 				<?php endforeach; ?>

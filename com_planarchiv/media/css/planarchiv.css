@@ -1,11 +1,19 @@
 @media print {
-	#aside, .breadcrumb, .footer, .navigation, .mod-languages {
-		display: none;
-	}
+    #aside, .breadcrumb, .footer, .navigation, .mod-languages {
+        display: none;
+    }
 }
+
 #planList .icon-warning-2:before {
-	color: #FF0000;
+    color: #FF0000;
 }
+
 #adminForm .rightMargin {
-	margin-right: 25px;
+    margin-right: 25px;
+}
+.truncate {
+    max-width: 200px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
