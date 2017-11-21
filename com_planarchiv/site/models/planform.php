@@ -58,6 +58,11 @@ class PlanarchivModelplanform extends JModelAdmin
 			$form->setFieldAttribute('catid', 'action', 'core.edit');
 
 			// Disable state field if not authorised.
+			if (!$data)
+			{
+				$data = $form->getData()->toArray();
+			}
+
 			if (!$this->canEditState((object) $data))
 			{
 				$form->setFieldAttribute('state', 'disabled', 'true');

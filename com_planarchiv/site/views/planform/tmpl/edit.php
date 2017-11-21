@@ -164,11 +164,13 @@ JHtml::_('stylesheet', 'com_planarchiv/planarchiv.css', array('version' => 'auto
 				<div class="btn-group">
 					<?php echo $this->form->getInput('contenthistory'); ?>
 				</div>
-				<div class="btn-group">
-                    <button type="button" class="btn btn-danger" onclick="if(confirm('<?php echo JText::_('COM_PLANARCHIV_CONFIRM_DELETE'); ?>')) {document.getElementById('jform_state').value='-2';Joomla.submitbutton('plan.save');} else {return;}">
-                        <i class="icon-delete"></i> <?php echo JText::_('JACTION_DELETE') ?>
-                    </button>
-				</div>
+                <?php if (JFactory::getUser()->authorise('core.delete', 'com_planarchiv.category.' . $this->item->catid)) : ?>
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-danger" onclick="if(confirm('<?php echo JText::_('COM_PLANARCHIV_CONFIRM_DELETE'); ?>')) {document.getElementById('jform_state').value='-2';Joomla.submitbutton('plan.save');} else {return;}">
+                            <i class="icon-delete"></i> <?php echo JText::_('JACTION_DELETE') ?>
+                        </button>
+                    </div>
+                <?php endif; ?>
 			<?php endif; ?>
 		</div>
 	</form>
