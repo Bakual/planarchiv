@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <form>
 	<fields name="filter"
-		addfieldpath="administrator/components/com_planarchiv/models/fields">
+			addfieldpath="administrator/components/com_planarchiv/models/fields">
 		<field
 			name="search"
 			type="text"
@@ -18,33 +18,33 @@
 			<option value="">COM_PLANARCHIV_SELECT_ORT</option>
 		</field>
 		<field
-				name="Strecke"
-				type="list"
-				onchange="this.form.submit();"
+			name="Strecke"
+			type="list"
+			onchange="this.form.submit();"
 		>
 			<option value="">COM_PLANARCHIV_SELECT_STRECKE_ORT</option>
 			<option value="S">COM_PLANARCHIV_STRECKE_LABEL</option>
 			<option value="O">COM_PLANARCHIV_ORT_LABEL</option>
 		</field>
 		<field
-				name="dfa_id"
-				type="dfalist"
-				onchange="this.form.submit();"
-				ort_filter="true"
+			name="dfa_id"
+			type="dfalist"
+			onchange="this.form.submit();"
+			ort_filter="true"
 		>
 			<option value="">COM_PLANARCHIV_SELECT_DFA</option>
 		</field>
 		<field
-				name="anlagetyp_id"
-				type="anlagetyplist"
-				onchange="this.form.submit();"
+			name="anlagetyp_id"
+			type="anlagetyplist"
+			onchange="this.form.submit();"
 		>
 			<option value="">COM_PLANARCHIV_SELECT_ANLAGETYP</option>
 		</field>
 		<field
-				name="dokutyp_id"
-				type="dokutyplist"
-				onchange="this.form.submit();"
+			name="dokutyp_id"
+			type="dokutyplist"
+			onchange="this.form.submit();"
 		>
 			<option value="">COM_PLANARCHIV_SELECT_DOKUTYP</option>
 		</field>
@@ -65,6 +65,14 @@
 			<option value="">COM_PLANARCHIV_SELECT_ORIGINAL</option>
 			<option value="1">COM_PLANARCHIV_SELECT_ORIGINAL_YES</option>
 			<option value="0">COM_PLANARCHIV_SELECT_ORIGINAL_NO</option>
+		</field>
+		<field
+			name="ownedits"
+			type="list"
+			onchange="this.form.submit();"
+		>
+			<option value="">COM_PLANARCHIV_SELECT_OWNEDIT</option>
+			<option value="1">COM_PLANARCHIV_SELECT_OWNEDITS_YES</option>
 		</field>
 		<field
 			name="category_id"
@@ -98,6 +106,10 @@
 			<option value="plans.ErstellDatum DESC">COM_PLANARCHIV_DATE_DESC</option>
 			<option value="plans.id ASC">COM_PLANARCHIV_ID_ASC</option>
 			<option value="plans.id DESC">COM_PLANARCHIV_ID_DESC</option>
+			<option value="Bemerkung ASC">COM_PLANARCHIV_BEMERKUNG_ASC</option>
+			<option value="Bemerkung DESC">COM_PLANARCHIV_BEMERKUNG_DESC</option>
+			<option value="plans.modified ASC">COM_PLANARCHIV_MODIFIED_ASC</option>
+			<option value="plans.modified DESC">COM_PLANARCHIV_MODIFIED_DESC</option>
 		</field>
 		<field
 			name="limit"

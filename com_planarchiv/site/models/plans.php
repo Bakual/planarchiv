@@ -54,6 +54,7 @@ class PlanarchivModelPlans extends JModelList
 				'category_title', 'c_plans.category_title',
 				'didok_title', 'didok.title',
 				'didok_id', 'richtung_didok_id', 'Strecke',
+				'ownedits',
 			);
 		}
 
@@ -130,6 +131,12 @@ class PlanarchivModelPlans extends JModelList
 		// Join over the users for the checked out user.
 		$query->select('uc.name AS editor');
 		$query->join('LEFT', '#__users AS uc ON uc.id = plans.checked_out');
+
+		// Filter by user
+		if ($this->getState('filter.ownedits'))
+		{
+			$query->where('(plans.modified_by = ' . $user->id . ' OR plans.created_by = ' . $user->id . ')');
+		}
 
 		// Join over the Stockwerk.
 		$query->select('sw.title AS stockwerk_title');
