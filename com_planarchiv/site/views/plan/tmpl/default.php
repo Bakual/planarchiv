@@ -188,7 +188,7 @@ $canEditOwn = $user->authorise('core.edit.own', 'com_planarchiv.category.' . $th
 					<?php foreach ($files AS $ext) : ?>
 						<dt><?php echo $ext; ?></dt>
 						<dd>
-							<a href="file:<?php echo str_replace('\\', '/', $path . $linkedFile . '.' . $ext); ?>">
+							<a target="_blank" href="file:<?php echo str_replace('\\', '/', $path . $linkedFile . '.' . $ext); ?>">
 								<?php echo $this->escape($filename . '.' . $ext); ?>
 							</a>
 						</dd>
