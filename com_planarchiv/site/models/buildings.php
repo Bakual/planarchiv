@@ -67,8 +67,6 @@ class PlanarchivModelBuildings extends JModelList
 	 */
 	protected function getListQuery()
 	{
-		$user     = JFactory::getUser();
-		$groups   = implode(',', $user->getAuthorisedViewLevels());
 		$langCode = substr(JFactory::getLanguage()->getTag(), 0, 2);
 
 		// Create a new query object.
@@ -78,6 +76,7 @@ class PlanarchivModelBuildings extends JModelList
 		// Select required fields from the table.
 		$query->select('`plans`.`dfa_id`, `plans`.`GebDfaLfnr`, `plans`.`didok_id`');
 		$query->from('#__planarchiv_plan AS plans');
+		$query->where('`plans`.`dfa_id` != 0');
 
 		// Join over the dfa.
 		$query->select('dfa.title_' . $langCode . ' AS dfa_title, dfa.code_' . $langCode . ' AS dfa_code');
@@ -107,7 +106,6 @@ class PlanarchivModelBuildings extends JModelList
 		$query->group('`plans`.`dfa_id`, `plans`.`GebDfaLfnr`');
 
 		// Add the list ordering clause.
-        $dir = $db->escape($this->getState('list.direction', 'ASC'));
         $query->order($db->escape('dfa_title') . ' ASC, ' . $db->escape('GebDfaLfnr') . ' ASC');
 
 		return $query;

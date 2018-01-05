@@ -44,7 +44,7 @@ $filters = $this->filterForm->getGroup('filter');
                     <li>
                         <?php $params = '&filter[didok_id]=' . $item->didok_id . '&filter[dfa_id]=' . $item->dfa_id . '&filter[GebDfaLfnr]=' . $item->GebDfaLfnr; ?>
                         <a href="<?php echo JRoute::_('index.php?option=com_planarchiv&view=plans' . $params); ?>">
-                            <?php echo $item->dfa_title . ' (' . $item->dfa_code . '-' . $item->GebDfaLfnr . ')'; ?>
+                            <?php echo $item->dfa_title . ' (' . $item->dfa_code . $item->GebDfaLfnr . ')'; ?>
                         </a>
                     </li>
                 <?php endforeach; ?>
