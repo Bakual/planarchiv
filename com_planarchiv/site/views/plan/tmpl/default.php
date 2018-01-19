@@ -184,8 +184,20 @@ $canEditOwn = $user->authorise('core.edit.own', 'com_planarchiv.category.' . $th
 				<?php $filename = strtolower($filename); ?>
 				<?php $linkedFile = $this->item->title ?: $filename; ?>
 				<?php $files = explode(',', $this->item->files); ?>
+                <?php if (($pdf = array_search('pdf', $files)) !== false) : ?>
+                    <?php unset($files[$pdf]); ?>
+                    <?php $pdf = true; ?>
+                <?php endif; ?>
 				<dl class="dl-horizontal">
-					<?php foreach ($files AS $ext) : ?>
+					<?php if ($pdf) : ?>
+                        <dt class="pdf">pdf</dt>
+                        <dd class="pdf">
+                            <a target="_blank" href="file:<?php echo str_replace('\\', '/', $path . $linkedFile . '.pdf'); ?>">
+								<?php echo $this->escape($filename . '.pdf'); ?>
+                            </a>
+                        </dd>
+                    <?php endif; ?>
+					<?php foreach ($files as $ext) : ?>
 						<dt><?php echo $ext; ?></dt>
 						<dd>
 							<a target="_blank" href="file:<?php echo str_replace('\\', '/', $path . $linkedFile . '.' . $ext); ?>">
