@@ -10,7 +10,7 @@
 defined('_JEXEC') or die;
 
 /**
- * Speaker Table class
+ * Plan Table class
  *
  * @package        Planarchiv.Administrator
  *
@@ -55,6 +55,14 @@ class PlanarchivTablePlan extends JTable
 		if (!$this->dfa_id && !$this->GebDfaLfnr && !$this->Stockwerk && !$this->Strecke && !$this->km && !$this->richtung_didok_id)
 		{
 			throw new Exception(JText::_('COM_PLANARCHIV_ERROR_ORT_OR_STRECKE_REQUIRED'));
+		}
+
+		// Verify that the title is unique
+		$table = JTable::getInstance('Plan', 'PlanarchivTable');
+
+		if ($table->load(array('title' => $this->title, 'state' => '1')) && ($table->id != $this->id || $this->id == 0))
+		{
+			throw new Exception(JText::_('COM_PLANARCHIV_ERROR_UNIQUE_TITLE'));
 		}
 
 		if ($this->GebDfaLfnr)
