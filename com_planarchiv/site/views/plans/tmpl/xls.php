@@ -23,7 +23,7 @@ $spreadsheet->getDefaultStyle()->getFont()->setSize(10);
 $sheet = $spreadsheet->getActiveSheet();
 
 // Format Cells
-$sheet->getStyle('A1:Z1')->getFont()->setBold(true);
+$sheet->getStyle('A1:AB1')->getFont()->setBold(true);
 $sheet->getColumnDimension('A')->setAutoSize(true);
 $sheet->getColumnDimension('B')->setAutoSize(true);
 $sheet->getColumnDimension('C')->setAutoSize(true);
@@ -48,7 +48,9 @@ $sheet->getColumnDimension('W')->setAutoSize(true);
 $sheet->getColumnDimension('X')->setAutoSize(true);
 $sheet->getColumnDimension('Y')->setAutoSize(true);
 $sheet->getColumnDimension('Z')->setAutoSize(true);
-$sheet->setAutoFilter('A1:Z1');
+$sheet->getColumnDimension('AA')->setAutoSize(true);
+$sheet->getColumnDimension('AB')->setAutoSize(true);
+$sheet->setAutoFilter('A1:AB1');
 
 // Adding Header
 $sheet->setCellValue('A1', JText::_('JGLOBAL_TITLE'));
@@ -77,6 +79,8 @@ $sheet->setCellValue('W1', JText::_('COM_PLANARCHIV_CODE'));
 $sheet->setCellValue('X1', JText::_('COM_PLANARCHIV_FIELD_LFNR'));
 $sheet->setCellValue('Y1', JText::_('COM_PLANARCHIV_ALIGNMENT_LABEL'));
 $sheet->setCellValue('Z1', JText::_('COM_PLANARCHIV_SIZE_LABEL'));
+$sheet->setCellValue('AA1', JText::_('COM_PLANARCHIV_FIELD_ZUR_ZEIT_BEI_LABEL'));
+$sheet->setCellValue('AB1', JText::_('COM_PLANARCHIV_FIELD_ZUR_ZEIT_BEI_SEIT_LABEL'));
 
 $i = 2;
 foreach ($this->items as $item)
@@ -107,9 +111,12 @@ foreach ($this->items as $item)
 	$sheet->setCellValue('X' . $i, $item->DokuTypNr);
 	$sheet->setCellValue('Y' . $i, JText::_('COM_PLANARCHIV_ALIGNMENT_' . $item->alignment . '_LABEL'));
 	$sheet->setCellValue('Z' . $i, $item->size);
+	$sheet->setCellValue('AA' . $i, $item->zurzeitbei_name);
+	$sheet->setCellValue('AB' . $i, ($item->zurzeitbei_date !== '0000-00-00 00:00:00') ? $item->zurzeitbei_date : '');
 
 	$sheet->getStyle('H' . $i)->getNumberFormat()->setFormatCode('dd.mm.yyyy');
 	$sheet->getStyle('I' . $i)->getNumberFormat()->setFormatCode('dd.mm.yyyy');
+	$sheet->getStyle('AB' . $i)->getNumberFormat()->setFormatCode('dd.mm.yyyy');
 	$i++;
 }
 
