@@ -183,7 +183,7 @@ class PlanarchivControllerPlan extends JControllerForm
 	 *
 	 * @since 1.0.0
 	 */
-	public function getModel($name = 'planform', $prefix = '', $config = array('ignore_request' => true))
+	public function getModel($name = 'Planform', $prefix = '', $config = array('ignore_request' => true))
 	{
 		$model = parent::getModel($name, $prefix, $config);
 
@@ -261,7 +261,12 @@ class PlanarchivControllerPlan extends JControllerForm
 	{
 		$task = $this->getTask();
 
-		if ($task == 'save')
+		if ($task === 'save2copy')
+		{
+			$model->checkin($model->getState('planform.id'));
+		}
+
+		if ($task === 'save')
 		{
 			$this->setRedirect(JRoute::_('index.php?option=com_planarchiv&view=plans', false));
 		}

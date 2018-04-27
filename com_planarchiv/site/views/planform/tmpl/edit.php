@@ -156,6 +156,11 @@ JHtml::_('stylesheet', 'com_planarchiv/planarchiv.css', array('version' => 'auto
 				</button>
 			</div>
 			<div class="btn-group">
+				<button type="button" class="btn" onclick="Joomla.submitbutton('plan.save2copy')">
+					<i class="icon-save-copy"></i> <?php echo JText::_('COM_PLANARCHIV_SAVE_AS_COPY') ?>
+				</button>
+			</div>
+			<div class="btn-group">
 				<button type="button" class="btn" onclick="Joomla.submitbutton('plan.cancel')">
 					<i class="icon-cancel"></i> <?php echo JText::_('JCANCEL') ?>
 				</button>
