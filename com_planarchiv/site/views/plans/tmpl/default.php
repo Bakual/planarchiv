@@ -102,8 +102,8 @@ $listDirn   = $this->state->get('list.direction');
                         <td>
                             <?php echo $item->anlagetyp_title . ' <small>(' . $item->anlagetyp_code . '-' . $item->AnlageLfnr  . ')</small>'; ?>
                         </td>
-                       <td class="hidden-phone hidden-tablet">
-                           <div class="truncate hasTooltip" title="<?php echo $item->Bemerkung; ?>"><?php echo $item->Bemerkung; ?></div>
+                       <td class="truncate hidden-phone hidden-tablet">
+                           <div class="hasTooltip" title="<?php echo $item->Bemerkung; ?>"><?php echo $item->Bemerkung; ?></div>
                         </td>
 					</tr>
 				<?php endforeach; ?>
