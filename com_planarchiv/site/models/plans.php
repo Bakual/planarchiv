@@ -54,7 +54,7 @@ class PlanarchivModelPlans extends JModelList
 				'category_title', 'c_plans.category_title',
 				'didok_title', 'didok.title',
 				'didok_id', 'richtung_didok_id', 'Strecke',
-				'ownedits',
+				'ownedits', 'extern',
 			);
 		}
 
@@ -128,7 +128,13 @@ class PlanarchivModelPlans extends JModelList
 		$query->select('zurzeitbei.name AS zurzeitbei_name');
 		$query->join('LEFT', '#__contact_details AS zurzeitbei ON zurzeitbei.id = plans.zurzeitbei_id');
 
-		// Join over the users for the checked out user.
+        // Filter by ZurZeitBei
+        if ($this->getState('filter.extern'))
+        {
+            $query->where('plans.zurzeitbei_id > 0');
+        }
+
+        // Join over the users for the checked out user.
 		$query->select('uc.name AS editor');
 		$query->join('LEFT', '#__users AS uc ON uc.id = plans.checked_out');
 

@@ -67,6 +67,14 @@
 			<option value="0">COM_PLANARCHIV_SELECT_ORIGINAL_NO</option>
 		</field>
 		<field
+			name="extern"
+			type="list"
+			onchange="this.form.submit();"
+		>
+			<option value="">COM_PLANARCHIV_SELECT_EXTERN</option>
+			<option value="1">COM_PLANARCHIV_SELECT_EXTERN_YES</option>
+		</field>
+		<field
 			name="ownedits"
 			type="list"
 			onchange="this.form.submit();"
