@@ -74,7 +74,7 @@ class PlanarchivViewContactform extends JViewLegacy
 		// Get model data.
 		$this->state       = $this->get('State');
 		$this->item        = $this->get('Item');
-		$this->form        = $this->get('Contactform');
+		$this->form        = $this->get('Form');
 		$this->return_page = $this->get('ReturnPage');
 
 		if (empty($this->item->id))

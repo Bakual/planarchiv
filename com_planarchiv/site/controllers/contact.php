@@ -10,6 +10,7 @@
 defined('_JEXEC') or die;
 
 use Joomla\CMS\Factory;
+use Joomla\CMS\MVC\Controller\FormController;
 use Joomla\CMS\Uri\Uri;
 use Joomla\Utilities\ArrayHelper;
 
@@ -18,7 +19,7 @@ use Joomla\Utilities\ArrayHelper;
  *
  * @since  1.5.19
  */
-class ContactControllerContact extends JControllerForm
+class PlanarchivControllerContact extends FormController
 {
 	/**
 	 * The URL view item variable.
