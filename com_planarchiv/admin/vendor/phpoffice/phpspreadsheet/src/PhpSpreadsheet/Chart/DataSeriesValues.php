@@ -2,33 +2,11 @@
 
 namespace PhpOffice\PhpSpreadsheet\Chart;
 
-use PhpOffice\PhpSpreadsheet\Calculation;
+use PhpOffice\PhpSpreadsheet\Calculation\Calculation;
 use PhpOffice\PhpSpreadsheet\Calculation\Functions;
-use PhpOffice\PhpSpreadsheet\Cell;
-use PhpOffice\PhpSpreadsheet\Worksheet;
+use PhpOffice\PhpSpreadsheet\Cell\Coordinate;
+use PhpOffice\PhpSpreadsheet\Worksheet\Worksheet;
 
-/**
- * Copyright (c) 2006 - 2016 PhpSpreadsheet.
- *
- * This library is free software; you can redistribute it and/or
- * modify it under the terms of the GNU Lesser General Public
- * License as published by the Free Software Foundation; either
- * version 2.1 of the License, or (at your option) any later version.
- *
- * This library is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
- * Lesser General Public License for more details.
- *
- * You should have received a copy of the GNU Lesser General Public
- * License along with this library; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
- *
- * @category    PhpSpreadsheet
- *
- * @copyright    Copyright (c) 2006 - 2016 PhpSpreadsheet (https://github.com/PHPOffice/PhpSpreadsheet)
- * @license        http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
- */
 class DataSeriesValues
 {
     const DATASERIES_TYPE_STRING = 'String';
@@ -82,16 +60,31 @@ class DataSeriesValues
     private $dataValues = [];
 
     /**
+     * Fill color (can be array with colors if dataseries have custom colors).
+     *
+     * @var string|string[]
+     */
+    private $fillColor;
+
+    /**
+     * Line Width.
+     *
+     * @var int
+     */
+    private $lineWidth = 12700;
+
+    /**
      * Create a new DataSeriesValues object.
      *
-     * @param mixed $dataType
+     * @param string $dataType
      * @param string $dataSource
      * @param null|mixed $formatCode
-     * @param mixed $pointCount
+     * @param int $pointCount
      * @param mixed $dataValues
      * @param null|mixed $marker
+     * @param null|string|string[] $fillColor
      */
-    public function __construct($dataType = self::DATASERIES_TYPE_NUMBER, $dataSource = null, $formatCode = null, $pointCount = 0, $dataValues = [], $marker = null)
+    public function __construct($dataType = self::DATASERIES_TYPE_NUMBER, $dataSource = null, $formatCode = null, $pointCount = 0, $dataValues = [], $marker = null, $fillColor = null)
     {
         $this->setDataType($dataType);
         $this->dataSource = $dataSource;
@@ -99,6 +92,7 @@ class DataSeriesValues
         $this->pointCount = $pointCount;
         $this->dataValues = $dataValues;
         $this->pointMarker = $marker;
+        $this->fillColor = $fillColor;
     }
 
     /**
@@ -218,14 +212,88 @@ class DataSeriesValues
     }
 
     /**
+     * Get fill color.
+     *
+     * @return string|string[] HEX color or array with HEX colors
+     */
+    public function getFillColor()
+    {
+        return $this->fillColor;
+    }
+
+    /**
+     * Set fill color for series.
+     *
+     * @param string|string[] $color HEX color or array with HEX colors
+     *
+     * @return   DataSeriesValues
+     */
+    public function setFillColor($color)
+    {
+        if (is_array($color)) {
+            foreach ($color as $colorValue) {
+                $this->validateColor($colorValue);
+            }
+        } else {
+            $this->validateColor($color);
+        }
+        $this->fillColor = $color;
+
+        return $this;
+    }
+
+    /**
+     * Method for validating hex color.
+     *
+     * @param string $color value for color
+     *
+     * @throws \Exception thrown if color is invalid
+     *
+     * @return bool true if validation was successful
+     */
+    private function validateColor($color)
+    {
+        if (!preg_match('/^[a-f0-9]{6}$/i', $color)) {
+            throw new Exception(sprintf('Invalid hex color for chart series (color: "%s")', $color));
+        }
+
+        return true;
+    }
+
+    /**
+     * Get line width for series.
+     *
+     * @return int
+     */
+    public function getLineWidth()
+    {
+        return $this->lineWidth;
+    }
+
+    /**
+     * Set line width for the series.
+     *
+     * @param int $width
+     *
+     * @return DataSeriesValues
+     */
+    public function setLineWidth($width)
+    {
+        $minWidth = 12700;
+        $this->lineWidth = max($minWidth, $width);
+
+        return $this;
+    }
+
+    /**
      * Identify if the Data Series is a multi-level or a simple series.
      *
-     * @return bool|null
+     * @return null|bool
      */
     public function isMultiLevelSeries()
     {
         if (count($this->dataValues) > 0) {
-            return is_array($this->dataValues[0]);
+            return is_array(array_values($this->dataValues)[0]);
         }
 
         return null;
@@ -308,12 +376,8 @@ class DataSeriesValues
                 }
                 unset($dataValue);
             } else {
-                $cellRange = explode('!', $this->dataSource);
-                if (count($cellRange) > 1) {
-                    list(, $cellRange) = $cellRange;
-                }
-
-                $dimensions = Cell::rangeDimension(str_replace('$', '', $cellRange));
+                list($worksheet, $cellRange) = Worksheet::extractSheetTitle($this->dataSource, true);
+                $dimensions = Coordinate::rangeDimension(str_replace('$', '', $cellRange));
                 if (($dimensions[0] == 1) || ($dimensions[1] == 1)) {
                     $this->dataValues = Functions::flattenArray($newDataValues);
                 } else {

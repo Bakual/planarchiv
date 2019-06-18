@@ -2,30 +2,8 @@
 
 namespace PhpOffice\PhpSpreadsheet\Shared;
 
-use PhpOffice\PhpSpreadsheet\Calculation;
+use PhpOffice\PhpSpreadsheet\Calculation\Calculation;
 
-/**
- * Copyright (c) 2006 - 2016 PhpSpreadsheet.
- *
- * This library is free software; you can redistribute it and/or
- * modify it under the terms of the GNU Lesser General Public
- * License as published by the Free Software Foundation; either
- * version 2.1 of the License, or (at your option) any later version.
- *
- * This library is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
- * Lesser General Public License for more details.
- *
- * You should have received a copy of the GNU Lesser General Public
- * License along with this library; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
- *
- * @category   PhpSpreadsheet
- *
- * @copyright  Copyright (c) 2006 - 2016 PhpSpreadsheet (https://github.com/PHPOffice/PhpSpreadsheet)
- * @license    http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
- */
 class StringHelper
 {
     /**    Constants                */
@@ -74,6 +52,13 @@ class StringHelper
      * @var bool
      */
     private static $isIconvEnabled;
+
+    /**
+     * iconv options.
+     *
+     * @var string
+     */
+    private static $iconvOptions = '//IGNORE//TRANSLIT';
 
     /**
      * Build control characters array.
@@ -155,7 +140,7 @@ class StringHelper
             "\x1BNz" => 'œ', // 156 in CP1252
             "\x1B)>" => 'ž', // 158 in CP1252
             "\x1B)?" => 'Ÿ', // 159 in CP1252
-            "\x1B*0" => ' ', // 160 in CP1252
+            "\x1B*0" => ' ', // 160 in CP1252
             "\x1BN!" => '¡', // 161 in CP1252
             "\x1BN\"" => '¢', // 162 in CP1252
             "\x1BN#" => '£', // 163 in CP1252
@@ -265,46 +250,34 @@ class StringHelper
             return self::$isIconvEnabled;
         }
 
+        // Assume no problems with iconv
+        self::$isIconvEnabled = true;
+
         // Fail if iconv doesn't exist
         if (!function_exists('iconv')) {
             self::$isIconvEnabled = false;
-
-            return false;
-        }
-
-        // Sometimes iconv is not working, and e.g. iconv('UTF-8', 'UTF-16LE', 'x') just returns false,
-        if (!@iconv('UTF-8', 'UTF-16LE', 'x')) {
+        } elseif (!@iconv('UTF-8', 'UTF-16LE', 'x')) {
+            // Sometimes iconv is not working, and e.g. iconv('UTF-8', 'UTF-16LE', 'x') just returns false,
             self::$isIconvEnabled = false;
-
-            return false;
-        }
-
-        // Sometimes iconv_substr('A', 0, 1, 'UTF-8') just returns false in PHP 5.2.0
-        // we cannot use iconv in that case either (http://bugs.php.net/bug.php?id=37773)
-        if (!@iconv_substr('A', 0, 1, 'UTF-8')) {
+        } elseif (defined('PHP_OS') && @stristr(PHP_OS, 'AIX') && defined('ICONV_IMPL') && (@strcasecmp(ICONV_IMPL, 'unknown') == 0) && defined('ICONV_VERSION') && (@strcasecmp(ICONV_VERSION, 'unknown') == 0)) {
+            // CUSTOM: IBM AIX iconv() does not work
             self::$isIconvEnabled = false;
-
-            return false;
         }
 
-        // CUSTOM: IBM AIX iconv() does not work
-        if (defined('PHP_OS') && @stristr(PHP_OS, 'AIX') && defined('ICONV_IMPL') && (@strcasecmp(ICONV_IMPL, 'unknown') == 0) && defined('ICONV_VERSION') && (@strcasecmp(ICONV_VERSION, 'unknown') == 0)) {
-            self::$isIconvEnabled = false;
-
-            return false;
+        // Deactivate iconv default options if they fail (as seen on IMB i)
+        if (self::$isIconvEnabled && !@iconv('UTF-8', 'UTF-16LE' . self::$iconvOptions, 'x')) {
+            self::$iconvOptions = '';
         }
 
-        // If we reach here no problems were detected with iconv
-        self::$isIconvEnabled = true;
-
-        return true;
+        return self::$isIconvEnabled;
     }
 
-    public static function buildCharacterSets()
+    private static function buildCharacterSets()
     {
         if (empty(self::$controlCharacters)) {
             self::buildControlCharacters();
         }
+
         if (empty(self::$SYLKCharacters)) {
             self::buildSYLKCharacters();
         }
@@ -327,6 +300,8 @@ class StringHelper
      */
     public static function controlCharacterOOXML2PHP($value)
     {
+        self::buildCharacterSets();
+
         return str_replace(array_keys(self::$controlCharacters), array_values(self::$controlCharacters), $value);
     }
 
@@ -347,6 +322,8 @@ class StringHelper
      */
     public static function controlCharacterPHP2OOXML($value)
     {
+        self::buildCharacterSets();
+
         return str_replace(array_values(self::$controlCharacters), array_keys(self::$controlCharacters), $value);
     }
 
@@ -470,7 +447,7 @@ class StringHelper
     public static function convertEncoding($value, $to, $from)
     {
         if (self::getIsIconvEnabled()) {
-            $result = iconv($from, $to . '//IGNORE//TRANSLIT', $value);
+            $result = iconv($from, $to . self::$iconvOptions, $value);
             if (false !== $result) {
                 return $result;
             }
@@ -713,6 +690,8 @@ class StringHelper
      */
     public static function SYLKtoUTF8($pValue)
     {
+        self::buildCharacterSets();
+
         // If there is no escape character in the string there is nothing to do
         if (strpos($pValue, '') === false) {
             return $pValue;

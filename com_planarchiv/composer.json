@@ -20,6 +20,7 @@
     "post-update-cmd": "Bakual\\Planarchiv\\ComposerCommands::cleanup"
   },
   "require": {
-    "phpoffice/phpspreadsheet": "1.0.0-beta"
+    "phpoffice/phpspreadsheet": "1.*",
+    "jeroendesloovere/vcard": "1.*"
   }
 }

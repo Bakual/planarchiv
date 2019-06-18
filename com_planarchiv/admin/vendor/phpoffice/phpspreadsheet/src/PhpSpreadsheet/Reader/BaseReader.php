@@ -2,30 +2,9 @@
 
 namespace PhpOffice\PhpSpreadsheet\Reader;
 
+use PhpOffice\PhpSpreadsheet\Reader\Security\XmlScanner;
 use PhpOffice\PhpSpreadsheet\Shared\File;
 
-/**
- * Copyright (c) 2006 - 2016 PhpSpreadsheet.
- *
- * This library is free software; you can redistribute it and/or
- * modify it under the terms of the GNU Lesser General Public
- * License as published by the Free Software Foundation; either
- * version 2.1 of the License, or (at your option) any later version.
- *
- * This library is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
- * Lesser General Public License for more details.
- *
- * You should have received a copy of the GNU Lesser General Public
- * License along with this library; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
- *
- * @category   PhpSpreadsheet
- *
- * @copyright  Copyright (c) 2006 - 2016 PhpSpreadsheet (https://github.com/PHPOffice/PhpSpreadsheet)
- * @license    http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
- */
 abstract class BaseReader implements IReader
 {
     /**
@@ -69,7 +48,12 @@ abstract class BaseReader implements IReader
      */
     protected $readFilter;
 
-    protected $fileHandle = null;
+    protected $fileHandle;
+
+    /**
+     * @var XmlScanner
+     */
+    protected $securityScanner;
 
     /**
      * Read data only?
@@ -226,14 +210,21 @@ abstract class BaseReader implements IReader
         return $this;
     }
 
+    public function getSecuritySCanner()
+    {
+        if (property_exists($this, 'securityScanner')) {
+            return $this->securityScanner;
+        }
+
+        return null;
+    }
+
     /**
      * Open file for reading.
      *
      * @param string $pFilename
      *
      * @throws Exception
-     *
-     * @return resource
      */
     protected function openFile($pFilename)
     {
@@ -244,34 +235,5 @@ abstract class BaseReader implements IReader
         if ($this->fileHandle === false) {
             throw new Exception('Could not open file ' . $pFilename . ' for reading.');
         }
-    }
-
-    /**
-     * Scan theXML for use of <!ENTITY to prevent XXE/XEE attacks.
-     *
-     * @param string $xml
-     *
-     * @throws Exception
-     */
-    public function securityScan($xml)
-    {
-        $pattern = '/\\0?' . implode('\\0?', str_split('<!DOCTYPE')) . '\\0?/';
-        if (preg_match($pattern, $xml)) {
-            throw new Exception('Detected use of ENTITY in XML, spreadsheet file load() aborted to prevent XXE/XEE attacks');
-        }
-
-        return $xml;
-    }
-
-    /**
-     * Scan theXML for use of <!ENTITY to prevent XXE/XEE attacks.
-     *
-     * @param string $filestream
-     *
-     * @throws Exception
-     */
-    public function securityScanFile($filestream)
-    {
-        return $this->securityScan(file_get_contents($filestream));
     }
 }
