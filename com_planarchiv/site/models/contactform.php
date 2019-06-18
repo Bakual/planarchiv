@@ -41,6 +41,24 @@ class PlanarchivModelContactform extends ContactModelContact
 	protected $formName = 'contactform';
 
 	/**
+	 * Returns a Table object, always creating it
+	 *
+	 * @param   string  $type    The table type to instantiate
+	 * @param   string  $prefix  A prefix for the table class name. Optional.
+	 * @param   array   $config  Configuration array for model. Optional.
+	 *
+	 * @return  JTable  A database object
+	 *
+	 * @since   1.6
+	 */
+	public function getTable($type = 'Contact', $prefix = 'ContactTable', $config = array())
+	{
+		JTable::addIncludePath(JPATH_ADMINISTRATOR . '/components/com_contact/tables');
+
+		return parent::getTable($type, $prefix, $config);
+	}
+
+	/**
 	 * Method to get contact data.
 	 *
 	 * @param   integer  $itemId  The id of the contact.

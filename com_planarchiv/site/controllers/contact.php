@@ -35,7 +35,7 @@ class PlanarchivControllerContact extends FormController
 	 * @var    string
 	 * @since  __DEPLOY_VERSION__
 	 */
-	protected $view_list = 'categories';
+	protected $view_list = 'plans';
 
 	/**
 	 * Method to get a model object, loading it if required.
