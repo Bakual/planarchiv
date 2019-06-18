@@ -21,6 +21,7 @@
   },
   "require": {
     "phpoffice/phpspreadsheet": "1.*",
-    "jeroendesloovere/vcard": "1.*"
+    "jeroendesloovere/vcard": "1.*",
+    "moxiecode/plupload": "2.*"
   }
 }

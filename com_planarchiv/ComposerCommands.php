@@ -6,22 +6,41 @@ class ComposerCommands
 {
 	public static function cleanup()
 	{
+		self::deleteDirectory('jeroendesloovere/vcard/examples');
+		self::deleteDirectory('jeroendesloovere/vcard/tests');
+		self::deleteDirectory('markbaker/complex/examples');
+		self::deleteDirectory('markbaker/matrix/examples');
+		self::deleteDirectory('moxiecode/plupload/examples');
 		self::deleteDirectory('phpoffice/phpspreadsheet/.github');
 		self::deleteDirectory('phpoffice/phpspreadsheet/bin');
 		self::deleteDirectory('phpoffice/phpspreadsheet/docs');
 		self::deleteDirectory('phpoffice/phpspreadsheet/samples');
 		$files = array(
-			'phpoffice\phpspreadsheet\.gitattributes',
-			'phpoffice\phpspreadsheet\.gitignore',
-			'phpoffice\phpspreadsheet\.php_cs.dist',
-			'phpoffice\phpspreadsheet\.travis.yml',
-			'phpoffice\phpspreadsheet\CHANGELOG.md',
-			'phpoffice\phpspreadsheet\CHANGELOG.PHPExcel.md',
-			'phpoffice\phpspreadsheet\CONTRIBUTING.md',
-			'phpoffice\phpspreadsheet\mkdocs.yml',
-			'phpoffice\phpspreadsheet\phpunit.xml.dist',
+			'behat/transliterator/CHANGELOG.md',
+			'behat/transliterator/CONTRIBUTING.md',
+			'behat/transliterator/README.md',
+			'jeroendesloovere/vcard/.gitignore',
+			'jeroendesloovere/vcard/.travis.yml',
+			'jeroendesloovere/vcard/CHANGELOG.md',
+			'jeroendesloovere/vcard/phpunit.xml.dist',
+			'jeroendesloovere/vcard/README.md',
+			'markbaker/complex/README.md',
+			'markbaker/matrix/buildPhar.php',
+			'markbaker/matrix/README.md',
+			'moxiecode/plupload/bower.json',
+			'moxiecode/plupload/readme.md',
+			'phpoffice/phpspreadsheet/.gitattributes',
+			'phpoffice/phpspreadsheet/.gitignore',
+			'phpoffice/phpspreadsheet/.php_cs.dist',
+			'phpoffice/phpspreadsheet/.sami.php',
+			'phpoffice/phpspreadsheet/.scrutinizer.yml',
+			'phpoffice/phpspreadsheet/.travis.yml',
+			'phpoffice/phpspreadsheet/CHANGELOG.md',
+			'phpoffice/phpspreadsheet/CHANGELOG.PHPExcel.md',
+			'phpoffice/phpspreadsheet/CONTRIBUTING.md',
+			'phpoffice/phpspreadsheet/mkdocs.yml',
+			'phpoffice/phpspreadsheet/phpunit.xml.dist',
 			'psr/simple-cache/.editorconfig',
-			'psr/simple-cache/composer.json',
 			'psr/simple-cache/README.md',
 		);
 
