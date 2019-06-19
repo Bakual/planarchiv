@@ -9,6 +9,9 @@
 
 defined('_JEXEC') or die();
 
+// loading composer autoloader
+require_once JPATH_COMPONENT_ADMINISTRATOR . '/vendor/autoload.php';
+
 $jinput = JFactory::getApplication()->input;
 
 // Register Helperclasses for autoloading

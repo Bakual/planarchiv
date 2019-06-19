@@ -25,6 +25,14 @@
 			class="input-xxlarge"
 		/>
 		<field
+			name="vcard_category"
+			type="categoryedit"
+			label="COM_PLANARCHIV_FIELD_VCARD_CATEGORY_LABEL"
+			description="COM_PLANARCHIV_FIELD_VCARD_CATEGORY_LABEL"
+			extension="com_contact"
+			addfieldpath="/administrator/components/com_categories/models/fields"
+		/>
+		<field
 			name="save_history"
 			type="hidden"
 			default="1"

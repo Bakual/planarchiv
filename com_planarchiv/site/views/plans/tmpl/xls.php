@@ -9,9 +9,6 @@
 
 defined('_JEXEC') or die();
 
-// loading composer autoloader
-require_once JPATH_COMPONENT_ADMINISTRATOR . '/vendor/autoload.php';
-
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 \PhpOffice\PhpSpreadsheet\Cell::setValueBinder(new \PhpOffice\PhpSpreadsheet\Cell\AdvancedValueBinder());

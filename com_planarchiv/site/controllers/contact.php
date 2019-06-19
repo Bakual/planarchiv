@@ -17,7 +17,7 @@ use Joomla\Utilities\ArrayHelper;
 /**
  * Controller for single contact view
  *
- * @since  1.5.19
+ * @since  1.0.0
  */
 class PlanarchivControllerContact extends FormController
 {
