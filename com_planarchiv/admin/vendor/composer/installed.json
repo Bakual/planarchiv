@@ -266,44 +266,6 @@
         ]
     },
     {
-        "name": "moxiecode/plupload",
-        "version": "v2.3.6",
-        "version_normalized": "2.3.6.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/moxiecode/plupload.git",
-            "reference": "0f37b16e6cecdc0cda1c1ba470aaeef1dc01f26a"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/moxiecode/plupload/zipball/0f37b16e6cecdc0cda1c1ba470aaeef1dc01f26a",
-            "reference": "0f37b16e6cecdc0cda1c1ba470aaeef1dc01f26a",
-            "shasum": ""
-        },
-        "time": "2017-11-03T06:46:59+00:00",
-        "type": "library",
-        "installation-source": "dist",
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "(AGPLv3 or OEM)"
-        ],
-        "authors": [
-            {
-                "name": "Davit Barbakadze",
-                "email": "david@moxiecode.com",
-                "role": "Maintainer"
-            }
-        ],
-        "description": "Plupload is a JavaScript API for dealing with file uploads it supports features like multiple file selection, file type filtering, request chunking, client side image scaling and it uses different runtimes to achieve this such as HTML 5, Silverlight and Flash.",
-        "homepage": "http://plupload.com",
-        "keywords": [
-            "file upload",
-            "legacy browser support",
-            "multi-runtime",
-            "plupload"
-        ]
-    },
-    {
         "name": "phpoffice/phpspreadsheet",
         "version": "1.7.0",
         "version_normalized": "1.7.0.0",
