@@ -15,5 +15,6 @@
 	<description>PlanArchiv Packages</description>
 	<files>
 		<file type="component" id="com_planarchiv">com_planarchiv.zip</file>
+		<file type="module" id="mod_vcardupload">mod_vcardupload.zip</file>
 	</files>
 </extension>

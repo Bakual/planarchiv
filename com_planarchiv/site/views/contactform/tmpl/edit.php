@@ -34,34 +34,6 @@ JFactory::getDocument()->addScriptDeclaration('
 		}
 	};
 ');
-
-// Uploader
-HTMLHelper::_('jquery.framework');
-HTMLHelper::script('administrator/components/com_planarchiv/vendor/moxiecode/plupload/js/plupload.full.min.js');
-$uploadURL = JUri::base() . 'index.php?option=com_planarchiv&task=vcard.upload&'
-	. JSession::getFormToken() . '=1&format=json';
-JFactory::getDocument()->addScriptDeclaration('
-			jQuery(document).ready(function() {
-				var vcard_uploader = new plupload.Uploader({
-					browse_button: "vcard_upload",
-					url: "' . $uploadURL . '",
-					filters : {
-						mime_types: [
-							{title : "VCards", extensions : "vcf"},
-						]
-					},
-					init: {
-						FilesAdded: function(up, files) {
-							up.start();
-						}
-					},
-					Error: function(up, err) {
-						document.getElementById(\'console\').appendChild(document.createTextNode("\nError #" + err.code + ": " + err.message));
-					}
-				});
-				vcard_uploader.init();
-			});
-		');
 ?>
 <div class="edit item-page<?php echo $this->pageclass_sfx; ?>">
 	<?php if ($this->params->get('show_page_heading')) : ?>
@@ -108,11 +80,6 @@ JFactory::getDocument()->addScriptDeclaration('
 					<span class="icon-cancel" aria-hidden="true"></span><?php echo Text::_('JCANCEL'); ?>
 				</button>
 			</div>
-			<div class="btn-group">
-				<button type="button" class="btn" id="vcard_upload">
-					<span class="icon-upload" aria-hidden="true"></span><?php echo Text::_('Upload'); ?>
-				</button>
-			</div>
 			<?php if ($this->params->get('save_history', 0) && $this->item->id) : ?>
 				<div class="btn-group">
 					<?php echo $this->form->getInput('contenthistory'); ?>
@@ -120,6 +87,4 @@ JFactory::getDocument()->addScriptDeclaration('
 			<?php endif; ?>
 		</div>
 	</form>
-	<br />
-	<pre id="console"></pre>
 </div>

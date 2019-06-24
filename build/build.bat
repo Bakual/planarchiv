@@ -12,6 +12,11 @@ cd ../com_planarchiv/
 zip -r ../build/packages/com_planarchiv.zip *
 copy ..\build\packages\com_planarchiv.zip ..\build\package
 
+REM Module
+cd ../mod_vcardupload/
+zip -r ../build/packages/mod_vcardupload.zip *
+copy ..\build\packages\mod_vcardupload.zip ..\build\package
+
 REM Package
 cd ../build/package/
 copy ..\..\pkg_planarchiv.xml

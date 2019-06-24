@@ -9,8 +9,12 @@
 
 defined('_JEXEC') or die;
 
+use JeroenDesloovere\VCard\VCardParser;
 use Joomla\CMS\Factory;
+use Joomla\CMS\Filesystem\File;
+use Joomla\CMS\Language\Text;
 use Joomla\CMS\MVC\Controller\FormController;
+use Joomla\CMS\Router\Route;
 use Joomla\CMS\Uri\Uri;
 use Joomla\Utilities\ArrayHelper;
 
@@ -51,6 +55,100 @@ class PlanarchivControllerContact extends FormController
 	public function getModel($name = 'contactform', $prefix = '', $config = array('ignore_request' => true))
 	{
 		return parent::getModel($name, $prefix, array('ignore_request' => false));
+	}
+
+	/**
+	 * Upload a file
+	 *
+	 * @return  void  Echoes an AJAX response
+	 *
+	 * @throws Exception
+	 *
+	 * @since 1.0.0
+	 */
+	public function upload()
+	{
+		// Initialise variables.
+		/** @var JApplicationSite $app */
+		$app = Factory::getApplication();
+		$params = $app->getParams('com_planarchiv');
+		$jinput = $app->input;
+		$Itemid = $jinput->get('Itemid');
+		$this->checkToken();
+
+		// Authorize User
+		$user = Factory::getUser();
+
+		if (!$user->authorise('core.create', 'com_contact'))
+		{
+			$app->enqueueMessage(Text::_('JGLOBAL_AUTH_ACCESS_DENIED'), 'warning');
+			$app->redirect(Route::_('index.php?Itemid=' . $Itemid));
+		}
+
+		// Get some data from the request
+		$file = $jinput->files->get('vcard');
+
+		if (!$file['name'])
+		{
+			$app->enqueueMessage(Text::_('COM_CONTACT_UPLOAD_FAILED'), 'warning');
+			$app->redirect(Route::_('index.php?Itemid=' . $Itemid));
+		}
+
+		// Check file extension
+		$ext = File::getExt($file['name']);
+
+		if ($ext !== 'vcf')
+		{
+			$app->enqueueMessage(Text::_('COM_CONTACT_FILETYPE_NOT_ALLOWED'), 'warning');
+			$app->redirect(Route::_('index.php?Itemid=' . $Itemid));
+		}
+
+		$vcard = VCardParser::parseFromFile($file['tmp_name']);
+		$item = $vcard->getCardAtIndex(0);
+
+		$contactModel = $this->getModel();
+		$contact = $contactModel->getItem();
+		$contact->published   = $user->authorise('core.edit.state', 'com_contact') ? 1 : 0;
+		$contact->catid   = $params->get('vcard_category');
+		$contact->name   = $item->fullname;
+
+		if (!empty($item->address['WORK'][0]))
+		{
+			$contact->address   = $item->address['WORK'][0]->street;
+			$contact->suburb   = $item->address['WORK'][0]->city;
+			$contact->postcode   = $item->address['WORK'][0]->zip;
+			$contact->state   = $item->address['WORK'][0]->region;
+			$contact->country   = $item->address['WORK'][0]->country;
+		}
+
+		if (!empty($item->email[0][0]))
+		{
+			$contact->email_to   = $item->email[0][0];
+		}
+
+		if (!empty($item->url[0][0]))
+		{
+			$contact->website   = $item->url[0][0];
+		}
+
+		if (!empty($item->phone[0][0]))
+		{
+			$contact->telephone   = $item->phone[0][0];
+		}
+
+		if (!$contactModel->save($contact->getProperties()))
+		{
+			$app->enqueueMessage(Text::sprintf('JLIB_APPLICATION_ERROR_SAVE_FAILED', $contactModel->getError()));
+			$app->redirect('index.php?Itemid=' . $Itemid);
+		}
+
+		$table = $contactModel->getTable();
+		$table->load(array('name' => $item->fullname));
+
+		$app->enqueueMessage(Text::_('JLIB_APPLICATION_SAVE_SUCCESS'));
+
+		$redirect = 'index.php?option=com_planarchiv&task=contact.edit&id=' . $table->id . '&Itemid=' . $jinput->get('Itemid');
+		$app->redirect($redirect);
 	}
 
 	/**
