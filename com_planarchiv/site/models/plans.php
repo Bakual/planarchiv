@@ -185,7 +185,7 @@ class PlanarchivModelPlans extends JModelList
 		// Filter by DiDok
 		if ($didok = (int) $this->getState('filter.didok_id'))
 		{
-			$query->where('didok.id = ' . $didok);
+			$query->where('(didok.id = ' . $didok . ' OR richtung.id = ' . $didok . ')');
 		}
 
 		// Filter by search in title
@@ -194,7 +194,7 @@ class PlanarchivModelPlans extends JModelList
 		if ($search)
 		{
 			$search = $db->quote('%' . $db->escape($search, true) . '%');
-			$query->where('(plans.title LIKE ' . $search . ' OR plans.Bemerkung LIKE ' . $search . ') ');
+			$query->where('(plans.title LIKE ' . $search . ' OR plans.Bemerkung LIKE ' . $search . ')');
 		}
 
 		// Filter by state
@@ -228,7 +228,7 @@ class PlanarchivModelPlans extends JModelList
 		}
 		elseif ($strecke == 'O')
 		{
-			$query->where('plans.Strecke IS NULL');
+			$query->where('(plans.Strecke IS NULL OR plans.Strecke = "")');
 		}
 
 		// Filter by Mängelliste
