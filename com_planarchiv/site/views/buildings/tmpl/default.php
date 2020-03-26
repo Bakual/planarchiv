@@ -9,6 +9,8 @@
 
 defined('_JEXEC') or die();
 
+use Joomla\CMS\Language\Text;
+
 JHtml::addIncludePath(JPATH_COMPONENT . '/helpers');
 
 JHtml::_('behavior.core');
@@ -34,26 +36,55 @@ $filters = $this->filterForm->getGroup('filter');
             <?php endforeach; ?>
         </div>
         <hr>
-        <?php if (empty($this->items)) : ?>
-            <div class="alert alert-no-items">
-                <?php echo JText::_('JGLOBAL_NO_MATCHING_RESULTS'); ?>
-            </div>
-        <?php else : ?>
-            <ul class="unstyled">
-                <?php foreach ($this->items as $item) : ?>
-                    <li>
-                        <?php $params = '&filter[didok_id]=' . $item->didok_id . '&filter[dfa_id]=' . $item->dfa_id . '&filter[GebDfaLfnr]=' . $item->GebDfaLfnr; ?>
-                        <a href="<?php echo JRoute::_('index.php?option=com_planarchiv&view=plans' . $params); ?>">
-                            <?php echo $item->dfa_title . ' (' . $item->dfa_code . $item->GebDfaLfnr . ')'; ?>
-                        </a>
-                    </li>
-                <?php endforeach; ?>
-            </ul>
-        <?php endif; ?>
-        <div class="pull-right">
-            <?php echo $this->pagination->getResultsCounter() ?>
-        </div>
-        <?php echo $this->pagination->getListFooter(); ?>
+		<div class="row-fluid">
+			<div class="span6">
+				<fieldset>
+					<legend><?php echo Text::_('COM_PLANARCHIV_DFA_LABEL'); ?></legend>
+					<?php if (empty($this->items)) : ?>
+						<div class="alert alert-no-items">
+							<?php echo Text::_('JGLOBAL_NO_MATCHING_RESULTS'); ?>
+						</div>
+					<?php else : ?>
+						<ul class="unstyled">
+							<?php $didok = $this->activeFilters['didok_id']; ?>
+							<?php foreach ($this->items as $item) : ?>
+								<li>
+									<?php $params = '&filter[didok_id]=' . $item->didok_id . '&filter[dfa_id]=' . $item->dfa_id . '&filter[GebDfaLfnr]=' . $item->GebDfaLfnr; ?>
+									<a href="<?php echo JRoute::_('index.php?option=com_planarchiv&view=plans' . $params); ?>">
+										<?php echo $item->dfa_title . ' (' . $item->dfa_code . $item->GebDfaLfnr . ')'; ?>
+									</a>
+								</li>
+							<?php endforeach; ?>
+						</ul>
+					<?php endif; ?>
+					<div>
+						<?php echo $this->pagination->getResultsCounter() ?>
+					</div>
+					<?php echo $this->pagination->getListFooter(); ?>
+				</fieldset>
+			</div>
+			<div class="span6">
+				<fieldset>
+					<legend><?php echo Text::_('COM_PLANARCHIV_STRECKE_LABEL'); ?></legend>
+					<?php if (empty($this->strecken)) : ?>
+						<div class="alert alert-no-items">
+							<?php echo Text::_('JGLOBAL_NO_MATCHING_RESULTS'); ?>
+						</div>
+					<?php else : ?>
+						<ul class="unstyled">
+							<?php foreach ($this->strecken as $item) : ?>
+								<li>
+									<?php $params = '&filter[Strecke]=S&filter[didok_id]=' . $item->didok_id . '&filter[richtung_didok_id]=' . $item->richtung_didok_id; ?>
+									<a href="<?php echo JRoute::_('index.php?option=com_planarchiv&view=plans' . $params); ?>">
+										<?php echo $item->didok_title . ' - ' . $item->richtung_title; ?>
+									</a>
+								</li>
+							<?php endforeach; ?>
+						</ul>
+					<?php endif; ?>
+				</fieldset>
+			</div>
+		</div>
         <div class="clearfix"></div>
     </div>
 </form>

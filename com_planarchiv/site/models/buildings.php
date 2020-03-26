@@ -112,6 +112,59 @@ class PlanarchivModelBuildings extends JModelList
 	}
 
 	/**
+	 * Get the master query for retrieving a list of items subject to the model state.
+	 *
+	 * @return object[]
+	 *
+	 * @since 1.0.0
+	 */
+	public function getStrecken()
+	{
+		$langCode = substr(JFactory::getLanguage()->getTag(), 0, 2);
+
+		// Create a new query object.
+		$db    = $this->getDbo();
+		$query = $db->getQuery(true);
+
+		// Select required fields from the table.
+		$query->select('`plans`.`didok_id`, `plans`.`richtung_didok_id`');
+		$query->from('#__planarchiv_plan AS plans');
+		$query->where('`plans`.`richtung_didok_id` != 0');
+
+		// Join over DiDok for the Richtung.
+		$query->select('richtung.title AS richtung_title');
+		$query->join('LEFT', '#__planarchiv_didok AS richtung ON richtung.id = plans.richtung_didok_id');
+
+		// Join over DiDok for the Ort.
+		$query->select('didok.title AS didok_title, didok.didok');
+		$query->join('LEFT', '#__planarchiv_didok AS didok ON didok.id = plans.didok_id');
+
+		// Filter by DiDok
+		if ($didok = (int) $this->getState('filter.didok_id'))
+		{
+			$query->where('(didok.id = ' . $didok . ' OR richtung.id = ' . $didok . ')');
+		}
+
+		// Filter by state
+		$state = $this->getState('filter.state');
+
+		if (is_numeric($state))
+		{
+			$query->where('plans.state = ' . (int) $state);
+		}
+
+		// Do not show trashed links on the front-end
+		$query->where('plans.state != -2');
+
+		$query->group('`plans`.`didok_id`, `plans`.`richtung_didok_id`');
+
+		// Add the list ordering clause.
+		$query->order($db->escape('didok_id') . ' ASC');
+
+		return $this->_getList($query);
+	}
+
+	/**
 	 * Method to auto-populate the model state.
 	 *
 	 * Note. Calling getState in this method will result in recursion.

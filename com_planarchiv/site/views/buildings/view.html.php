@@ -41,6 +41,7 @@ class PlanarchivViewBuildings extends JViewLegacy
 		$this->pagination    = $this->get('Pagination');
 		$this->filterForm    = $this->get('FilterForm');
 		$this->activeFilters = $this->get('ActiveFilters');
+		$this->strecken      = $this->get('Strecken');
 		$this->params        = $this->state->get('params');
 
 		// Check for errors.

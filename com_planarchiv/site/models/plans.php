@@ -188,6 +188,11 @@ class PlanarchivModelPlans extends JModelList
 			$query->where('(didok.id = ' . $didok . ' OR richtung.id = ' . $didok . ')');
 		}
 
+		if ($richtung = (int) $this->getState('filter.richtung_didok_id'))
+		{
+			$query->where('(richtung.id = ' . $richtung . ')');
+		}
+
 		// Filter by search in title
 		$search = $this->getState('filter.search');
 
