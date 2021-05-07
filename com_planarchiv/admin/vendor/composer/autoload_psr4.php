@@ -11,5 +11,6 @@ return array(
     'Matrix\\' => array($vendorDir . '/markbaker/matrix/classes/src'),
     'JeroenDesloovere\\VCard\\' => array($vendorDir . '/jeroendesloovere/vcard/src'),
     'Complex\\' => array($vendorDir . '/markbaker/complex/classes/src'),
+    'Behat\\Transliterator\\' => array($vendorDir . '/behat/transliterator/src/Behat/Transliterator'),
     'Bakual\\Planarchiv\\' => array($baseDir . '/'),
 );
