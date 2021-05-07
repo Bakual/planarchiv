@@ -10,7 +10,10 @@
     }
   ],
   "config": {
-    "vendor-dir": "admin/vendor"
+    "vendor-dir": "admin/vendor",
+    "platform": {
+      "php": "7.0.18"
+    }
   },
   "autoload": {
     "psr-4": {"Bakual\\Planarchiv\\": ""}
