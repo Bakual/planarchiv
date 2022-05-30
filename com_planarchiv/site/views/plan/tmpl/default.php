@@ -9,11 +9,20 @@
 
 defined('_JEXEC') or die();
 
-JHtml::_('bootstrap.tooltip');
-JHtml::_('stylesheet', 'com_planarchiv/planarchiv.css', array('version' => 'auto', 'relative' => true));
+use Joomla\CMS\Factory;
+use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Language\Text;
+
+HtmlHelper::_('bootstrap.tooltip');
+HtmlHelper::_('stylesheet', 'com_planarchiv/planarchiv.css', array('version' => 'auto', 'relative' => true));
+HtmlHelper::_('script', 'com_planarchiv/clipboard/clipboard.min.js', array('version' => 'auto', 'relative' => true));
 JLoader::register('ContactHelperRoute', JPATH_SITE . '/components/com_contact/helpers/route.php');
 
-$user       = JFactory::getUser();
+Factory::getDocument()->addScriptDeclaration('document.addEventListener("DOMContentLoaded", function(event) {
+	new ClipboardJS(\'.clipboard\');
+})');
+
+$user       = Factory::getUser();
 $canEdit    = $user->authorise('core.edit', 'com_planarchiv.category.' . $this->item->catid);
 $canEditOwn = $user->authorise('core.edit.own', 'com_planarchiv.category.' . $this->item->catid) && $this->item->created_by == $user->id;
 ?>
@@ -172,6 +181,7 @@ $canEditOwn = $user->authorise('core.edit.own', 'com_planarchiv.category.' . $th
 				<a href="file:<?php echo str_replace('\\', '/', $path); ?>">
 					<?php echo $path; ?>
 				</a>
+				<button class="btn btn-mini clipboard" data-clipboard-text="<?php echo $path; ?>" title="<?php echo Text::_('COM_PLANARCHIV_CLIPBOARD_TOOLTIP'); ?>">Copy</button>
 			</div>
 			<div class="span8">
 				<h4><?php echo JText::_('COM_PLANARCHIV_FILES_LABEL'); ?></h4>
@@ -195,6 +205,7 @@ $canEditOwn = $user->authorise('core.edit.own', 'com_planarchiv.category.' . $th
                             <a target="_blank" href="file:<?php echo str_replace('\\', '/', $path . $linkedFile . '.pdf'); ?>">
 								<?php echo $this->escape($filename . '.pdf'); ?>
                             </a>
+							<button class="btn btn-mini clipboard" data-clipboard-text="<?php echo $path . $linkedFile . '.pdf'; ?>" title="<?php echo Text::_('COM_PLANARCHIV_CLIPBOARD_TOOLTIP'); ?>">Copy</button>
                         </dd>
                     <?php endif; ?>
 					<?php foreach ($files as $ext) : ?>
@@ -203,6 +214,7 @@ $canEditOwn = $user->authorise('core.edit.own', 'com_planarchiv.category.' . $th
 							<a target="_blank" href="file:<?php echo str_replace('\\', '/', $path . $linkedFile . '.' . $ext); ?>">
 								<?php echo $this->escape($filename . '.' . $ext); ?>
 							</a>
+							<button class="btn btn-mini clipboard" data-clipboard-text="<?php echo $path . $linkedFile . '.' . $ext; ?>" title="<?php echo Text::_('COM_PLANARCHIV_CLIPBOARD_TOOLTIP'); ?>">Copy</button>
 						</dd>
 					<?php endforeach; ?>
 				</dl>

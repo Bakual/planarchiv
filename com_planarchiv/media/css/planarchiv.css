@@ -42,3 +42,6 @@ dd.pdf {
         width: inherit;
     }
 }
+.clipboard {
+    margin-left: 5px;
+}

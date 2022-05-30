@@ -39,6 +39,7 @@
 	</files>
 	<media destination="com_planarchiv" folder="media">
 		<folder>css</folder>
+		<folder>js</folder>
 	</media>
 	<administration>
 		<menu>COM_PLANARCHIV</menu>
