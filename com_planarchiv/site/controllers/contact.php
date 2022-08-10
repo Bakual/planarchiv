@@ -202,13 +202,13 @@ class PlanarchivControllerContact extends FormController
 			$user = Factory::getUser();
 
 			// The category has been set. Check the category permissions.
-			if ($user->authorise('core.edit', $this->option . '.category.' . $categoryId))
+			if ($user->authorise('core.edit', 'com_contact.category.' . $categoryId))
 			{
 				return true;
 			}
 
 			// Fallback on edit.own.
-			if ($user->authorise('core.edit.own', $this->option . '.category.' . $categoryId))
+			if ($user->authorise('core.edit.own', 'com_contact.category.' . $categoryId))
 			{
 				return ($record->created_by == $user->id);
 			}
