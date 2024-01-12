@@ -6,8 +6,6 @@ class ComposerCommands
 {
 	public static function cleanup()
 	{
-		self::deleteDirectory('jeroendesloovere/vcard/examples');
-		self::deleteDirectory('jeroendesloovere/vcard/tests');
 		$files = array(
 			'behat/transliterator/CHANGELOG.md',
 			'behat/transliterator/CONTRIBUTING.md',
