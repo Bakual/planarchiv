@@ -3,7 +3,7 @@
         'name' => 'bakual/planarchiv',
         'pretty_version' => 'dev-master',
         'version' => 'dev-master',
-        'reference' => '6e9e0321b31515973cb7e0c6656463a6c068e20b',
+        'reference' => 'ab968488d7b5921841ac603c0329edad54530bd2',
         'type' => 'library',
         'install_path' => __DIR__ . '/../../../',
         'aliases' => array(),
@@ -13,7 +13,7 @@
         'bakual/planarchiv' => array(
             'pretty_version' => 'dev-master',
             'version' => 'dev-master',
-            'reference' => '6e9e0321b31515973cb7e0c6656463a6c068e20b',
+            'reference' => 'ab968488d7b5921841ac603c0329edad54530bd2',
             'type' => 'library',
             'install_path' => __DIR__ . '/../../../',
             'aliases' => array(),
