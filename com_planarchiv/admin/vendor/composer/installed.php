@@ -1,78 +1,77 @@
-<?php return array (
-  'root' => 
-  array (
-    'pretty_version' => 'dev-master',
-    'version' => 'dev-master',
-    'aliases' => 
-    array (
+<?php return array(
+    'root' => array(
+        'name' => 'bakual/planarchiv',
+        'pretty_version' => 'dev-master',
+        'version' => 'dev-master',
+        'reference' => '8cdd464baa4401445efa1c31a572071da282d59e',
+        'type' => 'library',
+        'install_path' => __DIR__ . '/../../../',
+        'aliases' => array(),
+        'dev' => true,
     ),
-    'reference' => 'ebd4af5817aaaf1e5c6bb5db256e096c4e21c1c0',
-    'name' => 'bakual/planarchiv',
-  ),
-  'versions' => 
-  array (
-    'bakual/planarchiv' => 
-    array (
-      'pretty_version' => 'dev-master',
-      'version' => 'dev-master',
-      'aliases' => 
-      array (
-      ),
-      'reference' => 'ebd4af5817aaaf1e5c6bb5db256e096c4e21c1c0',
+    'versions' => array(
+        'bakual/planarchiv' => array(
+            'pretty_version' => 'dev-master',
+            'version' => 'dev-master',
+            'reference' => '8cdd464baa4401445efa1c31a572071da282d59e',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../../../',
+            'aliases' => array(),
+            'dev_requirement' => false,
+        ),
+        'behat/transliterator' => array(
+            'pretty_version' => 'v1.4.0',
+            'version' => '1.4.0.0',
+            'reference' => '34490b42c5225687d9449e6476e66a03c62c43ff',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../behat/transliterator',
+            'aliases' => array(),
+            'dev_requirement' => false,
+        ),
+        'jeroendesloovere/vcard' => array(
+            'pretty_version' => 'v1.7.3',
+            'version' => '1.7.3.0',
+            'reference' => '2b8b6190c613d368b8cb6552e59cf6e6e7d0aea9',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../jeroendesloovere/vcard',
+            'aliases' => array(),
+            'dev_requirement' => false,
+        ),
+        'markbaker/complex' => array(
+            'pretty_version' => '1.5.0',
+            'version' => '1.5.0.0',
+            'reference' => 'c3131244e29c08d44fefb49e0dd35021e9e39dd2',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../markbaker/complex',
+            'aliases' => array(),
+            'dev_requirement' => false,
+        ),
+        'markbaker/matrix' => array(
+            'pretty_version' => '1.2.3',
+            'version' => '1.2.3.0',
+            'reference' => '44bb1ab01811116f01fe216ab37d921dccc6c10d',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../markbaker/matrix',
+            'aliases' => array(),
+            'dev_requirement' => false,
+        ),
+        'phpoffice/phpspreadsheet' => array(
+            'pretty_version' => '1.8.2',
+            'version' => '1.8.2.0',
+            'reference' => '0c1346a1956347590b7db09533966307d20cb7cc',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../phpoffice/phpspreadsheet',
+            'aliases' => array(),
+            'dev_requirement' => false,
+        ),
+        'psr/simple-cache' => array(
+            'pretty_version' => '1.0.1',
+            'version' => '1.0.1.0',
+            'reference' => '408d5eafb83c57f6365a3ca330ff23aa4a5fa39b',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../psr/simple-cache',
+            'aliases' => array(),
+            'dev_requirement' => false,
+        ),
     ),
-    'behat/transliterator' => 
-    array (
-      'pretty_version' => 'v1.3.0',
-      'version' => '1.3.0.0',
-      'aliases' => 
-      array (
-      ),
-      'reference' => '3c4ec1d77c3d05caa1f0bf8fb3aae4845005c7fc',
-    ),
-    'jeroendesloovere/vcard' => 
-    array (
-      'pretty_version' => '1.7.2',
-      'version' => '1.7.2.0',
-      'aliases' => 
-      array (
-      ),
-      'reference' => '21a7341a589d80196a55e1f6317468a93e57c104',
-    ),
-    'markbaker/complex' => 
-    array (
-      'pretty_version' => '1.5.0',
-      'version' => '1.5.0.0',
-      'aliases' => 
-      array (
-      ),
-      'reference' => 'c3131244e29c08d44fefb49e0dd35021e9e39dd2',
-    ),
-    'markbaker/matrix' => 
-    array (
-      'pretty_version' => '1.2.3',
-      'version' => '1.2.3.0',
-      'aliases' => 
-      array (
-      ),
-      'reference' => '44bb1ab01811116f01fe216ab37d921dccc6c10d',
-    ),
-    'phpoffice/phpspreadsheet' => 
-    array (
-      'pretty_version' => '1.8.2',
-      'version' => '1.8.2.0',
-      'aliases' => 
-      array (
-      ),
-      'reference' => '0c1346a1956347590b7db09533966307d20cb7cc',
-    ),
-    'psr/simple-cache' => 
-    array (
-      'pretty_version' => '1.0.1',
-      'version' => '1.0.1.0',
-      'aliases' => 
-      array (
-      ),
-      'reference' => '408d5eafb83c57f6365a3ca330ff23aa4a5fa39b',
-    ),
-  ),
 );
