@@ -10,13 +10,14 @@
 defined('_JEXEC') or die();
 
 use Joomla\CMS\Factory;
+use Joomla\CMS\MVC\Model\ListModel;
 
 /**
  * Model class for the PlanArchiv Component
  *
  * @since  1.0.0
  */
-class PlanarchivModelBuildings extends JModelList
+class PlanarchivModelBuildings extends ListModel
 {
 	/**
 	 * @var object

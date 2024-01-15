@@ -10,8 +10,9 @@
 defined('_JEXEC') or die;
 
 use Joomla\CMS\Factory;
+use Joomla\CMS\MVC\Model\ListModel;
 
-class PlanarchivModelDidoks extends JModelList
+class PlanarchivModelDidoks extends ListModel
 {
 	/**
 	 * Constructor.
