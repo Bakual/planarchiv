@@ -43,7 +43,7 @@ class PlanarchivViewDokutyps extends HtmlView
 	/**
 	 * A state object
 	 *
-	 * @var    JObject
+	 * @var    \Joomla\CMS\Pagination\Pagination
 	 *
 	 * @since  1.0.0
 	 */

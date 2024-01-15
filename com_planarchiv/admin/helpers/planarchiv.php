@@ -9,9 +9,11 @@
 
 defined('_JEXEC') or die;
 
+use Joomla\CMS\Access\Access;
 use Joomla\CMS\Factory;
 use Joomla\CMS\HTML\Helpers\Sidebar;
 use Joomla\CMS\Language\Text;
+use Joomla\Registry\Registry;
 
 /**
  * Planarchiv Helper
@@ -23,11 +25,11 @@ class PlanarchivHelper
 	/**
 	 * Configure the Linkbar.
 	 *
-	 * @param  string $vName The name of the active view.
-	 *
-	 * @since  1.0.0
+	 * @param string $vName The name of the active view.
 	 *
 	 * @return void
+	 * @since  1.0.0
+	 *
 	 */
 	public static function addSubmenu($vName = 'main')
 	{
@@ -66,16 +68,16 @@ class PlanarchivHelper
 	/**
 	 * Get the actions for ACL
 	 *
-	 * @since 1.0.0
-	 *
 	 * @param int $categoryId
 	 *
 	 * @return \JObject
+	 * @since 1.0.0
+	 *
 	 */
 	public static function getActions($categoryId = 0)
 	{
-		$user = Factory::getUser();
-		$result = new JObject;
+		$user   = Factory::getUser();
+		$result = new Registry();
 
 		if (empty($categoryId))
 		{
@@ -86,7 +88,7 @@ class PlanarchivHelper
 			$assetName = 'com_planarchiv.category.' . (int) $categoryId;
 		}
 
-		$actions = JAccess::getActionsFromFile(
+		$actions = Access::getActionsFromFile(
 			JPATH_ADMINISTRATOR . '/components/com_planarchiv/access.xml',
 			"/access/section[@name='component']/"
 		);

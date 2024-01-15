@@ -7,6 +7,12 @@
  * @license     http://www.gnu.org/licenses/gpl.html
  **/
 
+use Joomla\CMS\Component\Router\RouterView;
+use Joomla\CMS\Component\Router\RouterViewConfiguration;
+use Joomla\CMS\Component\Router\Rules\MenuRules;
+use Joomla\CMS\Component\Router\Rules\NomenuRules;
+use Joomla\CMS\Component\Router\Rules\StandardRules;
+
 defined('_JEXEC') or die;
 
 /**
@@ -14,7 +20,7 @@ defined('_JEXEC') or die;
  *
  * @since  1.0.0
  */
-class PlanarchivRouter extends JComponentRouterView
+class PlanarchivRouter extends RouterView
 {
 	protected $noIDs = false;
 
@@ -28,22 +34,22 @@ class PlanarchivRouter extends JComponentRouterView
 	 */
 	public function __construct($app = null, $menu = null)
 	{
-		$buildings = new JComponentRouterViewconfiguration('buildings');
+		$buildings = new RouterViewconfiguration('buildings');
 		$this->registerView($buildings);
-		$plans = new JComponentRouterViewconfiguration('plans');
+		$plans = new RouterViewconfiguration('plans');
 		$this->registerView($plans);
-		$plan = new JComponentRouterViewconfiguration('plan');
+		$plan = new RouterViewconfiguration('plan');
 		$plan->setKey('id');
 		$this->registerView($plan);
-		$form = new JComponentRouterViewconfiguration('planform');
+		$form = new RouterViewconfiguration('planform');
 		$form->setKey('id');
 		$this->registerView($form);
 
 		parent::__construct($app, $menu);
 
-		$this->attachRule(new JComponentRouterRulesMenu($this));
-		$this->attachRule(new JComponentRouterRulesStandard($this));
-		$this->attachRule(new JComponentRouterRulesNomenu($this));
+		$this->attachRule(new MenuRules($this));
+		$this->attachRule(new StandardRules($this));
+		$this->attachRule(new NomenuRules($this));
 	}
 
 	/**

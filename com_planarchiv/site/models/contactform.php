@@ -92,7 +92,7 @@ class PlanarchivModelContactform extends ContactModelContact
 		}
 
 		$properties = $table->getProperties();
-		$value      = ArrayHelper::toObject($properties, 'JObject');
+		$value      = ArrayHelper::toObject($properties, 'stdClass');
 
 		// Convert field to Registry.
 		$value->params = new Registry($value->params);
