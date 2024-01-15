@@ -25,8 +25,6 @@ JLoader::register('JFolder', JPATH_LIBRARIES . '/joomla/filesystem/folder.php');
 // Register Helperclass for autoloading
 JLoader::register('PlanarchivHelper', JPATH_COMPONENT_ADMINISTRATOR . '/helpers/planarchiv.php');
 
-HTMLHelper::_('behavior.tabstate');
-
 $controller = JControllerLegacy::getInstance('Planarchiv');
 $controller->execute(Factory::getApplication()->input->get('task'));
 $controller->redirect();
