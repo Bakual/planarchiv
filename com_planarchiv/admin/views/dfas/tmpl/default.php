@@ -12,6 +12,7 @@ defined('_JEXEC') or die;
 use Joomla\CMS\Factory;
 use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\Language\Text;
+use Joomla\CMS\Router\Route;
 
 HTMLHelper::addIncludePath(JPATH_COMPONENT . '/helpers/html');
 HTMLHelper::_('bootstrap.tooltip');
@@ -25,7 +26,7 @@ $listDirn  = $this->escape($this->state->get('list.direction'));
 $archived  = $this->state->get('filter.state') == 2 ? true : false;
 $trashed   = $this->state->get('filter.state') == -2 ? true : false;
 ?>
-<form action="<?php echo JRoute::_('index.php?option=com_planarchiv&view=dfas'); ?>" method="post" name="adminForm" id="adminForm">
+<form action="<?php echo Route::_('index.php?option=com_planarchiv&view=dfas'); ?>" method="post" name="adminForm" id="adminForm">
 <?php if(!empty($this->sidebar)): ?>
 	<div id="j-sidebar-container" class="span2">
 		<?php echo $this->sidebar; ?>
@@ -93,7 +94,7 @@ $trashed   = $this->state->get('filter.state') == -2 ? true : false;
 									<?php echo HTMLHelper::_('jgrid.checkedout', $i, $item->editor, $item->checked_out_time, 'dfas.', $canCheckin); ?>
 								<?php endif; ?>
 								<?php if ($canEdit || $canEditOwn) : ?>
-									<a href="<?php echo JRoute::_('index.php?option=com_planarchiv&task=dfa.edit&id=' . $item->id);?>">
+									<a href="<?php echo Route::_('index.php?option=com_planarchiv&task=dfa.edit&id=' . $item->id);?>">
 										<?php echo $this->escape($item->title); ?>
 									</a>
 								<?php else : ?>

@@ -11,6 +11,7 @@ defined('_JEXEC') or die();
 
 use Joomla\CMS\Language\Text;
 use Joomla\CMS\MVC\Controller\BaseController;
+use Joomla\CMS\Router\Route;
 
 /**
  * @since       1.0.0
@@ -44,7 +45,7 @@ class PlanarchivController extends BaseController
 			// Somehow the person just went to the form - we don't allow that.
 			$this->setError(Text::sprintf('JLIB_APPLICATION_ERROR_UNHELD_ID', $id));
 			$this->setMessage($this->getError(), 'error');
-			$this->setRedirect(JRoute::_('index.php?option=com_planarchiv&view=main', false));
+			$this->setRedirect(Route::_('index.php?option=com_planarchiv&view=main', false));
 
 			return false;
 		}

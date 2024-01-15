@@ -12,6 +12,7 @@ defined('_JEXEC') or die();
 use Joomla\CMS\Factory;
 use Joomla\CMS\Language\Text;
 use Joomla\CMS\MVC\View\HtmlView;
+use Joomla\CMS\Router\Route;
 
 /**
  * HTML View class for the PlanArchiv Component
@@ -36,7 +37,7 @@ class PlanarchivViewPlan extends HtmlView
 
 		if (!$app->input->get('id', 0, 'int'))
 		{
-			$app->redirect(JRoute::_('index.php?view=plans'), Text::_('JGLOBAL_RESOURCE_NOT_FOUND'), 'error');
+			$app->redirect(Route::_('index.php?view=plans'), Text::_('JGLOBAL_RESOURCE_NOT_FOUND'), 'error');
 		}
 
 		// Get data from the model
@@ -47,7 +48,7 @@ class PlanarchivViewPlan extends HtmlView
 
 		if (!$this->item)
 		{
-			$app->redirect(JRoute::_('index.php?view=plans'), Text::_('JGLOBAL_RESOURCE_NOT_FOUND'), 'error');
+			$app->redirect(Route::_('index.php?view=plans'), Text::_('JGLOBAL_RESOURCE_NOT_FOUND'), 'error');
 		}
 
 		// Check if access is not public
@@ -57,7 +58,7 @@ class PlanarchivViewPlan extends HtmlView
 
 			if (!in_array($this->item->category_access, $groups))
 			{
-				$app->redirect(JRoute::_('index.php?view=plans'), Text::_('JERROR_ALERTNOAUTHOR'), 'error');
+				$app->redirect(Route::_('index.php?view=plans'), Text::_('JERROR_ALERTNOAUTHOR'), 'error');
 			}
 		}
 

@@ -12,6 +12,7 @@ defined('_JEXEC') or die();
 use Joomla\CMS\Factory;
 use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\Language\Text;
+use Joomla\CMS\Router\Route;
 
 HTMLHelper::_('bootstrap.tooltip');
 HTMLHelper::_('behavior.formvalidation');
@@ -41,7 +42,7 @@ HTMLHelper::_('stylesheet', 'com_planarchiv/planarchiv.css', array('version' => 
 	<?php endif; ?>
 
 	<form
-		action="<?php echo JRoute::_('index.php?option=com_planarchiv&view=planform&id=' . (int) $this->item->id); ?>"
+		action="<?php echo Route::_('index.php?option=com_planarchiv&view=planform&id=' . (int) $this->item->id); ?>"
 		method="post" name="adminForm" id="adminForm" class="form-validate form form-vertical">
 		<fieldset>
 			<?php echo $this->form->renderField('title'); ?>
