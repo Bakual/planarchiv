@@ -11,6 +11,7 @@ defined('JPATH_BASE') or die;
 
 use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\Language\Text;
+use Joomla\CMS\Router\Route;
 use Joomla\Registry\Registry;
 
 $data = $displayData;
@@ -61,7 +62,7 @@ $filters = $data['view']->filterForm->getGroup('filter');
 			</button>
 		</div>
 		<div class="btn-wrapper">
-			<a href="<?php echo JRoute::_('index.php?option=com_planarchiv&view=plans&format=xls'); ?>" class="btn">
+			<a href="<?php echo Route::_('index.php?option=com_planarchiv&view=plans&format=xls'); ?>" class="btn">
 				<?php echo Text::_('COM_PLANARCHIV_EXPORT');?>
 			</a>
 		</div>

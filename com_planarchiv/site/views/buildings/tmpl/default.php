@@ -11,6 +11,7 @@ defined('_JEXEC') or die();
 
 use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\Language\Text;
+use Joomla\CMS\Router\Route;
 
 HTMLHelper::addIncludePath(JPATH_COMPONENT . '/helpers');
 
@@ -29,7 +30,7 @@ $filters = $this->filterForm->getGroup('filter');
     <?php endif; ?>
 </div>
 
-<form action="<?php echo JRoute::_('index.php?option=com_planarchiv&view=buildings'); ?>" method="post" name="adminForm" id="adminForm">
+<form action="<?php echo Route::_('index.php?option=com_planarchiv&view=buildings'); ?>" method="post" name="adminForm" id="adminForm">
     <div id="j-main-container">
         <div class="js-stools clearfix">
             <?php foreach ($filters as $fieldName => $field) : ?>
@@ -51,7 +52,7 @@ $filters = $this->filterForm->getGroup('filter');
 							<?php foreach ($this->items as $item) : ?>
 								<li>
 									<?php $params = '&filter[didok_id]=' . $item->didok_id . '&filter[dfa_id]=' . $item->dfa_id . '&filter[GebDfaLfnr]=' . $item->GebDfaLfnr; ?>
-									<a href="<?php echo JRoute::_('index.php?option=com_planarchiv&view=plans' . $params); ?>">
+									<a href="<?php echo Route::_('index.php?option=com_planarchiv&view=plans' . $params); ?>">
 										<?php echo $item->dfa_title . ' (' . $item->dfa_code . $item->GebDfaLfnr . ')'; ?>
 									</a>
 								</li>
@@ -76,7 +77,7 @@ $filters = $this->filterForm->getGroup('filter');
 							<?php foreach ($this->strecken as $item) : ?>
 								<li>
 									<?php $params = '&filter[Strecke]=S&filter[didok_id]=' . $item->didok_id . '&filter[richtung_didok_id]=' . $item->richtung_didok_id; ?>
-									<a href="<?php echo JRoute::_('index.php?option=com_planarchiv&view=plans' . $params); ?>">
+									<a href="<?php echo Route::_('index.php?option=com_planarchiv&view=plans' . $params); ?>">
 										<?php echo $item->didok_title . ' - ' . $item->richtung_title; ?>
 									</a>
 								</li>

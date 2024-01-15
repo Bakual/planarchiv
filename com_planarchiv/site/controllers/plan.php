@@ -10,6 +10,7 @@
 defined('_JEXEC') or die();
 
 use Joomla\CMS\Factory;
+use Joomla\CMS\Router\Route;
 
 /**
  * Controller class for the PlanArchiv Component
@@ -270,7 +271,7 @@ class PlanarchivControllerPlan extends JControllerForm
 
 		if ($task === 'save')
 		{
-			$this->setRedirect(JRoute::_('index.php?option=com_planarchiv&view=plans', false));
+			$this->setRedirect(Route::_('index.php?option=com_planarchiv&view=plans', false));
 		}
 	}
 

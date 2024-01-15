@@ -12,6 +12,7 @@ defined('_JEXEC') or die();
 use Joomla\CMS\Factory;
 use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\Language\Text;
+use Joomla\CMS\Router\Route;
 
 HTMLHelper::addIncludePath(JPATH_COMPONENT . '/helpers');
 
@@ -32,7 +33,7 @@ $listDirn   = $this->state->get('list.direction');
 	<?php endif; ?>
 </div>
 
-<form action="<?php echo JRoute::_('index.php?option=com_planarchiv&view=plans'); ?>" method="post" name="adminForm" id="adminForm">
+<form action="<?php echo Route::_('index.php?option=com_planarchiv&view=plans'); ?>" method="post" name="adminForm" id="adminForm">
 	<div id="j-main-container">
 		<?php echo JLayoutHelper::render('joomla.searchtools.default', array('view' => $this)); ?>
 		<?php if (empty($this->items)) : ?>
@@ -83,11 +84,11 @@ $listDirn   = $this->state->get('list.direction');
 								<?php if ($item->checked_out) : ?>
 									<?php echo HTMLHelper::_('jgrid.checkedout', $i, $item->editor, $item->checked_out_time, 'plans.', $canCheckin); ?>
 								<?php endif; ?>
-								<a href="<?php echo JRoute::_('index.php?option=com_planarchiv&view=plan&id=' . $item->id);?>">
+								<a href="<?php echo Route::_('index.php?option=com_planarchiv&view=plan&id=' . $item->id);?>">
 									<?php echo $this->escape($item->title) ?: '<span class="label label-info">' . Text::_('COM_PLANARCHIV_NONAME') . '</span>'; ?>
 								</a>
 								<?php if ($canEdit || $canEditOwn) : ?>
-									<a href="<?php echo JRoute::_('index.php?option=com_planarchiv&task=plan.edit&id=' . $item->id . '&return=' . $returnPage); ?>"
+									<a href="<?php echo Route::_('index.php?option=com_planarchiv&task=plan.edit&id=' . $item->id . '&return=' . $returnPage); ?>"
                                        title="<?php echo Text::_('JGLOBAL_EDIT_TITLE'); ?>" class="hasTooltip">
 										<span class="icon-edit"> </span>
 									</a>
