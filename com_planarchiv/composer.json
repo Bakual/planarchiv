@@ -12,7 +12,7 @@
   "config": {
     "vendor-dir": "admin/vendor",
     "platform": {
-      "php": "7.0.18"
+      "php": "8.0.30"
     }
   },
   "autoload": {
