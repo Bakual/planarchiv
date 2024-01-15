@@ -10,12 +10,13 @@
 defined('_JEXEC') or die();
 
 use Joomla\CMS\Factory;
+use Joomla\CMS\MVC\Controller\BaseController;
 
 /**
  * PlanArchiv Component Controller
  * @since  1.0
  */
-class PlanarchivController extends JControllerLegacy
+class PlanarchivController extends BaseController
 {
 	/**
 	 * The default view for the display method.

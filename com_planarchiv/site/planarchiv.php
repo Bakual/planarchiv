@@ -10,6 +10,7 @@
 defined('_JEXEC') or die();
 
 use Joomla\CMS\Factory;
+use Joomla\CMS\MVC\Controller\BaseController;
 
 // loading composer autoloader
 require_once JPATH_COMPONENT_ADMINISTRATOR . '/vendor/autoload.php';
@@ -24,6 +25,6 @@ $jlang = Factory::getLanguage();
 $jlang->load('com_planarchiv', JPATH_COMPONENT, 'en-GB', true);
 $jlang->load('com_planarchiv', JPATH_COMPONENT, null, true);
 
-$controller = JControllerLegacy::getInstance('Planarchiv');
+$controller = BaseController::getInstance('Planarchiv');
 $controller->execute($jinput->get('task'));
 $controller->redirect();

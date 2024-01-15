@@ -9,10 +9,12 @@
 
 defined('_JEXEC') or die();
 
+use Joomla\CMS\MVC\Controller\BaseController;
+
 /**
  * @since       1.0.0
  */
-class PlanarchivController extends JControllerLegacy
+class PlanarchivController extends BaseController
 {
 	/**
 	 * @var string

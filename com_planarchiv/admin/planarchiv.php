@@ -11,6 +11,7 @@ defined('_JEXEC') or die();
 
 use Joomla\CMS\Factory;
 use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\MVC\Controller\BaseController;
 
 // Access check.
 if (!Factory::getUser()->authorise('core.manage', 'com_planarchiv'))
@@ -25,6 +26,6 @@ JLoader::register('JFolder', JPATH_LIBRARIES . '/joomla/filesystem/folder.php');
 // Register Helperclass for autoloading
 JLoader::register('PlanarchivHelper', JPATH_COMPONENT_ADMINISTRATOR . '/helpers/planarchiv.php');
 
-$controller = JControllerLegacy::getInstance('Planarchiv');
+$controller = BaseController::getInstance('Planarchiv');
 $controller->execute(Factory::getApplication()->input->get('task'));
 $controller->redirect();

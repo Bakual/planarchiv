@@ -10,13 +10,14 @@
 defined('_JEXEC') or die();
 
 use Joomla\CMS\Factory;
+use Joomla\CMS\MVC\Controller\BaseController;
 
 /**
  * Controller class for the PlanArchiv Component
  *
  * @since  1.0.0
  */
-class PlanarchivControllerLaufnummer extends JControllerLegacy
+class PlanarchivControllerLaufnummer extends BaseController
 {
     /**
      * Lookup the next free Laufnummer
