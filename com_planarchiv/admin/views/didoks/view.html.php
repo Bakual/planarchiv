@@ -10,6 +10,7 @@
 defined('_JEXEC') or die;
 
 use Joomla\CMS\HTML\Helpers\Sidebar;
+use Joomla\CMS\Language\Text;
 
 /**
  * HTML View class for the PlanArchiv Component
@@ -95,7 +96,7 @@ class PlanarchivViewDidoks extends JViewLegacy
 	{
 		$canDo = PlanarchivHelper::getActions();
 
-		JToolbarHelper::title(JText::_('COM_PLANARCHIV_DIDOKS_TITLE'));
+		JToolbarHelper::title(Text::_('COM_PLANARCHIV_DIDOKS_TITLE'));
 
 		if ($canDo->get('core.create'))
 		{
@@ -149,12 +150,12 @@ class PlanarchivViewDidoks extends JViewLegacy
 	protected function getSortFields()
 	{
 		return array(
-			'didoks.ordering' => JText::_('JGRID_HEADING_ORDERING'),
-			'didoks.state'    => JText::_('JSTATUS'),
-			'didoks.title'    => JText::_('COM_PLANARCHIV_FIELD_NAME_LABEL'),
-			'category_title'     => JText::_('JCATEGORY'),
-			'didoks.hits'     => JText::_('JGLOBAL_HITS'),
-			'didoks.id'       => JText::_('JGRID_HEADING_ID'),
+			'didoks.ordering' => Text::_('JGRID_HEADING_ORDERING'),
+			'didoks.state'    => Text::_('JSTATUS'),
+			'didoks.title'    => Text::_('COM_PLANARCHIV_FIELD_NAME_LABEL'),
+			'category_title'     => Text::_('JCATEGORY'),
+			'didoks.hits'     => Text::_('JGLOBAL_HITS'),
+			'didoks.id'       => Text::_('JGRID_HEADING_ID'),
 		);
 	}
 }

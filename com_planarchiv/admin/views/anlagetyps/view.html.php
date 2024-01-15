@@ -10,6 +10,7 @@
 defined('_JEXEC') or die;
 
 use Joomla\CMS\HTML\Helpers\Sidebar;
+use Joomla\CMS\Language\Text;
 
 /**
  * HTML View class for the PlanArchiv Component
@@ -95,7 +96,7 @@ class PlanarchivViewAnlagetyps extends JViewLegacy
 	{
 		$canDo = PlanarchivHelper::getActions();
 
-		JToolbarHelper::title(JText::_('COM_PLANARCHIV_ANLAGETYPS_TITLE'));
+		JToolbarHelper::title(Text::_('COM_PLANARCHIV_ANLAGETYPS_TITLE'));
 
 		if ($canDo->get('core.create'))
 		{
@@ -149,12 +150,12 @@ class PlanarchivViewAnlagetyps extends JViewLegacy
 	protected function getSortFields()
 	{
 		return array(
-			'anlagetyps.ordering' => JText::_('JGRID_HEADING_ORDERING'),
-			'anlagetyps.state'    => JText::_('JSTATUS'),
-			'anlagetyps.title'    => JText::_('COM_PLANARCHIV_FIELD_NAME_LABEL'),
-			'category_title'     => JText::_('JCATEGORY'),
-			'anlagetyps.hits'     => JText::_('JGLOBAL_HITS'),
-			'anlagetyps.id'       => JText::_('JGRID_HEADING_ID'),
+			'anlagetyps.ordering' => Text::_('JGRID_HEADING_ORDERING'),
+			'anlagetyps.state'    => Text::_('JSTATUS'),
+			'anlagetyps.title'    => Text::_('COM_PLANARCHIV_FIELD_NAME_LABEL'),
+			'category_title'     => Text::_('JCATEGORY'),
+			'anlagetyps.hits'     => Text::_('JGLOBAL_HITS'),
+			'anlagetyps.id'       => Text::_('JGRID_HEADING_ID'),
 		);
 	}
 }

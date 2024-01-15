@@ -10,6 +10,7 @@
 defined('JPATH_BASE') or die;
 
 use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Language\Text;
 use Joomla\Registry\Registry;
 
 $data = $displayData;
@@ -33,15 +34,15 @@ $filters = $data['view']->filterForm->getGroup('filter');
 	<?php if ($searchButton) : ?>
 		<label for="filter_search" class="element-invisible">
 			<?php if (isset($filters['filter_search']->label)) : ?>
-				<?php echo JText::_($filters['filter_search']->label); ?>
+				<?php echo Text::_($filters['filter_search']->label); ?>
 			<?php else : ?>
-				<?php echo JText::_('JSEARCH_FILTER'); ?>
+				<?php echo Text::_('JSEARCH_FILTER'); ?>
 			<?php endif; ?>
 		</label>
 		<div class="btn-wrapper input-append">
 			<?php echo $filters['filter_search']->input; ?>
 			<?php if ($filters['filter_search']->description) : ?>
-				<?php HTMLHelper::_('bootstrap.tooltip', '#filter_search', array('title' => JText::_($filters['filter_search']->description))); ?>
+				<?php HTMLHelper::_('bootstrap.tooltip', '#filter_search', array('title' => Text::_($filters['filter_search']->description))); ?>
 			<?php endif; ?>
 			<button type="submit" class="btn hasTooltip" title="<?php echo HTMLHelper::_('tooltipText', 'JSEARCH_FILTER_SUBMIT'); ?>">
 				<span class="icon-search"></span>
@@ -50,18 +51,18 @@ $filters = $data['view']->filterForm->getGroup('filter');
 		<?php if ($filterButton) : ?>
 			<div class="btn-wrapper hidden-phone">
 				<button type="button" class="btn hasTooltip js-stools-btn-filter" title="<?php echo HTMLHelper::_('tooltipText', 'JSEARCH_TOOLS_DESC'); ?>">
-					<?php echo JText::_('JSEARCH_TOOLS');?> <span class="caret"></span>
+					<?php echo Text::_('JSEARCH_TOOLS');?> <span class="caret"></span>
 				</button>
 			</div>
 		<?php endif; ?>
 		<div class="btn-wrapper">
 			<button type="button" class="btn hasTooltip js-stools-btn-clear" title="<?php echo HTMLHelper::_('tooltipText', 'JSEARCH_FILTER_CLEAR'); ?>">
-				<?php echo JText::_('JSEARCH_FILTER_CLEAR');?>
+				<?php echo Text::_('JSEARCH_FILTER_CLEAR');?>
 			</button>
 		</div>
 		<div class="btn-wrapper">
 			<a href="<?php echo JRoute::_('index.php?option=com_planarchiv&view=plans&format=xls'); ?>" class="btn">
-				<?php echo JText::_('COM_PLANARCHIV_EXPORT');?>
+				<?php echo Text::_('COM_PLANARCHIV_EXPORT');?>
 			</a>
 		</div>
 	<?php endif; ?>

@@ -11,6 +11,7 @@ defined('_JEXEC') or die();
 
 use Joomla\CMS\Factory;
 use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Language\Text;
 
 HTMLHelper::_('bootstrap.tooltip');
 HTMLHelper::_('behavior.formvalidation');
@@ -24,7 +25,7 @@ HTMLHelper::_('stylesheet', 'com_planarchiv/planarchiv.css', array('version' => 
         if (task == 'plan.cancel' || document.formvalidator.isValid(document.id('adminForm'))) {
             Joomla.submitform(task, document.getElementById('adminForm'));
         } else {
-            alert('<?php echo $this->escape(JText::_('JGLOBAL_VALIDATION_FORM_FAILED'));?>');
+            alert('<?php echo $this->escape(Text::_('JGLOBAL_VALIDATION_FORM_FAILED'));?>');
         }
     }
 </script>
@@ -47,11 +48,11 @@ HTMLHelper::_('stylesheet', 'com_planarchiv/planarchiv.css', array('version' => 
 
 			<?php echo HTMLHelper::_('bootstrap.startTabSet', 'planform', array('active' => 'basic')); ?>
 
-            <?php echo HTMLHelper::_('bootstrap.addTab', 'planform', 'location', JText::_('COM_PLANARCHIV_TAB_LOCATION')); ?>
+            <?php echo HTMLHelper::_('bootstrap.addTab', 'planform', 'location', Text::_('COM_PLANARCHIV_TAB_LOCATION')); ?>
                 <?php echo $this->form->renderField('didok_id'); ?>
 
                 <?php echo HTMLHelper::_('bootstrap.startTabSet', 'planformlocation', array('active' => 'ort')); ?>
-                    <?php echo HTMLHelper::_('bootstrap.addTab', 'planformlocation', 'ort', JText::_('COM_PLANARCHIV_ORT_LABEL')); ?>
+                    <?php echo HTMLHelper::_('bootstrap.addTab', 'planformlocation', 'ort', Text::_('COM_PLANARCHIV_ORT_LABEL')); ?>
                         <div class="row-fluid">
                             <div class="pull-left rightMargin">
                                 <?php echo $this->form->renderField('dfa_id'); ?>
@@ -62,7 +63,7 @@ HTMLHelper::_('stylesheet', 'com_planarchiv/planarchiv.css', array('version' => 
                         </div>
                         <?php echo $this->form->renderField('stockwerk_id'); ?>
                         <?php echo HTMLHelper::_('bootstrap.endTab'); ?>
-                        <?php echo HTMLHelper::_('bootstrap.addTab', 'planformlocation', 'strecke', JText::_('COM_PLANARCHIV_STRECKE_LABEL')); ?>
+                        <?php echo HTMLHelper::_('bootstrap.addTab', 'planformlocation', 'strecke', Text::_('COM_PLANARCHIV_STRECKE_LABEL')); ?>
                         <div class="row-fluid">
                             <div class="pull-left rightMargin">
                                 <?php echo $this->form->renderField('Strecke'); ?>
@@ -78,7 +79,7 @@ HTMLHelper::_('stylesheet', 'com_planarchiv/planarchiv.css', array('version' => 
                 <?php echo HTMLHelper::_('bootstrap.endTabSet'); ?>
             <?php echo HTMLHelper::_('bootstrap.endTab'); ?>
 
-            <?php echo HTMLHelper::_('bootstrap.addTab', 'planform', 'basic', JText::_('COM_PLANARCHIV_TAB_BASIC')); ?>
+            <?php echo HTMLHelper::_('bootstrap.addTab', 'planform', 'basic', Text::_('COM_PLANARCHIV_TAB_BASIC')); ?>
 				<div class="row-fluid">
 					<div class="pull-left rightMargin">
 						<?php echo $this->form->renderField('ErstellDatum'); ?>
@@ -124,13 +125,13 @@ HTMLHelper::_('stylesheet', 'com_planarchiv/planarchiv.css', array('version' => 
 				<?php echo $this->form->renderField('Bemerkung'); ?>
 			<?php echo HTMLHelper::_('bootstrap.endTab'); ?>
 
-			<?php echo HTMLHelper::_('bootstrap.addTab', 'planform', 'files', JText::_('COM_PLANARCHIV_TAB_FILES')); ?>
+			<?php echo HTMLHelper::_('bootstrap.addTab', 'planform', 'files', Text::_('COM_PLANARCHIV_TAB_FILES')); ?>
 				<?php foreach($this->form->getFieldset('files') as $field): ?>
 					<?php echo $field->getControlGroup(); ?>
 				<?php endforeach; ?>
 			<?php echo HTMLHelper::_('bootstrap.endTab'); ?>
 
-			<?php echo HTMLHelper::_('bootstrap.addTab', 'planform', 'details', JText::_('COM_PLANARCHIV_TAB_DETAILS')); ?>
+			<?php echo HTMLHelper::_('bootstrap.addTab', 'planform', 'details', Text::_('COM_PLANARCHIV_TAB_DETAILS')); ?>
 				<div class="row-fluid">
 					<div class="span6">
 						<?php foreach($this->form->getFieldset('info') as $field): ?>
@@ -154,17 +155,17 @@ HTMLHelper::_('stylesheet', 'com_planarchiv/planarchiv.css', array('version' => 
 		<div class="btn-toolbar">
 			<div class="btn-group">
 				<button type="button" class="btn btn-primary" onclick="Joomla.submitbutton('plan.save')">
-					<i class="icon-ok"></i> <?php echo JText::_('JSAVE') ?>
+					<i class="icon-ok"></i> <?php echo Text::_('JSAVE') ?>
 				</button>
 			</div>
 			<div class="btn-group">
 				<button type="button" class="btn" onclick="Joomla.submitbutton('plan.save2copy')">
-					<i class="icon-save-copy"></i> <?php echo JText::_('COM_PLANARCHIV_SAVE_AS_COPY') ?>
+					<i class="icon-save-copy"></i> <?php echo Text::_('COM_PLANARCHIV_SAVE_AS_COPY') ?>
 				</button>
 			</div>
 			<div class="btn-group">
 				<button type="button" class="btn" onclick="Joomla.submitbutton('plan.cancel')">
-					<i class="icon-cancel"></i> <?php echo JText::_('JCANCEL') ?>
+					<i class="icon-cancel"></i> <?php echo Text::_('JCANCEL') ?>
 				</button>
 			</div>
 			<?php if ($this->item->id) : ?>
@@ -173,8 +174,8 @@ HTMLHelper::_('stylesheet', 'com_planarchiv/planarchiv.css', array('version' => 
 				</div>
                 <?php if (Factory::getUser()->authorise('core.delete', 'com_planarchiv.category.' . $this->item->catid)) : ?>
                     <div class="btn-group">
-                        <button type="button" class="btn btn-danger" onclick="if(confirm('<?php echo JText::_('COM_PLANARCHIV_CONFIRM_DELETE'); ?>')) {document.getElementById('jform_state').value='-2';Joomla.submitbutton('plan.save');} else {return;}">
-                            <i class="icon-delete"></i> <?php echo JText::_('JACTION_DELETE') ?>
+                        <button type="button" class="btn btn-danger" onclick="if(confirm('<?php echo Text::_('COM_PLANARCHIV_CONFIRM_DELETE'); ?>')) {document.getElementById('jform_state').value='-2';Joomla.submitbutton('plan.save');} else {return;}">
+                            <i class="icon-delete"></i> <?php echo Text::_('JACTION_DELETE') ?>
                         </button>
                     </div>
                 <?php endif; ?>

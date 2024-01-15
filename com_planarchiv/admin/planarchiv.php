@@ -11,12 +11,13 @@ defined('_JEXEC') or die();
 
 use Joomla\CMS\Factory;
 use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Language\Text;
 use Joomla\CMS\MVC\Controller\BaseController;
 
 // Access check.
 if (!Factory::getUser()->authorise('core.manage', 'com_planarchiv'))
 {
-	throw new Exception(JText::_('JERROR_ALERTNOAUTHOR'), 403);
+	throw new Exception(Text::_('JERROR_ALERTNOAUTHOR'), 403);
 }
 
 // Joomla doesn't autoload JFile and JFolder

@@ -10,6 +10,7 @@
 defined('_JEXEC') or die;
 
 use Joomla\CMS\HTML\Helpers\Sidebar;
+use Joomla\CMS\Language\Text;
 
 /**
  * HTML View class for the PlanArchiv Component
@@ -95,7 +96,7 @@ class PlanarchivViewStockwerks extends JViewLegacy
 	{
 		$canDo = PlanarchivHelper::getActions();
 
-		JToolbarHelper::title(JText::_('COM_PLANARCHIV_STOCKWERKS_TITLE'));
+		JToolbarHelper::title(Text::_('COM_PLANARCHIV_STOCKWERKS_TITLE'));
 
 		if ($canDo->get('core.create'))
 		{
@@ -149,12 +150,12 @@ class PlanarchivViewStockwerks extends JViewLegacy
 	protected function getSortFields()
 	{
 		return array(
-			'stockwerks.ordering' => JText::_('JGRID_HEADING_ORDERING'),
-			'stockwerks.state'    => JText::_('JSTATUS'),
-			'stockwerks.title'    => JText::_('COM_PLANARCHIV_FIELD_NAME_LABEL'),
-			'category_title'     => JText::_('JCATEGORY'),
-			'stockwerks.hits'     => JText::_('JGLOBAL_HITS'),
-			'stockwerks.id'       => JText::_('JGRID_HEADING_ID'),
+			'stockwerks.ordering' => Text::_('JGRID_HEADING_ORDERING'),
+			'stockwerks.state'    => Text::_('JSTATUS'),
+			'stockwerks.title'    => Text::_('COM_PLANARCHIV_FIELD_NAME_LABEL'),
+			'category_title'     => Text::_('JCATEGORY'),
+			'stockwerks.hits'     => Text::_('JGLOBAL_HITS'),
+			'stockwerks.id'       => Text::_('JGRID_HEADING_ID'),
 		);
 	}
 }

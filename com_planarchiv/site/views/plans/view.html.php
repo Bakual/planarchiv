@@ -10,6 +10,7 @@
 defined('_JEXEC') or die();
 
 use Joomla\CMS\Factory;
+use Joomla\CMS\Language\Text;
 
 /**
  * HTML View class for the PlanArchiv Component
@@ -72,7 +73,7 @@ class PlanarchivViewPlans extends JViewLegacy
 		}
 		else
 		{
-			$this->params->def('page_heading', JText::_('COM_PLANARCHIV_PLANS_TITLE'));
+			$this->params->def('page_heading', Text::_('COM_PLANARCHIV_PLANS_TITLE'));
 		}
 
 		$title = $this->params->get('page_title', '');
@@ -83,11 +84,11 @@ class PlanarchivViewPlans extends JViewLegacy
 		}
 		elseif ($app->get('sitename_pagetitles', 0) == 1)
 		{
-			$title = JText::sprintf('JPAGETITLE', $app->get('sitename'), $title);
+			$title = Text::sprintf('JPAGETITLE', $app->get('sitename'), $title);
 		}
 		elseif ($app->get('sitename_pagetitles', 0) == 2)
 		{
-			$title = JText::sprintf('JPAGETITLE', $title, $app->get('sitename'));
+			$title = Text::sprintf('JPAGETITLE', $title, $app->get('sitename'));
 		}
 
 		$this->document->setTitle($title);

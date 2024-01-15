@@ -10,6 +10,7 @@
 defined('_JEXEC') or die;
 
 use Joomla\CMS\Factory;
+use Joomla\CMS\Language\Text;
 
 /**
  * View to edit a anlagetyp.
@@ -78,7 +79,7 @@ class PlanarchivViewAnlagetyp extends JViewLegacy
 		$isNew      = ($this->item->id == 0);
 		$checkedOut = !($this->item->checked_out == 0 || $this->item->checked_out == $user->id);
 		$canDo      = PlanarchivHelper::getActions();
-		JToolbarHelper::title(JText::sprintf('COM_PLANARCHIV_PAGE_' . ($checkedOut ? 'VIEW' : ($isNew ? 'ADD' : 'EDIT')), JText::_('COM_PLANARCHIV_SPEAKERS_TITLE'), JText::_('COM_PLANARCHIV_SPEAKER')), 'pencil-2 anlagetyps');
+		JToolbarHelper::title(Text::sprintf('COM_PLANARCHIV_PAGE_' . ($checkedOut ? 'VIEW' : ($isNew ? 'ADD' : 'EDIT')), Text::_('COM_PLANARCHIV_SPEAKERS_TITLE'), Text::_('COM_PLANARCHIV_SPEAKER')), 'pencil-2 anlagetyps');
 
 		// Build the actions for new and existing records.
 		if ($isNew)

@@ -10,6 +10,7 @@
 defined('_JEXEC') or die();
 
 use Joomla\CMS\Factory;
+use Joomla\CMS\Language\Text;
 
 jimport('joomla.html.html');
 jimport('joomla.form.formfield');
@@ -54,7 +55,7 @@ class JFormFieldTitlegenerator extends JFormFieldText
 				. 'if (richtungSelectValue) {'
 					. 'value += "-" + richtungSelectValue.toLowerCase();'
 				. '} else {'
-					. 'alert ("' . JText::sprintf('COM_PLANARCHIV_BUTTON_GENERATE_TITLE_ERROR', JText::_('COM_PLANARCHIV_DIRECTION_LABEL')) . '");'
+					. 'alert ("' . Text::sprintf('COM_PLANARCHIV_BUTTON_GENERATE_TITLE_ERROR', Text::_('COM_PLANARCHIV_DIRECTION_LABEL')) . '");'
 				. '}'
 			. '} else {'
 				. 'let dfaSelect = document.getElementById(\'jform_dfa_id\');'
@@ -63,7 +64,7 @@ class JFormFieldTitlegenerator extends JFormFieldText
 					. 'value += "-" + dfaSelectValue.toLowerCase();'
 					. 'value += document.getElementById(\'jform_GebDfaLfnr\').value;'
 				. '} else {'
-					. 'alert ("' . JText::sprintf('COM_PLANARCHIV_BUTTON_GENERATE_TITLE_ERROR', JText::_('COM_PLANARCHIV_DFA_LABEL')) . '");'
+					. 'alert ("' . Text::sprintf('COM_PLANARCHIV_BUTTON_GENERATE_TITLE_ERROR', Text::_('COM_PLANARCHIV_DFA_LABEL')) . '");'
 				. '}'
 			. '}'
 			. 'let anlageSelect = document.getElementById(\'jform_anlagetyp_id\');'
@@ -80,7 +81,7 @@ class JFormFieldTitlegenerator extends JFormFieldText
 		// Add Button to generate the title
 		$html = '<div class="input-append">';
 		$html .= parent::getInput();
-		$html .= '<button class="btn" type="button" id="' . $this->id . '_btn" onclick="generateTitle()"><span class="icon-lightning"> </span>' . JText::_('COM_PLANARCHIV_BUTTON_GENERATE_TITLE') . '</button>';
+		$html .= '<button class="btn" type="button" id="' . $this->id . '_btn" onclick="generateTitle()"><span class="icon-lightning"> </span>' . Text::_('COM_PLANARCHIV_BUTTON_GENERATE_TITLE') . '</button>';
 
 		return $html;
 	}

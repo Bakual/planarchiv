@@ -10,6 +10,7 @@
 defined('_JEXEC') or die;
 
 use Joomla\CMS\HTML\Helpers\Sidebar;
+use Joomla\CMS\Language\Text;
 
 /**
  * HTML View class for the PlanArchiv Component
@@ -95,7 +96,7 @@ class PlanarchivViewDfas extends JViewLegacy
 	{
 		$canDo = PlanarchivHelper::getActions();
 
-		JToolbarHelper::title(JText::_('COM_PLANARCHIV_DFAS_TITLE'));
+		JToolbarHelper::title(Text::_('COM_PLANARCHIV_DFAS_TITLE'));
 
 		if ($canDo->get('core.create'))
 		{
@@ -149,12 +150,12 @@ class PlanarchivViewDfas extends JViewLegacy
 	protected function getSortFields()
 	{
 		return array(
-			'dfas.ordering' => JText::_('JGRID_HEADING_ORDERING'),
-			'dfas.state'    => JText::_('JSTATUS'),
-			'dfas.title'    => JText::_('COM_PLANARCHIV_FIELD_NAME_LABEL'),
-			'category_title'     => JText::_('JCATEGORY'),
-			'dfas.hits'     => JText::_('JGLOBAL_HITS'),
-			'dfas.id'       => JText::_('JGRID_HEADING_ID'),
+			'dfas.ordering' => Text::_('JGRID_HEADING_ORDERING'),
+			'dfas.state'    => Text::_('JSTATUS'),
+			'dfas.title'    => Text::_('COM_PLANARCHIV_FIELD_NAME_LABEL'),
+			'category_title'     => Text::_('JCATEGORY'),
+			'dfas.hits'     => Text::_('JGLOBAL_HITS'),
+			'dfas.id'       => Text::_('JGRID_HEADING_ID'),
 		);
 	}
 }

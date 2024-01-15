@@ -10,6 +10,7 @@
 defined('_JEXEC') or die();
 
 use Joomla\CMS\Factory;
+use Joomla\CMS\Language\Text;
 
 /**
  * Model class for the PlanArchiv Component
@@ -110,7 +111,7 @@ class PlanarchivModelPlan extends JModelItem
 
 				if (!$data)
 				{
-					throw new Exception(JText::_('JGLOBAL_RESOURCE_NOT_FOUND'));
+					throw new Exception(Text::_('JGLOBAL_RESOURCE_NOT_FOUND'));
 				}
 
 				$this->_item[$id] = $data;

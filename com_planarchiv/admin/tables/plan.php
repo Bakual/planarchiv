@@ -10,6 +10,7 @@
 defined('_JEXEC') or die;
 
 use Joomla\CMS\Factory;
+use Joomla\CMS\Language\Text;
 
 /**
  * Plan Table class
@@ -51,12 +52,12 @@ class PlanarchivTablePlan extends JTable
 		// Check that either "Ort" or "Strecke" is given, but not both.
 		if (($this->dfa_id || $this->GebDfaLfnr || $this->Stockwerk) && ($this->Strecke || $this->km || $this->richtung_didok_id))
 		{
-			throw new Exception(JText::_('COM_PLANARCHIV_ERROR_ORT_OR_STRECKE'));
+			throw new Exception(Text::_('COM_PLANARCHIV_ERROR_ORT_OR_STRECKE'));
 		}
 
 		if (!$this->dfa_id && !$this->GebDfaLfnr && !$this->Stockwerk && !$this->Strecke && !$this->km && !$this->richtung_didok_id)
 		{
-			throw new Exception(JText::_('COM_PLANARCHIV_ERROR_ORT_OR_STRECKE_REQUIRED'));
+			throw new Exception(Text::_('COM_PLANARCHIV_ERROR_ORT_OR_STRECKE_REQUIRED'));
 		}
 
 		// Verify that the title is unique
@@ -64,7 +65,7 @@ class PlanarchivTablePlan extends JTable
 
 		if ($table->load(array('title' => $this->title, 'state' => '1')) && ($table->id != $this->id || $this->id == 0))
 		{
-			throw new Exception(JText::_('COM_PLANARCHIV_ERROR_UNIQUE_TITLE'));
+			throw new Exception(Text::_('COM_PLANARCHIV_ERROR_UNIQUE_TITLE'));
 		}
 
 		if ($this->GebDfaLfnr)

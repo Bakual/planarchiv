@@ -10,6 +10,7 @@
 defined('_JEXEC') or die;
 
 use Joomla\CMS\HTML\Helpers\Sidebar;
+use Joomla\CMS\Language\Text;
 
 /**
  * HTML View class for the PlanArchiv Component
@@ -95,7 +96,7 @@ class PlanarchivViewDokutyps extends JViewLegacy
 	{
 		$canDo = PlanarchivHelper::getActions();
 
-		JToolbarHelper::title(JText::_('COM_PLANARCHIV_DOKUTYPS_TITLE'));
+		JToolbarHelper::title(Text::_('COM_PLANARCHIV_DOKUTYPS_TITLE'));
 
 		if ($canDo->get('core.create'))
 		{
@@ -149,12 +150,12 @@ class PlanarchivViewDokutyps extends JViewLegacy
 	protected function getSortFields()
 	{
 		return array(
-			'dokutyps.ordering' => JText::_('JGRID_HEADING_ORDERING'),
-			'dokutyps.state'    => JText::_('JSTATUS'),
-			'dokutyps.title'    => JText::_('COM_PLANARCHIV_FIELD_NAME_LABEL'),
-			'category_title'     => JText::_('JCATEGORY'),
-			'dokutyps.hits'     => JText::_('JGLOBAL_HITS'),
-			'dokutyps.id'       => JText::_('JGRID_HEADING_ID'),
+			'dokutyps.ordering' => Text::_('JGRID_HEADING_ORDERING'),
+			'dokutyps.state'    => Text::_('JSTATUS'),
+			'dokutyps.title'    => Text::_('COM_PLANARCHIV_FIELD_NAME_LABEL'),
+			'category_title'     => Text::_('JCATEGORY'),
+			'dokutyps.hits'     => Text::_('JGLOBAL_HITS'),
+			'dokutyps.id'       => Text::_('JGRID_HEADING_ID'),
 		);
 	}
 }

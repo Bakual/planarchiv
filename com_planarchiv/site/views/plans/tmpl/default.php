@@ -11,6 +11,7 @@ defined('_JEXEC') or die();
 
 use Joomla\CMS\Factory;
 use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Language\Text;
 
 HTMLHelper::addIncludePath(JPATH_COMPONENT . '/helpers');
 
@@ -36,7 +37,7 @@ $listDirn   = $this->state->get('list.direction');
 		<?php echo JLayoutHelper::render('joomla.searchtools.default', array('view' => $this)); ?>
 		<?php if (empty($this->items)) : ?>
 			<div class="alert alert-no-items">
-				<?php echo JText::_('JGLOBAL_NO_MATCHING_RESULTS'); ?>
+				<?php echo Text::_('JGLOBAL_NO_MATCHING_RESULTS'); ?>
 			</div>
 		<?php else : ?>
 			<table class="table table-striped" id="planList">
@@ -75,24 +76,24 @@ $listDirn   = $this->state->get('list.direction');
 						<td class="nowrap has-context">
 							<div class="pull-left">
 								<?php if ($item->zurzeitbei_id) : ?>
-									<?php $date = ($item->zurzeitbei_date != '0000-00-00 00:00:00') ? HTMLHelper::_('date', $item->zurzeitbei_date, JText::_('DATE_FORMAT_LC4')) : '?'; ?>
-									<?php $tooltip = JText::sprintf('COM_PLANARCHIV_ZUR_ZEIT_BEI', $date, $item->zurzeitbei_name); ?>
+									<?php $date = ($item->zurzeitbei_date != '0000-00-00 00:00:00') ? HTMLHelper::_('date', $item->zurzeitbei_date, Text::_('DATE_FORMAT_LC4')) : '?'; ?>
+									<?php $tooltip = Text::sprintf('COM_PLANARCHIV_ZUR_ZEIT_BEI', $date, $item->zurzeitbei_name); ?>
 									<span class="icon-warning-2 hasTooltip" title="<?php echo $tooltip; ?>"> </span>
 								<?php endif; ?>
 								<?php if ($item->checked_out) : ?>
 									<?php echo HTMLHelper::_('jgrid.checkedout', $i, $item->editor, $item->checked_out_time, 'plans.', $canCheckin); ?>
 								<?php endif; ?>
 								<a href="<?php echo JRoute::_('index.php?option=com_planarchiv&view=plan&id=' . $item->id);?>">
-									<?php echo $this->escape($item->title) ?: '<span class="label label-info">' . JText::_('COM_PLANARCHIV_NONAME') . '</span>'; ?>
+									<?php echo $this->escape($item->title) ?: '<span class="label label-info">' . Text::_('COM_PLANARCHIV_NONAME') . '</span>'; ?>
 								</a>
 								<?php if ($canEdit || $canEditOwn) : ?>
 									<a href="<?php echo JRoute::_('index.php?option=com_planarchiv&task=plan.edit&id=' . $item->id . '&return=' . $returnPage); ?>"
-                                       title="<?php echo JText::_('JGLOBAL_EDIT_TITLE'); ?>" class="hasTooltip">
+                                       title="<?php echo Text::_('JGLOBAL_EDIT_TITLE'); ?>" class="hasTooltip">
 										<span class="icon-edit"> </span>
 									</a>
 								<?php endif; ?>
 								<div class="small">
-									<?php echo JText::_('JCATEGORY') . ": " . $this->escape($item->category_title); ?>
+									<?php echo Text::_('JCATEGORY') . ": " . $this->escape($item->category_title); ?>
 								</div>
 							</div>
 						</td>

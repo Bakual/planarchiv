@@ -10,6 +10,7 @@
 defined('_JEXEC') or die();
 
 use Joomla\CMS\Factory;
+use Joomla\CMS\Language\Text;
 
 jimport('joomla.html.html');
 jimport('joomla.form.formfield');
@@ -90,7 +91,7 @@ class JFormFieldLaufnummer extends JFormFieldText
 
 	    $html = '<div class="input-append">';
 	    $html .= $textField;
-	    $html .= '<button class="btn hasTooltip" type="button" onclick="fetchNextNumber(\'' . $this->id . '\')" title="' .  JText::_('COM_PLANARCHIV_FETCH_LFNR') . '"><span class="icon-flash"></span></button>';
+	    $html .= '<button class="btn hasTooltip" type="button" onclick="fetchNextNumber(\'' . $this->id . '\')" title="' .  Text::_('COM_PLANARCHIV_FETCH_LFNR') . '"><span class="icon-flash"></span></button>';
 	    $html .= '</div>';
 
 	    return $html;

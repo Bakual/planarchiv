@@ -10,6 +10,7 @@
 defined('_JEXEC') or die();
 
 use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Language\Text;
 
 HTMLHelper::_('stylesheet', 'com_planarchiv/planarchivadmin.css', array('version' => 'auto', 'relative' => true));
 ?>
@@ -18,31 +19,31 @@ HTMLHelper::_('stylesheet', 'com_planarchiv/planarchivadmin.css', array('version
 		<li class="span2">
 			<a class="thumbnail" href="index.php?option=com_planarchiv&view=dfas">
 				<span class="icon-home"> </span>
-				<h3 class="center"><?php echo JText::_('COM_PLANARCHIV_DFAS_TITLE'); ?></h3>
+				<h3 class="center"><?php echo Text::_('COM_PLANARCHIV_DFAS_TITLE'); ?></h3>
 			</a>
 		</li>
 		<li class="span2">
 			<a class="thumbnail" href="index.php?option=com_planarchiv&view=didoks">
 				<span class="icon-home-2"> </span>
-				<h3 class="center"><?php echo JText::_('COM_PLANARCHIV_DIDOKS_TITLE'); ?></h3>
+				<h3 class="center"><?php echo Text::_('COM_PLANARCHIV_DIDOKS_TITLE'); ?></h3>
 			</a>
 		</li>
 		<li class="span2">
 			<a class="thumbnail" href="index.php?option=com_planarchiv&view=stockwerks">
 				<span class="icon-menu-3"> </span>
-				<h3 class="center"><?php echo JText::_('COM_PLANARCHIV_STOCKWERKS_TITLE'); ?></h3>
+				<h3 class="center"><?php echo Text::_('COM_PLANARCHIV_STOCKWERKS_TITLE'); ?></h3>
 			</a>
 		</li>
 		<li class="span2">
 			<a class="thumbnail" href="index.php?option=com_planarchiv&view=anlagetyps">
 				<span class="icon-flash"> </span>
-				<h3 class="center"><?php echo JText::_('COM_PLANARCHIV_ANLAGETYPS_TITLE'); ?></h3>
+				<h3 class="center"><?php echo Text::_('COM_PLANARCHIV_ANLAGETYPS_TITLE'); ?></h3>
 			</a>
 		</li>
 		<li class="span2">
 			<a class="thumbnail" href="index.php?option=com_planarchiv&view=dokutyps">
 				<span class="icon-stack"> </span>
-				<h3 class="center"><?php echo JText::_('COM_PLANARCHIV_DOKUTYPS_TITLE'); ?></h3>
+				<h3 class="center"><?php echo Text::_('COM_PLANARCHIV_DOKUTYPS_TITLE'); ?></h3>
 			</a>
 		</li>
 	</ul>
@@ -50,7 +51,7 @@ HTMLHelper::_('stylesheet', 'com_planarchiv/planarchivadmin.css', array('version
 		<li class="span2">
 			<a class="thumbnail" href="index.php?option=com_categories&extension=com_planarchiv">
 				<span class="icon-folder"> </span>
-				<h3 class="center"><?php echo JText::_('JCATEGORIES'); ?></h3>
+				<h3 class="center"><?php echo Text::_('JCATEGORIES'); ?></h3>
 			</a>
 		</li>
 	</ul>

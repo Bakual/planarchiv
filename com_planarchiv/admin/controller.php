@@ -9,6 +9,7 @@
 
 defined('_JEXEC') or die();
 
+use Joomla\CMS\Language\Text;
 use Joomla\CMS\MVC\Controller\BaseController;
 
 /**
@@ -41,7 +42,7 @@ class PlanarchivController extends BaseController
 		if (in_array($view, $views) && $layout == 'edit' && !$this->checkEditId('com_planarchiv.edit.' . $view, $id))
 		{
 			// Somehow the person just went to the form - we don't allow that.
-			$this->setError(JText::sprintf('JLIB_APPLICATION_ERROR_UNHELD_ID', $id));
+			$this->setError(Text::sprintf('JLIB_APPLICATION_ERROR_UNHELD_ID', $id));
 			$this->setMessage($this->getError(), 'error');
 			$this->setRedirect(JRoute::_('index.php?option=com_planarchiv&view=main', false));
 

@@ -10,6 +10,7 @@
 defined('_JEXEC') or die();
 
 use Joomla\CMS\Factory;
+use Joomla\CMS\Language\Text;
 
 /**
  * HTML View class for the PlanArchiv Component
@@ -34,7 +35,7 @@ class PlanarchivViewPlan extends JViewLegacy
 
 		if (!$app->input->get('id', 0, 'int'))
 		{
-			$app->redirect(JRoute::_('index.php?view=plans'), JText::_('JGLOBAL_RESOURCE_NOT_FOUND'), 'error');
+			$app->redirect(JRoute::_('index.php?view=plans'), Text::_('JGLOBAL_RESOURCE_NOT_FOUND'), 'error');
 		}
 
 		// Get data from the model
@@ -45,7 +46,7 @@ class PlanarchivViewPlan extends JViewLegacy
 
 		if (!$this->item)
 		{
-			$app->redirect(JRoute::_('index.php?view=plans'), JText::_('JGLOBAL_RESOURCE_NOT_FOUND'), 'error');
+			$app->redirect(JRoute::_('index.php?view=plans'), Text::_('JGLOBAL_RESOURCE_NOT_FOUND'), 'error');
 		}
 
 		// Check if access is not public
@@ -55,7 +56,7 @@ class PlanarchivViewPlan extends JViewLegacy
 
 			if (!in_array($this->item->category_access, $groups))
 			{
-				$app->redirect(JRoute::_('index.php?view=plans'), JText::_('JERROR_ALERTNOAUTHOR'), 'error');
+				$app->redirect(JRoute::_('index.php?view=plans'), Text::_('JERROR_ALERTNOAUTHOR'), 'error');
 			}
 		}
 
@@ -94,7 +95,7 @@ class PlanarchivViewPlan extends JViewLegacy
 		}
 		else
 		{
-			$this->params->def('page_heading', JText::_('COM_PLANARCHIV_PLAN_TITLE'));
+			$this->params->def('page_heading', Text::_('COM_PLANARCHIV_PLAN_TITLE'));
 		}
 
 		$title = $this->params->get('page_title', '');
@@ -115,11 +116,11 @@ class PlanarchivViewPlan extends JViewLegacy
 		}
 		elseif ($app->get('sitename_pagetitles', 0) == 1)
 		{
-			$title = JText::sprintf('JPAGETITLE', $app->get('sitename'), $title);
+			$title = Text::sprintf('JPAGETITLE', $app->get('sitename'), $title);
 		}
 		elseif ($app->get('sitename_pagetitles', 0) == 2)
 		{
-			$title = JText::sprintf('JPAGETITLE', $title, $app->get('sitename'));
+			$title = Text::sprintf('JPAGETITLE', $title, $app->get('sitename'));
 		}
 
 		if (empty($title))

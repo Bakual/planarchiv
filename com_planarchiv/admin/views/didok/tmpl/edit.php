@@ -12,6 +12,7 @@ defined('_JEXEC') or die;
 
 use Joomla\CMS\Factory;
 use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Language\Text;
 
 // Include the component HTML helpers.
 HTMLHelper::addIncludePath(JPATH_COMPONENT.'/helpers/html');
@@ -34,7 +35,7 @@ $tmpl   = $jinput->getCmd('tmpl') === 'component' ? '&tmpl=component' : '';
 		if (task == 'didok.cancel' || document.formvalidator.isValid(document.id('adminForm'))) {
 			Joomla.submitform(task, document.getElementById('adminForm'));
 		} else {
-			alert('<?php echo $this->escape(JText::_('JGLOBAL_VALIDATION_FORM_FAILED'));?>');
+			alert('<?php echo $this->escape(Text::_('JGLOBAL_VALIDATION_FORM_FAILED'));?>');
 		}
 	}
 </script>

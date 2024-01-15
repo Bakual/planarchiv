@@ -11,6 +11,7 @@ defined('_JEXEC') or die;
 
 use Joomla\CMS\Factory;
 use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Language\Text;
 
 HTMLHelper::addIncludePath(JPATH_COMPONENT . '/helpers/html');
 HTMLHelper::_('bootstrap.tooltip');
@@ -51,14 +52,14 @@ $trashed   = $this->state->get('filter.state') == -2 ? true : false;
 		<?php echo JLayoutHelper::render('joomla.searchtools.default', array('view' => $this)); ?>
 		<?php if (empty($this->items)) : ?>
 			<div class="alert alert-no-items">
-				<?php echo JText::_('JGLOBAL_NO_MATCHING_RESULTS'); ?>
+				<?php echo Text::_('JGLOBAL_NO_MATCHING_RESULTS'); ?>
 			</div>
 		<?php else : ?>
 			<table class="table table-striped" id="anlagetypList">
 				<thead>
 					<tr>
 						<th width="1%" class="hidden-phone">
-							<input type="checkbox" name="checkall-toggle" value="" title="<?php echo JText::_('JGLOBAL_CHECK_ALL'); ?>" onclick="Joomla.checkAll(this)" />
+							<input type="checkbox" name="checkall-toggle" value="" title="<?php echo Text::_('JGLOBAL_CHECK_ALL'); ?>" onclick="Joomla.checkAll(this)" />
 						</th>
 						<th width="1%" style="min-width:40px" class="nowrap center">
 							<?php echo HTMLHelper::_('searchtools.sort', 'JSTATUS', 'anlagetyps.state', $listDirn, $listOrder); ?>
@@ -114,7 +115,7 @@ $trashed   = $this->state->get('filter.state') == -2 ? true : false;
 									<?php echo $this->escape($item->title); ?>
 								<?php endif; ?>
 								<div class="small">
-									<?php echo JText::_('JCATEGORY') . ": " . $this->escape($item->category_title); ?>
+									<?php echo Text::_('JCATEGORY') . ": " . $this->escape($item->category_title); ?>
 								</div>
 							</div>
 							<div class="pull-left">
