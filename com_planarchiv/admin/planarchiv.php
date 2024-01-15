@@ -10,6 +10,7 @@
 defined('_JEXEC') or die();
 
 use Joomla\CMS\Factory;
+use Joomla\CMS\HTML\HTMLHelper;
 
 // Access check.
 if (!Factory::getUser()->authorise('core.manage', 'com_planarchiv'))
@@ -24,7 +25,7 @@ JLoader::register('JFolder', JPATH_LIBRARIES . '/joomla/filesystem/folder.php');
 // Register Helperclass for autoloading
 JLoader::register('PlanarchivHelper', JPATH_COMPONENT_ADMINISTRATOR . '/helpers/planarchiv.php');
 
-JHtml::_('behavior.tabstate');
+HTMLHelper::_('behavior.tabstate');
 
 $controller = JControllerLegacy::getInstance('Planarchiv');
 $controller->execute(Factory::getApplication()->input->get('task'));

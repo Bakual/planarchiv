@@ -10,6 +10,7 @@
 defined('_JEXEC') or die;
 
 use Joomla\CMS\Factory;
+use Joomla\CMS\HTML\Helpers\Sidebar;
 
 /**
  * Planarchiv Helper
@@ -29,32 +30,32 @@ class PlanarchivHelper
 	 */
 	public static function addSubmenu($vName = 'main')
 	{
-		JHtmlSidebar::addEntry(
+		Sidebar::addEntry(
 			JText::_('COM_PLANARCHIV_MENU_DFAS'),
 			'index.php?option=com_planarchiv&view=dfas',
 			$vName == 'dfas'
 		);
-		JHtmlSidebar::addEntry(
+		Sidebar::addEntry(
 			JText::_('COM_PLANARCHIV_MENU_DIDOKS'),
 			'index.php?option=com_planarchiv&view=didoks',
 			$vName == 'didoks'
 		);
-		JHtmlSidebar::addEntry(
+		Sidebar::addEntry(
 			JText::_('COM_PLANARCHIV_MENU_STOCKWERKS'),
 			'index.php?option=com_planarchiv&view=stockwerks',
 			$vName == 'stockwerks'
 		);
-		JHtmlSidebar::addEntry(
+		Sidebar::addEntry(
 			JText::_('COM_PLANARCHIV_MENU_ANLAGETYPS'),
 			'index.php?option=com_planarchiv&view=anlagetyps',
 			$vName == 'anlagetyps'
 		);
-		JHtmlSidebar::addEntry(
+		Sidebar::addEntry(
 			JText::_('COM_PLANARCHIV_MENU_DOKUTYPS'),
 			'index.php?option=com_planarchiv&view=dokutyps',
 			$vName == 'dokutyps'
 		);
-		JHtmlSidebar::addEntry(
+		Sidebar::addEntry(
 			JText::_('COM_PLANARCHIV_MENU_CATEGORY'),
 			'index.php?option=com_categories&extension=com_planarchiv',
 			$vName == 'categories'

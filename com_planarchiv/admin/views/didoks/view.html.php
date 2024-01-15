@@ -9,6 +9,8 @@
 
 defined('_JEXEC') or die;
 
+use Joomla\CMS\HTML\Helpers\Sidebar;
+
 /**
  * HTML View class for the PlanArchiv Component
  *
@@ -77,7 +79,7 @@ class PlanarchivViewDidoks extends JViewLegacy
 
 		PlanarchivHelper::addSubmenu('didoks');
 		$this->addToolbar();
-		$this->sidebar = JHtmlSidebar::render();
+		$this->sidebar = Sidebar::render();
 
 		return parent::display($tpl);
 	}

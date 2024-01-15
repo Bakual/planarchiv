@@ -10,13 +10,14 @@
 defined('_JEXEC') or die();
 
 use Joomla\CMS\Factory;
+use Joomla\CMS\HTML\HTMLHelper;
 
-JHtml::_('bootstrap.tooltip');
-JHtml::_('behavior.formvalidation');
-JHtml::_('behavior.keepalive');
-JHtml::_('formbehavior.chosen', 'select');
-JHtml::_('behavior.tabstate');
-JHtml::_('stylesheet', 'com_planarchiv/planarchiv.css', array('version' => 'auto', 'relative' => true));
+HTMLHelper::_('bootstrap.tooltip');
+HTMLHelper::_('behavior.formvalidation');
+HTMLHelper::_('behavior.keepalive');
+HTMLHelper::_('formbehavior.chosen', 'select');
+HTMLHelper::_('behavior.tabstate');
+HTMLHelper::_('stylesheet', 'com_planarchiv/planarchiv.css', array('version' => 'auto', 'relative' => true));
 
 ?>
 <script type="text/javascript">
@@ -45,13 +46,13 @@ JHtml::_('stylesheet', 'com_planarchiv/planarchiv.css', array('version' => 'auto
 		<fieldset>
 			<?php echo $this->form->renderField('title'); ?>
 
-			<?php echo JHtml::_('bootstrap.startTabSet', 'planform', array('active' => 'basic')); ?>
+			<?php echo HTMLHelper::_('bootstrap.startTabSet', 'planform', array('active' => 'basic')); ?>
 
-            <?php echo JHtml::_('bootstrap.addTab', 'planform', 'location', JText::_('COM_PLANARCHIV_TAB_LOCATION')); ?>
+            <?php echo HTMLHelper::_('bootstrap.addTab', 'planform', 'location', JText::_('COM_PLANARCHIV_TAB_LOCATION')); ?>
                 <?php echo $this->form->renderField('didok_id'); ?>
 
-                <?php echo JHtml::_('bootstrap.startTabSet', 'planformlocation', array('active' => 'ort')); ?>
-                    <?php echo JHtml::_('bootstrap.addTab', 'planformlocation', 'ort', JText::_('COM_PLANARCHIV_ORT_LABEL')); ?>
+                <?php echo HTMLHelper::_('bootstrap.startTabSet', 'planformlocation', array('active' => 'ort')); ?>
+                    <?php echo HTMLHelper::_('bootstrap.addTab', 'planformlocation', 'ort', JText::_('COM_PLANARCHIV_ORT_LABEL')); ?>
                         <div class="row-fluid">
                             <div class="pull-left rightMargin">
                                 <?php echo $this->form->renderField('dfa_id'); ?>
@@ -61,8 +62,8 @@ JHtml::_('stylesheet', 'com_planarchiv/planarchiv.css', array('version' => 'auto
                             </div>
                         </div>
                         <?php echo $this->form->renderField('stockwerk_id'); ?>
-                        <?php echo JHtml::_('bootstrap.endTab'); ?>
-                        <?php echo JHtml::_('bootstrap.addTab', 'planformlocation', 'strecke', JText::_('COM_PLANARCHIV_STRECKE_LABEL')); ?>
+                        <?php echo HTMLHelper::_('bootstrap.endTab'); ?>
+                        <?php echo HTMLHelper::_('bootstrap.addTab', 'planformlocation', 'strecke', JText::_('COM_PLANARCHIV_STRECKE_LABEL')); ?>
                         <div class="row-fluid">
                             <div class="pull-left rightMargin">
                                 <?php echo $this->form->renderField('Strecke'); ?>
@@ -74,11 +75,11 @@ JHtml::_('stylesheet', 'com_planarchiv/planarchiv.css', array('version' => 'auto
                                 <?php echo $this->form->renderField('richtung_didok_id'); ?>
                             </div>
                         </div>
-                    <?php echo JHtml::_('bootstrap.endTab'); ?>
-                <?php echo JHtml::_('bootstrap.endTabSet'); ?>
-            <?php echo JHtml::_('bootstrap.endTab'); ?>
+                    <?php echo HTMLHelper::_('bootstrap.endTab'); ?>
+                <?php echo HTMLHelper::_('bootstrap.endTabSet'); ?>
+            <?php echo HTMLHelper::_('bootstrap.endTab'); ?>
 
-            <?php echo JHtml::_('bootstrap.addTab', 'planform', 'basic', JText::_('COM_PLANARCHIV_TAB_BASIC')); ?>
+            <?php echo HTMLHelper::_('bootstrap.addTab', 'planform', 'basic', JText::_('COM_PLANARCHIV_TAB_BASIC')); ?>
 				<div class="row-fluid">
 					<div class="pull-left rightMargin">
 						<?php echo $this->form->renderField('ErstellDatum'); ?>
@@ -122,15 +123,15 @@ JHtml::_('stylesheet', 'com_planarchiv/planarchiv.css', array('version' => 'auto
 				</div>
 				<?php echo $this->form->renderField('Maengelliste'); ?>
 				<?php echo $this->form->renderField('Bemerkung'); ?>
-			<?php echo JHtml::_('bootstrap.endTab'); ?>
+			<?php echo HTMLHelper::_('bootstrap.endTab'); ?>
 
-			<?php echo JHtml::_('bootstrap.addTab', 'planform', 'files', JText::_('COM_PLANARCHIV_TAB_FILES')); ?>
+			<?php echo HTMLHelper::_('bootstrap.addTab', 'planform', 'files', JText::_('COM_PLANARCHIV_TAB_FILES')); ?>
 				<?php foreach($this->form->getFieldset('files') as $field): ?>
 					<?php echo $field->getControlGroup(); ?>
 				<?php endforeach; ?>
-			<?php echo JHtml::_('bootstrap.endTab'); ?>
+			<?php echo HTMLHelper::_('bootstrap.endTab'); ?>
 
-			<?php echo JHtml::_('bootstrap.addTab', 'planform', 'details', JText::_('COM_PLANARCHIV_TAB_DETAILS')); ?>
+			<?php echo HTMLHelper::_('bootstrap.addTab', 'planform', 'details', JText::_('COM_PLANARCHIV_TAB_DETAILS')); ?>
 				<div class="row-fluid">
 					<div class="span6">
 						<?php foreach($this->form->getFieldset('info') as $field): ?>
@@ -143,13 +144,13 @@ JHtml::_('stylesheet', 'com_planarchiv/planarchiv.css', array('version' => 'auto
 						<?php endforeach; ?>
 					</div>
 				</div>
-			<?php echo JHtml::_('bootstrap.endTab'); ?>
+			<?php echo HTMLHelper::_('bootstrap.endTab'); ?>
 
-			<?php echo JHtml::_('bootstrap.endTabSet'); ?>
+			<?php echo HTMLHelper::_('bootstrap.endTabSet'); ?>
 
 			<input type="hidden" name="task" value="" />
 			<input type="hidden" name="return" value="<?php echo $this->return_page; ?>" />
-			<?php echo JHtml::_('form.token'); ?>
+			<?php echo HTMLHelper::_('form.token'); ?>
 		</fieldset>
 		<div class="btn-toolbar">
 			<div class="btn-group">

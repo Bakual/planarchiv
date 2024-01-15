@@ -10,6 +10,7 @@
 defined('_JEXEC') or die();
 
 use Joomla\CMS\Factory;
+use Joomla\CMS\HTML\HTMLHelper;
 
 jimport('joomla.html.html');
 jimport('joomla.form.formfield');
@@ -67,7 +68,7 @@ class JFormFieldAnlagetyplist extends JFormFieldList
 		// Get the field options.
 		$options = (array) $this->getOptions();
 
-		return JHtml::_('select.genericlist', $options, $this->name, $attribs);
+		return HTMLHelper::_('select.genericlist', $options, $this->name, $attribs);
 	}
 
 	/**

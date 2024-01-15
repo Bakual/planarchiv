@@ -10,13 +10,14 @@
 defined('_JEXEC') or die();
 
 use Joomla\CMS\Factory;
+use Joomla\CMS\HTML\HTMLHelper;
 
-JHtml::addIncludePath(JPATH_COMPONENT . '/helpers');
+HTMLHelper::addIncludePath(JPATH_COMPONENT . '/helpers');
 
-JHtml::_('behavior.core');
-JHtml::_('bootstrap.tooltip');
-JHtml::_('formbehavior.chosen', 'select');
-JHtml::_('stylesheet', 'com_planarchiv/planarchiv.css', array('version' => 'auto', 'relative' => true));
+HTMLHelper::_('behavior.core');
+HTMLHelper::_('bootstrap.tooltip');
+HTMLHelper::_('formbehavior.chosen', 'select');
+HTMLHelper::_('stylesheet', 'com_planarchiv/planarchiv.css', array('version' => 'auto', 'relative' => true));
 
 $user       = Factory::getUser();
 $canEdit    = ($user->authorise('core.edit', 'com_planarchiv'));
@@ -43,19 +44,19 @@ $listDirn   = $this->state->get('list.direction');
 				<tr>
 					<th class="hidden"></th>
 					<th>
-						<?php echo JHtml::_('searchtools.sort', 'JGLOBAL_TITLE', 'plans.title', $listDirn, $listOrder); ?>
+						<?php echo HTMLHelper::_('searchtools.sort', 'JGLOBAL_TITLE', 'plans.title', $listDirn, $listOrder); ?>
 					</th>
 					<th>
-						<?php echo JHtml::_('searchtools.sort', 'COM_PLANARCHIV_ORT_LABEL', 'didok_title', $listDirn, $listOrder); ?>
+						<?php echo HTMLHelper::_('searchtools.sort', 'COM_PLANARCHIV_ORT_LABEL', 'didok_title', $listDirn, $listOrder); ?>
 					</th>
 					<th>
-						<?php echo JHtml::_('searchtools.sort', 'COM_PLANARCHIV_DFA_LABEL', 'dfa_title', $listDirn, $listOrder); ?>
+						<?php echo HTMLHelper::_('searchtools.sort', 'COM_PLANARCHIV_DFA_LABEL', 'dfa_title', $listDirn, $listOrder); ?>
 					</th>
                     <th>
-                        <?php echo JHtml::_('searchtools.sort', 'COM_PLANARCHIV_ANLAGETYP_LABEL', 'anlagetyp_title', $listDirn, $listOrder); ?>
+                        <?php echo HTMLHelper::_('searchtools.sort', 'COM_PLANARCHIV_ANLAGETYP_LABEL', 'anlagetyp_title', $listDirn, $listOrder); ?>
                     </th>
                     <th class="hidden-phone hidden-tablet">
-                        <?php echo JHtml::_('searchtools.sort', 'COM_PLANARCHIV_BEMERKUNG_LABEL', 'Bemerkung', $listDirn, $listOrder); ?>
+                        <?php echo HTMLHelper::_('searchtools.sort', 'COM_PLANARCHIV_BEMERKUNG_LABEL', 'Bemerkung', $listDirn, $listOrder); ?>
                     </th>
 				</tr>
 				</thead>
@@ -69,17 +70,17 @@ $listDirn   = $this->state->get('list.direction');
 					?>
 					<tr class="row<?php echo $i % 2; ?>">
 						<td class="hidden">
-							<?php echo JHtml::_('grid.id', $i, $item->id); ?>
+							<?php echo HTMLHelper::_('grid.id', $i, $item->id); ?>
 						</td>
 						<td class="nowrap has-context">
 							<div class="pull-left">
 								<?php if ($item->zurzeitbei_id) : ?>
-									<?php $date = ($item->zurzeitbei_date != '0000-00-00 00:00:00') ? JHtml::_('date', $item->zurzeitbei_date, JText::_('DATE_FORMAT_LC4')) : '?'; ?>
+									<?php $date = ($item->zurzeitbei_date != '0000-00-00 00:00:00') ? HTMLHelper::_('date', $item->zurzeitbei_date, JText::_('DATE_FORMAT_LC4')) : '?'; ?>
 									<?php $tooltip = JText::sprintf('COM_PLANARCHIV_ZUR_ZEIT_BEI', $date, $item->zurzeitbei_name); ?>
 									<span class="icon-warning-2 hasTooltip" title="<?php echo $tooltip; ?>"> </span>
 								<?php endif; ?>
 								<?php if ($item->checked_out) : ?>
-									<?php echo JHtml::_('jgrid.checkedout', $i, $item->editor, $item->checked_out_time, 'plans.', $canCheckin); ?>
+									<?php echo HTMLHelper::_('jgrid.checkedout', $i, $item->editor, $item->checked_out_time, 'plans.', $canCheckin); ?>
 								<?php endif; ?>
 								<a href="<?php echo JRoute::_('index.php?option=com_planarchiv&view=plan&id=' . $item->id);?>">
 									<?php echo $this->escape($item->title) ?: '<span class="label label-info">' . JText::_('COM_PLANARCHIV_NONAME') . '</span>'; ?>
@@ -118,7 +119,7 @@ $listDirn   = $this->state->get('list.direction');
         <?php echo $this->pagination->getListFooter(); ?>
 		<input type="hidden" name="task" value="" />
 		<input type="hidden" name="boxchecked" value="0" />
-		<?php echo JHtml::_('form.token'); ?>
+		<?php echo HTMLHelper::_('form.token'); ?>
         <div class="clearfix"></div>
     </div>
 </form>

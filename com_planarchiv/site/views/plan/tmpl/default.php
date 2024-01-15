@@ -60,7 +60,7 @@ $canEditOwn = $user->authorise('core.edit.own', 'com_planarchiv.category.' . $th
 		<?php if ($this->item->zurzeitbei_id) : ?>
 			<dd class="zurzeitbei">
 				<?php $zurzeitbeiLink = JRoute::_(ContactHelperRoute::getContactRoute($this->item->zurzeitbei_id . ':' . $this->item->zurzeitbei_alias, $this->item->zurzeitbei_catid)); ?>
-				<?php $zurzeitbeiDate = ($this->item->zurzeitbei_date !== '0000-00-00 00:00:00') ? JHtml::_('date', $this->item->zurzeitbei_date, JText::_('DATE_FORMAT_LC3')) : '?'; ?>
+				<?php $zurzeitbeiDate = ($this->item->zurzeitbei_date !== '0000-00-00 00:00:00') ? HTMLHelper::_('date', $this->item->zurzeitbei_date, JText::_('DATE_FORMAT_LC3')) : '?'; ?>
 				<?php echo JText::sprintf('COM_PLANARCHIV_ZUR_ZEIT_BEI', $zurzeitbeiDate, '<a href="' . $zurzeitbeiLink . '">' . $this->item->zurzeitbei_name . '</a>'); ?>
 			</dd>
 		<?php endif; ?>
@@ -71,16 +71,16 @@ $canEditOwn = $user->authorise('core.edit.own', 'com_planarchiv.category.' . $th
 
 		<dd class="create">
 			<span class="icon-calendar" aria-hidden="true"></span>
-			<time datetime="<?php echo JHtml::_('date', $this->item->ErstellDatum, 'c'); ?>">
-				<?php $erstellDatum = ($this->item->ErstellDatum !== '0000-00-00 00:00:00') ? JHtml::_('date', $this->item->ErstellDatum, JText::_('DATE_FORMAT_LC3')) : '?'; ?>
+			<time datetime="<?php echo HTMLHelper::_('date', $this->item->ErstellDatum, 'c'); ?>">
+				<?php $erstellDatum = ($this->item->ErstellDatum !== '0000-00-00 00:00:00') ? HTMLHelper::_('date', $this->item->ErstellDatum, JText::_('DATE_FORMAT_LC3')) : '?'; ?>
 				<?php echo JText::sprintf('COM_PLANARCHIV_CREATED_DATE_ON', $erstellDatum); ?>
 			</time>
 		</dd>
 
 		<dd class="modified">
 			<span class="icon-calendar" aria-hidden="true"></span>
-			<time datetime="<?php echo JHtml::_('date', $this->item->AenderungsDatum, 'c'); ?>">
-				<?php $aenderungsDatum = ($this->item->AenderungsDatum !== '0000-00-00 00:00:00') ? JHtml::_('date', $this->item->AenderungsDatum, JText::_('DATE_FORMAT_LC3')) : '?'; ?>
+			<time datetime="<?php echo HTMLHelper::_('date', $this->item->AenderungsDatum, 'c'); ?>">
+				<?php $aenderungsDatum = ($this->item->AenderungsDatum !== '0000-00-00 00:00:00') ? HTMLHelper::_('date', $this->item->AenderungsDatum, JText::_('DATE_FORMAT_LC3')) : '?'; ?>
 				<?php echo JText::sprintf('COM_PLANARCHIV_LAST_UPDATED', $aenderungsDatum); ?>
 			</time>
 		</dd>

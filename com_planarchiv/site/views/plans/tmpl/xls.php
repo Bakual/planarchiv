@@ -9,10 +9,13 @@
 
 defined('_JEXEC') or die();
 
+use Joomla\CMS\HTML\HTMLHelper;
+use PhpOffice\PhpSpreadsheet\Cell;
+use PhpOffice\PhpSpreadsheet\Cell\AdvancedValueBinder;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 
-\PhpOffice\PhpSpreadsheet\Cell::setValueBinder(new \PhpOffice\PhpSpreadsheet\Cell\AdvancedValueBinder());
+Cell::setValueBinder(new AdvancedValueBinder());
 
 $spreadsheet = new Spreadsheet();
 $spreadsheet->getDefaultStyle()->getFont()->setName('Arial');
@@ -90,8 +93,8 @@ foreach ($this->items as $item)
 	$sheet->setCellValue('E' . $i, $item->didok_title);
 	$sheet->setCellValue('F' . $i, $item->didok);
 	$sheet->setCellValue('G' . $i, $item->Bemerkung);
-	$sheet->setCellValue('H' . $i, ($item->ErstellDatum !== '0000-00-00 00:00:00') ? PhpOffice\PhpSpreadsheet\Shared\Date::PHPToExcel(JHtml::_('date', $item->ErstellDatum, 'Y-m-d')) : '');
-	$sheet->setCellValue('I' . $i, ($item->AenderungsDatum !== '0000-00-00 00:00:00') ? PhpOffice\PhpSpreadsheet\Shared\Date::PHPToExcel(JHtml::_('date', $item->AenderungsDatum, 'Y-m-d')) : '');
+	$sheet->setCellValue('H' . $i, ($item->ErstellDatum !== '0000-00-00 00:00:00') ? PhpOffice\PhpSpreadsheet\Shared\Date::PHPToExcel(HTMLHelper::_('date', $item->ErstellDatum, 'Y-m-d')) : '');
+	$sheet->setCellValue('I' . $i, ($item->AenderungsDatum !== '0000-00-00 00:00:00') ? PhpOffice\PhpSpreadsheet\Shared\Date::PHPToExcel(HTMLHelper::_('date', $item->AenderungsDatum, 'Y-m-d')) : '');
 	$sheet->setCellValue('J' . $i, $item->Strecke);
 	$sheet->setCellValue('K' . $i, $item->km);
 	$sheet->setCellValue('L' . $i, $item->richtung_title);
@@ -110,7 +113,7 @@ foreach ($this->items as $item)
 	$sheet->setCellValue('Y' . $i, JText::_('COM_PLANARCHIV_ALIGNMENT_' . $item->alignment . '_LABEL'));
 	$sheet->setCellValue('Z' . $i, $item->size);
 	$sheet->setCellValue('AA' . $i, $item->zurzeitbei_name);
-	$sheet->setCellValue('AB' . $i, ($item->zurzeitbei_date !== '0000-00-00 00:00:00') ? PhpOffice\PhpSpreadsheet\Shared\Date::PHPToExcel(JHtml::_('date', $item->zurzeitbei_date, 'Y-m-d')) : '');
+	$sheet->setCellValue('AB' . $i, ($item->zurzeitbei_date !== '0000-00-00 00:00:00') ? PhpOffice\PhpSpreadsheet\Shared\Date::PHPToExcel(HTMLHelper::_('date', $item->zurzeitbei_date, 'Y-m-d')) : '');
 
 	$sheet->getStyle('H' . $i)->getNumberFormat()->setFormatCode('dd.mm.yyyy');
 	$sheet->getStyle('I' . $i)->getNumberFormat()->setFormatCode('dd.mm.yyyy');
