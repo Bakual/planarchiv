@@ -11,15 +11,21 @@
 
 defined('_JEXEC') or die();
 
+use Joomla\CMS\Application\CMSApplication;
+use Joomla\CMS\Factory;
+use Joomla\CMS\Installer\Adapter\ComponentAdapter;
+use Joomla\CMS\Installer\InstallerScript;
+use Joomla\CMS\Table\Table;
+
 /**
  * Class Com_PlanarchivInstallerScript
  *
  * @since  4.x
  */
-class Com_PlanarchivInstallerScript extends JInstallerScript
+class Com_PlanarchivInstallerScript extends InstallerScript
 {
 	/**
-	 * @var  JApplicationCms  Holds the application object
+	 * @var  CMSApplication  Holds the application object
 	 *
 	 * @since 1.0.0
 	 */
@@ -39,7 +45,7 @@ class Com_PlanarchivInstallerScript extends JInstallerScript
 	 * @var    string
 	 * @since  1.0.0
 	 */
-	protected $minimumPhp = '5.3.10';
+	protected $minimumPhp = '8.0.30';
 
 	/**
 	 * @var  string  During an update, it will be populated with the old release version
@@ -55,13 +61,13 @@ class Com_PlanarchivInstallerScript extends JInstallerScript
 	 */
 	public function __construct()
 	{
-		$this->app = JFactory::getApplication();
+		$this->app = Factory::getApplication();
 	}
 
 	/**
 	 * Method to install the component
 	 *
-	 * @param   JInstallerAdapterComponent $parent Installerobject
+	 * @param JInstallerAdapterComponent $parent Installerobject
 	 *
 	 * @return void
 	 *
@@ -76,7 +82,7 @@ class Com_PlanarchivInstallerScript extends JInstallerScript
 	/**
 	 * Method to uninstall the component
 	 *
-	 * @param   JInstallerAdapterComponent $parent Installerobject
+	 * @param ComponentAdapter $parent Installerobject
 	 *
 	 * @return void
 	 *
@@ -89,7 +95,7 @@ class Com_PlanarchivInstallerScript extends JInstallerScript
 	/**
 	 * method to update the component
 	 *
-	 * @param   JInstallerAdapterComponent $parent Installerobject
+	 * @param JInstallerAdapterComponent $parent Installerobject
 	 *
 	 * @return void
 	 *
@@ -102,8 +108,8 @@ class Com_PlanarchivInstallerScript extends JInstallerScript
 	/**
 	 * method to run after an install/update/uninstall method
 	 *
-	 * @param   string                     $type   'install', 'update' or 'discover_install'
-	 * @param   JInstallerAdapterComponent $parent Installerobject
+	 * @param string           $type   'install', 'update' or 'discover_install'
+	 * @param ComponentAdapter $parent Installerobject
 	 *
 	 * @return void
 	 *
@@ -116,7 +122,7 @@ class Com_PlanarchivInstallerScript extends JInstallerScript
 	private function saveContentTypes()
 	{
 		// Adding content_type for content history
-		$table = JTable::getInstance('Contenttype', 'JTable');
+		$table = Table::getInstance('Contenttype', 'JTable');
 
 		// FieldMappings
 		$common                       = new stdClass;
