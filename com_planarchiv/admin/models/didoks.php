@@ -9,6 +9,7 @@
 
 defined('_JEXEC') or die;
 
+use Joomla\CMS\Component\ComponentHelper;
 use Joomla\CMS\Factory;
 use Joomla\CMS\MVC\Model\ListModel;
 
@@ -70,7 +71,7 @@ class PlanarchivModelDidoks extends ListModel
 		}
 
 		// Load the parameters.
-		$params = JComponentHelper::getParams('com_planarchiv');
+		$params = ComponentHelper::getParams('com_planarchiv');
 		$this->setState('params', $params);
 
 		// List state information.

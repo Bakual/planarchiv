@@ -9,6 +9,8 @@
 
 defined('_JEXEC') or die();
 
+use Joomla\CMS\Component\ComponentHelper;
+
 jimport('joomla.html.html');
 jimport('joomla.form.formfield');
 jimport('joomla.form.helper');
@@ -54,7 +56,7 @@ class JFormFieldFileformatlist extends JFormFieldList
 	 */
 	public function getOptions()
 	{
-		$params      = JComponentHelper::getParams('com_planarchiv');
+		$params      = ComponentHelper::getParams('com_planarchiv');
 		$fileformats = explode(',', $params->get('fileformats'));
 		$options     = array();
 

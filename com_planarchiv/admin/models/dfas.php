@@ -1,7 +1,15 @@
 <?php
+/**
+ * @package     PlanArchiv
+ * @subpackage  Component.Administrator
+ * @author      Thomas Hunziker <thomi.hunziker@sbb.ch>
+ * @copyright   © 2017 - Thomas Hunziker
+ * @license     http://www.gnu.org/licenses/gpl.html
+ **/
 
 defined('_JEXEC') or die;
 
+use Joomla\CMS\Component\ComponentHelper;
 use Joomla\CMS\Factory;
 use Joomla\CMS\MVC\Model\ListModel;
 
@@ -63,7 +71,7 @@ class PlanarchivModelDfas extends ListModel
 		}
 
 		// Load the parameters.
-		$params = JComponentHelper::getParams('com_planarchiv');
+		$params = ComponentHelper::getParams('com_planarchiv');
 		$this->setState('params', $params);
 
 		// List state information.
