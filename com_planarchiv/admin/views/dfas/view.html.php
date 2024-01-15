@@ -12,6 +12,7 @@ defined('_JEXEC') or die;
 use Joomla\CMS\HTML\Helpers\Sidebar;
 use Joomla\CMS\Language\Text;
 use Joomla\CMS\MVC\View\HtmlView;
+use Joomla\CMS\Toolbar\ToolbarHelper;
 
 /**
  * HTML View class for the PlanArchiv Component
@@ -97,47 +98,47 @@ class PlanarchivViewDfas extends HtmlView
 	{
 		$canDo = PlanarchivHelper::getActions();
 
-		JToolbarHelper::title(Text::_('COM_PLANARCHIV_DFAS_TITLE'));
+		ToolbarHelper::title(Text::_('COM_PLANARCHIV_DFAS_TITLE'));
 
 		if ($canDo->get('core.create'))
 		{
-			JToolbarHelper::addNew('dfa.add', 'JTOOLBAR_NEW');
+			ToolbarHelper::addNew('dfa.add', 'JTOOLBAR_NEW');
 		}
 
 		if (($canDo->get('core.edit')) || ($canDo->get('core.edit.own')))
 		{
-			JToolbarHelper::editList('dfa.edit', 'JTOOLBAR_EDIT');
+			ToolbarHelper::editList('dfa.edit', 'JTOOLBAR_EDIT');
 		}
 
 		if ($canDo->get('core.edit.state'))
 		{
-			JToolbarHelper::custom('dfas.publish', 'publish.png', 'publish_f2.png', 'JTOOLBAR_PUBLISH', true);
-			JToolbarHelper::custom('dfas.unpublish', 'unpublish.png', 'unpublish_f2.png', 'JTOOLBAR_UNPUBLISH', true);
+			ToolbarHelper::custom('dfas.publish', 'publish.png', 'publish_f2.png', 'JTOOLBAR_PUBLISH', true);
+			ToolbarHelper::custom('dfas.unpublish', 'unpublish.png', 'unpublish_f2.png', 'JTOOLBAR_UNPUBLISH', true);
 
 			if ($this->state->get('filter.state') != 2)
 			{
-				JToolbarHelper::archiveList('dfas.archive', 'JTOOLBAR_ARCHIVE');
+				ToolbarHelper::archiveList('dfas.archive', 'JTOOLBAR_ARCHIVE');
 			}
 			else
 			{
-				JToolbarHelper::unarchiveList('dfas.publish', 'JTOOLBAR_UNARCHIVE');
+				ToolbarHelper::unarchiveList('dfas.publish', 'JTOOLBAR_UNARCHIVE');
 			}
 
-			JToolbarHelper::checkin('dfas.checkin');
+			ToolbarHelper::checkin('dfas.checkin');
 		}
 
 		if ($this->state->get('filter.state') == -2 && $canDo->get('core.delete'))
 		{
-			JToolbarHelper::deleteList('', 'dfas.delete', 'JTOOLBAR_EMPTY_TRASH');
+			ToolbarHelper::deleteList('', 'dfas.delete', 'JTOOLBAR_EMPTY_TRASH');
 		}
 		elseif ($canDo->get('core.edit.state'))
 		{
-			JToolbarHelper::trash('dfas.trash', 'JTOOLBAR_TRASH');
+			ToolbarHelper::trash('dfas.trash', 'JTOOLBAR_TRASH');
 		}
 
 		if ($canDo->get('core.admin') || $canDo->get('core.options'))
 		{
-			JToolbarHelper::preferences('com_planarchiv');
+			ToolbarHelper::preferences('com_planarchiv');
 		}
 	}
 

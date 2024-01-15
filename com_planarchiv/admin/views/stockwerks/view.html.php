@@ -12,6 +12,7 @@ defined('_JEXEC') or die;
 use Joomla\CMS\HTML\Helpers\Sidebar;
 use Joomla\CMS\Language\Text;
 use Joomla\CMS\MVC\View\HtmlView;
+use Joomla\CMS\Toolbar\ToolbarHelper;
 
 /**
  * HTML View class for the PlanArchiv Component
@@ -97,47 +98,47 @@ class PlanarchivViewStockwerks extends HtmlView
 	{
 		$canDo = PlanarchivHelper::getActions();
 
-		JToolbarHelper::title(Text::_('COM_PLANARCHIV_STOCKWERKS_TITLE'));
+		ToolbarHelper::title(Text::_('COM_PLANARCHIV_STOCKWERKS_TITLE'));
 
 		if ($canDo->get('core.create'))
 		{
-			JToolbarHelper::addNew('stockwerk.add', 'JTOOLBAR_NEW');
+			ToolbarHelper::addNew('stockwerk.add', 'JTOOLBAR_NEW');
 		}
 
 		if (($canDo->get('core.edit')) || ($canDo->get('core.edit.own')))
 		{
-			JToolbarHelper::editList('stockwerk.edit', 'JTOOLBAR_EDIT');
+			ToolbarHelper::editList('stockwerk.edit', 'JTOOLBAR_EDIT');
 		}
 
 		if ($canDo->get('core.edit.state'))
 		{
-			JToolbarHelper::custom('stockwerks.publish', 'publish.png', 'publish_f2.png', 'JTOOLBAR_PUBLISH', true);
-			JToolbarHelper::custom('stockwerks.unpublish', 'unpublish.png', 'unpublish_f2.png', 'JTOOLBAR_UNPUBLISH', true);
+			ToolbarHelper::custom('stockwerks.publish', 'publish.png', 'publish_f2.png', 'JTOOLBAR_PUBLISH', true);
+			ToolbarHelper::custom('stockwerks.unpublish', 'unpublish.png', 'unpublish_f2.png', 'JTOOLBAR_UNPUBLISH', true);
 
 			if ($this->state->get('filter.state') != 2)
 			{
-				JToolbarHelper::archiveList('stockwerks.archive', 'JTOOLBAR_ARCHIVE');
+				ToolbarHelper::archiveList('stockwerks.archive', 'JTOOLBAR_ARCHIVE');
 			}
 			else
 			{
-				JToolbarHelper::unarchiveList('stockwerks.publish', 'JTOOLBAR_UNARCHIVE');
+				ToolbarHelper::unarchiveList('stockwerks.publish', 'JTOOLBAR_UNARCHIVE');
 			}
 
-			JToolbarHelper::checkin('stockwerks.checkin');
+			ToolbarHelper::checkin('stockwerks.checkin');
 		}
 
 		if ($this->state->get('filter.state') == -2 && $canDo->get('core.delete'))
 		{
-			JToolbarHelper::deleteList('', 'stockwerks.delete', 'JTOOLBAR_EMPTY_TRASH');
+			ToolbarHelper::deleteList('', 'stockwerks.delete', 'JTOOLBAR_EMPTY_TRASH');
 		}
 		elseif ($canDo->get('core.edit.state'))
 		{
-			JToolbarHelper::trash('stockwerks.trash', 'JTOOLBAR_TRASH');
+			ToolbarHelper::trash('stockwerks.trash', 'JTOOLBAR_TRASH');
 		}
 
 		if ($canDo->get('core.admin') || $canDo->get('core.options'))
 		{
-			JToolbarHelper::preferences('com_planarchiv');
+			ToolbarHelper::preferences('com_planarchiv');
 		}
 	}
 

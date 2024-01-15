@@ -12,6 +12,7 @@ defined('_JEXEC') or die;
 use Joomla\CMS\HTML\Helpers\Sidebar;
 use Joomla\CMS\Language\Text;
 use Joomla\CMS\MVC\View\HtmlView;
+use Joomla\CMS\Toolbar\ToolbarHelper;
 
 /**
  * HTML View class for the PlanArchiv Component
@@ -97,47 +98,47 @@ class PlanarchivViewAnlagetyps extends HtmlView
 	{
 		$canDo = PlanarchivHelper::getActions();
 
-		JToolbarHelper::title(Text::_('COM_PLANARCHIV_ANLAGETYPS_TITLE'));
+		ToolbarHelper::title(Text::_('COM_PLANARCHIV_ANLAGETYPS_TITLE'));
 
 		if ($canDo->get('core.create'))
 		{
-			JToolbarHelper::addNew('anlagetyp.add', 'JTOOLBAR_NEW');
+			ToolbarHelper::addNew('anlagetyp.add', 'JTOOLBAR_NEW');
 		}
 
 		if (($canDo->get('core.edit')) || ($canDo->get('core.edit.own')))
 		{
-			JToolbarHelper::editList('anlagetyp.edit', 'JTOOLBAR_EDIT');
+			ToolbarHelper::editList('anlagetyp.edit', 'JTOOLBAR_EDIT');
 		}
 
 		if ($canDo->get('core.edit.state'))
 		{
-			JToolbarHelper::custom('anlagetyps.publish', 'publish.png', 'publish_f2.png', 'JTOOLBAR_PUBLISH', true);
-			JToolbarHelper::custom('anlagetyps.unpublish', 'unpublish.png', 'unpublish_f2.png', 'JTOOLBAR_UNPUBLISH', true);
+			ToolbarHelper::custom('anlagetyps.publish', 'publish.png', 'publish_f2.png', 'JTOOLBAR_PUBLISH', true);
+			ToolbarHelper::custom('anlagetyps.unpublish', 'unpublish.png', 'unpublish_f2.png', 'JTOOLBAR_UNPUBLISH', true);
 
 			if ($this->state->get('filter.state') != 2)
 			{
-				JToolbarHelper::archiveList('anlagetyps.archive', 'JTOOLBAR_ARCHIVE');
+				ToolbarHelper::archiveList('anlagetyps.archive', 'JTOOLBAR_ARCHIVE');
 			}
 			else
 			{
-				JToolbarHelper::unarchiveList('anlagetyps.publish', 'JTOOLBAR_UNARCHIVE');
+				ToolbarHelper::unarchiveList('anlagetyps.publish', 'JTOOLBAR_UNARCHIVE');
 			}
 
-			JToolbarHelper::checkin('anlagetyps.checkin');
+			ToolbarHelper::checkin('anlagetyps.checkin');
 		}
 
 		if ($this->state->get('filter.state') == -2 && $canDo->get('core.delete'))
 		{
-			JToolbarHelper::deleteList('', 'anlagetyps.delete', 'JTOOLBAR_EMPTY_TRASH');
+			ToolbarHelper::deleteList('', 'anlagetyps.delete', 'JTOOLBAR_EMPTY_TRASH');
 		}
 		elseif ($canDo->get('core.edit.state'))
 		{
-			JToolbarHelper::trash('anlagetyps.trash', 'JTOOLBAR_TRASH');
+			ToolbarHelper::trash('anlagetyps.trash', 'JTOOLBAR_TRASH');
 		}
 
 		if ($canDo->get('core.admin') || $canDo->get('core.options'))
 		{
-			JToolbarHelper::preferences('com_planarchiv');
+			ToolbarHelper::preferences('com_planarchiv');
 		}
 	}
 

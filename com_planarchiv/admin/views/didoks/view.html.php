@@ -12,6 +12,7 @@ defined('_JEXEC') or die;
 use Joomla\CMS\HTML\Helpers\Sidebar;
 use Joomla\CMS\Language\Text;
 use Joomla\CMS\MVC\View\HtmlView;
+use Joomla\CMS\Toolbar\ToolbarHelper;
 
 /**
  * HTML View class for the PlanArchiv Component
@@ -97,47 +98,47 @@ class PlanarchivViewDidoks extends HtmlView
 	{
 		$canDo = PlanarchivHelper::getActions();
 
-		JToolbarHelper::title(Text::_('COM_PLANARCHIV_DIDOKS_TITLE'));
+		ToolbarHelper::title(Text::_('COM_PLANARCHIV_DIDOKS_TITLE'));
 
 		if ($canDo->get('core.create'))
 		{
-			JToolbarHelper::addNew('didok.add', 'JTOOLBAR_NEW');
+			ToolbarHelper::addNew('didok.add', 'JTOOLBAR_NEW');
 		}
 
 		if (($canDo->get('core.edit')) || ($canDo->get('core.edit.own')))
 		{
-			JToolbarHelper::editList('didok.edit', 'JTOOLBAR_EDIT');
+			ToolbarHelper::editList('didok.edit', 'JTOOLBAR_EDIT');
 		}
 
 		if ($canDo->get('core.edit.state'))
 		{
-			JToolbarHelper::custom('didoks.publish', 'publish.png', 'publish_f2.png', 'JTOOLBAR_PUBLISH', true);
-			JToolbarHelper::custom('didoks.unpublish', 'unpublish.png', 'unpublish_f2.png', 'JTOOLBAR_UNPUBLISH', true);
+			ToolbarHelper::custom('didoks.publish', 'publish.png', 'publish_f2.png', 'JTOOLBAR_PUBLISH', true);
+			ToolbarHelper::custom('didoks.unpublish', 'unpublish.png', 'unpublish_f2.png', 'JTOOLBAR_UNPUBLISH', true);
 
 			if ($this->state->get('filter.state') != 2)
 			{
-				JToolbarHelper::archiveList('didoks.archive', 'JTOOLBAR_ARCHIVE');
+				ToolbarHelper::archiveList('didoks.archive', 'JTOOLBAR_ARCHIVE');
 			}
 			else
 			{
-				JToolbarHelper::unarchiveList('didoks.publish', 'JTOOLBAR_UNARCHIVE');
+				ToolbarHelper::unarchiveList('didoks.publish', 'JTOOLBAR_UNARCHIVE');
 			}
 
-			JToolbarHelper::checkin('didoks.checkin');
+			ToolbarHelper::checkin('didoks.checkin');
 		}
 
 		if ($this->state->get('filter.state') == -2 && $canDo->get('core.delete'))
 		{
-			JToolbarHelper::deleteList('', 'didoks.delete', 'JTOOLBAR_EMPTY_TRASH');
+			ToolbarHelper::deleteList('', 'didoks.delete', 'JTOOLBAR_EMPTY_TRASH');
 		}
 		elseif ($canDo->get('core.edit.state'))
 		{
-			JToolbarHelper::trash('didoks.trash', 'JTOOLBAR_TRASH');
+			ToolbarHelper::trash('didoks.trash', 'JTOOLBAR_TRASH');
 		}
 
 		if ($canDo->get('core.admin') || $canDo->get('core.options'))
 		{
-			JToolbarHelper::preferences('com_planarchiv');
+			ToolbarHelper::preferences('com_planarchiv');
 		}
 	}
 

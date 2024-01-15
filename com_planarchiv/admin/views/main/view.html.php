@@ -11,6 +11,7 @@ defined('_JEXEC') or die();
 
 use Joomla\CMS\Language\Text;
 use Joomla\CMS\MVC\View\HtmlView;
+use Joomla\CMS\Toolbar\ToolbarHelper;
 
 /**
  * @since    1.0.0
@@ -41,11 +42,11 @@ class PlanarchivViewMain extends HtmlView
 	protected function addToolbar()
 	{
 		$canDo = PlanarchivHelper::getActions();
-		JToolbarHelper::title(Text::_('COM_PLANARCHIV'));
+		ToolbarHelper::title(Text::_('COM_PLANARCHIV'));
 
 		if ($canDo->get('core.admin') || $canDo->get('core.options'))
 		{
-			JToolbarHelper::preferences('com_planarchiv');
+			ToolbarHelper::preferences('com_planarchiv');
 		}
 	}
 }

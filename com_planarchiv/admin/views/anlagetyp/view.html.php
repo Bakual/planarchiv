@@ -12,6 +12,7 @@ defined('_JEXEC') or die;
 use Joomla\CMS\Factory;
 use Joomla\CMS\Language\Text;
 use Joomla\CMS\MVC\View\HtmlView;
+use Joomla\CMS\Toolbar\ToolbarHelper;
 
 /**
  * View to edit a anlagetyp.
@@ -80,7 +81,7 @@ class PlanarchivViewAnlagetyp extends HtmlView
 		$isNew      = ($this->item->id == 0);
 		$checkedOut = !($this->item->checked_out == 0 || $this->item->checked_out == $user->id);
 		$canDo      = PlanarchivHelper::getActions();
-		JToolbarHelper::title(Text::sprintf('COM_PLANARCHIV_PAGE_' . ($checkedOut ? 'VIEW' : ($isNew ? 'ADD' : 'EDIT')), Text::_('COM_PLANARCHIV_SPEAKERS_TITLE'), Text::_('COM_PLANARCHIV_SPEAKER')), 'pencil-2 anlagetyps');
+		ToolbarHelper::title(Text::sprintf('COM_PLANARCHIV_PAGE_' . ($checkedOut ? 'VIEW' : ($isNew ? 'ADD' : 'EDIT')), Text::_('COM_PLANARCHIV_SPEAKERS_TITLE'), Text::_('COM_PLANARCHIV_SPEAKER')), 'pencil-2 anlagetyps');
 
 		// Build the actions for new and existing records.
 		if ($isNew)
@@ -88,11 +89,11 @@ class PlanarchivViewAnlagetyp extends HtmlView
 			// For new records, check the create permission.
 			if ($canDo->get('core.create'))
 			{
-				JToolbarHelper::apply('anlagetyp.apply');
-				JToolbarHelper::save('anlagetyp.save');
-				JToolbarHelper::save2new('anlagetyp.save2new');
+				ToolbarHelper::apply('anlagetyp.apply');
+				ToolbarHelper::save('anlagetyp.save');
+				ToolbarHelper::save2new('anlagetyp.save2new');
 			}
-			JToolbarHelper::cancel('anlagetyp.cancel');
+			ToolbarHelper::cancel('anlagetyp.cancel');
 		}
 		else
 		{
@@ -102,18 +103,18 @@ class PlanarchivViewAnlagetyp extends HtmlView
 				// Since it's an existing record, check the edit permission, or fall back to edit own if the owner.
 				if ($canDo->get('core.edit') || ($canDo->get('core.edit.own') && $this->item->created_by == $user->id))
 				{
-					JToolbarHelper::apply('anlagetyp.apply');
-					JToolbarHelper::save('anlagetyp.save');
+					ToolbarHelper::apply('anlagetyp.apply');
+					ToolbarHelper::save('anlagetyp.save');
 
 					// We can save this record, but check the create permission to see if we can return to make a new one.
 					if ($canDo->get('core.create'))
 					{
-						JToolbarHelper::save2new('anlagetyp.save2new');
+						ToolbarHelper::save2new('anlagetyp.save2new');
 					}
 				}
 			}
 
-			JToolbarHelper::cancel('anlagetyp.cancel', 'JTOOLBAR_CLOSE');
+			ToolbarHelper::cancel('anlagetyp.cancel', 'JTOOLBAR_CLOSE');
 		}
 	}
 }

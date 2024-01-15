@@ -12,6 +12,7 @@ defined('_JEXEC') or die;
 use Joomla\CMS\Factory;
 use Joomla\CMS\Language\Text;
 use Joomla\CMS\MVC\View\HtmlView;
+use Joomla\CMS\Toolbar\ToolbarHelper;
 
 /**
  * View to edit a didok.
@@ -80,7 +81,7 @@ class PlanarchivViewDidok extends HtmlView
 		$isNew      = ($this->item->id == 0);
 		$checkedOut = !($this->item->checked_out == 0 || $this->item->checked_out == $user->id);
 		$canDo      = PlanarchivHelper::getActions();
-		JToolbarHelper::title(Text::sprintf('COM_PLANARCHIV_PAGE_' . ($checkedOut ? 'VIEW' : ($isNew ? 'ADD' : 'EDIT')), Text::_('COM_PLANARCHIV_SPEAKERS_TITLE'), Text::_('COM_PLANARCHIV_SPEAKER')), 'pencil-2 didoks');
+		ToolbarHelper::title(Text::sprintf('COM_PLANARCHIV_PAGE_' . ($checkedOut ? 'VIEW' : ($isNew ? 'ADD' : 'EDIT')), Text::_('COM_PLANARCHIV_SPEAKERS_TITLE'), Text::_('COM_PLANARCHIV_SPEAKER')), 'pencil-2 didoks');
 
 		// Build the actions for new and existing records.
 		if ($isNew)
@@ -88,11 +89,11 @@ class PlanarchivViewDidok extends HtmlView
 			// For new records, check the create permission.
 			if ($canDo->get('core.create'))
 			{
-				JToolbarHelper::apply('didok.apply');
-				JToolbarHelper::save('didok.save');
-				JToolbarHelper::save2new('didok.save2new');
+				ToolbarHelper::apply('didok.apply');
+				ToolbarHelper::save('didok.save');
+				ToolbarHelper::save2new('didok.save2new');
 			}
-			JToolbarHelper::cancel('didok.cancel');
+			ToolbarHelper::cancel('didok.cancel');
 		}
 		else
 		{
@@ -102,18 +103,18 @@ class PlanarchivViewDidok extends HtmlView
 				// Since it's an existing record, check the edit permission, or fall back to edit own if the owner.
 				if ($canDo->get('core.edit') || ($canDo->get('core.edit.own') && $this->item->created_by == $user->id))
 				{
-					JToolbarHelper::apply('didok.apply');
-					JToolbarHelper::save('didok.save');
+					ToolbarHelper::apply('didok.apply');
+					ToolbarHelper::save('didok.save');
 
 					// We can save this record, but check the create permission to see if we can return to make a new one.
 					if ($canDo->get('core.create'))
 					{
-						JToolbarHelper::save2new('didok.save2new');
+						ToolbarHelper::save2new('didok.save2new');
 					}
 				}
 			}
 
-			JToolbarHelper::cancel('didok.cancel', 'JTOOLBAR_CLOSE');
+			ToolbarHelper::cancel('didok.cancel', 'JTOOLBAR_CLOSE');
 		}
 	}
 }
