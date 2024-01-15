@@ -13,6 +13,7 @@ defined('_JEXEC') or die;
 use Joomla\CMS\Factory;
 use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\Language\Text;
+use Joomla\CMS\Layout\LayoutHelper;
 use Joomla\CMS\Router\Route;
 
 // Include the component HTML helpers.
@@ -43,7 +44,7 @@ $tmpl   = $jinput->getCmd('tmpl') === 'component' ? '&tmpl=component' : '';
 
 <form action="<?php echo Route::_('index.php?option=com_planarchiv&layout=edit&id='.(int) $this->item->id . $tmpl); ?>" method="post" name="adminForm" id="adminForm" class="form-validate">
 
-	<?php echo JLayoutHelper::render('joomla.edit.title_alias', $this); ?>
+	<?php echo LayoutHelper::render('joomla.edit.title_alias', $this); ?>
 
 	<div class="form-horizontal">
 		<div class="row-fluid">
@@ -53,10 +54,10 @@ $tmpl   = $jinput->getCmd('tmpl') === 'component' ? '&tmpl=component' : '';
 				<?php endforeach; ?>
 			</div>
 			<div class="span4">
-				<?php echo JLayoutHelper::render('joomla.edit.publishingdata', $this); ?>
+				<?php echo LayoutHelper::render('joomla.edit.publishingdata', $this); ?>
 			</div>
 			<div class="span3">
-				<?php echo JLayoutHelper::render('joomla.edit.global', $this); ?>
+				<?php echo LayoutHelper::render('joomla.edit.global', $this); ?>
 			</div>
 		</div>
 		<input type="hidden" name="task" value="" />
