@@ -10,11 +10,12 @@
 defined('_JEXEC') or die();
 
 use Joomla\CMS\Language\Text;
+use Joomla\CMS\MVC\View\HtmlView;
 
 /**
  * @since    1.0.0
  */
-class PlanarchivViewMain extends JViewLegacy
+class PlanarchivViewMain extends HtmlView
 {
 	/**
 	 * @param null $tpl

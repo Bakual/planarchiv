@@ -11,13 +11,14 @@ defined('_JEXEC') or die();
 
 use Joomla\CMS\Factory;
 use Joomla\CMS\Language\Text;
+use Joomla\CMS\MVC\View\HtmlView;
 
 /**
  * HTML View class for the PlanArchiv Component
  *
  * @since  1.0.0
  */
-class PlanarchivViewPlans extends JViewLegacy
+class PlanarchivViewPlans extends HtmlView
 {
 	/**
 	 * Execute and display a template script.

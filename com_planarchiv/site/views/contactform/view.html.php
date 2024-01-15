@@ -12,13 +12,14 @@ defined('_JEXEC') or die;
 use Joomla\CMS\Factory;
 use Joomla\CMS\Language\Multilanguage;
 use Joomla\CMS\Language\Text;
+use Joomla\CMS\MVC\View\HtmlView;
 
 /**
  * HTML Contact View class for the Contact component
  *
  * @since  __DEPLOY_VERSION__
  */
-class PlanarchivViewContactform extends JViewLegacy
+class PlanarchivViewContactform extends HtmlView
 {
 	/**
 	 * @var    \Joomla\CMS\Form\Form

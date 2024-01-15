@@ -11,13 +11,14 @@ defined('_JEXEC') or die;
 
 use Joomla\CMS\HTML\Helpers\Sidebar;
 use Joomla\CMS\Language\Text;
+use Joomla\CMS\MVC\View\HtmlView;
 
 /**
  * HTML View class for the PlanArchiv Component
  *
  * @since  1.0.0
  */
-class PlanarchivViewAnlagetyps extends JViewLegacy
+class PlanarchivViewAnlagetyps extends HtmlView
 {
 	/**
 	 * @var

@@ -11,6 +11,7 @@ defined('_JEXEC') or die;
 
 use Joomla\CMS\Factory;
 use Joomla\CMS\Language\Text;
+use Joomla\CMS\MVC\View\HtmlView;
 
 /**
  * View to edit a anlagetyp.
@@ -19,7 +20,7 @@ use Joomla\CMS\Language\Text;
  *
  * @since          1.0.0
  */
-class PlanarchivViewAnlagetyp extends JViewLegacy
+class PlanarchivViewAnlagetyp extends HtmlView
 {
 	/**
 	 * @var

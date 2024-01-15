@@ -11,6 +11,7 @@ defined('_JEXEC') or die;
 
 use Joomla\CMS\Factory;
 use Joomla\CMS\Language\Text;
+use Joomla\CMS\MVC\View\HtmlView;
 
 /**
  * View to edit a dokutyp.
@@ -19,7 +20,7 @@ use Joomla\CMS\Language\Text;
  *
  * @since          1.0.0
  */
-class PlanarchivViewDokutyp extends JViewLegacy
+class PlanarchivViewDokutyp extends HtmlView
 {
 	/**
 	 * @var
