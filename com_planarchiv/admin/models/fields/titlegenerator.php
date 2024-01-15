@@ -9,6 +9,8 @@
 
 defined('_JEXEC') or die();
 
+use Joomla\CMS\Factory;
+
 jimport('joomla.html.html');
 jimport('joomla.form.formfield');
 jimport('joomla.form.helper');
@@ -73,7 +75,7 @@ class JFormFieldTitlegenerator extends JFormFieldText
 			. 'document.getElementById("' . $this->id . '").value = value;'
 		. '}';
 
-		JFactory::getDocument()->addScriptDeclaration($js);
+		Factory::getDocument()->addScriptDeclaration($js);
 
 		// Add Button to generate the title
 		$html = '<div class="input-append">';

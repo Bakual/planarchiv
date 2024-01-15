@@ -9,6 +9,8 @@
 
 defined('_JEXEC') or die();
 
+use Joomla\CMS\Factory;
+
 jimport('joomla.html.html');
 jimport('joomla.form.formfield');
 jimport('joomla.form.helper');
@@ -78,8 +80,8 @@ class JFormFieldDfalist extends JFormFieldList
 	 */
 	public function getOptions()
 	{
- 		$db = JFactory::getDbo();
-		$langCode = substr(JFactory::getLanguage()->getTag(), 0, 2);
+ 		$db = Factory::getDbo();
+		$langCode = substr(Factory::getLanguage()->getTag(), 0, 2);
 
 		$query = $db->getQuery(true);
 		$query->select('DISTINCT dfa.id AS value, CONCAT(dfa.title_' . $langCode . ', " (", dfa.code_' . $langCode . ', ")") AS text');

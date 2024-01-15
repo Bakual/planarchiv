@@ -9,10 +9,12 @@
 
 defined('_JEXEC') or die();
 
+use Joomla\CMS\Factory;
+
 require_once __DIR__ . '/helper.php';
 
 // Bail out if user isn't allowed to create a sermon.
-$user = JFactory::getUser();
+$user = Factory::getUser();
 
 if (!$user->authorise('core.create', 'com_planarchiv'))
 {

@@ -9,16 +9,18 @@
 
 defined('_JEXEC') or die();
 
+use Joomla\CMS\Factory;
+
 // loading composer autoloader
 require_once JPATH_COMPONENT_ADMINISTRATOR . '/vendor/autoload.php';
 
-$jinput = JFactory::getApplication()->input;
+$jinput = Factory::getApplication()->input;
 
 // Register Helperclasses for autoloading
 JLoader::discover('PlanarchivHelper', JPATH_COMPONENT . '/helpers');
 
 // Load languages and merge with fallbacks
-$jlang = JFactory::getLanguage();
+$jlang = Factory::getLanguage();
 $jlang->load('com_planarchiv', JPATH_COMPONENT, 'en-GB', true);
 $jlang->load('com_planarchiv', JPATH_COMPONENT, null, true);
 

@@ -1,5 +1,8 @@
 <?php
+
 defined('_JEXEC') or die;
+
+use Joomla\CMS\Factory;
 
 class PlanarchivModelAnlagetyps extends JModelList
 {
@@ -53,7 +56,7 @@ class PlanarchivModelAnlagetyps extends JModelList
 	protected function populateState($ordering = null, $direction = null)
 	{
 		// Initialise variables.
-		$app = JFactory::getApplication();
+		$app = Factory::getApplication();
 
 		// Adjust the context to support modal layouts.
 		if ($layout = $app->input->get('layout'))
@@ -106,7 +109,7 @@ class PlanarchivModelAnlagetyps extends JModelList
 		// Select the required fields from the table.
 		$query->select('anlagetyps.*');
 
-		$langCode = substr(JFactory::getLanguage()->getTag(), 0, 2);
+		$langCode = substr(Factory::getLanguage()->getTag(), 0, 2);
 		$query->select('anlagetyps.title_' . $langCode . ' AS title');
 		$query->from('#__planarchiv_anlagetyp AS anlagetyps');
 

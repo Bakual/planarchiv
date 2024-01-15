@@ -9,6 +9,8 @@
 
 defined('_JEXEC') or die;
 
+use Joomla\CMS\Factory;
+
 /**
  * Speaker Table class
  *
@@ -47,8 +49,8 @@ class PlanarchivTableDidok extends JTable
 	 */
 	public function store($updateNulls = false)
 	{
-		$date = JFactory::getDate();
-		$user = JFactory::getUser();
+		$date = Factory::getDate();
+		$user = Factory::getUser();
 
 		if (empty($this->created_by))
 		{

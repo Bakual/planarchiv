@@ -9,8 +9,10 @@
 
 defined('_JEXEC') or die();
 
+use Joomla\CMS\Factory;
+
 // Access check.
-if (!JFactory::getUser()->authorise('core.manage', 'com_planarchiv'))
+if (!Factory::getUser()->authorise('core.manage', 'com_planarchiv'))
 {
 	throw new Exception(JText::_('JERROR_ALERTNOAUTHOR'), 403);
 }
@@ -25,5 +27,5 @@ JLoader::register('PlanarchivHelper', JPATH_COMPONENT_ADMINISTRATOR . '/helpers/
 JHtml::_('behavior.tabstate');
 
 $controller = JControllerLegacy::getInstance('Planarchiv');
-$controller->execute(JFactory::getApplication()->input->get('task'));
+$controller->execute(Factory::getApplication()->input->get('task'));
 $controller->redirect();

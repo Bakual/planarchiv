@@ -9,6 +9,8 @@
 
 defined('_JEXEC') or die();
 
+use Joomla\CMS\Factory;
+
 /**
  * planform model.
  *
@@ -75,7 +77,7 @@ class PlanarchivModelplanform extends JModelAdmin
 			$form->setFieldAttribute('catid', 'action', 'core.create');
 
 			// Disable state field if not authorised in at least one category.
-			if (!JFactory::getUser()->getAuthorisedCategories('com_planarchiv', 'core.edit.state'))
+			if (!Factory::getUser()->getAuthorisedCategories('com_planarchiv', 'core.edit.state'))
 			{
 				$form->setFieldAttribute('state', 'disabled', 'true');
 				$form->setFieldAttribute('state', 'filter', 'unset');
@@ -96,7 +98,7 @@ class PlanarchivModelplanform extends JModelAdmin
 	 */
 	protected function canEditState($record)
 	{
-		$user = JFactory::getUser();
+		$user = Factory::getUser();
 
 		// Check against the category.
 		if (!empty($record->catid))
@@ -123,7 +125,7 @@ class PlanarchivModelplanform extends JModelAdmin
 	{
 		parent::populateState();
 
-		$app = JFactory::getApplication();
+		$app = Factory::getApplication();
 
 		$return = $app->input->get('return', null, 'base64');
 		$this->setState('return_page', base64_decode($return));
@@ -159,7 +161,7 @@ class PlanarchivModelplanform extends JModelAdmin
 	protected function loadFormData()
 	{
 		// Check the session for previously entered form data.
-		$app  = JFactory::getApplication();
+		$app  = Factory::getApplication();
 		$data = $app->getUserState('com_planarchiv.edit.plan.data', array());
 
 		if (empty($data))
@@ -178,7 +180,7 @@ class PlanarchivModelplanform extends JModelAdmin
 
 			if (!$data->language)
 			{
-				$data->language = JFactory::getLanguage()->getTag();
+				$data->language = Factory::getLanguage()->getTag();
 			}
 		}
 

@@ -9,6 +9,8 @@
 
 defined('_JEXEC') or die();
 
+use Joomla\CMS\Factory;
+
 /**
  * HTML View class for the PlanArchiv Component
  *
@@ -66,7 +68,7 @@ class PlanarchivViewBuildings extends JViewLegacy
 	 */
 	protected function _prepareDocument()
 	{
-		$app   = JFactory::getApplication();
+		$app   = Factory::getApplication();
 		$menus = $app->getMenu();
 
 		// Because the application sets a default page title, we need to get it from the menu item itself

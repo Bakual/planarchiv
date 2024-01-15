@@ -9,6 +9,8 @@
 
 defined('_JEXEC') or die();
 
+use Joomla\CMS\Factory;
+
 jimport('joomla.html.html');
 jimport('joomla.form.formfield');
 jimport('joomla.form.helper');
@@ -80,7 +82,7 @@ class JFormFieldLaufnummer extends JFormFieldText
 			        xmlhttp.open("GET","index.php?option=com_planarchiv&task=laufnummer.lookup&format=json"+params,true);
 			        xmlhttp.send();
             }';
-            JFactory::getDocument()->addScriptDeclaration($js);
+            Factory::getDocument()->addScriptDeclaration($js);
             self::$jsLoaded = true;
         }
 

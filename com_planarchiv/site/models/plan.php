@@ -9,6 +9,8 @@
 
 defined('_JEXEC') or die();
 
+use Joomla\CMS\Factory;
+
 /**
  * Model class for the PlanArchiv Component
  *
@@ -29,7 +31,7 @@ class PlanarchivModelPlan extends JModelItem
 	 */
 	public function &getItem($id = null)
 	{
-		$langCode = substr(JFactory::getLanguage()->getTag(), 0, 2);
+		$langCode = substr(Factory::getLanguage()->getTag(), 0, 2);
 
 		// Initialise variables.
 		$id = ($id) ? $id : (int) $this->getState('plan.id');
@@ -138,7 +140,7 @@ class PlanarchivModelPlan extends JModelItem
 	protected function populateState($ordering = null, $direction = null)
 	{
 		/** @var JApplicationSite $app */
-		$app    = JFactory::getApplication();
+		$app    = Factory::getApplication();
 		$params = $app->getParams();
 
 		// Load the object state.

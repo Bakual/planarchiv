@@ -9,6 +9,8 @@
 
 defined('_JEXEC') or die();
 
+use Joomla\CMS\Factory;
+
 /**
  * Controller class for the PlanArchiv Component
  *
@@ -25,7 +27,7 @@ class PlanarchivControllerLaufnummer extends JControllerLegacy
      */
     public function lookup()
     {
-        $jinput = JFactory::getApplication()->input;
+        $jinput = Factory::getApplication()->input;
 
         $element = $jinput->getString('element');
         $element = str_replace('jform_', '', $element);
@@ -77,7 +79,7 @@ class PlanarchivControllerLaufnummer extends JControllerLegacy
             return;
         }
 
-        $db = JFactory::getDbo();
+        $db = Factory::getDbo();
         $query = $db->getQuery(true);
         $query->select('MAX(' . $db->qn($element) . ')');
         $query->from('#__planarchiv_plan');

@@ -1,6 +1,15 @@
 <?php
-// no direct access
+/**
+ * @package     PlanArchiv
+ * @subpackage  Component.Administrator
+ * @author      Thomas Hunziker <thomi.hunziker@sbb.ch>
+ * @copyright   © 2017 - Thomas Hunziker
+ * @license     http://www.gnu.org/licenses/gpl.html
+ **/
+
 defined('_JEXEC') or die;
+
+use Joomla\CMS\Factory;
 
 // Include the component HTML helpers.
 JHtml::addIncludePath(JPATH_COMPONENT.'/helpers/html');
@@ -14,7 +23,7 @@ JHtml::_('formbehavior.chosen', 'select');
 $this->ignore_fieldsets = array('general', 'basic', 'info');
 
 // Check if tmpl=component was set (needed for com_associations)
-$jinput = JFactory::getApplication()->input;
+$jinput = Factory::getApplication()->input;
 $tmpl   = $jinput->getCmd('tmpl') === 'component' ? '&tmpl=component' : '';
 ?>
 

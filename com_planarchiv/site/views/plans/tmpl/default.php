@@ -9,6 +9,8 @@
 
 defined('_JEXEC') or die();
 
+use Joomla\CMS\Factory;
+
 JHtml::addIncludePath(JPATH_COMPONENT . '/helpers');
 
 JHtml::_('behavior.core');
@@ -16,7 +18,7 @@ JHtml::_('bootstrap.tooltip');
 JHtml::_('formbehavior.chosen', 'select');
 JHtml::_('stylesheet', 'com_planarchiv/planarchiv.css', array('version' => 'auto', 'relative' => true));
 
-$user       = JFactory::getUser();
+$user       = Factory::getUser();
 $canEdit    = ($user->authorise('core.edit', 'com_planarchiv'));
 $canEditOwn = ($user->authorise('core.edit.own', 'com_planarchiv'));
 $listOrder  = $this->state->get('list.ordering');

@@ -9,6 +9,8 @@
 
 defined('_JEXEC') or die;
 
+use Joomla\CMS\Factory;
+
 /**
  * Stockwerk controller class.
  *
@@ -52,8 +54,8 @@ class PlanarchivControllerStockwerk extends JControllerForm
 	 */
 	protected function allowAdd($data = array())
 	{
-		$user       = JFactory::getUser();
-		$categoryId = Joomla\Utilities\ArrayHelper::getValue($data, 'catid', JFactory::getApplication()->input->get('filter_category_id'), 'int');
+		$user       = Factory::getUser();
+		$categoryId = Joomla\Utilities\ArrayHelper::getValue($data, 'catid', Factory::getApplication()->input->get('filter_category_id'), 'int');
 		$allow      = null;
 
 		if ($categoryId)
@@ -104,7 +106,7 @@ class PlanarchivControllerStockwerk extends JControllerForm
 			return parent::allowEdit($data, $key);
 		}
 
-		$user = JFactory::getUser();
+		$user = Factory::getUser();
 
 		// The category has been set. Check the category permissions.
 		if ($user->authorise('core.edit', $this->option . '.category.' . $categoryId))
@@ -132,7 +134,7 @@ class PlanarchivControllerStockwerk extends JControllerForm
 	protected function getRedirectToItemAppend($recordId = null, $urlVar = null)
 	{
 		$append = parent::getRedirectToItemAppend($recordId, $urlVar);
-		$modal  = JFactory::getApplication()->input->get('modal', 0, 'int');
+		$modal  = Factory::getApplication()->input->get('modal', 0, 'int');
 		$return = $this->getReturnPage();
 
 		if ($modal)
@@ -158,7 +160,7 @@ class PlanarchivControllerStockwerk extends JControllerForm
 	 */
 	protected function getReturnPage()
 	{
-		$return = JFactory::getApplication()->input->get('return', '', 'base64');
+		$return = Factory::getApplication()->input->get('return', '', 'base64');
 
 		if (empty($return) || !JUri::isInternal(base64_decode($return)))
 		{

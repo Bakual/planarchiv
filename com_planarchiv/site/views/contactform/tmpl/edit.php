@@ -9,6 +9,7 @@
 
 defined('_JEXEC') or die;
 
+use Joomla\CMS\Factory;
 use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\Language\Text;
 use Joomla\CMS\Layout\LayoutHelper;
@@ -24,7 +25,7 @@ HTMLHelper::_('formbehavior.chosen', 'select');
 $this->tab_name         = 'com-contact-form';
 $this->ignore_fieldsets = array('details', 'item_associations');
 
-JFactory::getDocument()->addScriptDeclaration('
+Factory::getDocument()->addScriptDeclaration('
 	Joomla.submitbutton = function(task)
 	{
 		if (task == "contact.cancel" || document.formvalidator.isValid(document.getElementById("contact-form")))

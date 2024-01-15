@@ -1,5 +1,8 @@
 <?php
+
 defined('_JEXEC') or die;
+
+use Joomla\CMS\Factory;
 
 class PlanarchivModelDfas extends JModelList
 {
@@ -50,7 +53,7 @@ class PlanarchivModelDfas extends JModelList
 	protected function populateState($ordering = null, $direction = null)
 	{
 		// Initialise variables.
-		$app = JFactory::getApplication();
+		$app = Factory::getApplication();
 
 		// Adjust the context to support modal layouts.
 		if ($layout = $app->input->get('layout'))
@@ -63,7 +66,7 @@ class PlanarchivModelDfas extends JModelList
 		$this->setState('params', $params);
 
 		// List state information.
-		$langCode = substr(JFactory::getLanguage()->getTag(), 0, 2);
+		$langCode = substr(Factory::getLanguage()->getTag(), 0, 2);
 		parent::populateState('title', 'asc');
 	}
 
@@ -97,7 +100,7 @@ class PlanarchivModelDfas extends JModelList
 	 */
 	protected function getListQuery()
 	{
-		$langCode = substr(JFactory::getLanguage()->getTag(), 0, 2);
+		$langCode = substr(Factory::getLanguage()->getTag(), 0, 2);
 
 		// Create a new query object.
 		$db    = $this->getDbo();

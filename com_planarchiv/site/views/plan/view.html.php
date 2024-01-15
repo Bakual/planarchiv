@@ -9,6 +9,8 @@
 
 defined('_JEXEC') or die();
 
+use Joomla\CMS\Factory;
+
 /**
  * HTML View class for the PlanArchiv Component
  *
@@ -28,7 +30,7 @@ class PlanarchivViewPlan extends JViewLegacy
 	 */
 	public function display($tpl = null)
 	{
-		$app = JFactory::getApplication();
+		$app = Factory::getApplication();
 
 		if (!$app->input->get('id', 0, 'int'))
 		{
@@ -38,7 +40,7 @@ class PlanarchivViewPlan extends JViewLegacy
 		// Get data from the model
 		$state        = $this->get('State');
 		$this->item   = $this->get('Item');
-		$user         = JFactory::getUser();
+		$user         = Factory::getUser();
 		$this->params = $state->get('params');
 
 		if (!$this->item)
@@ -79,7 +81,7 @@ class PlanarchivViewPlan extends JViewLegacy
 	 */
 	protected function _prepareDocument()
 	{
-		$app   = JFactory::getApplication();
+		$app   = Factory::getApplication();
 		$menus = $app->getMenu();
 
 		// Because the application sets a default page title,

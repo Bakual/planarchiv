@@ -9,6 +9,8 @@
 
 defined('_JEXEC') or die();
 
+use Joomla\CMS\Factory;
+
 jimport('joomla.html.html');
 jimport('joomla.form.formfield');
 jimport('joomla.form.helper');
@@ -74,7 +76,7 @@ class JFormFieldDidoklist extends JFormFieldList
 	 */
 	public function getOptions()
 	{
-		$db = JFactory::getDbo();
+		$db = Factory::getDbo();
 
 		$query = $db->getQuery(true);
 		$query->select('id AS value, CONCAT(title, " (", didok, ")") AS text, CONCAT("data-didok=\"", didok, "\"") AS attr');

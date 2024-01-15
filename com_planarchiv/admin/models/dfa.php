@@ -9,6 +9,8 @@
 
 defined('_JEXEC') or die();
 
+use Joomla\CMS\Factory;
+
 /**
  * Dfa model.
  *
@@ -91,7 +93,7 @@ class PlanarchivModelDfa extends JModelAdmin
 	 */
 	protected function canEditState($record)
 	{
-		$user = JFactory::getUser();
+		$user = Factory::getUser();
 
 		// Check against the category.
 		if (!empty($record->catid))
@@ -129,7 +131,7 @@ class PlanarchivModelDfa extends JModelAdmin
 	protected function loadFormData()
 	{
 		// Check the session for previously entered form data.
-		$app  = JFactory::getApplication();
+		$app  = Factory::getApplication();
 		$data = $app->getUserState('com_planarchiv.edit.dfa.data', array());
 
 		if (empty($data))

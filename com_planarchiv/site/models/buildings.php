@@ -9,6 +9,8 @@
 
 defined('_JEXEC') or die();
 
+use Joomla\CMS\Factory;
+
 /**
  * Model class for the PlanArchiv Component
  *
@@ -67,7 +69,7 @@ class PlanarchivModelBuildings extends JModelList
 	 */
 	protected function getListQuery()
 	{
-		$langCode = substr(JFactory::getLanguage()->getTag(), 0, 2);
+		$langCode = substr(Factory::getLanguage()->getTag(), 0, 2);
 
 		// Create a new query object.
 		$db    = $this->getDbo();
@@ -120,7 +122,7 @@ class PlanarchivModelBuildings extends JModelList
 	 */
 	public function getStrecken()
 	{
-		$langCode = substr(JFactory::getLanguage()->getTag(), 0, 2);
+		$langCode = substr(Factory::getLanguage()->getTag(), 0, 2);
 
 		// Create a new query object.
 		$db    = $this->getDbo();
@@ -179,14 +181,14 @@ class PlanarchivModelBuildings extends JModelList
 	protected function populateState($ordering = null, $direction = null)
 	{
 		/** @var JApplicationSite $app */
-		$app    = JFactory::getApplication();
+		$app    = Factory::getApplication();
 		$params = $app->getParams();
 		$this->setState('params', $params);
 
 		// Include Subcategories or not
 		$this->setState('filter.subcategories', $params->get('show_subcategory_content', 0));
 
-		$user = JFactory::getUser();
+		$user = Factory::getUser();
 
 		if ((!$user->authorise('core.edit.state', 'com_planarchiv')) && (!$user->authorise('core.edit', 'com_planarchiv')))
 		{

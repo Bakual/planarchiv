@@ -9,6 +9,8 @@
 
 defined('_JEXEC') or die();
 
+use Joomla\CMS\Factory;
+
 /**
  * PlanArchiv Component Controller
  * @since  1.0
@@ -36,7 +38,7 @@ class PlanarchivController extends JControllerLegacy
 	 */
 	public function display($cachable = false, $urlparams = array())
 	{
-		$cachable      = JFactory::getUser()->get('id') ? false : true;
+		$cachable      = Factory::getUser()->get('id') ? false : true;
 		$safeurlparams = array(
 			'id'               => 'INT',
 			'catid'            => 'INT',

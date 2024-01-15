@@ -1,5 +1,15 @@
 <?php
+/**
+ * @package     PlanArchiv
+ * @subpackage  Component.Administrator
+ * @author      Thomas Hunziker <thomi.hunziker@sbb.ch>
+ * @copyright   © 2017 - Thomas Hunziker
+ * @license     http://www.gnu.org/licenses/gpl.html
+ **/
+
 defined('_JEXEC') or die;
+
+use Joomla\CMS\Factory;
 
 class PlanarchivModelDidoks extends JModelList
 {
@@ -50,7 +60,7 @@ class PlanarchivModelDidoks extends JModelList
 	protected function populateState($ordering = null, $direction = null)
 	{
 		// Initialise variables.
-		$app = JFactory::getApplication();
+		$app = Factory::getApplication();
 
 		// Adjust the context to support modal layouts.
 		if ($layout = $app->input->get('layout'))
