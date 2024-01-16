@@ -10,6 +10,7 @@
 defined('_JEXEC') or die;
 
 use Joomla\CMS\Factory;
+use Joomla\CMS\Uri\Uri;
 
 /**
  * Dokutyp controller class.
@@ -162,7 +163,7 @@ class PlanarchivControllerDokutyp extends JControllerForm
 	{
 		$return = Factory::getApplication()->input->get('return', '', 'base64');
 
-		if (empty($return) || !JUri::isInternal(base64_decode($return)))
+		if (empty($return) || !Uri::isInternal(base64_decode($return)))
 		{
 			return false;
 		}

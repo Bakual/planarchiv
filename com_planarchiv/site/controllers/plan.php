@@ -11,6 +11,7 @@ defined('_JEXEC') or die();
 
 use Joomla\CMS\Factory;
 use Joomla\CMS\Router\Route;
+use Joomla\CMS\Uri\Uri;
 
 /**
  * Controller class for the PlanArchiv Component
@@ -242,9 +243,9 @@ class PlanarchivControllerPlan extends JControllerForm
 	{
 		$return = Factory::getApplication()->input->get('return', '', 'base64');
 
-		if (empty($return) || !JUri::isInternal(base64_decode($return)))
+		if (empty($return) || !Uri::isInternal(base64_decode($return)))
 		{
-			return JUri::base();
+			return Uri::base();
 		}
 		else
 		{

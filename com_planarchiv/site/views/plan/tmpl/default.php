@@ -13,6 +13,7 @@ use Joomla\CMS\Factory;
 use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\Language\Text;
 use Joomla\CMS\Router\Route;
+use Joomla\CMS\Uri\Uri;
 
 HtmlHelper::_('bootstrap.tooltip');
 HtmlHelper::_('stylesheet', 'com_planarchiv/planarchiv.css', array('version' => 'auto', 'relative' => true));
@@ -39,7 +40,7 @@ $canEditOwn = $user->authorise('core.edit.own', 'com_planarchiv.category.' . $th
 	</div>
 	<?php if ($canEdit || $canEditOwn) : ?>
 		<div class="pull-right">
-			<a href="<?php echo Route::_('index.php?option=com_planarchiv&task=plan.edit&id=' . $this->item->id . '&return=' . base64_encode(JUri::getInstance())); ?>">
+			<a href="<?php echo Route::_('index.php?option=com_planarchiv&task=plan.edit&id=' . $this->item->id . '&return=' . base64_encode(Uri::getInstance())); ?>">
 				<?php $icon = $this->item->state ? 'edit' : 'eye-close'; ?>
 				<span class="icon-<?php echo $icon; ?>"></span>
 				<?php echo Text::_('JGLOBAL_EDIT'); ?>

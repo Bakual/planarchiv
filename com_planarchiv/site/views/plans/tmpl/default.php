@@ -14,6 +14,7 @@ use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\Language\Text;
 use Joomla\CMS\Layout\LayoutHelper;
 use Joomla\CMS\Router\Route;
+use Joomla\CMS\Uri\Uri;
 
 HTMLHelper::addIncludePath(JPATH_COMPONENT . '/helpers');
 
@@ -69,7 +70,7 @@ $listDirn   = $this->state->get('list.direction');
 					$canCheckin = $user->authorise('core.manage', 'com_checkin') || $item->checked_out == $user->id || $item->checked_out == 0;
 					$canEditOwn = $user->authorise('core.edit.own', 'com_planarchiv.category.'.$item->catid) && $item->created_by == $user->id;
 					$canChange  = $user->authorise('core.edit.state', 'com_planarchiv.category.'.$item->catid) && $canCheckin;
-					$returnPage = base64_encode(JUri::getInstance());
+					$returnPage = base64_encode(Uri::getInstance());
 					?>
 					<tr class="row<?php echo $i % 2; ?>">
 						<td class="hidden">
