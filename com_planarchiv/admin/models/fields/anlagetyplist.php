@@ -48,10 +48,8 @@ class JFormFieldAnlagetyplist extends ListField
 		$attribs['list.translate'] = false;
 
 		// Initialize some list attributes.
-		if (!empty($this->class))
-		{
-			$attribs['list.attr']['class'] = $this->class;
-		}
+		$attribs['list.attr']['class'] = $this->class ?: 'form-select';
+
 		if ($this->required)
 		{
 			$attribs['list.attr']['required']      = true;
