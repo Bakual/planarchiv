@@ -78,7 +78,7 @@ class PlanarchivControllerContact extends FormController
 		$this->checkToken();
 
 		// Authorize User
-		$user = Factory::getUser();
+		$user = Factory::getApplication()->getIdentity();
 
 		if (!$user->authorise('core.create', 'com_contact'))
 		{
@@ -165,7 +165,7 @@ class PlanarchivControllerContact extends FormController
 	{
 		if ($categoryId = ArrayHelper::getValue($data, 'catid', $this->input->getInt('catid'), 'int'))
 		{
-			$user = Factory::getUser();
+			$user = Factory::getApplication()->getIdentity();
 
 			// If the category has been passed in the data or URL check it.
 			return $user->authorise('core.create', 'com_contact.category.' . $categoryId);
@@ -200,7 +200,7 @@ class PlanarchivControllerContact extends FormController
 
 		if ($categoryId)
 		{
-			$user = Factory::getUser();
+			$user = Factory::getApplication()->getIdentity();
 
 			// The category has been set. Check the category permissions.
 			if ($user->authorise('core.edit', 'com_contact.category.' . $categoryId))

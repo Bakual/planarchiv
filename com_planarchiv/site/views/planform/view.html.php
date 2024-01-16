@@ -57,7 +57,7 @@ class PlanarchivViewPlanform extends HtmlView
 	public function display($tpl = null)
 	{
 		// Initialise variables.
-		$user = Factory::getUser();
+		$user = Factory::getApplication()->getIdentity();
 
 		// Get model data.
 		$this->state       = $this->get('State');

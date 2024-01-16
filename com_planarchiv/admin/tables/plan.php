@@ -104,7 +104,7 @@ class PlanarchivTablePlan extends Table implements VersionableTableInterface
 	public function store($updateNulls = false)
 	{
 		$date = Factory::getDate();
-		$user = Factory::getUser();
+		$user = Factory::getApplication()->getIdentity();
 
 		if (is_array($this->files))
 		{

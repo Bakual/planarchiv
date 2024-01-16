@@ -22,7 +22,7 @@ HTMLHelper::_('behavior.core');
 HTMLHelper::_('bootstrap.tooltip');
 HTMLHelper::_('stylesheet', 'com_planarchiv/planarchiv.css', array('version' => 'auto', 'relative' => true));
 
-$user       = Factory::getUser();
+$user       = Factory::getApplication()->getIdentity();
 $canEdit    = ($user->authorise('core.edit', 'com_planarchiv'));
 $canEditOwn = ($user->authorise('core.edit.own', 'com_planarchiv'));
 $listOrder  = $this->state->get('list.ordering');

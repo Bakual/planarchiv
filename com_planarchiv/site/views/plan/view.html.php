@@ -43,7 +43,7 @@ class PlanarchivViewPlan extends HtmlView
 		// Get data from the model
 		$state        = $this->get('State');
 		$this->item   = $this->get('Item');
-		$user         = Factory::getUser();
+		$user         = Factory::getApplication()->getIdentity();
 		$this->params = $state->get('params');
 
 		if (!$this->item)

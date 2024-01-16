@@ -51,7 +51,7 @@ class PlanarchivTableDokutyp extends Table
 	public function store($updateNulls = false)
 	{
 		$date = Factory::getDate();
-		$user = Factory::getUser();
+		$user = Factory::getApplication()->getIdentity();
 
 		if (empty($this->created_by))
 		{

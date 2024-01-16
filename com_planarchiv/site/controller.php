@@ -39,7 +39,7 @@ class PlanarchivController extends BaseController
 	 */
 	public function display($cachable = false, $urlparams = array())
 	{
-		$cachable      = Factory::getUser()->get('id') ? false : true;
+		$cachable      = Factory::getApplication()->getIdentity()->get('id') ? false : true;
 		$safeurlparams = array(
 			'id'               => 'INT',
 			'catid'            => 'INT',

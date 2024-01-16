@@ -24,7 +24,7 @@ Factory::getDocument()->addScriptDeclaration('document.addEventListener("DOMCont
 	new ClipboardJS(\'.clipboard\');
 })');
 
-$user       = Factory::getUser();
+$user       = Factory::getApplication()->getIdentity();
 $canEdit    = $user->authorise('core.edit', 'com_planarchiv.category.' . $this->item->catid);
 $canEditOwn = $user->authorise('core.edit.own', 'com_planarchiv.category.' . $this->item->catid) && $this->item->created_by == $user->id;
 ?>

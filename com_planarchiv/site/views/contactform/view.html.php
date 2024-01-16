@@ -69,7 +69,7 @@ class PlanarchivViewContactform extends HtmlView
 	 */
 	public function display($tpl = null)
 	{
-		$user = Factory::getUser();
+		$user = Factory::getApplication()->getIdentity();
 		$app  = Factory::getApplication();
 
 		// Get model data.

@@ -82,7 +82,7 @@ class PlanarchivModelplanform extends AdminModel
 			$form->setFieldAttribute('catid', 'action', 'core.create');
 
 			// Disable state field if not authorised in at least one category.
-			if (!Factory::getUser()->getAuthorisedCategories('com_planarchiv', 'core.edit.state'))
+			if (!Factory::getApplication()->getIdentity()->getAuthorisedCategories('com_planarchiv', 'core.edit.state'))
 			{
 				$form->setFieldAttribute('state', 'disabled', 'true');
 				$form->setFieldAttribute('state', 'filter', 'unset');
@@ -103,7 +103,7 @@ class PlanarchivModelplanform extends AdminModel
 	 */
 	protected function canEditState($record)
 	{
-		$user = Factory::getUser();
+		$user = Factory::getApplication()->getIdentity();
 
 		// Check against the category.
 		if (!empty($record->catid))

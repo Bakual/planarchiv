@@ -95,7 +95,7 @@ class PlanarchivModelDokutyp extends AdminModel
 	 */
 	protected function canEditState($record)
 	{
-		$user = Factory::getUser();
+		$user = Factory::getApplication()->getIdentity();
 
 		// Check against the category.
 		if (!empty($record->catid))

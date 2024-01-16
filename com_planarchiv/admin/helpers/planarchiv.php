@@ -76,7 +76,7 @@ class PlanarchivHelper
 	 */
 	public static function getActions($categoryId = 0)
 	{
-		$user   = Factory::getUser();
+		$user   = Factory::getApplication()->getIdentity();
 		$result = new Registry();
 
 		if (empty($categoryId))

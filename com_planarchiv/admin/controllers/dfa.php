@@ -56,7 +56,7 @@ class PlanarchivControllerDfa extends FormController
 	 */
 	protected function allowAdd($data = array())
 	{
-		$user       = Factory::getUser();
+		$user       = Factory::getApplication()->getIdentity();
 		$categoryId = Joomla\Utilities\ArrayHelper::getValue($data, 'catid', Factory::getApplication()->input->get('filter_category_id'), 'int');
 		$allow      = null;
 
@@ -108,7 +108,7 @@ class PlanarchivControllerDfa extends FormController
 			return parent::allowEdit($data, $key);
 		}
 
-		$user = Factory::getUser();
+		$user = Factory::getApplication()->getIdentity();
 
 		// The category has been set. Check the category permissions.
 		if ($user->authorise('core.edit', $this->option . '.category.' . $categoryId))

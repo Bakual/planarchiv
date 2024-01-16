@@ -20,7 +20,7 @@ HTMLHelper::_('bootstrap.tooltip');
 HTMLHelper::_('behavior.multiselect');
 HTMLHelper::_('dropdown.init');
 
-$user      = Factory::getUser();
+$user      = Factory::getApplication()->getIdentity();
 $listOrder = $this->escape($this->state->get('list.ordering'));
 $listDirn  = $this->escape($this->state->get('list.direction'));
 $archived  = $this->state->get('filter.state') == 2 ? true : false;

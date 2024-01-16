@@ -172,7 +172,7 @@ $this->useCoreUI        = true;
 				<div class="btn-group">
 					<?php echo $this->form->getInput('contenthistory'); ?>
 				</div>
-				<?php if (Factory::getUser()->authorise('core.delete', 'com_planarchiv.category.' . $this->item->catid)) : ?>
+				<?php if (Factory::getApplication()->getIdentity()->authorise('core.delete', 'com_planarchiv.category.' . $this->item->catid)) : ?>
 					<div class="btn-group">
 						<button type="button" class="btn btn-danger"
 								onclick="if(confirm('<?php echo Text::_('COM_PLANARCHIV_CONFIRM_DELETE'); ?>')) {document.getElementById('jform_state').value='-2';Joomla.submitbutton('plan.save');} else {return;}">

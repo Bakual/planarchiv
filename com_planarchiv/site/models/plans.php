@@ -73,7 +73,7 @@ class PlanarchivModelPlans extends ListModel
 	 */
 	protected function getListQuery()
 	{
-		$user     = Factory::getUser();
+		$user     = Factory::getApplication()->getIdentity();
 		$groups   = implode(',', $user->getAuthorisedViewLevels());
 		$langCode = substr(Factory::getLanguage()->getTag(), 0, 2);
 
@@ -283,7 +283,7 @@ class PlanarchivModelPlans extends ListModel
 		// Include Subcategories or not
 		$this->setState('filter.subcategories', $params->get('show_subcategory_content', 0));
 
-		$user = Factory::getUser();
+		$user = Factory::getApplication()->getIdentity();
 
 		if ((!$user->authorise('core.edit.state', 'com_planarchiv')) && (!$user->authorise('core.edit', 'com_planarchiv')))
 		{

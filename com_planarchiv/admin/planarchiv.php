@@ -15,7 +15,7 @@ use Joomla\CMS\Language\Text;
 use Joomla\CMS\MVC\Controller\BaseController;
 
 // Access check.
-if (!Factory::getUser()->authorise('core.manage', 'com_planarchiv'))
+if (!Factory::getApplication()->getIdentity()->authorise('core.manage', 'com_planarchiv'))
 {
 	throw new Exception(Text::_('JERROR_ALERTNOAUTHOR'), 403);
 }
