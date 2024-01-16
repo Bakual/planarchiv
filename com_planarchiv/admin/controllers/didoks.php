@@ -9,6 +9,8 @@
 
 defined('_JEXEC') or die;
 
+use Joomla\CMS\MVC\Controller\AdminController;
+
 /**
  * Didoks list controller class.
  *
@@ -16,7 +18,7 @@ defined('_JEXEC') or die;
  *
  * @since          1.0.0
  */
-class PlanarchivControllerDidoks extends JControllerAdmin
+class PlanarchivControllerDidoks extends AdminController
 {
 	/**
 	 * Proxy for getModel.

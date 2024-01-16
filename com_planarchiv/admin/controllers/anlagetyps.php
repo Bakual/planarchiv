@@ -9,6 +9,8 @@
 
 defined('_JEXEC') or die;
 
+use Joomla\CMS\MVC\Controller\AdminController;
+
 /**
  * Anlagetyps list controller class.
  *
@@ -16,7 +18,7 @@ defined('_JEXEC') or die;
  *
  * @since          1.0.0
  */
-class PlanarchivControllerAnlagetyps extends JControllerAdmin
+class PlanarchivControllerAnlagetyps extends AdminController
 {
 	/**
 	 * Proxy for getModel.

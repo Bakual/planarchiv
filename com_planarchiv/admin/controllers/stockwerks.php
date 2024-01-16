@@ -9,6 +9,8 @@
 
 defined('_JEXEC') or die;
 
+use Joomla\CMS\MVC\Controller\AdminController;
+
 /**
  * Stockwerks list controller class.
  *
@@ -16,7 +18,7 @@ defined('_JEXEC') or die;
  *
  * @since          1.0.0
  */
-class PlanarchivControllerStockwerks extends JControllerAdmin
+class PlanarchivControllerStockwerks extends AdminController
 {
 	/**
 	 * Proxy for getModel.
