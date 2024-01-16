@@ -54,7 +54,7 @@ class JFormFieldFileformatlist extends ListField
 	public function getOptions()
 	{
 		$params      = ComponentHelper::getParams('com_planarchiv');
-		$fileformats = explode(',', $params->get('fileformats'));
+		$fileformats = explode(',', $params->get('fileformats', ''));
 		$options     = array();
 
 		foreach ($fileformats as $format)

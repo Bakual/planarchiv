@@ -39,7 +39,7 @@ class JFormFieldDocuformatlist extends TextField
 	public function getOptions()
 	{
 		$params      = ComponentHelper::getParams('com_planarchiv');
-		$fileformats = explode(',', $params->get('docuformats'));
+		$fileformats = explode(',', $params->get('docuformats', ''));
 		$options     = array();
 		$options[]   = '';
 
