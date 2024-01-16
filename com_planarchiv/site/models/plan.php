@@ -11,13 +11,14 @@ defined('_JEXEC') or die();
 
 use Joomla\CMS\Factory;
 use Joomla\CMS\Language\Text;
+use Joomla\CMS\MVC\Model\ItemModel;
 
 /**
  * Model class for the PlanArchiv Component
  *
  * @since  3.4
  */
-class PlanarchivModelPlan extends JModelItem
+class PlanarchivModelPlan extends ItemModel
 {
 	protected $_context = 'com_planarchiv.plan';
 
@@ -104,11 +105,6 @@ class PlanarchivModelPlan extends JModelItem
 
 				$data = $db->loadObject();
 
-				if ($error = $db->getErrorMsg())
-				{
-					throw new Exception($error);
-				}
-
 				if (!$data)
 				{
 					throw new Exception(Text::_('JGLOBAL_RESOURCE_NOT_FOUND'));
@@ -118,7 +114,6 @@ class PlanarchivModelPlan extends JModelItem
 			}
 			catch (Exception $e)
 			{
-				$this->setError($e);
 				$this->_item[$id] = false;
 			}
 		}
