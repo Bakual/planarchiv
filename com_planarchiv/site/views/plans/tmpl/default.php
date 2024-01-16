@@ -16,7 +16,7 @@ use Joomla\CMS\Layout\LayoutHelper;
 use Joomla\CMS\Router\Route;
 use Joomla\CMS\Uri\Uri;
 
-HTMLHelper::addIncludePath(JPATH_COMPONENT . '/helpers');
+HTMLHelper::addIncludePath(JPATH_BASE . '/components/com_planarchiv/helpers');
 
 HTMLHelper::_('behavior.core');
 HTMLHelper::_('bootstrap.tooltip');

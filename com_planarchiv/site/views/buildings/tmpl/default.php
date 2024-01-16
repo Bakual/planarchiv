@@ -13,7 +13,7 @@ use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\Language\Text;
 use Joomla\CMS\Router\Route;
 
-HTMLHelper::addIncludePath(JPATH_COMPONENT . '/helpers');
+HTMLHelper::addIncludePath(JPATH_BASE . '/components/com_planarchiv/helpers');
 
 HTMLHelper::_('behavior.core');
 HTMLHelper::_('bootstrap.tooltip');
