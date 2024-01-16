@@ -10,17 +10,16 @@
 defined('_JEXEC') or die();
 
 use Joomla\CMS\Factory;
+use Joomla\CMS\Form\Field\TextField;
 use Joomla\CMS\Form\FormHelper;
 use Joomla\CMS\Language\Text;
-
-FormHelper::loadFieldClass('text');
 
 /**
  * Dfalist Field class for com_planarchiv
  *
  * @since    1.0.0
  */
-class JFormFieldTitlegenerator extends JFormFieldText
+class JFormFieldTitlegenerator extends TextField
 {
 	/**
 	 * The form field type.

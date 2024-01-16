@@ -13,8 +13,6 @@ use Joomla\CMS\Component\ComponentHelper;
 use Joomla\CMS\Form\Field\ListField;
 use Joomla\CMS\Form\FormHelper;
 
-FormHelper::loadFieldClass('list');
-
 /**
  * Fileformatlist Field class for com_planarchiv
  *

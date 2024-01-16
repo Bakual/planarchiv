@@ -10,16 +10,15 @@
 defined('_JEXEC') or die();
 
 use Joomla\CMS\Component\ComponentHelper;
+use Joomla\CMS\Form\Field\TextField;
 use Joomla\CMS\Form\FormHelper;
-
-FormHelper::loadFieldClass('text');
 
 /**
  * Docuformatlist Field class for com_planarchiv
  *
  * @since    1.0.0
  */
-class JFormFieldDocuformatlist extends JFormFieldText
+class JFormFieldDocuformatlist extends TextField
 {
 	/**
 	 * The form field type.

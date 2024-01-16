@@ -14,8 +14,6 @@ use Joomla\CMS\Form\Field\ListField;
 use Joomla\CMS\Form\FormHelper;
 use Joomla\CMS\HTML\HTMLHelper;
 
-FormHelper::loadFieldClass('list');
-
 /**
  * Didoklist Field class for com_planarchiv
  *
