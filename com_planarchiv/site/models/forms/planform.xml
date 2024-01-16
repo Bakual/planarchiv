@@ -42,7 +42,6 @@
 			name="Index1"
 			type="text"
 			label="COM_PLANARCHIV_INDEX_LABEL"
-			class="input-mini"
 		/>
 
 		<field
@@ -64,7 +63,6 @@
 			name="dokutyp_id"
 			type="dokutyplist"
 			label="COM_PLANARCHIV_DOKUTYP_LABEL"
-			class="input-xlarge"
 			required="true"
 		/>
 
@@ -72,14 +70,12 @@
 			name="DokuTypNr"
 			type="laufnummer"
 			label="COM_PLANARCHIV_FIELD_LFNR"
-			class="input-mini"
 		/>
 
 		<field
 			name="anlagetyp_id"
 			type="anlagetyplist"
 			label="COM_PLANARCHIV_ANLAGETYP_LABEL"
-			class="input-xlarge"
 			required="true"
 		/>
 
@@ -87,7 +83,6 @@
 			name="AnlageLfnr"
 			type="laufnummer"
 			label="COM_PLANARCHIV_FIELD_LFNR"
-			class="input-mini"
 			required="true"
 		/>
 
@@ -95,7 +90,6 @@
 			name="Bemerkung"
 			type="textarea"
 			label="COM_PLANARCHIV_BEMERKUNG_LABEL"
-			class="input-xxlarge"
 			rows="3"
 		/>
 
@@ -135,7 +129,6 @@
 			name="didok_id"
 			type="didoklist"
 			label="COM_PLANARCHIV_DIDOK_LABEL"
-			class="input-xlarge"
 			required="true"
 		/>
 
@@ -143,7 +136,6 @@
 			name="dfa_id"
 			type="dfalist"
 			label="COM_PLANARCHIV_DFA_LABEL"
-			class="input-xlarge"
 		>
 			<option value="" />
 		</field>
@@ -152,7 +144,6 @@
 			name="GebDfaLfnr"
 			type="laufnummer"
 			label="COM_PLANARCHIV_FIELD_LFNR"
-			class="input-mini"
 			reference="dfa_id"
 		/>
 
@@ -177,14 +168,12 @@
 			name="km"
 			type="text"
 			label="COM_PLANARCHIV_KM_LABEL"
-			class="input-mini"
 		/>
 
 		<field
 			name="richtung_didok_id"
 			type="didoklist"
 			label="COM_PLANARCHIV_DIRECTION_LABEL"
-			class="input-xlarge"
 		>
 			<option value="" />
 		</field>
@@ -241,7 +230,6 @@
 			type="hidden"
 			label="JSTATUS"
 			description="JFIELD_PUBLISHED_DESC"
-			class="inputbox"
 			size="1"
 			default="1">
 		</field>

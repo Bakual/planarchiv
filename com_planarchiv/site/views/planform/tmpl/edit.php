@@ -59,25 +59,25 @@ $this->useCoreUI        = true;
 
 			<?php echo HTMLHelper::_('uitab.startTabSet', 'planformlocation', array('active' => 'ort')); ?>
 			<?php echo HTMLHelper::_('uitab.addTab', 'planformlocation', 'ort', Text::_('COM_PLANARCHIV_ORT_LABEL')); ?>
-			<div class="row-fluid">
-				<div class="pull-left rightMargin">
+			<div class="row">
+				<div class="col-md-6">
 					<?php echo $this->form->renderField('dfa_id'); ?>
 				</div>
-				<div class="pull-left">
+				<div class="col-md-1">
 					<?php echo $this->form->renderField('GebDfaLfnr'); ?>
 				</div>
 			</div>
 			<?php echo $this->form->renderField('stockwerk_id'); ?>
 			<?php echo HTMLHelper::_('uitab.endTab'); ?>
 			<?php echo HTMLHelper::_('uitab.addTab', 'planformlocation', 'strecke', Text::_('COM_PLANARCHIV_STRECKE_LABEL')); ?>
-			<div class="row-fluid">
-				<div class="pull-left rightMargin">
+			<div class="row">
+				<div class="col-md-6">
 					<?php echo $this->form->renderField('Strecke'); ?>
 				</div>
-				<div class="pull-left rightMargin">
+				<div class="col-md-1">
 					<?php echo $this->form->renderField('km'); ?>
 				</div>
-				<div class="pull-left">
+				<div class="col-md-3">
 					<?php echo $this->form->renderField('richtung_didok_id'); ?>
 				</div>
 			</div>
