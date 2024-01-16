@@ -47,22 +47,22 @@ class JFormFieldTitlegenerator extends TextField
 			. 'let language = languageSelect.options[languageSelect.selectedIndex].value.toLowerCase();'
 			. 'let strecke = document.getElementById(\'jform_Strecke\').value;'
 			. 'if (strecke) {'
-				. 'let richtungSelect = document.getElementById(\'jform_richtung_didok_id\');'
-				. 'let richtungSelectValue = richtungSelect.options[richtungSelect.selectedIndex].getAttribute(\'data-didok\');'
-				. 'if (richtungSelectValue) {'
-					. 'value += "-" + richtungSelectValue.toLowerCase();'
-				. '} else {'
-					. 'alert ("' . Text::sprintf('COM_PLANARCHIV_BUTTON_GENERATE_TITLE_ERROR', Text::_('COM_PLANARCHIV_DIRECTION_LABEL')) . '");'
-				. '}'
+			. 'let richtungSelect = document.getElementById(\'jform_richtung_didok_id\');'
+			. 'let richtungSelectValue = richtungSelect.options[richtungSelect.selectedIndex].getAttribute(\'data-didok\');'
+			. 'if (richtungSelectValue) {'
+			. 'value += "-" + richtungSelectValue.toLowerCase();'
 			. '} else {'
-				. 'let dfaSelect = document.getElementById(\'jform_dfa_id\');'
-				. 'let dfaSelectValue = dfaSelect.options[dfaSelect.selectedIndex].getAttribute(\'data-\' + language);'
-				. 'if (dfaSelectValue) {'
-					. 'value += "-" + dfaSelectValue.toLowerCase();'
-					. 'value += document.getElementById(\'jform_GebDfaLfnr\').value;'
-				. '} else {'
-					. 'alert ("' . Text::sprintf('COM_PLANARCHIV_BUTTON_GENERATE_TITLE_ERROR', Text::_('COM_PLANARCHIV_DFA_LABEL')) . '");'
-				. '}'
+			. 'alert ("' . Text::sprintf('COM_PLANARCHIV_BUTTON_GENERATE_TITLE_ERROR', Text::_('COM_PLANARCHIV_DIRECTION_LABEL')) . '");'
+			. '}'
+			. '} else {'
+			. 'let dfaSelect = document.getElementById(\'jform_dfa_id\');'
+			. 'let dfaSelectValue = dfaSelect.options[dfaSelect.selectedIndex].getAttribute(\'data-\' + language);'
+			. 'if (dfaSelectValue) {'
+			. 'value += "-" + dfaSelectValue.toLowerCase();'
+			. 'value += document.getElementById(\'jform_GebDfaLfnr\').value;'
+			. '} else {'
+			. 'alert ("' . Text::sprintf('COM_PLANARCHIV_BUTTON_GENERATE_TITLE_ERROR', Text::_('COM_PLANARCHIV_DFA_LABEL')) . '");'
+			. '}'
 			. '}'
 			. 'let anlageSelect = document.getElementById(\'jform_anlagetyp_id\');'
 			. 'value += "-" + anlageSelect.options[anlageSelect.selectedIndex].getAttribute(\'data-code\').toLowerCase();'
@@ -71,14 +71,15 @@ class JFormFieldTitlegenerator extends TextField
 			. 'value += "--" + dokutypSelect.options[dokutypSelect.selectedIndex].getAttribute(\'data-\' + language).toLowerCase();'
 			. 'value += document.getElementById(\'jform_DokuTypNr\').value;'
 			. 'document.getElementById("' . $this->id . '").value = value;'
-		. '}';
+			. '}';
 
 		Factory::getDocument()->addScriptDeclaration($js);
 
 		// Add Button to generate the title
-		$html = '<div class="input-append">';
+		$html = '<div class="input-group">';
 		$html .= parent::getInput();
-		$html .= '<button class="btn" type="button" id="' . $this->id . '_btn" onclick="generateTitle()"><span class="icon-lightning"> </span>' . Text::_('COM_PLANARCHIV_BUTTON_GENERATE_TITLE') . '</button>';
+		$html .= '<button class="btn btn-secondary" type="button" id="' . $this->id . '_btn" onclick="generateTitle()"><span class="icon-lightning"> </span>' . Text::_('COM_PLANARCHIV_BUTTON_GENERATE_TITLE') . '</button>';
+		$html .= '</div>';
 
 		return $html;
 	}
