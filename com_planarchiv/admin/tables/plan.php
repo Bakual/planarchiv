@@ -12,6 +12,7 @@ defined('_JEXEC') or die;
 use Joomla\CMS\Factory;
 use Joomla\CMS\Language\Text;
 use Joomla\CMS\Table\Table;
+use Joomla\CMS\Versioning\VersionableTableInterface;
 
 /**
  * Plan Table class
@@ -20,7 +21,7 @@ use Joomla\CMS\Table\Table;
  *
  * @since          1.0.0
  */
-class PlanarchivTablePlan extends Table
+class PlanarchivTablePlan extends Table implements VersionableTableInterface
 {
 	/**
 	 * Constructor
@@ -34,8 +35,6 @@ class PlanarchivTablePlan extends Table
 		parent::__construct('#__planarchiv_plan', 'id', $db);
 
 		$this->setColumnAlias('published', 'state');
-
-		JTableObserverContenthistory::createObserver($this, array('typeAlias' => 'com_planarchiv.plan'));
 	}
 
 	/**
@@ -129,5 +128,17 @@ class PlanarchivTablePlan extends Table
 		}
 
 		return parent::store($updateNulls);
+	}
+
+	/**
+	 * Get the type alias for the history table
+	 *
+	 * @return  string  The alias as described above
+	 *
+	 * @since   2.0.0
+	 */
+	public function getTypeAlias()
+	{
+		return $this->typeAlias;
 	}
 }

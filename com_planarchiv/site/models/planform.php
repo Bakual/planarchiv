@@ -12,6 +12,7 @@ defined('_JEXEC') or die();
 use Joomla\CMS\Factory;
 use Joomla\CMS\MVC\Model\AdminModel;
 use Joomla\CMS\Table\Table;
+use Joomla\CMS\Versioning\VersionableControllerTrait;
 
 /**
  * planform model.
@@ -22,6 +23,8 @@ use Joomla\CMS\Table\Table;
  */
 class PlanarchivModelplanform extends AdminModel
 {
+	use VersionableControllerTrait;
+
 	/**
 	 * @var   string  The prefix to use with controller messages.
 	 *
