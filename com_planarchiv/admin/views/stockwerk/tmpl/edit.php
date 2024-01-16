@@ -20,7 +20,6 @@ HTMLHelper::addIncludePath(JPATH_COMPONENT.'/helpers/html');
 
 // Load the tooltip behavior.
 HTMLHelper::_('bootstrap.tooltip');
-HTMLHelper::_('behavior.formvalidation');
 HTMLHelper::_('behavior.keepalive');
 HTMLHelper::_('formbehavior.chosen', 'select');
 
