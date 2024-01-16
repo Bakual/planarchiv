@@ -10,12 +10,10 @@
 defined('_JEXEC') or die();
 
 use Joomla\CMS\Factory;
+use Joomla\CMS\Form\FormHelper;
 use Joomla\CMS\Language\Text;
 
-jimport('joomla.html.html');
-jimport('joomla.form.formfield');
-jimport('joomla.form.helper');
-JFormHelper::loadFieldClass('text');
+FormHelper::loadFieldClass('text');
 
 /**
  * Dfalist Field class for com_planarchiv
