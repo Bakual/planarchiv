@@ -54,7 +54,7 @@ $this->useCoreUI        = true;
 
 			<?php echo HTMLHelper::_('uitab.startTabSet', $this->tab_name, ['active' => 'details', 'recall' => true, 'breakpoint' => 768]); ?>
 
-			<?php echo HTMLHelper::_('uitab.addTab', 'planform', 'location', Text::_('COM_PLANARCHIV_TAB_LOCATION')); ?>
+			<?php echo HTMLHelper::_('uitab.addTab', $this->tab_name, 'location', Text::_('COM_PLANARCHIV_TAB_LOCATION')); ?>
 			<?php echo $this->form->renderField('didok_id'); ?>
 
 			<?php echo HTMLHelper::_('uitab.startTabSet', 'planformlocation', array('active' => 'ort')); ?>
@@ -85,7 +85,7 @@ $this->useCoreUI        = true;
 			<?php echo HTMLHelper::_('uitab.endTabSet'); ?>
 			<?php echo HTMLHelper::_('uitab.endTab'); ?>
 
-			<?php echo HTMLHelper::_('uitab.addTab', 'planform', 'basic', Text::_('COM_PLANARCHIV_TAB_BASIC')); ?>
+			<?php echo HTMLHelper::_('uitab.addTab', $this->tab_name, 'basic', Text::_('COM_PLANARCHIV_TAB_BASIC')); ?>
 			<div class="row-fluid">
 				<div class="pull-left rightMargin">
 					<?php echo $this->form->renderField('ErstellDatum'); ?>
@@ -131,23 +131,17 @@ $this->useCoreUI        = true;
 			<?php echo $this->form->renderField('Bemerkung'); ?>
 			<?php echo HTMLHelper::_('uitab.endTab'); ?>
 
-			<?php echo HTMLHelper::_('uitab.addTab', 'planform', 'files', Text::_('COM_PLANARCHIV_TAB_FILES')); ?>
-			<?php foreach ($this->form->getFieldset('files') as $field): ?>
-				<?php echo $field->getControlGroup(); ?>
-			<?php endforeach; ?>
+			<?php echo HTMLHelper::_('uitab.addTab', $this->tab_name, 'files', Text::_('COM_PLANARCHIV_TAB_FILES')); ?>
+			<?php echo $this->form->renderFieldset('files'); ?>
 			<?php echo HTMLHelper::_('uitab.endTab'); ?>
 
-			<?php echo HTMLHelper::_('uitab.addTab', 'planform', 'details', Text::_('COM_PLANARCHIV_TAB_DETAILS')); ?>
+			<?php echo HTMLHelper::_('uitab.addTab', $this->tab_name, 'details', Text::_('COM_PLANARCHIV_TAB_DETAILS')); ?>
 			<div class="row-fluid">
 				<div class="span6">
-					<?php foreach ($this->form->getFieldset('info') as $field): ?>
-						<?php echo $field->getControlGroup(); ?>
-					<?php endforeach; ?>
+					<?php echo $this->form->renderFieldset('info'); ?>
 				</div>
 				<div class="span6">
-					<?php foreach ($this->form->getFieldset('global') as $field): ?>
-						<?php echo $field->getControlGroup(); ?>
-					<?php endforeach; ?>
+					<?php echo $this->form->renderFieldset('global'); ?>
 				</div>
 			</div>
 			<?php echo HTMLHelper::_('uitab.endTab'); ?>
