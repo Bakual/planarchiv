@@ -18,6 +18,10 @@ HTMLHelper::_('bootstrap.tooltip');
 HTMLHelper::_('behavior.keepalive');
 HTMLHelper::_('stylesheet', 'com_planarchiv/planarchiv.css', array('version' => 'auto', 'relative' => true));
 
+$wa = $this->document->getWebAssetManager();
+$wa->useScript('keepalive')
+	->useScript('form.validate');
+
 ?>
 <script type="text/javascript">
     Joomla.submitbutton = function (task) {

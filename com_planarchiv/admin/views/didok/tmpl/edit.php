@@ -23,6 +23,10 @@ HTMLHelper::addIncludePath(JPATH_BASE . '/components/com_planarchiv/helpers/html
 HTMLHelper::_('bootstrap.tooltip');
 HTMLHelper::_('behavior.keepalive');
 
+$wa = $this->document->getWebAssetManager();
+$wa->useScript('keepalive')
+	->useScript('form.validate');
+
 $this->ignore_fieldsets = array('general', 'basic', 'info');
 
 // Check if tmpl=component was set (needed for com_associations)
