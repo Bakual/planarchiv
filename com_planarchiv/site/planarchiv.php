@@ -13,7 +13,7 @@ use Joomla\CMS\Factory;
 use Joomla\CMS\MVC\Controller\BaseController;
 
 // loading composer autoloader
-require_once JPATH_COMPONENT_ADMINISTRATOR . '/vendor/autoload.php';
+require_once JPATH_ADMINISTRATOR . '/components/com_planarchiv' . '/vendor/autoload.php';
 
 $jinput = Factory::getApplication()->input;
 

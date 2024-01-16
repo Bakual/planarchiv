@@ -25,7 +25,7 @@ JLoader::register('JFile', JPATH_LIBRARIES . '/joomla/filesystem/file.php');
 JLoader::register('JFolder', JPATH_LIBRARIES . '/joomla/filesystem/folder.php');
 
 // Register Helperclass for autoloading
-JLoader::register('PlanarchivHelper', JPATH_COMPONENT_ADMINISTRATOR . '/helpers/planarchiv.php');
+JLoader::register('PlanarchivHelper', JPATH_ADMINISTRATOR . '/components/com_planarchiv' . '/helpers/planarchiv.php');
 
 $controller = BaseController::getInstance('Planarchiv');
 $controller->execute(Factory::getApplication()->input->get('task'));
