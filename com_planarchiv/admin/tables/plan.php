@@ -11,6 +11,7 @@ defined('_JEXEC') or die;
 
 use Joomla\CMS\Factory;
 use Joomla\CMS\Language\Text;
+use Joomla\CMS\Table\Table;
 
 /**
  * Plan Table class
@@ -19,7 +20,7 @@ use Joomla\CMS\Language\Text;
  *
  * @since          1.0.0
  */
-class PlanarchivTablePlan extends JTable
+class PlanarchivTablePlan extends Table
 {
 	/**
 	 * Constructor
@@ -61,7 +62,7 @@ class PlanarchivTablePlan extends JTable
 		}
 
 		// Verify that the title is unique
-		$table = JTable::getInstance('Plan', 'PlanarchivTable');
+		$table = Table::getInstance('Plan', 'PlanarchivTable');
 
 		if ($table->load(array('title' => $this->title, 'state' => '1')) && ($table->id != $this->id || $this->id == 0))
 		{

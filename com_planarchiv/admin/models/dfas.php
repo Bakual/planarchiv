@@ -12,6 +12,7 @@ defined('_JEXEC') or die;
 use Joomla\CMS\Component\ComponentHelper;
 use Joomla\CMS\Factory;
 use Joomla\CMS\MVC\Model\ListModel;
+use Joomla\CMS\Table\Table;
 
 class PlanarchivModelDfas extends ListModel
 {
@@ -149,7 +150,7 @@ class PlanarchivModelDfas extends ListModel
 
 		if (is_numeric($categoryId))
 		{
-			$cat_tbl = JTable::getInstance('Category', 'JTable');
+			$cat_tbl = Table::getInstance('Category', 'Table');
 			$cat_tbl->load($categoryId);
 			$rgt       = $cat_tbl->rgt;
 			$lft       = $cat_tbl->lft;

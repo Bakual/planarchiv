@@ -11,6 +11,7 @@ defined('_JEXEC') or die;
 
 use Joomla\CMS\Factory;
 use Joomla\CMS\Language\Associations;
+use Joomla\CMS\Table\Table;
 use Joomla\Registry\Registry;
 use Joomla\Utilities\ArrayHelper;
 
@@ -47,13 +48,13 @@ class PlanarchivModelContactform extends ContactModelContact
 	 * @param   string  $prefix  A prefix for the table class name. Optional.
 	 * @param   array   $config  Configuration array for model. Optional.
 	 *
-	 * @return  JTable  A database object
+	 * @return  Table  A database object
 	 *
 	 * @since   1.6
 	 */
 	public function getTable($type = 'Contact', $prefix = 'ContactTable', $config = array())
 	{
-		JTable::addIncludePath(JPATH_ADMINISTRATOR . '/components/com_contact/tables');
+		Table::addIncludePath(JPATH_ADMINISTRATOR . '/components/com_contact/tables');
 
 		return parent::getTable($type, $prefix, $config);
 	}

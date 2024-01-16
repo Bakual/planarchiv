@@ -122,7 +122,7 @@ class Com_PlanarchivInstallerScript extends InstallerScript
 	private function saveContentTypes()
 	{
 		// Adding content_type for content history
-		$table = Table::getInstance('Contenttype', 'JTable');
+		$table = Table::getInstance('Contenttype', 'Table');
 
 		// FieldMappings
 		$common                       = new stdClass;
@@ -225,7 +225,7 @@ class Com_PlanarchivInstallerScript extends InstallerScript
 		$special->dbtable = '#__categories';
 		$special->key     = 'id';
 		$special->type    = 'Category';
-		$special->prefix  = 'JTable';
+		$special->prefix  = 'Table';
 		$special->config  = 'array()';
 
 		$history                = new stdClass;

@@ -10,6 +10,7 @@
 defined('_JEXEC') or die;
 
 use Joomla\CMS\Factory;
+use Joomla\CMS\Table\Table;
 
 /**
  * Speaker Table class
@@ -18,7 +19,7 @@ use Joomla\CMS\Factory;
  *
  * @since          1.0.0
  */
-class PlanarchivTableAnlagetyp extends JTable
+class PlanarchivTableAnlagetyp extends Table
 {
 	/**
 	 * Constructor

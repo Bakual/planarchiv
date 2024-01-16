@@ -11,6 +11,7 @@ defined('_JEXEC') or die();
 
 use Joomla\CMS\Factory;
 use Joomla\CMS\MVC\Model\AdminModel;
+use Joomla\CMS\Table\Table;
 
 /**
  * Dokutyp model.
@@ -115,12 +116,12 @@ class PlanarchivModelDokutyp extends AdminModel
 	 * @param    string $prefix A prefix for the table class name. Optional.
 	 * @param    array  $config Configuration array for model. Optional.
 	 *
-	 * @return    JTable    A database object
+	 * @return    Table    A database object
 	 * @since    1.0.0
 	 */
 	public function getTable($type = 'Dokutyp', $prefix = 'PlanarchivTable', $config = array())
 	{
-		return JTable::getInstance($type, $prefix, $config);
+		return Table::getInstance($type, $prefix, $config);
 	}
 
 	/**
@@ -156,7 +157,7 @@ class PlanarchivModelDokutyp extends AdminModel
 	/**
 	 * Prepare and sanitise the table prior to saving.
 	 *
-	 * @param JTable $table
+	 * @param Table $table
 	 *
 	 * @since    1.0.0
 	 */
