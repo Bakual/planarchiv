@@ -22,6 +22,9 @@ $wa = $this->document->getWebAssetManager();
 $wa->useScript('keepalive')
 	->useScript('form.validate');
 
+$this->tab_name         = 'com-planarchiv-planform';
+$this->ignore_fieldsets = [];
+$this->useCoreUI        = true;
 ?>
 <script type="text/javascript">
     Joomla.submitbutton = function (task) {
@@ -44,115 +47,115 @@ $wa->useScript('keepalive')
 	<?php endif; ?>
 
 	<form
-		action="<?php echo Route::_('index.php?option=com_planarchiv&view=planform&id=' . (int) $this->item->id); ?>"
-		method="post" name="adminForm" id="adminForm" class="form-validate form form-vertical">
+			action="<?php echo Route::_('index.php?option=com_planarchiv&view=planform&id=' . (int) $this->item->id); ?>"
+			method="post" name="adminForm" id="adminForm" class="form-validate form form-vertical">
 		<fieldset>
 			<?php echo $this->form->renderField('title'); ?>
 
-			<?php echo HTMLHelper::_('bootstrap.startTabSet', 'planform', array('active' => 'basic')); ?>
+			<?php echo HTMLHelper::_('uitab.startTabSet', $this->tab_name, ['active' => 'details', 'recall' => true, 'breakpoint' => 768]); ?>
 
-            <?php echo HTMLHelper::_('bootstrap.addTab', 'planform', 'location', Text::_('COM_PLANARCHIV_TAB_LOCATION')); ?>
-                <?php echo $this->form->renderField('didok_id'); ?>
+			<?php echo HTMLHelper::_('uitab.addTab', 'planform', 'location', Text::_('COM_PLANARCHIV_TAB_LOCATION')); ?>
+			<?php echo $this->form->renderField('didok_id'); ?>
 
-                <?php echo HTMLHelper::_('bootstrap.startTabSet', 'planformlocation', array('active' => 'ort')); ?>
-                    <?php echo HTMLHelper::_('bootstrap.addTab', 'planformlocation', 'ort', Text::_('COM_PLANARCHIV_ORT_LABEL')); ?>
-                        <div class="row-fluid">
-                            <div class="pull-left rightMargin">
-                                <?php echo $this->form->renderField('dfa_id'); ?>
-                            </div>
-                            <div class="pull-left">
-                                <?php echo $this->form->renderField('GebDfaLfnr'); ?>
-                            </div>
-                        </div>
-                        <?php echo $this->form->renderField('stockwerk_id'); ?>
-                        <?php echo HTMLHelper::_('bootstrap.endTab'); ?>
-                        <?php echo HTMLHelper::_('bootstrap.addTab', 'planformlocation', 'strecke', Text::_('COM_PLANARCHIV_STRECKE_LABEL')); ?>
-                        <div class="row-fluid">
-                            <div class="pull-left rightMargin">
-                                <?php echo $this->form->renderField('Strecke'); ?>
-                            </div>
-                            <div class="pull-left rightMargin">
-                                <?php echo $this->form->renderField('km'); ?>
-                            </div>
-                            <div class="pull-left">
-                                <?php echo $this->form->renderField('richtung_didok_id'); ?>
-                            </div>
-                        </div>
-                    <?php echo HTMLHelper::_('bootstrap.endTab'); ?>
-                <?php echo HTMLHelper::_('bootstrap.endTabSet'); ?>
-            <?php echo HTMLHelper::_('bootstrap.endTab'); ?>
-
-            <?php echo HTMLHelper::_('bootstrap.addTab', 'planform', 'basic', Text::_('COM_PLANARCHIV_TAB_BASIC')); ?>
-				<div class="row-fluid">
-					<div class="pull-left rightMargin">
-						<?php echo $this->form->renderField('ErstellDatum'); ?>
-					</div>
-					<div class="pull-left">
-						<?php echo $this->form->renderField('ersteller_id'); ?>
-					</div>
+			<?php echo HTMLHelper::_('uitab.startTabSet', 'planformlocation', array('active' => 'ort')); ?>
+			<?php echo HTMLHelper::_('uitab.addTab', 'planformlocation', 'ort', Text::_('COM_PLANARCHIV_ORT_LABEL')); ?>
+			<div class="row-fluid">
+				<div class="pull-left rightMargin">
+					<?php echo $this->form->renderField('dfa_id'); ?>
 				</div>
-				<div class="row-fluid">
-					<div class="pull-left rightMargin">
-						<?php echo $this->form->renderField('AenderungsDatum'); ?>
-					</div>
-					<div class="pull-left">
-						<?php echo $this->form->renderField('Index1'); ?>
-					</div>
+				<div class="pull-left">
+					<?php echo $this->form->renderField('GebDfaLfnr'); ?>
 				</div>
-				<?php echo $this->form->renderField('CAD_Auftrag'); ?>
-                <div class="row-fluid">
-                    <div class="pull-left rightMargin">
-                        <?php echo $this->form->renderField('anlagetyp_id'); ?>
-                    </div>
-                    <div class="pull-left">
-                        <?php echo $this->form->renderField('AnlageLfnr'); ?>
-                    </div>
-                </div>
-				<div class="row-fluid">
-					<div class="pull-left rightMargin">
-						<?php echo $this->form->renderField('dokutyp_id'); ?>
-					</div>
-					<div class="pull-left">
-						<?php echo $this->form->renderField('DokuTypNr'); ?>
-					</div>
+			</div>
+			<?php echo $this->form->renderField('stockwerk_id'); ?>
+			<?php echo HTMLHelper::_('uitab.endTab'); ?>
+			<?php echo HTMLHelper::_('uitab.addTab', 'planformlocation', 'strecke', Text::_('COM_PLANARCHIV_STRECKE_LABEL')); ?>
+			<div class="row-fluid">
+				<div class="pull-left rightMargin">
+					<?php echo $this->form->renderField('Strecke'); ?>
 				</div>
-				<div class="row-fluid">
-					<div class="pull-left rightMargin">
-						<?php echo $this->form->renderField('zurzeitbei_id'); ?>
-					</div>
-					<div class="pull-left">
-						<?php echo $this->form->renderField('zurzeitbei_date'); ?>
-					</div>
+				<div class="pull-left rightMargin">
+					<?php echo $this->form->renderField('km'); ?>
 				</div>
-				<?php echo $this->form->renderField('Maengelliste'); ?>
-				<?php echo $this->form->renderField('Bemerkung'); ?>
-			<?php echo HTMLHelper::_('bootstrap.endTab'); ?>
-
-			<?php echo HTMLHelper::_('bootstrap.addTab', 'planform', 'files', Text::_('COM_PLANARCHIV_TAB_FILES')); ?>
-				<?php foreach($this->form->getFieldset('files') as $field): ?>
-					<?php echo $field->getControlGroup(); ?>
-				<?php endforeach; ?>
-			<?php echo HTMLHelper::_('bootstrap.endTab'); ?>
-
-			<?php echo HTMLHelper::_('bootstrap.addTab', 'planform', 'details', Text::_('COM_PLANARCHIV_TAB_DETAILS')); ?>
-				<div class="row-fluid">
-					<div class="span6">
-						<?php foreach($this->form->getFieldset('info') as $field): ?>
-							<?php echo $field->getControlGroup(); ?>
-						<?php endforeach; ?>
-					</div>
-					<div class="span6">
-						<?php foreach($this->form->getFieldset('global') as $field): ?>
-							<?php echo $field->getControlGroup(); ?>
-						<?php endforeach; ?>
-					</div>
+				<div class="pull-left">
+					<?php echo $this->form->renderField('richtung_didok_id'); ?>
 				</div>
-			<?php echo HTMLHelper::_('bootstrap.endTab'); ?>
+			</div>
+			<?php echo HTMLHelper::_('uitab.endTab'); ?>
+			<?php echo HTMLHelper::_('uitab.endTabSet'); ?>
+			<?php echo HTMLHelper::_('uitab.endTab'); ?>
 
-			<?php echo HTMLHelper::_('bootstrap.endTabSet'); ?>
+			<?php echo HTMLHelper::_('uitab.addTab', 'planform', 'basic', Text::_('COM_PLANARCHIV_TAB_BASIC')); ?>
+			<div class="row-fluid">
+				<div class="pull-left rightMargin">
+					<?php echo $this->form->renderField('ErstellDatum'); ?>
+				</div>
+				<div class="pull-left">
+					<?php echo $this->form->renderField('ersteller_id'); ?>
+				</div>
+			</div>
+			<div class="row-fluid">
+				<div class="pull-left rightMargin">
+					<?php echo $this->form->renderField('AenderungsDatum'); ?>
+				</div>
+				<div class="pull-left">
+					<?php echo $this->form->renderField('Index1'); ?>
+				</div>
+			</div>
+			<?php echo $this->form->renderField('CAD_Auftrag'); ?>
+			<div class="row-fluid">
+				<div class="pull-left rightMargin">
+					<?php echo $this->form->renderField('anlagetyp_id'); ?>
+				</div>
+				<div class="pull-left">
+					<?php echo $this->form->renderField('AnlageLfnr'); ?>
+				</div>
+			</div>
+			<div class="row-fluid">
+				<div class="pull-left rightMargin">
+					<?php echo $this->form->renderField('dokutyp_id'); ?>
+				</div>
+				<div class="pull-left">
+					<?php echo $this->form->renderField('DokuTypNr'); ?>
+				</div>
+			</div>
+			<div class="row-fluid">
+				<div class="pull-left rightMargin">
+					<?php echo $this->form->renderField('zurzeitbei_id'); ?>
+				</div>
+				<div class="pull-left">
+					<?php echo $this->form->renderField('zurzeitbei_date'); ?>
+				</div>
+			</div>
+			<?php echo $this->form->renderField('Maengelliste'); ?>
+			<?php echo $this->form->renderField('Bemerkung'); ?>
+			<?php echo HTMLHelper::_('uitab.endTab'); ?>
 
-			<input type="hidden" name="task" value="" />
-			<input type="hidden" name="return" value="<?php echo $this->return_page; ?>" />
+			<?php echo HTMLHelper::_('uitab.addTab', 'planform', 'files', Text::_('COM_PLANARCHIV_TAB_FILES')); ?>
+			<?php foreach ($this->form->getFieldset('files') as $field): ?>
+				<?php echo $field->getControlGroup(); ?>
+			<?php endforeach; ?>
+			<?php echo HTMLHelper::_('uitab.endTab'); ?>
+
+			<?php echo HTMLHelper::_('uitab.addTab', 'planform', 'details', Text::_('COM_PLANARCHIV_TAB_DETAILS')); ?>
+			<div class="row-fluid">
+				<div class="span6">
+					<?php foreach ($this->form->getFieldset('info') as $field): ?>
+						<?php echo $field->getControlGroup(); ?>
+					<?php endforeach; ?>
+				</div>
+				<div class="span6">
+					<?php foreach ($this->form->getFieldset('global') as $field): ?>
+						<?php echo $field->getControlGroup(); ?>
+					<?php endforeach; ?>
+				</div>
+			</div>
+			<?php echo HTMLHelper::_('uitab.endTab'); ?>
+
+			<?php echo HTMLHelper::_('uitab.endTabSet'); ?>
+
+			<input type="hidden" name="task" value=""/>
+			<input type="hidden" name="return" value="<?php echo $this->return_page; ?>"/>
 			<?php echo HTMLHelper::_('form.token'); ?>
 		</fieldset>
 		<div class="btn-toolbar">
@@ -175,13 +178,14 @@ $wa->useScript('keepalive')
 				<div class="btn-group">
 					<?php echo $this->form->getInput('contenthistory'); ?>
 				</div>
-                <?php if (Factory::getUser()->authorise('core.delete', 'com_planarchiv.category.' . $this->item->catid)) : ?>
-                    <div class="btn-group">
-                        <button type="button" class="btn btn-danger" onclick="if(confirm('<?php echo Text::_('COM_PLANARCHIV_CONFIRM_DELETE'); ?>')) {document.getElementById('jform_state').value='-2';Joomla.submitbutton('plan.save');} else {return;}">
-                            <i class="icon-delete"></i> <?php echo Text::_('JACTION_DELETE') ?>
-                        </button>
-                    </div>
-                <?php endif; ?>
+				<?php if (Factory::getUser()->authorise('core.delete', 'com_planarchiv.category.' . $this->item->catid)) : ?>
+					<div class="btn-group">
+						<button type="button" class="btn btn-danger"
+								onclick="if(confirm('<?php echo Text::_('COM_PLANARCHIV_CONFIRM_DELETE'); ?>')) {document.getElementById('jform_state').value='-2';Joomla.submitbutton('plan.save');} else {return;}">
+							<i class="icon-delete"></i> <?php echo Text::_('JACTION_DELETE') ?>
+						</button>
+					</div>
+				<?php endif; ?>
 			<?php endif; ?>
 		</div>
 	</form>
