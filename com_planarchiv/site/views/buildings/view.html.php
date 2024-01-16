@@ -54,7 +54,7 @@ class PlanarchivViewBuildings extends HtmlView
 			throw new Exception(implode("\n", $errors), 500);
 		}
 
-		$this->pageclass_sfx = htmlspecialchars($this->params->get('pageclass_sfx'));
+		$this->pageclass_sfx = htmlspecialchars($this->params->get('pageclass_sfx', ''));
 		$this->maxLevel      = $this->params->get('maxLevel', -1);
 		$this->_prepareDocument();
 

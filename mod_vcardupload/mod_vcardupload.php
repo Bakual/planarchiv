@@ -21,6 +21,6 @@ if (!$user->authorise('core.create', 'com_planarchiv'))
 	return;
 }
 
-$moduleclass_sfx = htmlspecialchars($params->get('moduleclass_sfx'));
+$moduleclass_sfx = htmlspecialchars($params->get('moduleclass_sfx', ''));
 
 require JModuleHelper::getLayoutPath('mod_vcardupload', $params->get('layout', 'default'));

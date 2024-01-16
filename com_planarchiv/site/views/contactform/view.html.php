@@ -116,7 +116,7 @@ class PlanarchivViewContactform extends HtmlView
 		$this->params = $this->state->params;
 
 		// Escape strings for HTML output
-		$this->pageclass_sfx = htmlspecialchars($this->params->get('pageclass_sfx'));
+		$this->pageclass_sfx = htmlspecialchars($this->params->get('pageclass_sfx', ''));
 
 		// Override global params with contact specific params
 		$this->params->merge($this->item->params);
