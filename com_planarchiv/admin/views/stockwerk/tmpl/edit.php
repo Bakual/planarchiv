@@ -21,7 +21,6 @@ HTMLHelper::addIncludePath(JPATH_COMPONENT.'/helpers/html');
 // Load the tooltip behavior.
 HTMLHelper::_('bootstrap.tooltip');
 HTMLHelper::_('behavior.keepalive');
-HTMLHelper::_('formbehavior.chosen', 'select');
 
 $this->ignore_fieldsets = array('general', 'basic', 'info');
 

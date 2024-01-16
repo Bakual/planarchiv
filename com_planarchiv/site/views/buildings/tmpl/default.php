@@ -17,7 +17,6 @@ HTMLHelper::addIncludePath(JPATH_COMPONENT . '/helpers');
 
 HTMLHelper::_('behavior.core');
 HTMLHelper::_('bootstrap.tooltip');
-HTMLHelper::_('formbehavior.chosen', 'select');
 HTMLHelper::_('stylesheet', 'com_planarchiv/planarchiv.css', array('version' => 'auto', 'relative' => true));
 
 $listOrder = $this->state->get('list.ordering');
