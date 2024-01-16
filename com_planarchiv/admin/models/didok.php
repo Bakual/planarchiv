@@ -10,6 +10,7 @@
 defined('_JEXEC') or die();
 
 use Joomla\CMS\Factory;
+use Joomla\CMS\MVC\Model\AdminModel;
 
 /**
  * Didok model.
@@ -18,7 +19,7 @@ use Joomla\CMS\Factory;
  *
  * @since     1.0.0
  */
-class PlanarchivModelDidok extends JModelAdmin
+class PlanarchivModelDidok extends AdminModel
 {
 	/**
 	 * @var   string  The prefix to use with controller messages.

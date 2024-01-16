@@ -10,6 +10,7 @@
 defined('_JEXEC') or die();
 
 use Joomla\CMS\Factory;
+use Joomla\CMS\MVC\Model\AdminModel;
 
 /**
  * Dokutyp model.
@@ -18,7 +19,7 @@ use Joomla\CMS\Factory;
  *
  * @since     1.0.0
  */
-class PlanarchivModelDokutyp extends JModelAdmin
+class PlanarchivModelDokutyp extends AdminModel
 {
 	/**
 	 * @var   string  The prefix to use with controller messages.

@@ -10,6 +10,7 @@
 defined('_JEXEC') or die();
 
 use Joomla\CMS\Factory;
+use Joomla\CMS\MVC\Model\AdminModel;
 
 /**
  * Stockwerk model.
@@ -18,7 +19,7 @@ use Joomla\CMS\Factory;
  *
  * @since     1.0.0
  */
-class PlanarchivModelStockwerk extends JModelAdmin
+class PlanarchivModelStockwerk extends AdminModel
 {
 	/**
 	 * @var   string  The prefix to use with controller messages.
