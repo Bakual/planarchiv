@@ -8,6 +8,7 @@
  **/
 
 use Joomla\CMS\Factory;
+use Joomla\CMS\MVC\Controller\FormController;
 use Joomla\CMS\Uri\Uri;
 
 defined('_JEXEC') or die;
@@ -19,7 +20,7 @@ defined('_JEXEC') or die;
  *
  * @since          1.0.0
  */
-class PlanarchivControllerDidok extends JControllerForm
+class PlanarchivControllerDidok extends FormController
 {
 	/**
 	 * Method to save a record.
