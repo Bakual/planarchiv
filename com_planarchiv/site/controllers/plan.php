@@ -11,6 +11,7 @@ defined('_JEXEC') or die();
 
 use Joomla\CMS\Factory;
 use Joomla\CMS\MVC\Controller\FormController;
+use Joomla\CMS\MVC\Model\BaseDatabaseModel;
 use Joomla\CMS\Router\Route;
 use Joomla\CMS\Uri\Uri;
 
@@ -65,7 +66,7 @@ class PlanarchivControllerPlan extends FormController
 	/**
 	 * Method override to check if you can add a new record
 	 *
-	 * @param   array $data An array of input data
+	 * @param array $data An array of input data
 	 *
 	 * @return  boolean
 	 *
@@ -97,8 +98,8 @@ class PlanarchivControllerPlan extends FormController
 	/**
 	 * Method to check if you can add a new record
 	 *
-	 * @param   array  $data An array of input data
-	 * @param   string $key  The name of the key for the primary key
+	 * @param array  $data An array of input data
+	 * @param string $key  The name of the key for the primary key
 	 *
 	 * @return  boolean
 	 *
@@ -145,7 +146,7 @@ class PlanarchivControllerPlan extends FormController
 	/**
 	 * Method to cancel an edit
 	 *
-	 * @param   string $key The name of the primary key of the URL variable
+	 * @param string $key The name of the primary key of the URL variable
 	 *
 	 * @return  Boolean  True if access level checks pass, false otherwise
 	 *
@@ -164,8 +165,8 @@ class PlanarchivControllerPlan extends FormController
 	/**
 	 * Method to edit an existing record
 	 *
-	 * @param   string $key    The name of the primary key of the URL variable
-	 * @param   string $urlVar The name of the URL variable if different from the primary key (sometimes required to
+	 * @param string $key      The name of the primary key of the URL variable
+	 * @param string $urlVar   The name of the URL variable if different from the primary key (sometimes required to
 	 *                         avoid router collisions)
 	 *
 	 * @return  Boolean  True if access level check and checkout passes, false otherwise
@@ -180,9 +181,9 @@ class PlanarchivControllerPlan extends FormController
 	/**
 	 * Method to get a model object, loading it if required.
 	 *
-	 * @param   string $name   The model name. Optional
-	 * @param   string $prefix The class prefix. Optional
-	 * @param   array  $config Configuration array for model. Optional
+	 * @param string $name   The model name. Optional
+	 * @param string $prefix The class prefix. Optional
+	 * @param array  $config Configuration array for model. Optional
 	 *
 	 * @return  object  The model
 	 *
@@ -198,8 +199,8 @@ class PlanarchivControllerPlan extends FormController
 	/**
 	 * Gets the URL arguments to append to an item redirect
 	 *
-	 * @param   int    $recordId The primary key id for the item
-	 * @param   string $urlVar   The name of the URL variable for the id
+	 * @param int    $recordId The primary key id for the item
+	 * @param string $urlVar   The name of the URL variable for the id
 	 *
 	 * @return  string  The arguments to append to the redirect URL
 	 *
@@ -257,12 +258,12 @@ class PlanarchivControllerPlan extends FormController
 	/**
 	 * Function that allows child controller access to model data after the data has been saved
 	 *
-	 * @param \JModel|\JModelLegacy $model     The data model object
-	 * @param   array               $validData The validated data
+	 * @param BaseDatabaseModel $model     The data model object
+	 * @param array             $validData The validated data
 	 *
 	 * @since 1.0.0
 	 */
-	protected function postSaveHook(JModelLegacy $model, $validData = array())
+	protected function postSaveHook(BaseDatabaseModel $model, $validData = array())
 	{
 		$task = $this->getTask();
 
@@ -280,8 +281,8 @@ class PlanarchivControllerPlan extends FormController
 	/**
 	 * Method to save a record
 	 *
-	 * @param   string $key    The name of the primary key of the URL variable
-	 * @param   string $urlVar The name of the URL variable if different from the primary key (sometimes required to
+	 * @param string $key      The name of the primary key of the URL variable
+	 * @param string $urlVar   The name of the URL variable if different from the primary key (sometimes required to
 	 *                         avoid router collisions)
 	 *
 	 * @return  Boolean  True if successful, false otherwise
