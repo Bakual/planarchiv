@@ -4,10 +4,6 @@
     }
 }
 
-#planList .icon-warning-2:before {
-    color: #FF0000;
-}
-
 .truncate {
     max-width: 500px;
 }
@@ -20,25 +16,4 @@ dt.pdf,
 dd.pdf {
     margin-bottom: 5px;
     border-bottom: 1px solid lightgrey;
-}
-.dl-horizontal dd.pdf {
-    margin-left: 160px;
-    padding-left: 20px;
-    padding-right: 20px;
-    width: fit-content;
-}
-@media (max-width: 767px)
-{
-    dt.pdf {
-        border: none;
-    }
-    .dl-horizontal dd.pdf {
-        margin-left: 0;
-        padding-left: 0;
-        padding-right: 0;
-        width: inherit;
-    }
-}
-.clipboard {
-    margin-left: 5px;
 }
