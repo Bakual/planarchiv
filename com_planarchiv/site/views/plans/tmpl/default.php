@@ -80,7 +80,7 @@ $listDirn   = $this->state->get('list.direction');
 								<?php if ($item->zurzeitbei_id) : ?>
 									<?php $date = ($item->zurzeitbei_date != '0000-00-00 00:00:00') ? HTMLHelper::_('date', $item->zurzeitbei_date, Text::_('DATE_FORMAT_LC4')) : '?'; ?>
 									<?php $tooltip = Text::sprintf('COM_PLANARCHIV_ZUR_ZEIT_BEI', $date, $item->zurzeitbei_name); ?>
-									<span class="icon-warning-2 hasTooltip" title="<?php echo $tooltip; ?>"> </span>
+									<span class="fa fa-triangle-exclamation text-danger hasTooltip" title="<?php echo $tooltip; ?>"> </span>
 								<?php endif; ?>
 								<?php if ($item->checked_out) : ?>
 									<?php echo HTMLHelper::_('jgrid.checkedout', $i, $item->editor, $item->checked_out_time, 'plans.', $canCheckin); ?>

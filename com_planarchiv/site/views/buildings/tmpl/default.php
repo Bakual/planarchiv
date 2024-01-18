@@ -37,16 +37,16 @@ $filters = $this->filterForm->getGroup('filter');
             <?php endforeach; ?>
         </div>
         <hr>
-		<div class="row-fluid">
-			<div class="span6">
+		<div class="row">
+			<div class="col-md-6">
 				<fieldset>
 					<legend><?php echo Text::_('COM_PLANARCHIV_DFA_LABEL'); ?></legend>
 					<?php if (empty($this->items)) : ?>
-						<div class="alert alert-no-items">
+						<div class="alert alert-info">
 							<?php echo Text::_('JGLOBAL_NO_MATCHING_RESULTS'); ?>
 						</div>
 					<?php else : ?>
-						<ul class="unstyled">
+						<ul class="list-unstyled">
 							<?php $didok = $this->activeFilters['didok_id']; ?>
 							<?php foreach ($this->items as $item) : ?>
 								<li>
@@ -64,15 +64,15 @@ $filters = $this->filterForm->getGroup('filter');
 					<?php echo $this->pagination->getListFooter(); ?>
 				</fieldset>
 			</div>
-			<div class="span6">
+			<div class="col-md-6">
 				<fieldset>
 					<legend><?php echo Text::_('COM_PLANARCHIV_STRECKE_LABEL'); ?></legend>
 					<?php if (empty($this->strecken)) : ?>
-						<div class="alert alert-no-items">
+						<div class="alert alert-info">
 							<?php echo Text::_('JGLOBAL_NO_MATCHING_RESULTS'); ?>
 						</div>
 					<?php else : ?>
-						<ul class="unstyled">
+						<ul class="list-unstyled">
 							<?php foreach ($this->strecken as $item) : ?>
 								<li>
 									<?php $params = '&filter[Strecke]=S&filter[didok_id]=' . $item->didok_id . '&filter[richtung_didok_id]=' . $item->richtung_didok_id; ?>
