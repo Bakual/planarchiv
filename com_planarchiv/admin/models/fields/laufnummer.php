@@ -68,7 +68,7 @@ class JFormFieldLaufnummer extends TextField
                     xmlhttp = new XMLHttpRequest();
 			        xmlhttp.onreadystatechange=function(){
     				    if (xmlhttp.readyState==4 && xmlhttp.status==200){
-        			    	var data = jQuery.parseJSON(xmlhttp.responseText);
+        			    	var data = JSON.parse(xmlhttp.responseText);
         					if (data.status==1){
 	    		    	    	document.getElementById(element).value = data.id;
                             } else {
@@ -86,9 +86,9 @@ class JFormFieldLaufnummer extends TextField
 
         $reference = (string) $this->element['reference'];
 
-	    $html = '<div class="input-append">';
+	    $html = '<div class="input-group">';
 	    $html .= $textField;
-	    $html .= '<button class="btn hasTooltip" type="button" onclick="fetchNextNumber(\'' . $this->id . '\')" title="' .  Text::_('COM_PLANARCHIV_FETCH_LFNR') . '"><span class="icon-flash"></span></button>';
+	    $html .= '<button class="btn btn-primary hasTooltip" type="button" onclick="fetchNextNumber(\'' . $this->id . '\')" title="' .  Text::_('COM_PLANARCHIV_FETCH_LFNR') . '"><span class="icon-flash"></span></button>';
 	    $html .= '</div>';
 
 	    return $html;

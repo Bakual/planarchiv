@@ -78,7 +78,7 @@ class JFormFieldTitlegenerator extends TextField
 		// Add Button to generate the title
 		$html = '<div class="input-group">';
 		$html .= parent::getInput();
-		$html .= '<button class="btn btn-secondary" type="button" id="' . $this->id . '_btn" onclick="generateTitle()"><span class="icon-lightning"> </span>' . Text::_('COM_PLANARCHIV_BUTTON_GENERATE_TITLE') . '</button>';
+		$html .= '<button class="btn btn-primary" type="button" id="' . $this->id . '_btn" onclick="generateTitle()"><span class="icon-lightning"> </span>' . Text::_('COM_PLANARCHIV_BUTTON_GENERATE_TITLE') . '</button>';
 		$html .= '</div>';
 
 		return $html;
