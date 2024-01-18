@@ -15,7 +15,6 @@ use Joomla\CMS\Language\Text;
 use Joomla\CMS\Router\Route;
 
 HTMLHelper::_('bootstrap.tooltip');
-HTMLHelper::_('behavior.keepalive');
 HTMLHelper::_('stylesheet', 'com_planarchiv/planarchiv.css', array('version' => 'auto', 'relative' => true));
 
 $wa = $this->document->getWebAssetManager();
@@ -26,16 +25,6 @@ $this->tab_name         = 'com-planarchiv-planform';
 $this->ignore_fieldsets = [];
 $this->useCoreUI        = true;
 ?>
-<script type="text/javascript">
-    Joomla.submitbutton = function (task) {
-        if (task == 'plan.cancel' || document.formvalidator.isValid(document.id('adminForm'))) {
-            Joomla.submitform(task, document.getElementById('adminForm'));
-        } else {
-            alert('<?php echo $this->escape(Text::_('JGLOBAL_VALIDATION_FORM_FAILED'));?>');
-        }
-    }
-</script>
-
 <div class="edit item-page<?php echo $this->pageclass_sfx; ?>">
 	<?php
 	if ($this->params->get('show_page_heading', 1)) : ?>
@@ -46,9 +35,8 @@ $this->useCoreUI        = true;
 		</div>
 	<?php endif; ?>
 
-	<form
-			action="<?php echo Route::_('index.php?option=com_planarchiv&view=planform&id=' . (int) $this->item->id); ?>"
-			method="post" name="adminForm" id="adminForm" class="form-validate form-vertical">
+	<form action="<?php echo Route::_('index.php?option=com_planarchiv&view=planform&id=' . (int) $this->item->id); ?>"
+			method="post" name="adminForm" id="adminForm" class="form-validate form form-vertical">
 		<fieldset>
 			<?php echo $this->form->renderField('title'); ?>
 			<?php echo HTMLHelper::_('uitab.startTabSet', $this->tab_name, ['active' => 'details', 'recall' => true, 'breakpoint' => 768]); ?>
@@ -156,13 +144,13 @@ $this->useCoreUI        = true;
 			<?php echo HTMLHelper::_('form.token'); ?>
 		</fieldset>
 		<div class="mb-2">
-			<button type="button" class="btn btn-primary" data-submit-task="plan.save">
+			<button type="button" class="btn btn-primary" onclick="Joomla.submitbutton('plan.save')">
 				<span class="icon-ok"></span> <?php echo Text::_('JSAVE') ?>
 			</button>
-			<button type="button" class="btn btn-primary" data-submit-task="plan.save2copy">
+			<button type="button" class="btn btn-primary" onclick="Joomla.submitbutton('plan.save2copy')">
 				<span class="icon-save-copy"></span> <?php echo Text::_('COM_PLANARCHIV_SAVE_AS_COPY') ?>
 			</button>
-			<button type="button" class="btn btn-danger" data-submit-task="plan.cancel">
+			<button type="button" class="btn btn-danger" onclick="Joomla.submitbutton('plan.cancel')">
 				<span	 class="icon-cancel"></span> <?php echo Text::_('JCANCEL') ?>
 			</button>
 			<?php if ($this->item->id) : ?>
