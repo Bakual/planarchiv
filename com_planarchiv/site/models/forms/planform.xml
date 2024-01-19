@@ -282,7 +282,6 @@
 			description="JGLOBAL_FIELD_ID_DESC"
 			class="readonly"
 			default="0"
-			required="true"
 			readonly="true"
 		/>
 	</fieldset>
