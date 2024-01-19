@@ -1,4 +1,18 @@
 ALTER TABLE `#__planarchiv_plan`
 MODIFY `stockwerk_id` int(10) NULL,
 MODIFY `richtung_didok_id` int(10) NULL,
-MODIFY `zurzeitbei_id` int(10) NULL;
+MODIFY `zurzeitbei_id` int(10) NULL,
+DROP COLUMN `PlanNr`,
+DROP COLUMN `Ort`,
+DROP COLUMN `Stockwerk`,
+DROP COLUMN `GebDfaCode`,
+DROP COLUMN `GebDfaTxt`,
+DROP COLUMN `inRichtung`,
+DROP COLUMN `AnlageTyp`,
+DROP COLUMN `AnlageTypTxt`,
+DROP COLUMN `DokuTypCode`,
+DROP COLUMN `DokuTypTxt`,
+DROP COLUMN `ZurZeitBei`,
+DROP COLUMN `Seit`,
+DROP COLUMN `Ablage`,
+DROP COLUMN `AblageSeit`;
