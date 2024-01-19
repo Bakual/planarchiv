@@ -29,21 +29,6 @@ class JFormFieldFileformatlist extends ListField
 	protected $type = 'Fileformatlist';
 
 	/**
-	 * Method to get the field input markup for a generic list.
-	 * Use the multiple attribute to enable multiselect.
-	 *
-	 * @return  string  The field input markup.
-	 *
-	 * @since   1.0.0
-	 */
-	protected function getInput()
-	{
-		$this->value = explode(',', $this->value);
-
-		return parent::getInput();
-	}
-
-	/**
 	 * Method to get the field options.
 	 *
 	 * @return array The field option objects.
