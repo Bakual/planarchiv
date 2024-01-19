@@ -132,7 +132,7 @@ class PlanarchivModelplanform extends AdminModel
 
 		$app = Factory::getApplication();
 
-		$return = $app->input->get('return', null, 'base64');
+		$return = $app->input->get('return', '', 'base64');
 		$this->setState('return_page', base64_decode($return));
 
 		// Load the parameters.
