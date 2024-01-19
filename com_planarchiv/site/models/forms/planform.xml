@@ -140,7 +140,7 @@
 			type="dfalist"
 			label="COM_PLANARCHIV_DFA_LABEL"
 		>
-			<option value=""/>
+			<option value="0">COM_PLANARCHIV_SELECT_DFA</option>
 		</field>
 
 		<field
@@ -158,7 +158,7 @@
 			value_field="title"
 			key_field="id"
 		>
-			<option value=""/>
+			<option value="0">COM_PLANARCHIV_SELECT_STOCKWERK</option>
 		</field>
 
 		<field
@@ -178,7 +178,7 @@
 			type="didoklist"
 			label="COM_PLANARCHIV_DIRECTION_LABEL"
 		>
-			<option value=""/>
+			<option value="0">COM_PLANARCHIV_SELECT_ORT</option>
 		</field>
 	</fieldset>
 
