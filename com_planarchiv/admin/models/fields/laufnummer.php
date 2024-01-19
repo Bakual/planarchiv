@@ -11,8 +11,8 @@ defined('_JEXEC') or die();
 
 use Joomla\CMS\Factory;
 use Joomla\CMS\Form\Field\TextField;
-use Joomla\CMS\Form\FormHelper;
 use Joomla\CMS\Language\Text;
+use Joomla\CMS\Uri\Uri;
 
 /**
  * Dfalist Field class for com_planarchiv
@@ -46,11 +46,11 @@ class JFormFieldLaufnummer extends TextField
 	 */
 	protected function getInput()
 	{
-        $textField = parent::getInput();
+		$textField = parent::getInput();
 
-        if (!self::$jsLoaded)
-        {
-            $js = 'function fetchNextNumber(element) {
+		if (!self::$jsLoaded)
+		{
+			$js = 'function fetchNextNumber(element) {
                     var DidokSelect = document.getElementById("jform_didok_id");
                     var DidokIndex = DidokSelect.selectedIndex;
                     var DidokValue = DidokSelect[DidokIndex].value;
@@ -77,20 +77,20 @@ class JFormFieldLaufnummer extends TextField
 		            	}
                     }
                     var params = "&element="+element+"&didok="+DidokValue+"&dfa="+DfaValue+"&dfalfnr="+DfaLfnr+"&anlage="+AnlageValue+"&anlagelfnr="+AnlageLfnr+"&dokutyp="+DokutypValue;
-			        xmlhttp.open("GET","index.php?option=com_planarchiv&task=laufnummer.lookup&format=json"+params,true);
+			        xmlhttp.open("GET","' . Uri::root() . 'index.php?option=com_planarchiv&task=laufnummer.lookup&format=json"+params,true);
 			        xmlhttp.send();
             }';
-            Factory::getDocument()->addScriptDeclaration($js);
-            self::$jsLoaded = true;
-        }
+			Factory::getDocument()->addScriptDeclaration($js);
+			self::$jsLoaded = true;
+		}
 
-        $reference = (string) $this->element['reference'];
+		$reference = (string) $this->element['reference'];
 
-	    $html = '<div class="input-group">';
-	    $html .= $textField;
-	    $html .= '<button class="btn btn-primary hasTooltip" type="button" onclick="fetchNextNumber(\'' . $this->id . '\')" title="' .  Text::_('COM_PLANARCHIV_FETCH_LFNR') . '"><span class="icon-flash"></span></button>';
-	    $html .= '</div>';
+		$html = '<div class="input-group">';
+		$html .= $textField;
+		$html .= '<button class="btn btn-primary hasTooltip" type="button" onclick="fetchNextNumber(\'' . $this->id . '\')" title="' . Text::_('COM_PLANARCHIV_FETCH_LFNR') . '"><span class="icon-flash"></span></button>';
+		$html .= '</div>';
 
-	    return $html;
+		return $html;
 	}
 }
