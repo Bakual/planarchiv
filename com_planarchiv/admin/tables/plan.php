@@ -137,6 +137,11 @@ class PlanarchivTablePlan extends Table implements VersionableTableInterface
 			$this->zurzeitbei_date = null;
 		}
 
+		if (!$this->km)
+		{
+			$this->km = null;
+		}
+
 		return parent::store($updateNulls);
 	}
 
