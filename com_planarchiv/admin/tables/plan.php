@@ -127,19 +127,22 @@ class PlanarchivTablePlan extends Table implements VersionableTableInterface
 			$this->modified_by = $user->id;
 		}
 
-		if (!$this->zurzeitbei_id)
-		{
-			$this->zurzeitbei_id = null;
-		}
+		// Nullable fields, convert empty string to NULL
+		$nullable = [
+			'zurzeitbei_id',
+			'zurzeitbei_date',
+			'ersteller_id',
+			'ErstellDatum',
+			'AenderungsDatum',
+			'km'
+		];
 
-		if (!$this->zurzeitbei_date)
+		foreach ($nullable as $field)
 		{
-			$this->zurzeitbei_date = null;
-		}
-
-		if (!$this->km)
-		{
-			$this->km = null;
+			if (!$this->$field)
+			{
+				$this->$field = null;
+			}
 		}
 
 		return parent::store($updateNulls);
