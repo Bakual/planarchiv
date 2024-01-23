@@ -1,7 +1,8 @@
 ALTER TABLE `#__planarchiv_plan`
-MODIFY `stockwerk_id` int(10) NULL,
-MODIFY `richtung_didok_id` int(10) NULL,
-MODIFY `zurzeitbei_id` int(10) NULL,
+MODIFY `stockwerk_id` int NULL,
+MODIFY `richtung_didok_id` int NULL,
+MODIFY `zurzeitbei_id` int NULL,
+MODIFY `ersteller_id` int NULL,
 MODIFY `files` varchar(50) NOT NULL DEFAULT '',
 DROP COLUMN `PlanNr`,
 DROP COLUMN `Ort`,
