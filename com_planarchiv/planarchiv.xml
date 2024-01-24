@@ -43,6 +43,7 @@
 	<administration>
 		<menu>COM_PLANARCHIV</menu>
 		<submenu>
+			<menu view="main">COM_PLANARCHIV_MENU_MAIN</menu>
 			<menu view="dfas">COM_PLANARCHIV_MENU_DFAS</menu>
 			<menu view="didoks">COM_PLANARCHIV_MENU_DIDOKS</menu>
 			<menu view="stockwerks">COM_PLANARCHIV_MENU_STOCKWERKS</menu>
