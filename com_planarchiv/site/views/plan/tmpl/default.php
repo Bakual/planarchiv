@@ -64,7 +64,7 @@ $canEditOwn = $user->authorise('core.edit.own', 'com_planarchiv.category.' . $th
 			<dd class="zurzeitbei">
 				<span class="fa fa-user" aria-hidden="true"></span>
 				<?php $zurzeitbeiLink = Route::_(ContactHelperRoute::getContactRoute($this->item->zurzeitbei_id . ':' . $this->item->zurzeitbei_alias, $this->item->zurzeitbei_catid)); ?>
-				<?php $zurzeitbeiDate = ($this->item->zurzeitbei_date !== '0000-00-00 00:00:00') ? HTMLHelper::_('date', $this->item->zurzeitbei_date, Text::_('DATE_FORMAT_LC3')) : '?'; ?>
+				<?php $zurzeitbeiDate = ($this->item->zurzeitbei_date && $this->item->zurzeitbei_date !== '0000-00-00 00:00:00') ? HTMLHelper::_('date', $this->item->zurzeitbei_date, Text::_('DATE_FORMAT_LC3')) : '?'; ?>
 				<?php echo Text::sprintf('COM_PLANARCHIV_ZUR_ZEIT_BEI', $zurzeitbeiDate, '<a href="' . $zurzeitbeiLink . '">' . $this->item->zurzeitbei_name . '</a>'); ?>
 			</dd>
 		<?php endif; ?>
