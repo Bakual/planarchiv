@@ -24,6 +24,14 @@ use Joomla\CMS\Versioning\VersionableTableInterface;
 class PlanarchivTablePlan extends Table implements VersionableTableInterface
 {
 	/**
+	 * The UCM type alias. Used for tags, content versioning etc. Leave blank to effectively disable these features.
+	 *
+	 * @var    string
+	 * @since  4.0.0
+	 */
+	public $typeAlias = 'com_planarchiv.plan';
+
+	/**
 	 * Constructor
 	 *
 	 * @param  JDatabaseDriver $db JDatabaseDriver object.
