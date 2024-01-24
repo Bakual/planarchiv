@@ -48,7 +48,8 @@ class PlanarchivViewPlan extends HtmlView
 
 		if (!$this->item)
 		{
-			$app->redirect(Route::_('index.php?view=plans'), Text::_('JGLOBAL_RESOURCE_NOT_FOUND'), 'error');
+			$app->enqueueMessage(Text::_('JGLOBAL_RESOURCE_NOT_FOUND'));
+			$app->redirect(Route::_('index.php?view=plans'));
 		}
 
 		// Check if access is not public
