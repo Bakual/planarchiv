@@ -90,7 +90,7 @@ class PlanarchivViewAnlagetyps extends HtmlView
 	{
 		$canDo = PlanarchivHelper::getActions();
 
-		ToolbarHelper::title(Text::_('COM_PLANARCHIV_ANLAGETYPS_TITLE'));
+		ToolbarHelper::title(Text::_('COM_PLANARCHIV_ANLAGETYPS_TITLE'), 'dummy fa-bolt');
 
 		if ($canDo->get('core.create'))
 		{

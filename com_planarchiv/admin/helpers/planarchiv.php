@@ -11,7 +11,7 @@ defined('_JEXEC') or die;
 
 use Joomla\CMS\Access\Access;
 use Joomla\CMS\Factory;
-use Joomla\Registry\Registry;
+use Joomla\CMS\MVC\View\CanDo;
 
 /**
  * Planarchiv Helper
@@ -32,7 +32,7 @@ class PlanarchivHelper
 	public static function getActions($categoryId = 0)
 	{
 		$user   = Factory::getApplication()->getIdentity();
-		$result = new Registry();
+		$result = new CanDo();
 
 		if (empty($categoryId))
 		{

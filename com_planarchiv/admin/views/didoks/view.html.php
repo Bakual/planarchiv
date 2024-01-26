@@ -91,7 +91,7 @@ class PlanarchivViewDidoks extends HtmlView
 	{
 		$canDo = PlanarchivHelper::getActions();
 
-		ToolbarHelper::title(Text::_('COM_PLANARCHIV_DIDOKS_TITLE'));
+		ToolbarHelper::title(Text::_('COM_PLANARCHIV_DIDOKS_TITLE'), 'dummy fa-train');
 
 		if ($canDo->get('core.create'))
 		{

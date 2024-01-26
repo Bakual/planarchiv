@@ -66,20 +66,7 @@ $trashed   = $this->state->get('filter.state') == -2 ? true : false;
 							<?php echo HTMLHelper::_('grid.id', $i, $item->id); ?>
 						</td>
 						<td class="center">
-							<div class="btn-group">
-								<?php echo HTMLHelper::_('jgrid.published', $item->state, $i, 'dfas.', $canChange, 'cb'); ?>
-								<?php
-								// Create dropdown items
-								$action = $archived ? 'unarchive' : 'archive';
-								HTMLHelper::_('actionsdropdown.' . $action, 'cb' . $i, 'dfas');
-
-								$action = $trashed ? 'untrash' : 'trash';
-								HTMLHelper::_('actionsdropdown.' . $action, 'cb' . $i, 'dfas');
-
-								// Render dropdown list
-								echo HTMLHelper::_('actionsdropdown.render', $this->escape($item->title));
-								?>
-							</div>
+							<?php echo HTMLHelper::_('jgrid.published', $item->state, $i, 'dfas.', $canChange, 'cb'); ?>
 						</td>
 						<td class="nowrap has-context">
 							<div class="pull-left">

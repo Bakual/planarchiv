@@ -12,6 +12,7 @@ defined('_JEXEC') or die;
 use Joomla\CMS\Language\Text;
 use Joomla\CMS\MVC\View\HtmlView;
 use Joomla\CMS\Toolbar\ToolbarHelper;
+use Joomla\Component\Content\Administrator\Helper\ContentHelper;
 
 /**
  * HTML View class for the PlanArchiv Component
@@ -90,7 +91,7 @@ class PlanarchivViewDfas extends HtmlView
 	{
 		$canDo = PlanarchivHelper::getActions();
 
-		ToolbarHelper::title(Text::_('COM_PLANARCHIV_DFAS_TITLE'));
+		ToolbarHelper::title(Text::_('COM_PLANARCHIV_DFAS_TITLE'), 'dummy fa-house');
 
 		if ($canDo->get('core.create'))
 		{
@@ -104,8 +105,8 @@ class PlanarchivViewDfas extends HtmlView
 
 		if ($canDo->get('core.edit.state'))
 		{
-			ToolbarHelper::custom('dfas.publish', 'publish.png', 'publish_f2.png', 'JTOOLBAR_PUBLISH', true);
-			ToolbarHelper::custom('dfas.unpublish', 'unpublish.png', 'unpublish_f2.png', 'JTOOLBAR_UNPUBLISH', true);
+			ToolbarHelper::publish('dfas.publish', 'JTOOLBAR_PUBLISH', true);
+			ToolbarHelper::unpublish('dfas.unpublish', 'JTOOLBAR_UNPUBLISH', true);
 
 			if ($this->state->get('filter.state') != 2)
 			{

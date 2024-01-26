@@ -91,7 +91,7 @@ class PlanarchivViewStockwerks extends HtmlView
 	{
 		$canDo = PlanarchivHelper::getActions();
 
-		ToolbarHelper::title(Text::_('COM_PLANARCHIV_STOCKWERKS_TITLE'));
+		ToolbarHelper::title(Text::_('COM_PLANARCHIV_STOCKWERKS_TITLE'), 'dummy fa-list-ol');
 
 		if ($canDo->get('core.create'))
 		{

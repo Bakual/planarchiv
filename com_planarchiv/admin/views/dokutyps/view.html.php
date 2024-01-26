@@ -91,7 +91,7 @@ class PlanarchivViewDokutyps extends HtmlView
 	{
 		$canDo = PlanarchivHelper::getActions();
 
-		ToolbarHelper::title(Text::_('COM_PLANARCHIV_DOKUTYPS_TITLE'));
+		ToolbarHelper::title(Text::_('COM_PLANARCHIV_DOKUTYPS_TITLE'), 'dummy fa-copy');
 
 		if ($canDo->get('core.create'))
 		{
