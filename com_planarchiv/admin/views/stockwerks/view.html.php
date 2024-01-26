@@ -49,11 +49,6 @@ class PlanarchivViewStockwerks extends HtmlView
 	 * @since  1.0.0
 	 */
 	protected $state;
-	/**
-	 * @var
-	 * @since 1.0.0
-	 */
-	protected $sidebar;
 
 	/**
 	 * Execute and display a template script.
@@ -80,11 +75,9 @@ class PlanarchivViewStockwerks extends HtmlView
 			throw new Exception(implode("\n", $errors), 500);
 		}
 
-		PlanarchivHelper::addSubmenu('stockwerks');
 		$this->addToolbar();
-		$this->sidebar = Sidebar::render();
 
-		return parent::display($tpl);
+		parent::display($tpl);
 	}
 
 	/**

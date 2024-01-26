@@ -49,11 +49,6 @@ class PlanarchivViewDidoks extends HtmlView
 	 * @since  1.0.0
 	 */
 	protected $state;
-	/**
-	 * @var
-	 * @since 1.0.0
-	 */
-	protected $sidebar;
 
 	/**
 	 * Execute and display a template script.
@@ -80,11 +75,9 @@ class PlanarchivViewDidoks extends HtmlView
 			throw new Exception(implode("\n", $errors), 500);
 		}
 
-		PlanarchivHelper::addSubmenu('didoks');
 		$this->addToolbar();
-		$this->sidebar = Sidebar::render();
 
-		return parent::display($tpl);
+		parent::display($tpl);
 	}
 
 	/**
