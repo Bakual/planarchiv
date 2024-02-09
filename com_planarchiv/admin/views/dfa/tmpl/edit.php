@@ -51,9 +51,7 @@ $tmpl   = $jinput->getCmd('tmpl') === 'component' ? '&tmpl=component' : '';
 	<div class="form-horizontal">
 		<div class="row-fluid">
 			<div class="span5">
-				<?php foreach($this->form->getFieldset('basic') as $field): ?>
-					<?php echo $field->getControlGroup(); ?>
-				<?php endforeach; ?>
+				<?php echo $this->form->renderFieldset('basic'); ?>
 			</div>
 			<div class="span4">
 				<?php echo LayoutHelper::render('joomla.edit.publishingdata', $this); ?>
