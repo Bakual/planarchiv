@@ -47,15 +47,15 @@ $tmpl   = $jinput->getCmd('tmpl') === 'component' ? '&tmpl=component' : '';
 <form action="<?php echo Route::_('index.php?option=com_planarchiv&layout=edit&id='.(int) $this->item->id . $tmpl); ?>" method="post" name="adminForm" id="adminForm" class="form-validate">
 	<div class="form-horizontal">
 		<div class="row">
-			<div class="span5">
+			<div class="col-md-5">
 				<?php foreach($this->form->getFieldset('basic') as $field): ?>
 					<?php echo $field->getControlGroup(); ?>
 				<?php endforeach; ?>
 			</div>
-			<div class="span4">
+			<div class="col-md-4">
 				<?php echo LayoutHelper::render('joomla.edit.publishingdata', $this); ?>
 			</div>
-			<div class="span3">
+			<div class="col-md-3">
 				<?php echo LayoutHelper::render('joomla.edit.global', $this); ?>
 			</div>
 		</div>
