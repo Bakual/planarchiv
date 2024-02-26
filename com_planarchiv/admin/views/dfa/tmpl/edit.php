@@ -45,23 +45,18 @@ $tmpl   = $jinput->getCmd('tmpl') === 'component' ? '&tmpl=component' : '';
 </script>
 
 <form action="<?php echo Route::_('index.php?option=com_planarchiv&layout=edit&id='.(int) $this->item->id . $tmpl); ?>" method="post" name="adminForm" id="adminForm" class="form-validate">
-
-	<?php echo LayoutHelper::render('joomla.edit.title_alias', $this); ?>
-
-	<div class="form-horizontal">
-		<div class="row-fluid">
-			<div class="span5">
-				<?php echo $this->form->renderFieldset('basic'); ?>
-			</div>
-			<div class="span4">
-				<?php echo LayoutHelper::render('joomla.edit.publishingdata', $this); ?>
-			</div>
-			<div class="span3">
-				<?php echo LayoutHelper::render('joomla.edit.global', $this); ?>
-			</div>
+	<div class="row">
+		<div class="col-md-5">
+			<?php echo $this->form->renderFieldset('basic'); ?>
 		</div>
-		<input type="hidden" name="task" value="" />
-		<input type="hidden" name="return" value="<?php echo $jinput->getCmd('return');?>" />
-		<?php echo HTMLHelper::_('form.token'); ?>
+		<div class="col-md-4">
+			<?php echo LayoutHelper::render('joomla.edit.publishingdata', $this); ?>
+		</div>
+		<div class="col-md-3">
+			<?php echo LayoutHelper::render('joomla.edit.global', $this); ?>
+		</div>
 	</div>
+	<input type="hidden" name="task" value="" />
+	<input type="hidden" name="return" value="<?php echo $jinput->getCmd('return');?>" />
+	<?php echo HTMLHelper::_('form.token'); ?>
 </form>
