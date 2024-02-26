@@ -35,7 +35,7 @@ $tmpl   = $jinput->getCmd('tmpl') === 'component' ? '&tmpl=component' : '';
 
 <script type="text/javascript">
 	Joomla.submitbutton = function(task) {
-		if (task == 'stockwerk.cancel' || document.formvalidator.isValid(document.id('adminForm'))) {
+		if (task == 'stockwerk.cancel' || document.formvalidator.isValid(document.getElementById('adminForm'))) {
 			Joomla.submitform(task, document.getElementById('adminForm'));
 		} else {
 			alert('<?php echo $this->escape(Text::_('JGLOBAL_VALIDATION_FORM_FAILED'));?>');
@@ -50,9 +50,7 @@ $tmpl   = $jinput->getCmd('tmpl') === 'component' ? '&tmpl=component' : '';
 	<div class="form-horizontal">
 		<div class="row">
 			<div class="col-md-5">
-				<?php foreach($this->form->getFieldset('basic') as $field): ?>
-					<?php echo $field->getControlGroup(); ?>
-				<?php endforeach; ?>
+				<?php echo $this->form->renderFieldset('basic'); ?>
 			</div>
 			<div class="col-md-4">
 				<?php echo LayoutHelper::render('joomla.edit.publishingdata', $this); ?>

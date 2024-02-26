@@ -8,7 +8,6 @@
 			name="catid"
 			type="categoryedit"
 			label="JCATEGORY"
-			description="JFIELD_CATEGORY_DESC"
 			extension="com_planarchiv"
 			required="true"
 		/>
@@ -17,7 +16,6 @@
 			name="state"
 			type="list"
 			label="JSTATUS"
-			description="JFIELD_PUBLISHED_DESC"
 			class="chzn-color-state"
 			filter="intval"
 			size="1"
@@ -79,14 +77,12 @@
 			name="created_by"
 			type="user"
 			label="JGLOBAL_FIELD_CREATED_BY_LABEL"
-			description="JGLOBAL_FIELD_CREATED_BY_DESC"
 		/>
 
 		<field
 			name="created"
 			type="calendar"
 			label="JGLOBAL_FIELD_CREATED_LABEL"
-			description="JGLOBAL_FIELD_CREATED_DESC"
 			format="%Y-%m-%d %H:%M:%S"
 			filter="user_utc"
 			size="22"
