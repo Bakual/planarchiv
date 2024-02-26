@@ -49,7 +49,7 @@ $tmpl   = $jinput->getCmd('tmpl') === 'component' ? '&tmpl=component' : '';
 	<?php echo LayoutHelper::render('joomla.edit.title_alias', $this); ?>
 
 	<div class="form-horizontal">
-		<div class="row-fluid">
+		<div class="row">
 			<div class="span5">
 				<?php foreach($this->form->getFieldset('basic') as $field): ?>
 					<?php echo $field->getControlGroup(); ?>

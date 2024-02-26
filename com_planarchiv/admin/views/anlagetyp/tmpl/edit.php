@@ -46,7 +46,7 @@ $tmpl   = $jinput->getCmd('tmpl') === 'component' ? '&tmpl=component' : '';
 
 <form action="<?php echo Route::_('index.php?option=com_planarchiv&layout=edit&id='.(int) $this->item->id . $tmpl); ?>" method="post" name="adminForm" id="adminForm" class="form-validate">
 	<div class="form-horizontal">
-		<div class="row-fluid">
+		<div class="row">
 			<div class="span5">
 				<?php foreach($this->form->getFieldset('basic') as $field): ?>
 					<?php echo $field->getControlGroup(); ?>
